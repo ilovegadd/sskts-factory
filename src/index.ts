@@ -30,9 +30,11 @@ import * as CorporationOrganizationFactory from './factory/organization/corporat
 import * as MovieTheaterOrganizationFactory from './factory/organization/movieTheater';
 import CorporationOrganizationIdentifier from './factory/organizationIdentifier/corporation';
 import OrganizationType from './factory/organizationType';
+import * as OwnershipInfoFactory from './factory/ownershipInfo';
 import * as PersonFactory from './factory/person';
 import * as MovieTheaterPlaceFactory from './factory/place/movieTheater';
 import PlaceType from './factory/placeType';
+import * as ReservationFactory from './factory/reservation';
 import ReservationStatusType from './factory/reservationStatusType';
 import * as PerformanceStockStatusFactory from './factory/stockStatus/performance';
 import * as TaskFactory from './factory/task';
@@ -96,11 +98,13 @@ export namespace organizationIdentifier {
     export import corporation = CorporationOrganizationIdentifier;
 }
 export import organizationType = OrganizationType;
+export import ownershipInfo = OwnershipInfoFactory;
 export namespace place {
     export import movieTheater = MovieTheaterPlaceFactory;
 }
 export import person = PersonFactory;
 export import placeType = PlaceType;
+export import reservation = ReservationFactory;
 export import reservationStatusType = ReservationStatusType;
 export namespace stockStatus {
     // tslint:disable-next-line:no-shadowed-variable
