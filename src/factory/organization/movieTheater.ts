@@ -106,6 +106,15 @@ export type IOrganization = IOrganizationWithoutGMOInfo & {
     gmoInfo: IGMOInfo;
 };
 
+/**
+ * public fields interface
+ */
+export type IPublicFields = IOrganizationWithoutGMOInfo & {
+    gmoInfo: {
+        shopId: string;
+    };
+};
+
 export function create(args: {
     name: IMultilingualString;
     branchCode: string; // 劇場コード

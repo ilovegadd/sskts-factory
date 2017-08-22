@@ -56,17 +56,16 @@ export interface IScreeningRoom extends PlaceFactory.IPlace {
 }
 
 /**
- * 劇場施設インターフェース
+ * place interface without screening room
+ * @export
+ * @interface
+ * @memberof factory/place/movieTheater
  */
-export interface IPlace extends PlaceFactory.IPlace {
+export interface IPlaceWithoutScreeningRoom extends PlaceFactory.IPlace {
     /**
      * スクリーン数
      */
     screenCount: number;
-    /**
-     * 上映室リスト
-     */
-    containsPlace: IScreeningRoom[];
     /**
      * 枝番号
      * COAの劇場コードにあたります。
@@ -85,6 +84,16 @@ export interface IPlace extends PlaceFactory.IPlace {
      */
     address?: IMultilingualString;
 }
+
+/**
+ * 劇場施設インターフェース
+ */
+export type IPlace = IPlaceWithoutScreeningRoom & {
+    /**
+     * 上映室リスト
+     */
+    containsPlace: IScreeningRoom[];
+};
 
 /**
  * COAのマスター抽出結果から作成する

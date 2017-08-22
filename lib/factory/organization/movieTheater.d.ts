@@ -98,6 +98,14 @@ export declare type IOrganization = IOrganizationWithoutGMOInfo & {
      */
     gmoInfo: IGMOInfo;
 };
+/**
+ * public fields interface
+ */
+export declare type IPublicFields = IOrganizationWithoutGMOInfo & {
+    gmoInfo: {
+        shopId: string;
+    };
+};
 export declare function create(args: {
     name: IMultilingualString;
     branchCode: string;
