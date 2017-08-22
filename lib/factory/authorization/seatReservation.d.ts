@@ -7,6 +7,7 @@ import * as COA from '@motionpicture/coa-service';
 import * as AuthorizationFactory from '../authorization';
 import PriceCurrency from '../priceCurrency';
 import * as IndividualScreeningEventFactory from '../event/individualScreeningEvent';
+import { ICOATicketInfo } from '../offer';
 import * as ReservationFactory from '../reservation';
 /**
  * 承認結果インターフェース
@@ -70,6 +71,6 @@ export declare function createFromCOATmpReserve(args: {
     price: number;
     updTmpReserveSeatArgs: COA.services.reserve.IUpdTmpReserveSeatArgs;
     reserveSeatsTemporarilyResult: COA.services.reserve.IUpdTmpReserveSeatResult;
-    tickets: ReservationFactory.ICOATicketInfo[];
+    tickets: ICOATicketInfo[];
     individualScreeningEvent: IndividualScreeningEventFactory.IEvent;
 }): IAuthorization;

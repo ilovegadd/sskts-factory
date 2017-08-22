@@ -29,7 +29,7 @@ export interface IOwner {
  * @interface {IOwnershipInfo}
  * @memberof factory/ownershipInfo
  */
-export interface IOwnershipInfo {
+export interface IOwnershipInfo<T extends IGood> {
     /**
      * object type
      */
@@ -57,7 +57,7 @@ export interface IOwnershipInfo {
     /**
      * The product that this structured value is referring to.
      */
-    typeOfGood: IGood;
+    typeOfGood: T;
 }
 
 /**
@@ -71,7 +71,7 @@ export function create(args: {
     ownedFrom: Date;
     ownedThrough: Date;
     typeOfGood: IGood;
-}): IOwnershipInfo {
+}): IOwnershipInfo<IGood> {
     return {
         typeOf: 'OwnershipInfo',
         // tslint:disable-next-line:no-suspicious-comment

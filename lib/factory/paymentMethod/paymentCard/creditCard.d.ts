@@ -7,7 +7,7 @@ import { IPaymentCard } from '../paymentCard';
 /**
  * 有効性確認済みカード
  * @export
- * @interface ICheckedCard
+ * @interface
  * @extends {CardFactory.ICard}
  * @memberof factory/paymentMethod/paymentCard/creditCard
  */
@@ -51,7 +51,7 @@ export interface ICheckedCard extends IPaymentCard {
 }
 /**
  * 生の有効性確認前GMOカードインターフェース
- * @interface IUncheckedCardRaw
+ * @interface
  * @memberof factory/paymentMethod/paymentCard/creditCard
  */
 export interface IUncheckedCardRaw {
@@ -62,11 +62,20 @@ export interface IUncheckedCardRaw {
 }
 /**
  * トークン化有効性確認前GMOカードインターフェース
- * @interface IUncheckedCardTokenized
+ * @interface
  * @memberof factory/paymentMethod/paymentCard/creditCard
  */
 export interface IUncheckedCardTokenized {
     token: string;
+}
+/**
+ * オーソリ取得前の会員カードインターフェース
+ * @interface
+ */
+export interface IUnauthorizedCardOfMember {
+    memberId: string;
+    cardSeq: number;
+    cardPass?: string;
 }
 /**
  * GMOカード検索結果から有効性確認済みカードを作成する

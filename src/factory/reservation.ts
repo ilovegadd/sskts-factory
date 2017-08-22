@@ -3,8 +3,8 @@
  * @namespace factory/reservation
  */
 
-import * as COA from '@motionpicture/coa-service';
 import * as EventFactory from './event';
+import { ICOATicketInfo } from './offer';
 import PriceCurrency from './priceCurrency';
 import ReservationStatusType from './reservationStatusType';
 import * as URLFactory from './url';
@@ -12,7 +12,7 @@ import * as URLFactory from './url';
 /**
  * under name interface
  * @export
- * @interface {IUnderName}
+ * @interface
  * @memberof factory/reservation
  */
 export interface IUnderName {
@@ -23,7 +23,7 @@ export interface IUnderName {
 /**
  * seat interface
  * @export
- * @interface {ISeat}
+ * @interface
  * @memberof factory/reservation
  */
 export interface ISeat {
@@ -50,30 +50,9 @@ export interface ISeat {
 }
 
 /**
- * COA券種情報
- * @export
- * @interface {ICOATicketInfo}
- * @memberof factory/reservation
- */
-export type ICOATicketInfo = COA.services.reserve.IUpdReserveTicket & {
-    /**
-     * チケット名
-     */
-    ticketName: string;
-    /**
-     * チケット名（カナ）
-     */
-    ticketNameKana: string;
-    /**
-     * チケット名（英）
-     */
-    ticketNameEng: string;
-};
-
-/**
  * 予約チケット情報
  * @export
- * @interface {ITicket}
+ * @interface
  * @memberof factory/reservation
  */
 export interface ITicket {
@@ -138,7 +117,7 @@ export interface ITicket {
  * e.g. in confirmation emails or HTML pages with individual confirmations of reservations.
  * For offers of tickets, restaurant reservations, flights, or rental cars, use Offer.
  * @export
- * @interface {IReservation}
+ * @interface
  * @memberof factory/reservation
  */
 export interface IReservation {

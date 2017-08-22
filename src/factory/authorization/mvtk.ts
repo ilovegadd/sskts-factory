@@ -12,7 +12,9 @@ import * as AuthorizationFactory from '../authorization';
 import AuthorizationGroup from '../authorizationGroup';
 import ObjectId from '../objectId';
 
-export interface IResult { // todo ムビチケ着券OUTに変更
+// tslint:disable-next-line:no-suspicious-comment
+// TODO ムビチケ着券OUTに変更
+export interface IResult {
     kgygishCd: string;
     yykDvcTyp: string;
     trkshFlg: string;
@@ -27,7 +29,9 @@ export interface IResult { // todo ムビチケ着券OUTに変更
     skhnCd: string;
 }
 
-export type IObject = any; // todo ムビチケ着券INに変更
+// tslint:disable-next-line:no-suspicious-comment
+// todo ムビチケ着券INに変更
+export type IObject = any;
 
 /**
  * 券種情報

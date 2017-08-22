@@ -13,6 +13,7 @@ import EventType from './factory/eventType';
 import IMultilingualString from './factory/multilingualString';
 import * as EmailNotificationFactory from './factory/notification/email';
 import NotificationGroup from './factory/notificationGroup';
+import * as OfferFactory from './factory/offer';
 import * as OrderFactory from './factory/order';
 import * as CorporationOrganizationFactory from './factory/organization/corporation';
 import * as MovieTheaterOrganizationFactory from './factory/organization/movieTheater';
@@ -72,6 +73,7 @@ export declare namespace event {
 export import eventType = EventType;
 export declare type multilingualString = IMultilingualString;
 export import notificationGroup = NotificationGroup;
+export import offer = OfferFactory;
 export import order = OrderFactory;
 export declare namespace organization {
     export import corporation = CorporationOrganizationFactory;

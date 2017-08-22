@@ -1,5 +1,6 @@
 /**
- * 個々の上映イベントファクトリー
+ * individual screening event factory
+ * @namespace factory/event/individualScreeningEvent
  */
 import * as COA from '@motionpicture/coa-service';
 import CreativeWorkType from '../creativeWorkType';
@@ -9,8 +10,21 @@ import IMultilingualString from '../multilingualString';
 import * as MovieTheaterPlaceFactory from '../place/movieTheater';
 import PlaceType from '../placeType';
 /**
+ * search conditions interface
+ * @export
+ * @interface
+ * @memberof factory/event/individualScreeningEvent
+ */
+export interface ISearchConditions {
+    day: string;
+    theater: string;
+}
+/**
  * 個々の上映イベントインターフェース
  * COAのスケジュールに相当します。
+ * @export
+ * @interface
+ * @memberof factory/event/individualScreeningEvent
  */
 export interface IEvent extends EventFactory.IEvent {
     /**
@@ -127,9 +141,18 @@ export interface IEvent extends EventFactory.IEvent {
         flgEarlyBooking: string;
     };
 }
+/**
+ * create individualScreeningEvent from COA performance
+ * @export
+ * @function
+ * @memberof factory/event/individualScreeningEvent
+ */
 export declare function createFromCOA(performanceFromCOA: COA.services.master.IScheduleResult): (screenRoom: MovieTheaterPlaceFactory.IScreeningRoom, screeningEvent: ScreeningEventFactory.IEvent) => IEvent;
 /**
- * COA情報からパフォーマンスIDを生成する
+ * create id by COA infos.
+ * @export
+ * @function
+ * @memberof factory/event/individualScreeningEvent
  */
 export declare function createIdFromCOA(args: {
     screeningEvent: ScreeningEventFactory.IEvent;

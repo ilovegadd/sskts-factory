@@ -1,6 +1,5 @@
 /**
  * 注文取引ファクトリー
- *
  * @namespace factory/transaction/placeOrder
  */
 import * as GMOAuthorizationFactory from '../authorization/gmo';
@@ -10,13 +9,35 @@ import * as ClientUserFactory from '../clientUser';
 import * as OrderFactory from '../order';
 import * as OwnershipInfoFactory from '../ownershipInfo';
 import * as ProgramMembershipFactory from '../programMembership';
+import { IReservation } from '../reservation';
 import * as TaskFactory from '../task';
 import * as TranstransactionFactory from '../transaction';
 import TransactionStatusType from '../transactionStatusType';
 import TransactionTasksExportationStatus from '../transactionTasksExportationStatus';
+/**
+ * available payment info interface
+ * @export
+ * @interface
+ * @memberof factory/transaction/placeOrder
+ */
 export declare type IAvailablePaymentInfo = GMOAuthorizationFactory.IAuthorization | MvtkAuthorizationFactory.IAuthorization;
 /**
+ * customer contact interface
+ * @export
+ * @interface
+ * @memberof factory/transaction/placeOrder
+ */
+export interface ICustomerContact {
+    givenName: string;
+    familyName: string;
+    email: string;
+    telephone: string;
+}
+/**
  * 販売者インターフェース
+ * @export
+ * @interface
+ * @memberof factory/transaction/placeOrder
  */
 export interface ISeller {
     /**
@@ -34,6 +55,9 @@ export interface ISeller {
 }
 /**
  * 購入者インターフェース
+ * @export
+ * @interface
+ * @memberof factory/transaction/placeOrder
  */
 export interface IAgent {
     id: string;
@@ -64,6 +88,9 @@ export interface IAgent {
 }
 /**
  * 取引結果インターフェース
+ * @export
+ * @interface
+ * @memberof factory/transaction/placeOrder
  */
 export interface IResult {
     /**
@@ -73,14 +100,20 @@ export interface IResult {
     /**
      * 購入者に与えられる所有権リスト
      */
-    ownershipInfos: OwnershipInfoFactory.IOwnershipInfo[];
+    ownershipInfos: OwnershipInfoFactory.IOwnershipInfo<IReservation>[];
 }
 /**
  * エラーインターフェース
+ * @export
+ * @interface
+ * @memberof factory/transaction/placeOrder
  */
 export declare type IError = any;
 /**
  * 取引対象物インターフェース
+ * @export
+ * @interface
+ * @memberof factory/transaction/placeOrder
  */
 export interface IObject {
     /**
@@ -98,6 +131,9 @@ export interface IObject {
 }
 /**
  * 注文取引インターフェース
+ * @export
+ * @interface
+ * @memberof factory/transaction/placeOrder
  */
 export interface ITransaction extends TranstransactionFactory.ITransaction {
     /**
@@ -122,6 +158,12 @@ export interface ITransaction extends TranstransactionFactory.ITransaction {
      */
     object: IObject;
 }
+/**
+ * create placeOrderTransaction object.
+ * @export
+ * @interface
+ * @memberof factory/transaction/placeOrder
+ */
 export declare function create(args: {
     id?: string;
     status: TransactionStatusType;
