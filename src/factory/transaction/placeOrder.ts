@@ -71,25 +71,6 @@ export interface IAgent {
      * スキーマタイプ
      */
     typeOf: string;
-    /**
-     * めい
-     */
-    givenName: string;
-    /**
-     * せい
-     */
-    familyName: string;
-    /**
-     * メールアドレス
-     */
-    email: string;
-    /**
-     * 電話番号
-     */
-    telephone: string;
-    /**
-     * 参加している会員プログラム
-     */
     memberOf?: ProgramMembershipFactory.IProgramMembership;
 }
 
@@ -129,6 +110,10 @@ export interface IObject {
      * 取引進行クライアントユーザー
      */
     clientUser: ClientUserFactory.IClientUser;
+    /**
+     * customer contact
+     */
+    customerContact?: ICustomerContact;
     /**
      * 決済情報リスト
      */
