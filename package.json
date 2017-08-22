@@ -4,9 +4,9 @@
   "description": "sskts factory library",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
-  "directories": {
-    "lib": "lib"
-  },
+  "files": [
+    "lib/"
+  ],
   "scripts": {
     "build": "tsc",
     "check": "npm run tslint && nsp check && npm run snyk",
