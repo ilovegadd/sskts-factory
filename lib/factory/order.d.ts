@@ -1,56 +1,94 @@
 /**
- * 注文ファクトリー
+ * order factory
  * An order is a confirmation of a transaction (a receipt),
  * which can contain multiple line items, each represented by an Offer that has been accepted by the customer.
  *
  * @namespace factory/order
  */
-import * as OrderInquiryKeyFactory from './orderInquiryKey';
+import { IAuthorization as ISeatReservationAuthorization } from './authorization/seatReservation';
 import OrderStatus from './orderStatus';
-import PaymentMethod from './paymentMethod';
 import PriceCurrency from './priceCurrency';
-import * as ReservationFactory from './reservation';
-import * as SeatReservationAuthorizationFactory from './authorization/seatReservation';
-export declare type IOffer = ReservationFactory.IReservation;
+import { IReservation } from './reservation';
+/**
+ * payment method interface
+ * @interface {IPaymentMethod}
+ * @memberof factory/order
+ */
+export interface IPaymentMethod {
+    typeOf: string;
+    identifier: string;
+}
+/**
+ * key for inquiry of the order
+ * @interface {IOrderInquiryKey}
+ * @memberof factory/order
+ */
+export interface IOrderInquiryKey {
+    theaterCode: string;
+    orderNumber: number;
+    telephone: string;
+}
+/**
+ * offer interface
+ * @type {IOffer}
+ * @memberof factory/order
+ */
+export declare type IOffer = IReservation;
+/**
+ * seller interface
+ * @interface {ISeller}
+ * @memberof factory/order
+ */
 export interface ISeller {
     /**
-     * Text	(required) Name of the Organization.
+     * Name of the Organization.
      */
     name: string;
     /**
-     * URL	The Freebase URL for the merchant.
+     * The Freebase URL for the merchant.
      */
-    sameAs: string;
+    url: string;
 }
+/**
+ * customer interface
+ * @interface {ICustomer}
+ * @memberof factory/order
+ */
 export interface ICustomer {
     /**
      * Name of the Person.
      */
     name: string;
 }
+/**
+ * order interface
+ * @interface {IOrder}
+ * @memberof factory/order
+ */
 export interface IOrder {
     /**
-     * Organization or Person	(required)
+     * object type
+     */
+    typeOf: string;
+    /**
+     * Organization or Person
      * The party taking the order (e.g. Amazon.com is a merchant for many sellers). Also accepts a string (e.g. "Amazon.com").
      */
     seller: ISeller;
     /**
-     * Text	(required)
      * The merchant- specific identifier for the transaction.
      */
     orderNumber: string;
     /**
-     * Text	(required)
      * The currency (in 3 - letter ISO 4217 format) of the order price.
      */
     priceCurrency: PriceCurrency;
     /**
-     * Number or Text	(required)
      * The total price of the entire transaction.
      */
     price: number;
     /**
-     * Offer	(required)
+     * Offer
      * The offers included in the order.Also accepts an array of objects.
      */
     acceptedOffers: IOffer[];
@@ -67,7 +105,7 @@ export interface IOrder {
     /**
      * The name of the credit card or other method of payment for the order.
      */
-    paymentMethod: PaymentMethod;
+    paymentMethod: IPaymentMethod;
     /**
      * An identifier for the method of payment used (e.g.the last 4 digits of the credit card).
      */
@@ -93,12 +131,21 @@ export interface IOrder {
      * Party placing the order.
      */
     customer: ICustomer;
-    orderInquiryKey: OrderInquiryKeyFactory.IOrderInquiryKey;
+    /**
+     * key for inquiry (required)
+     */
+    orderInquiryKey: IOrderInquiryKey;
 }
-export declare function createFromBuyTransaction(args: {
-    seatReservationAuthorization: SeatReservationAuthorizationFactory.IAuthorization;
+/**
+ * create order object from transaction parameters
+ * @function
+ * @memberof factory/order
+ */
+export declare function createFromBuyTransaction(params: {
+    seatReservationAuthorization: ISeatReservationAuthorization;
     customerName: string;
     seller: ISeller;
     orderNumber: string;
-    orderInquiryKey: OrderInquiryKeyFactory.IOrderInquiryKey;
+    orderInquiryKey: IOrderInquiryKey;
+    paymentMethod: IPaymentMethod;
 }): IOrder;

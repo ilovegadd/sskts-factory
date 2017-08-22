@@ -10,9 +10,6 @@ import * as GMOAuthorizationFactory from './factory/authorization/gmo';
 import * as MvtkAuthorizationFactory from './factory/authorization/mvtk';
 import * as seatReservationAuthorizationFactory from './factory/authorization/seatReservation';
 import AuthorizationGroup from './factory/authorizationGroup';
-import * as GMOCardFactory from './factory/card/gmo';
-import CardGroup from './factory/cardGroup';
-import * as GMOCardIdFactory from './factory/cardId/gmo';
 import * as ClientFactory from './factory/client';
 import * as ClientEventFactory from './factory/clientEvent';
 import * as ClientUserFactory from './factory/clientUser';
@@ -25,12 +22,12 @@ import IMultilingualString from './factory/multilingualString';
 import * as EmailNotificationFactory from './factory/notification/email';
 import NotificationGroup from './factory/notificationGroup';
 import * as OrderFactory from './factory/order';
-import * as OrderInquiryKeyFactory from './factory/orderInquiryKey';
 import * as CorporationOrganizationFactory from './factory/organization/corporation';
 import * as MovieTheaterOrganizationFactory from './factory/organization/movieTheater';
 import CorporationOrganizationIdentifier from './factory/organizationIdentifier/corporation';
 import OrganizationType from './factory/organizationType';
 import * as OwnershipInfoFactory from './factory/ownershipInfo';
+import * as CreditCardFactory from './factory/paymentMethod/paymentCard/creditCard';
 import * as PersonFactory from './factory/person';
 import * as MovieTheaterPlaceFactory from './factory/place/movieTheater';
 import PlaceType from './factory/placeType';
@@ -64,13 +61,11 @@ export namespace authorization {
     export import seatReservation = seatReservationAuthorizationFactory;
 }
 export import authorizationGroup = AuthorizationGroup;
-export namespace card {
-    export import gmo = GMOCardFactory;
+export namespace paymentMethod {
+    export namespace paymentCard {
+        export import creditCard = CreditCardFactory;
+    }
 }
-export namespace cardId {
-    export import gmo = GMOCardIdFactory;
-}
-export import cardGroup = CardGroup;
 export import client = ClientFactory;
 export import clientEvent = ClientEventFactory;
 export import clientUser = ClientUserFactory;
@@ -89,7 +84,6 @@ export import eventType = EventType;
 export type multilingualString = IMultilingualString;
 export import notificationGroup = NotificationGroup;
 export import order = OrderFactory;
-export import orderInquiryKey = OrderInquiryKeyFactory;
 export namespace organization {
     export import corporation = CorporationOrganizationFactory;
     export import movieTheater = MovieTheaterOrganizationFactory;

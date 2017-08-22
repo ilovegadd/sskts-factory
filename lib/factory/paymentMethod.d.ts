@@ -1,9 +1,14 @@
 /**
- * 決済方法
+ * paymentMethod factory
  *
  * @namespace factory/paymentMethod
  */
-declare enum PaymentMethod {
-    CreditCard = "CreditCard",
+/**
+ * payment method interface
+ * @interface {IPaymentMethod}
+ * @memberof factory/paymentMethod
+ */
+export interface IPaymentMethod {
+    typeOf: string;
+    identifier: string;
 }
-export default PaymentMethod;

@@ -1,13 +1,22 @@
 /**
- * 所有権ファクトリー
+ * ownershipInfo factory
  *
- * @namespace factory/ownership
+ * @namespace factory/ownershipInfo
  */
 
-import * as ReservationFactory from './reservation';
+import { IReservation } from './reservation';
 
 /**
- * 所有者インターフェース
+ * good interface (Product or Service)
+ * @interface {IOwner}
+ * @memberof factory/ownershipInfo
+ */
+export type IGood = IReservation;
+
+/**
+ * owner interface
+ * @interface {IOwner}
+ * @memberof factory/ownershipInfo
  */
 export interface IOwner {
     typeOf: string;
@@ -16,49 +25,58 @@ export interface IOwner {
 }
 
 /**
- * 所有権インターフェース
+ * ownershipInfo interface
+ * @interface {IOwnershipInfo}
+ * @memberof factory/ownershipInfo
  */
-export interface IOwnership {
+export interface IOwnershipInfo {
     /**
-     * 所有権識別子
+     * object type
+     */
+    typeOf: string;
+    /**
+     * identifier
      */
     identifier: string;
     /**
-     * 所有者
+     * owned by whom
      */
     ownedBy: IOwner;
     /**
-     * 誰から取得した所有権か
      * The organization or person from which the product was acquired.
      */
     acquiredFrom: IOwner;
     /**
-     * 所有権取得日時
      * The date and time of obtaining the product.
      */
     ownedFrom: Date;
     /**
-     * 所有権無効化日時
      * The date and time of giving up ownership on the product.
      */
     ownedThrough: Date;
     /**
-     * 所有対象
-     * 商品や予約情報が含まれます。
      * The product that this structured value is referring to.
      */
-    typeOfGood: ReservationFactory.IReservation;
+    typeOfGood: IGood;
 }
 
+/**
+ * create ownershipInfo
+ * @function
+ * @memberof factory/ownershipInfo
+ */
 export function create(args: {
     ownedBy: IOwner;
     acquiredFrom: IOwner;
     ownedFrom: Date;
     ownedThrough: Date;
-    typeOfGood: ReservationFactory.IReservation;
-}): IOwnership {
+    typeOfGood: IGood;
+}): IOwnershipInfo {
     return {
-        identifier: `Reservation-${args.typeOfGood.reservationNumber}`, // todo 所有権の固有値仕様を決定
+        typeOf: 'OwnershipInfo',
+        // tslint:disable-next-line:no-suspicious-comment
+        // TODO 所有権の固有値仕様を決定
+        identifier: `Reservation-${args.typeOfGood.reservationNumber}`,
         ownedBy: args.ownedBy,
         acquiredFrom: args.acquiredFrom,
         ownedFrom: args.ownedFrom,

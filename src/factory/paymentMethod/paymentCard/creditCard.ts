@@ -1,48 +1,38 @@
 /**
- * GMOカードファクトリー
- *
- * @namespace factory/card/gmo
+ * credit card factory
+ * @namespace factory/paymentMethod/paymentCard/creditCard
  */
 
 import * as GMO from '@motionpicture/gmo-service';
 
-import * as CardFactory from '../card';
-import CardGroup from '../cardGroup';
-import * as GMOCardIDFactory from '../cardId/gmo';
+import { IPaymentCard } from '../paymentCard';
 
 /**
  * 有効性確認済みカード
- *
  * @export
  * @interface ICheckedCard
  * @extends {CardFactory.ICard}
- * @memberof factory/card/gmo
+ * @memberof factory/paymentMethod/paymentCard/creditCard
  */
-export interface ICheckedCard extends CardFactory.ICard {
-    /**
-     * GMOカードID
-     * @type {GMOCardIDFactory.GMOCardId}
-     * @memberof ICheckedCard
-     */
-    id: GMOCardIDFactory.GMOCardId;
+export interface ICheckedCard extends IPaymentCard {
     /**
      * カード登録連番
      * @type {string}
      * @memberof ICheckedCard
      */
-    card_seq: string;
+    cardSeq: string;
     /**
      * カード会社略称
      * @type {string}
      * @memberof ICheckedCard
      */
-    card_name: string;
+    cardName: string;
     /**
      * カード番号
      * @type {string}
      * @memberof ICheckedCard
      */
-    card_no: string;
+    cardNo: string;
     /**
      * 有効期限
      * @type {string}
@@ -54,27 +44,31 @@ export interface ICheckedCard extends CardFactory.ICard {
      * @type {string}
      * @memberof ICheckedCard
      */
-    holder_name: string;
+    holderName: string;
+    /**
+     * delete flag
+     * @type {string}
+     * @memberof ICheckedCard
+     */
+    deleteFlag: string;
 }
 
 /**
  * 生の有効性確認前GMOカードインターフェース
- *
  * @interface IUncheckedCardRaw
- * @memberof factory/card/gmo
+ * @memberof factory/paymentMethod/paymentCard/creditCard
  */
 export interface IUncheckedCardRaw {
-    card_no: string;
-    card_pass: string;
+    cardNo: string;
+    cardPass?: string;
     expire: string;
-    holder_name: string;
+    holderName: string;
 }
 
 /**
  * トークン化有効性確認前GMOカードインターフェース
- *
  * @interface IUncheckedCardTokenized
- * @memberof factory/card/gmo
+ * @memberof factory/paymentMethod/paymentCard/creditCard
  */
 export interface IUncheckedCardTokenized {
     token: string;
@@ -82,63 +76,54 @@ export interface IUncheckedCardTokenized {
 
 /**
  * GMOカード検索結果から有効性確認済みカードを作成する
- *
  * @export
  * @param {GMO.services.card.ISearchCardResult} searchCardResult GMOカード検索結果
- * @param {string} ownerId 所有者ID
  * @returns {ICheckedCard} 有効性確認済みカード
- * @memberof factory/card/gmo
+ * @memberof factory/paymentMethod/paymentCard/creditCard
  */
 export function createCheckedCardFromGMOSearchCardResult(
-    searchCardResult: GMO.services.card.ISearchCardResult,
-    ownerId: string
+    searchCardResult: GMO.services.card.ISearchCardResult
 ): ICheckedCard {
     return {
-        id: GMOCardIDFactory.create(CardGroup.GMO, searchCardResult.cardSeq),
-        owner: ownerId,
-        group: CardGroup.GMO,
-        card_seq: searchCardResult.cardSeq,
-        card_name: searchCardResult.cardName,
-        card_no: searchCardResult.cardNo,
+        typeOf: 'CreditCard',
+        identifier: `CreditCard-${searchCardResult.cardSeq}`,
+        cardSeq: searchCardResult.cardSeq,
+        cardName: searchCardResult.cardName,
+        cardNo: searchCardResult.cardNo,
         expire: searchCardResult.expire,
-        holder_name: searchCardResult.holderName
+        holderName: searchCardResult.holderName,
+        deleteFlag: searchCardResult.deleteFlag
     };
 }
 
 /**
  * 生の有効性確認前GMOカードを作成する
- *
  * @export
- * @param {string} args.card_no カード番号
- * @param {string} args.card_pass カードパスワード
- * @param {string} args.expire 有効期限 名義人
- * @param {string} args.holder_name
+ * @param {string} params.cardNo カード番号
+ * @param {string} [params.cardPass] カードパスワード
+ * @param {string} params.expire 有効期限 名義人
+ * @param {string} params.holderName
  * @returns {IUncheckedCardRaw} 生の有効性確認前GMOカード
- * @memberof factory/card/gmo
+ * @memberof factory/paymentMethod/paymentCard/creditCard
  */
-export function createUncheckedCardRaw(args: {
-    card_no: string;
-    card_pass: string;
+export function createUncheckedCardRaw(params: {
+    cardNo: string;
+    cardPass?: string;
     expire: string;
-    holder_name: string;
+    holderName: string;
 }): IUncheckedCardRaw {
-    // todo validation
-
-    return args;
+    return params;
 }
 
 /**
  * トークン化有効性確認前GMOカードを作成する
- *
  * @export
- * @param {string} args.token
+ * @param {string} params.token
  * @returns {IUncheckedCardTokenized} トークン化有効性確認前GMOカード
- * @memberof factory/card/gmo
+ * @memberof factory/paymentMethod/paymentCard/creditCard
  */
-export function createUncheckedCardTokenized(args: {
+export function createUncheckedCardTokenized(params: {
     token: string;
 }): IUncheckedCardTokenized {
-    // todo validation
-
-    return args;
+    return params;
 }

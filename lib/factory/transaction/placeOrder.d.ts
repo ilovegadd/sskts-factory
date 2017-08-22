@@ -73,7 +73,7 @@ export interface IResult {
     /**
      * 購入者に与えられる所有権リスト
      */
-    ownershipInfos: OwnershipInfoFactory.IOwnership[];
+    ownershipInfos: OwnershipInfoFactory.IOwnershipInfo[];
 }
 /**
  * エラーインターフェース

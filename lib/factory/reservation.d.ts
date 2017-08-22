@@ -1,6 +1,5 @@
 /**
- * 予約ファクトリー
- *
+ * reservation factory
  * @namespace factory/reservation
  */
 import * as COA from '@motionpicture/coa-service';
@@ -9,14 +8,20 @@ import PriceCurrency from './priceCurrency';
 import ReservationStatusType from './reservationStatusType';
 import * as URLFactory from './url';
 /**
- * 予約者インターフェース
+ * under name interface
+ * @export
+ * @interface {IUnderName}
+ * @memberof factory/reservation
  */
 export interface IUnderName {
     typeOf: string;
     name: string;
 }
 /**
- * 予約座席インターフェース
+ * seat interface
+ * @export
+ * @interface {ISeat}
+ * @memberof factory/reservation
  */
 export interface ISeat {
     /**
@@ -42,6 +47,9 @@ export interface ISeat {
 }
 /**
  * COA券種情報
+ * @export
+ * @interface {ICOATicketInfo}
+ * @memberof factory/reservation
  */
 export declare type ICOATicketInfo = COA.services.reserve.IUpdReserveTicket & {
     /**
@@ -59,6 +67,9 @@ export declare type ICOATicketInfo = COA.services.reserve.IUpdReserveTicket & {
 };
 /**
  * 予約チケット情報
+ * @export
+ * @interface {ITicket}
+ * @memberof factory/reservation
  */
 export interface ITicket {
     /**
@@ -115,10 +126,20 @@ export interface ITicket {
     underName: IUnderName;
 }
 /**
- * 予約インターフェース
- * 座席であれば、ひとつの座席につきひとつの予約
+ * reservation interface
+ * Describes a reservation for travel, dining or an event. Some reservations require tickets.
+ * Note: This type is for information about actual reservations,
+ * e.g. in confirmation emails or HTML pages with individual confirmations of reservations.
+ * For offers of tickets, restaurant reservations, flights, or rental cars, use Offer.
+ * @export
+ * @interface {IReservation}
+ * @memberof factory/reservation
  */
 export interface IReservation {
+    /**
+     * type of object
+     */
+    typeOf: string;
     /**
      * チケット備考
      * Any additional text to appear on a ticket, such as additional privileges or identifiers.
@@ -204,7 +225,13 @@ export interface IReservation {
      */
     underName: IUnderName;
 }
-export declare function create(args: {
+/**
+ * create reservation object
+ * @export
+ * @function
+ * @memberof factory/reservation
+ */
+export declare function create(params: {
     additionalTicketText: string;
     bookingAgent?: string;
     bookingTime?: Date;
@@ -222,22 +249,4 @@ export declare function create(args: {
     reservationStatus: ReservationStatusType;
     reservedTicket: ITicket;
     underName: IUnderName;
-}): {
-    additionalTicketText: string;
-    bookingAgent?: string | undefined;
-    bookingTime?: Date | undefined;
-    cancelReservationUrl?: string | undefined;
-    checkinUrl?: string | undefined;
-    confirmReservationUrl?: string | undefined;
-    modifiedTime: Date;
-    modifyReservationUrl?: string | undefined;
-    numSeats: number;
-    price: number;
-    priceCurrency: PriceCurrency;
-    programMembershipUsed?: string | undefined;
-    reservationFor: EventFactory.IEvent;
-    reservationNumber: string;
-    reservationStatus: ReservationStatusType;
-    reservedTicket: ITicket;
-    underName: IUnderName;
-};
+}): IReservation;
