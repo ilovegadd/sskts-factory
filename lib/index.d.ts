@@ -2,7 +2,6 @@ import * as GMOAuthorizationFactory from './factory/authorization/gmo';
 import * as MvtkAuthorizationFactory from './factory/authorization/mvtk';
 import * as seatReservationAuthorizationFactory from './factory/authorization/seatReservation';
 import AuthorizationGroup from './factory/authorizationGroup';
-import * as ClientFactory from './factory/client';
 import * as ClientEventFactory from './factory/clientEvent';
 import * as ClientUserFactory from './factory/clientUser';
 import * as MovieCreativeWorkFactory from './factory/creativeWork/movie';
@@ -55,7 +54,6 @@ export declare namespace paymentMethod {
         export import creditCard = CreditCardFactory;
     }
 }
-export import client = ClientFactory;
 export import clientEvent = ClientEventFactory;
 export import clientUser = ClientUserFactory;
 export declare namespace creativeWork {
