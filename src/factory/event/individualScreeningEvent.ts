@@ -67,7 +67,7 @@ export function createItemAvailability(numberOfAvailableSeats: number, numberOfA
  */
 export interface IOffer {
     typeOf: string;
-    availability: IItemAvailability;
+    availability: IItemAvailability | null;
     url: string;
 }
 

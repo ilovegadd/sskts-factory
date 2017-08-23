@@ -40,7 +40,7 @@ export declare function createItemAvailability(numberOfAvailableSeats: number, n
  */
 export interface IOffer {
     typeOf: string;
-    availability: IItemAvailability;
+    availability: IItemAvailability | null;
     url: string;
 }
 /**
