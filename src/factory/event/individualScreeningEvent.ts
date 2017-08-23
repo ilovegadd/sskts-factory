@@ -5,6 +5,9 @@
 
 import * as COA from '@motionpicture/coa-service';
 import * as moment from 'moment';
+import * as _ from 'underscore';
+
+import ArgumentError from '../../error/argument';
 
 import CreativeWorkType from '../creativeWorkType';
 import * as EventFactory from '../event';
@@ -25,6 +28,58 @@ export interface ISearchConditions {
     day: string;
     theater: string;
 }
+
+/**
+ * パフォーマンス在庫状況表現インターフェース
+ * 表現を変更する場合、このインターフェースを変更して対応する
+ */
+export type IItemAvailability = number;
+
+/**
+ * 座席数から在庫状況表現を生成する
+ *
+ * @param {number} numberOfAvailableSeats 空席数
+ * @param {number} numberOfAllSeats 全座席数
+ * @returns {IItemAvailability} 在庫状況表現
+ */
+export function createItemAvailability(numberOfAvailableSeats: number, numberOfAllSeats: number): IItemAvailability {
+    if (!_.isNumber(numberOfAvailableSeats)) {
+        throw new ArgumentError('numberOfAvailableSeats', 'numberOfAvailableSeats should be number');
+    }
+    if (!_.isNumber(numberOfAllSeats)) {
+        throw new ArgumentError('numberOfAllSeats', 'numberOfAllSeats should be number');
+    }
+
+    if (numberOfAllSeats === 0) {
+        return 0;
+    }
+
+    // 残席数より空席率を算出
+    // tslint:disable-next-line:no-magic-numbers
+    return Math.floor(numberOfAvailableSeats / numberOfAllSeats * 100);
+}
+
+/**
+ * event offer interface
+ * @export
+ * @interface
+ * @memberof factory/event/individualScreeningEvent
+ */
+export interface IOffer {
+    typeOf: string;
+    availability: IItemAvailability;
+    url: string;
+}
+
+/**
+ * event with offer interface
+ * @export
+ * @interface
+ * @memberof factory/event/individualScreeningEvent
+ */
+export type IEventWithOffer = IEvent & {
+    offer: IOffer;
+};
 
 /**
  * 個々の上映イベントインターフェース

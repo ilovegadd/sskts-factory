@@ -20,6 +20,39 @@ export interface ISearchConditions {
     theater: string;
 }
 /**
+ * パフォーマンス在庫状況表現インターフェース
+ * 表現を変更する場合、このインターフェースを変更して対応する
+ */
+export declare type IItemAvailability = number;
+/**
+ * 座席数から在庫状況表現を生成する
+ *
+ * @param {number} numberOfAvailableSeats 空席数
+ * @param {number} numberOfAllSeats 全座席数
+ * @returns {IItemAvailability} 在庫状況表現
+ */
+export declare function createItemAvailability(numberOfAvailableSeats: number, numberOfAllSeats: number): IItemAvailability;
+/**
+ * event offer interface
+ * @export
+ * @interface
+ * @memberof factory/event/individualScreeningEvent
+ */
+export interface IOffer {
+    typeOf: string;
+    availability: IItemAvailability;
+    url: string;
+}
+/**
+ * event with offer interface
+ * @export
+ * @interface
+ * @memberof factory/event/individualScreeningEvent
+ */
+export declare type IEventWithOffer = IEvent & {
+    offer: IOffer;
+};
+/**
  * 個々の上映イベントインターフェース
  * COAのスケジュールに相当します。
  * @export

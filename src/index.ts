@@ -34,7 +34,6 @@ import * as MovieTheaterPlaceFactory from './factory/place/movieTheater';
 import PlaceType from './factory/placeType';
 import * as ReservationFactory from './factory/reservation';
 import ReservationStatusType from './factory/reservationStatusType';
-import * as PerformanceStockStatusFactory from './factory/stockStatus/performance';
 import * as TaskFactory from './factory/task';
 import * as CancelGMOTaskFactory from './factory/task/cancelGMO';
 import * as CancelMvtkTaskFactory from './factory/task/cancelMvtk';
@@ -102,10 +101,6 @@ export import person = PersonFactory;
 export import placeType = PlaceType;
 export import reservation = ReservationFactory;
 export import reservationStatusType = ReservationStatusType;
-export namespace stockStatus {
-    // tslint:disable-next-line:no-shadowed-variable
-    export import performance = PerformanceStockStatusFactory;
-}
 export namespace task {
     export import ITask = TaskFactory.ITask;
     export import cancelGMO = CancelGMOTaskFactory;
