@@ -20,10 +20,18 @@ import TransactionType from '../transactionType';
 /**
  * available payment info interface
  * @export
- * @interface
+ * @type
  * @memberof factory/transaction/placeOrder
  */
-export type IAvailablePaymentInfo = GMOAuthorizationFactory.IAuthorization | MvtkAuthorizationFactory.IAuthorization;
+export type IAvailablePaymentInfo = GMOAuthorizationFactory.IAuthorization;
+
+/**
+ * available discount info interface
+ * @export
+ * @type
+ * @memberof factory/transaction/placeOrder
+ */
+export type IAvailableDiscount = MvtkAuthorizationFactory.IAuthorization;
 
 /**
  * customer contact interface
@@ -57,6 +65,7 @@ export interface ISeller {
      * 販売者名称
      */
     name: string;
+    url: string;
 }
 
 /**
@@ -67,11 +76,9 @@ export interface ISeller {
  */
 export interface IAgent {
     id: string;
-    /**
-     * スキーマタイプ
-     */
     typeOf: string;
     memberOf?: ProgramMembershipFactory.IProgramMembership;
+    url: string;
 }
 
 /**
@@ -107,7 +114,7 @@ export type IError = any;
  */
 export interface IObject {
     /**
-     * 取引進行クライアントユーザー
+     * user object of the client where a transaction is processing.
      */
     clientUser: ClientUserFactory.IClientUser;
     /**
@@ -115,17 +122,21 @@ export interface IObject {
      */
     customerContact?: ICustomerContact;
     /**
-     * 決済情報リスト
+     * payment infos
      */
     paymentInfos: IAvailablePaymentInfo[];
     /**
      * 座席予約情報
      */
     seatReservation?: SeatReservationAuthorizationFactory.IAuthorization;
+    /**
+     * discount infos
+     */
+    discountInfos: IAvailableDiscount[];
 }
 
 /**
- * 注文取引インターフェース
+ * place order transaction interface
  * @export
  * @interface
  * @memberof factory/transaction/placeOrder

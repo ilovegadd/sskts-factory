@@ -18,8 +18,36 @@ import ReservationStatusType from './reservationStatusType';
  * @memberof factory/order
  */
 export interface IPaymentMethod {
-    typeOf: string;
-    identifier: string;
+    name: string;
+    /**
+     * The name of the credit card or other method of payment for the order.
+     */
+    paymentMethod: string;
+    /**
+     * An identifier for the method of payment used (e.g.the last 4 digits of the credit card).
+     */
+    paymentMethodId: string;
+}
+
+/**
+ * discount interface
+ * @interface {IDiscount}
+ * @memberof factory/order
+ */
+export interface IDiscount {
+    name: string;
+    /**
+     * Any discount applied.
+     */
+    discount: number;
+    /**
+     * Code used to redeem a discount.
+     */
+    discountCode: string;
+    /**
+     * The currency (in 3 - letter ISO 4217 format) of the discount.
+     */
+    discountCurrency: string;
 }
 
 /**
@@ -66,6 +94,10 @@ export interface ICustomer {
      * Name of the Person.
      */
     name: string;
+    /**
+     * URL of the item.
+     */
+    url: string;
 }
 
 /**
@@ -84,22 +116,35 @@ export interface IOrder {
      */
     seller: ISeller;
     /**
+     * Person or Organization
+     * Party placing the order.
+     */
+    customer: ICustomer;
+    /**
      * The merchant- specific identifier for the transaction.
      */
     orderNumber: string;
-    /**
-     * The currency (in 3 - letter ISO 4217 format) of the order price.
-     */
-    priceCurrency: PriceCurrency;
     /**
      * The total price of the entire transaction.
      */
     price: number;
     /**
+     * The currency (in 3 - letter ISO 4217 format) of the order price.
+     */
+    priceCurrency: PriceCurrency;
+    /**
      * Offer
      * The offers included in the order.Also accepts an array of objects.
      */
     acceptedOffers: IOffer[];
+    /**
+     * payment methods
+     */
+    paymentMethods: IPaymentMethod[];
+    /**
+     * discount infos
+     */
+    discounts: IDiscount[];
     /**
      * URL	(recommended for confirmation cards/ Search Answers)
      * URL of the Order, typically a link to the merchant's website where the user can retrieve further details about an order.
@@ -111,14 +156,6 @@ export interface IOrder {
      */
     orderStatus: OrderStatus;
     /**
-     * The name of the credit card or other method of payment for the order.
-     */
-    paymentMethod: IPaymentMethod;
-    /**
-     * An identifier for the method of payment used (e.g.the last 4 digits of the credit card).
-     */
-    paymentMethodId: string;
-    /**
      * Date order was placed.
      */
     orderDate: Date;
@@ -126,19 +163,6 @@ export interface IOrder {
      * Was the offer accepted as a gift for someone other than the buyer.
      */
     isGift: boolean;
-    /**
-     * Any discount applied.
-     */
-    discount: number;
-    /**
-     * The currency (in 3 - letter ISO 4217 format) of the discount.
-     */
-    discountCurrency: string;
-    /**
-     * Person or Organization
-     * Party placing the order.
-     */
-    customer: ICustomer;
     /**
      * key for inquiry (required)
      */
@@ -156,7 +180,8 @@ export function createFromBuyTransaction(params: {
     seller: ISeller;
     orderNumber: string;
     orderInquiryKey: IOrderInquiryKey;
-    paymentMethod: IPaymentMethod;
+    paymentMethods: IPaymentMethod[];
+    discounts: IDiscount[];
 }): IOrder {
     return {
         typeOf: 'Order',
@@ -175,14 +200,13 @@ export function createFromBuyTransaction(params: {
         // tslint:disable-next-line:no-suspicious-comment
         url: '', // TODO confirmation URL
         orderStatus: OrderStatus.OrderDelivered,
-        paymentMethod: params.paymentMethod,
-        paymentMethodId: '',
+        paymentMethods: params.paymentMethods,
         orderDate: new Date(),
         isGift: false,
-        discount: 0,
-        discountCurrency: '',
+        discounts: params.discounts,
         customer: {
-            name: params.customerName
+            name: params.customerName,
+            url: ''
         },
         orderInquiryKey: params.orderInquiryKey
     };
