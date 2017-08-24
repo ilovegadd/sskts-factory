@@ -15,6 +15,7 @@ import ObjectId from '../objectId';
 // tslint:disable-next-line:no-suspicious-comment
 // TODO ムビチケ着券OUTに変更
 export interface IResult {
+    price: number;
     kgygishCd: string;
     yykDvcTyp: string;
     trkshFlg: string;
@@ -38,7 +39,7 @@ export type IObject = any;
  */
 export interface IKnshInfo {
     knshTyp: string;
-    miNum: string;
+    miNum: number;
 }
 
 /**

@@ -14,6 +14,7 @@ import * as EmailNotificationFactory from './factory/notification/email';
 import NotificationGroup from './factory/notificationGroup';
 import * as OfferFactory from './factory/offer';
 import * as OrderFactory from './factory/order';
+import OrderStatus from './factory/orderStatus';
 import * as CorporationOrganizationFactory from './factory/organization/corporation';
 import * as MovieTheaterOrganizationFactory from './factory/organization/movieTheater';
 import CorporationOrganizationIdentifier from './factory/organizationIdentifier/corporation';
@@ -23,6 +24,7 @@ import * as CreditCardFactory from './factory/paymentMethod/paymentCard/creditCa
 import * as PersonFactory from './factory/person';
 import * as MovieTheaterPlaceFactory from './factory/place/movieTheater';
 import PlaceType from './factory/placeType';
+import PriceCurrency from './factory/priceCurrency';
 import * as ReservationFactory from './factory/reservation';
 import ReservationStatusType from './factory/reservationStatusType';
 import * as TaskFactory from './factory/task';
@@ -72,6 +74,7 @@ export declare type multilingualString = IMultilingualString;
 export import notificationGroup = NotificationGroup;
 export import offer = OfferFactory;
 export import order = OrderFactory;
+export import orderStatus = OrderStatus;
 export declare namespace organization {
     export import corporation = CorporationOrganizationFactory;
     export import movieTheater = MovieTheaterOrganizationFactory;
@@ -81,6 +84,7 @@ export declare namespace organizationIdentifier {
 }
 export import organizationType = OrganizationType;
 export import ownershipInfo = OwnershipInfoFactory;
+export import priceCurrency = PriceCurrency;
 export declare namespace place {
     export import movieTheater = MovieTheaterPlaceFactory;
 }

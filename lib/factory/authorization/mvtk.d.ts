@@ -1,5 +1,6 @@
 import * as AuthorizationFactory from '../authorization';
 export interface IResult {
+    price: number;
     kgygishCd: string;
     yykDvcTyp: string;
     trkshFlg: string;
@@ -19,7 +20,7 @@ export declare type IObject = any;
  */
 export interface IKnshInfo {
     knshTyp: string;
-    miNum: string;
+    miNum: number;
 }
 /**
  * 購入管理番号情報
