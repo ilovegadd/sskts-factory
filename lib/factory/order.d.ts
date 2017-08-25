@@ -53,7 +53,15 @@ export interface IOrderInquiryKey {
  * @type {IOffer}
  * @memberof factory/order
  */
-export declare type IOffer = IReservation;
+export interface IOffer {
+    itemOffered: IReservation;
+    price: number;
+    priceCurrency: PriceCurrency;
+    seller: {
+        typeOf: string;
+        name: string;
+    };
+}
 /**
  * seller interface
  * @interface {ISeller}

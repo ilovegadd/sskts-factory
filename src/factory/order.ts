@@ -71,7 +71,15 @@ export interface IOrderInquiryKey {
  * @type {IOffer}
  * @memberof factory/order
  */
-export type IOffer = IReservation;
+export interface IOffer {
+    itemOffered: IReservation;
+    price: number;
+    priceCurrency: PriceCurrency;
+    seller: {
+        typeOf: string;
+        name: string;
+    };
+}
 
 /**
  * seller interface
@@ -252,12 +260,11 @@ export function createFromPlaceOrderTransaction(params: {
     };
 
     const acceptedOffers = seatReservationAuthorization.object.acceptedOffers.map((offer) => {
-        const reservation = offer.itemOffered;
-        reservation.reservationStatus = ReservationStatusType.ReservationConfirmed;
-        reservation.underName.name = customer.name;
-        reservation.reservedTicket.underName.name = customer.name;
+        offer.itemOffered.reservationStatus = ReservationStatusType.ReservationConfirmed;
+        offer.itemOffered.underName.name = customer.name;
+        offer.itemOffered.reservedTicket.underName.name = customer.name;
 
-        return offer.itemOffered;
+        return offer;
     });
 
     const orderDate = new Date();
