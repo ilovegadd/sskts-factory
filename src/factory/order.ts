@@ -6,11 +6,16 @@
  * @namespace factory/order
  */
 
-import { IAuthorization as ISeatReservationAuthorization } from './authorization/seatReservation';
+import ArgumentError from '../error/argument';
+
+import { IAuthorization as IGMOAuthorization } from './authorization/gmo';
+import { IAuthorization as IMvtkAuthorization } from './authorization/mvtk';
+import AuthorizationGroup from './authorizationGroup';
 import OrderStatus from './orderStatus';
 import PriceCurrency from './priceCurrency';
 import { IReservation } from './reservation';
 import ReservationStatusType from './reservationStatusType';
+import { ITransaction } from './transaction/placeOrder';
 
 /**
  * payment method interface
@@ -57,7 +62,7 @@ export interface IDiscount {
  */
 export interface IOrderInquiryKey {
     theaterCode: string;
-    orderNumber: number;
+    confirmationNumber: number;
     telephone: string;
 }
 
@@ -74,6 +79,7 @@ export type IOffer = IReservation;
  * @memberof factory/order
  */
 export interface ISeller {
+    typeOf: string;
     /**
      * Name of the Organization.
      */
@@ -90,6 +96,7 @@ export interface ISeller {
  * @memberof factory/order
  */
 export interface ICustomer {
+    typeOf: string;
     /**
      * Name of the Person.
      */
@@ -120,6 +127,10 @@ export interface IOrder {
      * Party placing the order.
      */
     customer: ICustomer;
+    /**
+     * A number that confirms the given order or payment has been received.
+     */
+    confirmationNumber: number;
     /**
      * The merchant- specific identifier for the transaction.
      */
@@ -174,40 +185,101 @@ export interface IOrder {
  * @function
  * @memberof factory/order
  */
-export function createFromBuyTransaction(params: {
-    seatReservationAuthorization: ISeatReservationAuthorization
-    customerName: string;
-    seller: ISeller;
-    orderNumber: string;
-    orderInquiryKey: IOrderInquiryKey;
-    paymentMethods: IPaymentMethod[];
-    discounts: IDiscount[];
+// tslint:disable-next-line:max-func-body-length
+export function createFromPlaceOrderTransaction(params: {
+    transaction: ITransaction
 }): IOrder {
+    // seatReservation exists?
+    const seatReservationAuthorization = params.transaction.object.seatReservation;
+    if (seatReservationAuthorization === undefined) {
+        throw new ArgumentError('transaction', 'seat reservation does not exist');
+    }
+
+    if (params.transaction.object.customerContact === undefined) {
+        throw new ArgumentError('transaction', 'customer contact does not exist');
+    }
+
+    const cutomerContact = params.transaction.object.customerContact;
+    const orderInquiryKey = {
+        theaterCode: seatReservationAuthorization.object.updTmpReserveSeatArgs.theaterCode,
+        confirmationNumber: seatReservationAuthorization.result.tmpReserveNum,
+        telephone: cutomerContact.telephone
+    };
+
+    // 結果作成
+    const discounts: IDiscount[] = [];
+    params.transaction.object.discountInfos.forEach((discountInfo) => {
+        switch (discountInfo.group) {
+            case AuthorizationGroup.MVTK:
+                const discountCode = (<IMvtkAuthorization>discountInfo).result.knyknrNoInfo.map(
+                    (knshInfo) => knshInfo.knyknrNo
+                ).join(',');
+
+                discounts.push({
+                    name: 'ムビチケカード',
+                    discount: discountInfo.price,
+                    discountCode: discountCode,
+                    discountCurrency: PriceCurrency.JPY
+                });
+                break;
+
+            default:
+                break;
+        }
+    });
+
+    const paymentMethods: IPaymentMethod[] = [];
+    params.transaction.object.paymentInfos.forEach((paymentInfo) => {
+        switch (paymentInfo.group) {
+            case AuthorizationGroup.GMO:
+                paymentMethods.push({
+                    name: 'クレジットカード',
+                    paymentMethod: 'CreditCard',
+                    paymentMethodId: (<IGMOAuthorization>paymentInfo).result.orderId
+                });
+                break;
+
+            default:
+                break;
+        }
+    });
+
+    const seller: ISeller = params.transaction.seller;
+    const customer: ICustomer = {
+        typeOf: params.transaction.agent.typeOf,
+        name: `${cutomerContact.familyName} ${cutomerContact.givenName}`,
+        url: ''
+    };
+
+    const acceptedOffers = seatReservationAuthorization.object.acceptedOffers.map((offer) => {
+        const reservation = offer.itemOffered;
+        reservation.reservationStatus = ReservationStatusType.ReservationConfirmed;
+        reservation.underName.name = customer.name;
+        reservation.reservedTicket.underName.name = customer.name;
+
+        return offer.itemOffered;
+    });
+
+    const orderDate = new Date();
+    // tslint:disable-next-line:no-magic-numbers
+    const orderNumber = `${orderDate.toISOString().slice(0, 10)}-${orderInquiryKey.theaterCode}-${orderInquiryKey.confirmationNumber}`;
+
     return {
         typeOf: 'Order',
-        seller: params.seller,
-        orderNumber: params.orderNumber,
+        seller: seller,
+        customer: customer,
+        price: seatReservationAuthorization.price - discounts.reduce((a, b) => a + b.discount, 0),
         priceCurrency: PriceCurrency.JPY,
-        price: params.seatReservationAuthorization.price,
-        acceptedOffers: params.seatReservationAuthorization.object.acceptedOffers.map((offer) => {
-            const reservation = offer.itemOffered;
-            reservation.reservationStatus = ReservationStatusType.ReservationConfirmed;
-            reservation.underName.name = params.customerName;
-            reservation.reservedTicket.underName.name = params.customerName;
-
-            return offer.itemOffered;
-        }),
+        paymentMethods: paymentMethods,
+        discounts: discounts,
+        confirmationNumber: orderInquiryKey.confirmationNumber,
+        orderNumber: orderNumber,
+        acceptedOffers: acceptedOffers,
         // tslint:disable-next-line:no-suspicious-comment
         url: '', // TODO confirmation URL
         orderStatus: OrderStatus.OrderDelivered,
-        paymentMethods: params.paymentMethods,
-        orderDate: new Date(),
+        orderDate: orderDate,
         isGift: false,
-        discounts: params.discounts,
-        customer: {
-            name: params.customerName,
-            url: ''
-        },
-        orderInquiryKey: params.orderInquiryKey
+        orderInquiryKey: orderInquiryKey
     };
 }

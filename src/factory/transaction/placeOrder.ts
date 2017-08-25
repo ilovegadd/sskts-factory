@@ -53,17 +53,8 @@ export interface ICustomerContact {
  * @memberof factory/transaction/placeOrder
  */
 export interface ISeller {
-    /**
-     * スキーマタイプ
-     */
     typeOf: string;
-    /**
-     * ID
-     */
     id: string;
-    /**
-     * 販売者名称
-     */
     name: string;
     url: string;
 }

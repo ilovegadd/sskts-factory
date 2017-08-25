@@ -1,14 +1,7 @@
-/**
- * order factory
- * An order is a confirmation of a transaction (a receipt),
- * which can contain multiple line items, each represented by an Offer that has been accepted by the customer.
- *
- * @namespace factory/order
- */
-import { IAuthorization as ISeatReservationAuthorization } from './authorization/seatReservation';
 import OrderStatus from './orderStatus';
 import PriceCurrency from './priceCurrency';
 import { IReservation } from './reservation';
+import { ITransaction } from './transaction/placeOrder';
 /**
  * payment method interface
  * @interface {IPaymentMethod}
@@ -52,7 +45,7 @@ export interface IDiscount {
  */
 export interface IOrderInquiryKey {
     theaterCode: string;
-    orderNumber: number;
+    confirmationNumber: number;
     telephone: string;
 }
 /**
@@ -67,6 +60,7 @@ export declare type IOffer = IReservation;
  * @memberof factory/order
  */
 export interface ISeller {
+    typeOf: string;
     /**
      * Name of the Organization.
      */
@@ -82,6 +76,7 @@ export interface ISeller {
  * @memberof factory/order
  */
 export interface ICustomer {
+    typeOf: string;
     /**
      * Name of the Person.
      */
@@ -111,6 +106,10 @@ export interface IOrder {
      * Party placing the order.
      */
     customer: ICustomer;
+    /**
+     * A number that confirms the given order or payment has been received.
+     */
+    confirmationNumber: number;
     /**
      * The merchant- specific identifier for the transaction.
      */
@@ -164,12 +163,6 @@ export interface IOrder {
  * @function
  * @memberof factory/order
  */
-export declare function createFromBuyTransaction(params: {
-    seatReservationAuthorization: ISeatReservationAuthorization;
-    customerName: string;
-    seller: ISeller;
-    orderNumber: string;
-    orderInquiryKey: IOrderInquiryKey;
-    paymentMethods: IPaymentMethod[];
-    discounts: IDiscount[];
+export declare function createFromPlaceOrderTransaction(params: {
+    transaction: ITransaction;
 }): IOrder;
