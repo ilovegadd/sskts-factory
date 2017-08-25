@@ -1,12 +1,9 @@
 /**
- * COA座席仮予約ファクトリー
- *
+ * seat reservation authorization factory
  * @namespace factory/authorization/seatReservation
  */
 
 import * as COA from '@motionpicture/coa-service';
-
-import ArgumentError from '../../error/argument';
 
 import * as AuthorizationFactory from '../authorization';
 import AuthorizationGroup from '../authorizationGroup';
@@ -14,18 +11,16 @@ import ObjectId from '../objectId';
 import PriceCurrency from '../priceCurrency';
 
 import * as IndividualScreeningEventFactory from '../event/individualScreeningEvent';
-import { ICOATicketInfo } from '../offer';
-import * as ReservationFactory from '../reservation';
-import ReservationStatusType from '../reservationStatusType';
+import { ISeatReservationOffer } from '../offer';
+import * as EventReservationFactory from '../reservation/event';
 
 /**
- * 承認結果インターフェース
- * COAの仮予約結果に等しい
+ * authorization result interface (COA tmp reserve result)
  */
 export type IResult = COA.services.reserve.IUpdTmpReserveSeatResult;
 
 /**
- * 承認対象
+ * authorization object
  */
 export interface IObject {
     /**
@@ -58,6 +53,7 @@ export interface IAcceptedOffer {
      * 販売者
      */
     seller: {
+        typeOf: string;
         name: string;
     };
 }
@@ -65,92 +61,42 @@ export interface IAcceptedOffer {
 /**
  * 予約インターフェース
  */
-export type IReservation = ReservationFactory.IReservation;
+export type IReservation = EventReservationFactory.IEventReservation;
 
 /**
- * 座席予約承認インターフェース
+ * seat reservation authorization factory
+ * @export
+ * @interface
+ * @memberof factory/authorization/seatReservation
  */
 export interface IAuthorization extends AuthorizationFactory.IAuthorization {
-    /**
-     * 承認結果
-     */
     result: IResult;
-    /**
-     * 承認対象
-     */
     object: IObject;
 }
 
-export function createFromCOATmpReserve(args: {
-    price: number;
+export function createFromCOATmpReserve(params: {
     updTmpReserveSeatArgs: COA.services.reserve.IUpdTmpReserveSeatArgs;
     reserveSeatsTemporarilyResult: COA.services.reserve.IUpdTmpReserveSeatResult;
-    tickets: ICOATicketInfo[],
+    offers: ISeatReservationOffer[],
     individualScreeningEvent: IndividualScreeningEventFactory.IEvent
 }): IAuthorization {
+    const price = params.offers.reduce((a, b) => a + b.ticketInfo.salePrice + b.ticketInfo.mvtkSalesPrice, 0);
+
     return {
         id: ObjectId().toString(),
         group: AuthorizationGroup.COA_SEAT_RESERVATION,
-        price: args.price,
-        result: args.reserveSeatsTemporarilyResult,
+        price: price,
+        result: params.reserveSeatsTemporarilyResult,
         object: {
-            updTmpReserveSeatArgs: args.updTmpReserveSeatArgs,
-            acceptedOffers: args.reserveSeatsTemporarilyResult.listTmpReserve.map((tmpReserve, index) => {
-                const selectedTicket = args.tickets.find((ticket) => ticket.seatNum === tmpReserve.seatNum);
-                if (selectedTicket === undefined) {
-                    throw new ArgumentError('tickets');
-                }
-
-                // QRコード文字列を手動で作成
-                const ticketToken = [
-                    args.individualScreeningEvent.coaInfo.theaterCode,
-                    args.individualScreeningEvent.coaInfo.dateJouei,
-                    // tslint:disable-next-line:no-magic-numbers
-                    (`00000000${args.reserveSeatsTemporarilyResult.tmpReserveNum}`).slice(-8),
-                    // tslint:disable-next-line:no-magic-numbers
-                    (`000${index + 1}`).slice(-3)
-                ].join('');
-
+            updTmpReserveSeatArgs: params.updTmpReserveSeatArgs,
+            acceptedOffers: EventReservationFactory.createFromCOATmpReserve(params).map((eventReservation) => {
                 return {
-                    itemOffered: ReservationFactory.create({
-                        additionalTicketText: '',
-                        modifiedTime: new Date(),
-                        numSeats: 1,
-                        price: selectedTicket.salePrice,
-                        priceCurrency: PriceCurrency.JPY,
-                        reservationFor: args.individualScreeningEvent,
-                        reservationNumber: `${args.reserveSeatsTemporarilyResult.tmpReserveNum}-${index.toString()}`,
-                        reservationStatus: ReservationStatusType.ReservationHold,
-                        reservedTicket: {
-                            coaTicketInfo: selectedTicket,
-                            dateIssued: new Date(),
-                            issuedBy: { // todo 値セット
-                                typeOf: '',
-                                name: ''
-                            },
-                            priceCurrency: PriceCurrency.JPY,
-                            ticketedSeat: {
-                                seatingType: '',
-                                seatNumber: tmpReserve.seatNum,
-                                seatRow: '',
-                                seatSection: tmpReserve.seatSection
-                            },
-                            ticketNumber: ticketToken,
-                            ticketToken: ticketToken,
-                            underName: {
-                                typeOf: 'Person',
-                                name: ''
-                            }
-                        },
-                        underName: {
-                            typeOf: 'Person',
-                            name: ''
-                        }
-                    }),
-                    price: selectedTicket.salePrice,
+                    itemOffered: eventReservation,
+                    price: eventReservation.price,
                     priceCurrency: PriceCurrency.JPY,
                     seller: {
-                        name: ''
+                        typeOf: params.individualScreeningEvent.superEvent.location.typeOf,
+                        name: params.individualScreeningEvent.superEvent.location.name.ja
                     }
                 };
             })

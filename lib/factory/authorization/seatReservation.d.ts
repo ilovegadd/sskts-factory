@@ -1,21 +1,19 @@
 /**
- * COA座席仮予約ファクトリー
- *
+ * seat reservation authorization factory
  * @namespace factory/authorization/seatReservation
  */
 import * as COA from '@motionpicture/coa-service';
 import * as AuthorizationFactory from '../authorization';
 import PriceCurrency from '../priceCurrency';
 import * as IndividualScreeningEventFactory from '../event/individualScreeningEvent';
-import { ICOATicketInfo } from '../offer';
-import * as ReservationFactory from '../reservation';
+import { ISeatReservationOffer } from '../offer';
+import * as EventReservationFactory from '../reservation/event';
 /**
- * 承認結果インターフェース
- * COAの仮予約結果に等しい
+ * authorization result interface (COA tmp reserve result)
  */
 export declare type IResult = COA.services.reserve.IUpdTmpReserveSeatResult;
 /**
- * 承認対象
+ * authorization object
  */
 export interface IObject {
     /**
@@ -47,30 +45,27 @@ export interface IAcceptedOffer {
      * 販売者
      */
     seller: {
+        typeOf: string;
         name: string;
     };
 }
 /**
  * 予約インターフェース
  */
-export declare type IReservation = ReservationFactory.IReservation;
+export declare type IReservation = EventReservationFactory.IEventReservation;
 /**
- * 座席予約承認インターフェース
+ * seat reservation authorization factory
+ * @export
+ * @interface
+ * @memberof factory/authorization/seatReservation
  */
 export interface IAuthorization extends AuthorizationFactory.IAuthorization {
-    /**
-     * 承認結果
-     */
     result: IResult;
-    /**
-     * 承認対象
-     */
     object: IObject;
 }
-export declare function createFromCOATmpReserve(args: {
-    price: number;
+export declare function createFromCOATmpReserve(params: {
     updTmpReserveSeatArgs: COA.services.reserve.IUpdTmpReserveSeatArgs;
     reserveSeatsTemporarilyResult: COA.services.reserve.IUpdTmpReserveSeatResult;
-    tickets: ICOATicketInfo[];
+    offers: ISeatReservationOffer[];
     individualScreeningEvent: IndividualScreeningEventFactory.IEvent;
 }): IAuthorization;

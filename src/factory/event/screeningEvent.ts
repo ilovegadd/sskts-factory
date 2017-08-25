@@ -71,7 +71,9 @@ export interface IEvent extends EventFactory.IEvent {
          */
         kanaName: string;
     };
-    // organizer: MovieTheaterOrganizationFactory.IOrganization // 提供劇場
+    // tslint:disable-next-line:no-suspicious-comment
+    // TODO 提供劇場
+    // organizer: MovieTheaterOrganizationFactory.IOrganization
     /**
      * 作品タイトル名（カナ）
      */

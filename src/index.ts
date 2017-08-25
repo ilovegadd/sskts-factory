@@ -1,6 +1,5 @@
 /**
  * sskts-factory
- *
  * @module
  */
 
@@ -33,7 +32,7 @@ import * as PersonFactory from './factory/person';
 import * as MovieTheaterPlaceFactory from './factory/place/movieTheater';
 import PlaceType from './factory/placeType';
 import PriceCurrency from './factory/priceCurrency';
-import * as ReservationFactory from './factory/reservation';
+import * as EventReservationFactory from './factory/reservation/event';
 import ReservationStatusType from './factory/reservationStatusType';
 import * as TaskFactory from './factory/task';
 import * as CancelGMOTaskFactory from './factory/task/cancelGMO';
@@ -101,7 +100,10 @@ export namespace place {
 }
 export import person = PersonFactory;
 export import placeType = PlaceType;
-export import reservation = ReservationFactory;
+export namespace reservation {
+    // tslint:disable-next-line:no-shadowed-variable
+    export import event = EventReservationFactory;
+}
 export import reservationStatusType = ReservationStatusType;
 export namespace task {
     export import ITask = TaskFactory.ITask;
