@@ -1,10 +1,11 @@
 import OrderStatus from './orderStatus';
 import PriceCurrency from './priceCurrency';
-import { IReservation } from './reservation';
+import { IEventReservation } from './reservation/event';
 import { ITransaction } from './transaction/placeOrder';
 /**
  * payment method interface
- * @interface {IPaymentMethod}
+ * @export
+ * @interface
  * @memberof factory/order
  */
 export interface IPaymentMethod {
@@ -20,7 +21,8 @@ export interface IPaymentMethod {
 }
 /**
  * discount interface
- * @interface {IDiscount}
+ * @export
+ * @interface
  * @memberof factory/order
  */
 export interface IDiscount {
@@ -39,8 +41,16 @@ export interface IDiscount {
     discountCurrency: string;
 }
 /**
+ * offered item type
+ * @export
+ * @type
+ * @memberof factory/order
+ */
+export declare type IItemOffered = IEventReservation;
+/**
  * key for inquiry of the order
- * @interface {IOrderInquiryKey}
+ * @export
+ * @interface
  * @memberof factory/order
  */
 export interface IOrderInquiryKey {
@@ -50,11 +60,12 @@ export interface IOrderInquiryKey {
 }
 /**
  * offer interface
- * @type {IOffer}
+ * @export
+ * @interface
  * @memberof factory/order
  */
 export interface IOffer {
-    itemOffered: IReservation;
+    itemOffered: IItemOffered;
     price: number;
     priceCurrency: PriceCurrency;
     seller: {
@@ -64,7 +75,8 @@ export interface IOffer {
 }
 /**
  * seller interface
- * @interface {ISeller}
+ * @export
+ * @interface
  * @memberof factory/order
  */
 export interface ISeller {
@@ -80,7 +92,8 @@ export interface ISeller {
 }
 /**
  * customer interface
- * @interface {ICustomer}
+ * @export
+ * @interface
  * @memberof factory/order
  */
 export interface ICustomer {
@@ -96,7 +109,8 @@ export interface ICustomer {
 }
 /**
  * order interface
- * @interface {IOrder}
+ * @export
+ * @interface
  * @memberof factory/order
  */
 export interface IOrder {
@@ -168,6 +182,7 @@ export interface IOrder {
 }
 /**
  * create order object from transaction parameters
+ * @export
  * @function
  * @memberof factory/order
  */
