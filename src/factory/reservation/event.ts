@@ -15,18 +15,18 @@ import { ISeatReservationOffer } from '../offer';
 import PriceCurrency from '../priceCurrency';
 import ReservationStatusType from '../reservationStatusType';
 
-export interface IEventReservation extends IReservation {
+export interface IEventReservation<T extends IEvent> extends IReservation {
     /**
      * The thing -- restaurant, movie, event, flight, etc. -- the reservation is for.
      */
-    reservationFor: IEvent;
+    reservationFor: T;
 }
 
 export function createFromCOATmpReserve(params: {
     reserveSeatsTemporarilyResult: COA.services.reserve.IUpdTmpReserveSeatResult;
     offers: ISeatReservationOffer[],
     individualScreeningEvent: IndividualScreeningEventFactory.IEvent
-}): IEventReservation[] {
+}): IEventReservation<IndividualScreeningEventFactory.IEvent>[] {
     const ticketInfos = params.offers.map((offer) => offer.ticketInfo);
 
     return params.reserveSeatsTemporarilyResult.listTmpReserve.map((tmpReserve, index) => {

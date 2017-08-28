@@ -11,6 +11,7 @@ import ArgumentError from '../error/argument';
 import { IAuthorization as IGMOAuthorization } from './authorization/gmo';
 import { IAuthorization as IMvtkAuthorization } from './authorization/mvtk';
 import AuthorizationGroup from './authorizationGroup';
+import { IEvent as IIndividualScreeningEvent } from './event/individualScreeningEvent';
 import OrderStatus from './orderStatus';
 import PriceCurrency from './priceCurrency';
 import { IEventReservation } from './reservation/event';
@@ -63,7 +64,7 @@ export interface IDiscount {
  * @type
  * @memberof factory/order
  */
-export type IItemOffered = IEventReservation;
+export type IItemOffered = IEventReservation<IIndividualScreeningEvent>;
 
 /**
  * key for inquiry of the order

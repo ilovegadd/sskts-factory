@@ -1,3 +1,4 @@
+import { IEvent as IIndividualScreeningEvent } from './event/individualScreeningEvent';
 import OrderStatus from './orderStatus';
 import PriceCurrency from './priceCurrency';
 import { IEventReservation } from './reservation/event';
@@ -46,7 +47,7 @@ export interface IDiscount {
  * @type
  * @memberof factory/order
  */
-export declare type IItemOffered = IEventReservation;
+export declare type IItemOffered = IEventReservation<IIndividualScreeningEvent>;
 /**
  * key for inquiry of the order
  * @export

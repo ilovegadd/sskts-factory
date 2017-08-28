@@ -52,7 +52,7 @@ export interface IAcceptedOffer {
 /**
  * 予約インターフェース
  */
-export declare type IReservation = EventReservationFactory.IEventReservation;
+export declare type IReservation = EventReservationFactory.IEventReservation<IndividualScreeningEventFactory.IEvent>;
 /**
  * seat reservation authorization factory
  * @export

@@ -50,7 +50,7 @@ export declare type ICOATicketInfo = COA.services.reserve.IUpdReserveTicket & {
  * @interface
  * @memberof factory/offer
  */
-export interface ISeatReservationOffer extends IOffer {
+export interface ISeatReservationOffer {
     /**
      * seat section
      */

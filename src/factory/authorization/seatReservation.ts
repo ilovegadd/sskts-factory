@@ -61,7 +61,7 @@ export interface IAcceptedOffer {
 /**
  * 予約インターフェース
  */
-export type IReservation = EventReservationFactory.IEventReservation;
+export type IReservation = EventReservationFactory.IEventReservation<IndividualScreeningEventFactory.IEvent>;
 
 /**
  * seat reservation authorization factory
