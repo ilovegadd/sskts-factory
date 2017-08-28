@@ -8,10 +8,9 @@ import * as TaskFactory from '../task';
 import * as TaskExecutionResult from '../taskExecutionResult';
 import TaskName from '../taskName';
 import TaskStatus from '../taskStatus';
-import * as PlaceOrderTransactionFactory from '../transaction/placeOrder';
 
 export interface IData {
-    transaction: PlaceOrderTransactionFactory.ITransaction;
+    transactionId: string;
 }
 
 export interface ITask extends TaskFactory.ITask {
