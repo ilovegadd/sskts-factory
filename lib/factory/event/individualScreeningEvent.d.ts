@@ -1,9 +1,9 @@
 /**
  * individual screening event factory
+ * 個々の上映イベントファクトリー
  * @namespace factory/event/individualScreeningEvent
  */
 import * as COA from '@motionpicture/coa-service';
-import CreativeWorkType from '../creativeWorkType';
 import * as EventFactory from '../event';
 import * as ScreeningEventFactory from '../event/screeningEvent';
 import IMultilingualString from '../multilingualString';
@@ -11,6 +11,7 @@ import * as MovieTheaterPlaceFactory from '../place/movieTheater';
 import PlaceType from '../placeType';
 /**
  * search conditions interface
+ * 個々の上映イベントの検索条件インターフェース
  * @export
  * @interface
  * @memberof factory/event/individualScreeningEvent
@@ -20,8 +21,12 @@ export interface ISearchConditions {
     theater: string;
 }
 /**
- * パフォーマンス在庫状況表現インターフェース
+ * item availability interface
+ * 上映イベント空席状況表現インターフェース
  * 表現を変更する場合、このインターフェースを変更して対応する
+ * @export
+ * @type
+ * @memberof factory/event/individualScreeningEvent
  */
 export declare type IItemAvailability = number;
 /**
@@ -53,8 +58,8 @@ export declare type IEventWithOffer = IEvent & {
     offer: IOffer;
 };
 /**
- * 個々の上映イベントインターフェース
- * COAのスケジュールに相当します。
+ * individual screening event interface
+ * 個々の上映イベントインターフェース(COAのスケジュールに相当)
  * @export
  * @interface
  * @memberof factory/event/individualScreeningEvent
@@ -63,29 +68,7 @@ export interface IEvent extends EventFactory.IEvent {
     /**
      * 上映作品
      */
-    workPerformed: {
-        /**
-         * 作品識別子
-         * COAタイトルコードに相当します。
-         */
-        identifier: string;
-        /**
-         * 作品原題
-         */
-        name: string;
-        /**
-         * 上映時間
-         */
-        duration: string;
-        /**
-         * 映倫区分(PG12,R15,R18)
-         */
-        contentRating: string;
-        /**
-         * スキーマタイプ
-         */
-        typeOf: CreativeWorkType;
-    };
+    workPerformed: ScreeningEventFactory.IWorkPerformed;
     /**
      * 上映場所
      */
@@ -143,11 +126,11 @@ export interface IEvent extends EventFactory.IEvent {
          * サービス区分
          * 「通常興行」「レイトショー」など
          */
-        kbnService: string;
+        kbnService?: COA.services.master.IKubunNameResult;
         /**
          * 音響区分
          */
-        kbnAcoustic: string;
+        kbnAcoustic?: COA.services.master.IKubunNameResult;
         /**
          * サービスデイ名称
          * 「映画の日」「レディースデイ」など ※割引区分、割引コード、特定日等の組み合わせで登録するため名称で連携の方が容易
@@ -180,7 +163,13 @@ export interface IEvent extends EventFactory.IEvent {
  * @function
  * @memberof factory/event/individualScreeningEvent
  */
-export declare function createFromCOA(performanceFromCOA: COA.services.master.IScheduleResult): (screenRoom: MovieTheaterPlaceFactory.IScreeningRoom, screeningEvent: ScreeningEventFactory.IEvent) => IEvent;
+export declare function createFromCOA(params: {
+    performanceFromCOA: COA.services.master.IScheduleResult;
+    screenRoom: MovieTheaterPlaceFactory.IScreeningRoom;
+    screeningEvent: ScreeningEventFactory.IEvent;
+    serviceKubuns: COA.services.master.IKubunNameResult[];
+    acousticKubuns: COA.services.master.IKubunNameResult[];
+}): IEvent;
 /**
  * create id by COA infos.
  * @export

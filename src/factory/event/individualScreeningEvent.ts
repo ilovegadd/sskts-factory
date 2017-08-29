@@ -1,5 +1,6 @@
 /**
  * individual screening event factory
+ * 個々の上映イベントファクトリー
  * @namespace factory/event/individualScreeningEvent
  */
 
@@ -9,7 +10,6 @@ import * as _ from 'underscore';
 
 import ArgumentError from '../../error/argument';
 
-import CreativeWorkType from '../creativeWorkType';
 import * as EventFactory from '../event';
 import * as ScreeningEventFactory from '../event/screeningEvent';
 import EventStatusType from '../eventStatusType';
@@ -20,6 +20,7 @@ import PlaceType from '../placeType';
 
 /**
  * search conditions interface
+ * 個々の上映イベントの検索条件インターフェース
  * @export
  * @interface
  * @memberof factory/event/individualScreeningEvent
@@ -30,8 +31,12 @@ export interface ISearchConditions {
 }
 
 /**
- * パフォーマンス在庫状況表現インターフェース
+ * item availability interface
+ * 上映イベント空席状況表現インターフェース
  * 表現を変更する場合、このインターフェースを変更して対応する
+ * @export
+ * @type
+ * @memberof factory/event/individualScreeningEvent
  */
 export type IItemAvailability = number;
 
@@ -82,8 +87,8 @@ export type IEventWithOffer = IEvent & {
 };
 
 /**
- * 個々の上映イベントインターフェース
- * COAのスケジュールに相当します。
+ * individual screening event interface
+ * 個々の上映イベントインターフェース(COAのスケジュールに相当)
  * @export
  * @interface
  * @memberof factory/event/individualScreeningEvent
@@ -92,29 +97,7 @@ export interface IEvent extends EventFactory.IEvent {
     /**
      * 上映作品
      */
-    workPerformed: {
-        /**
-         * 作品識別子
-         * COAタイトルコードに相当します。
-         */
-        identifier: string;
-        /**
-         * 作品原題
-         */
-        name: string;
-        /**
-         * 上映時間
-         */
-        duration: string;
-        /**
-         * 映倫区分(PG12,R15,R18)
-         */
-        contentRating: string;
-        /**
-         * スキーマタイプ
-         */
-        typeOf: CreativeWorkType
-    };
+    workPerformed: ScreeningEventFactory.IWorkPerformed;
     /**
      * 上映場所
      */
@@ -172,11 +155,11 @@ export interface IEvent extends EventFactory.IEvent {
          * サービス区分
          * 「通常興行」「レイトショー」など
          */
-        kbnService: string;
+        kbnService?: COA.services.master.IKubunNameResult;
         /**
          * 音響区分
          */
-        kbnAcoustic: string;
+        kbnAcoustic?: COA.services.master.IKubunNameResult;
         /**
          * サービスデイ名称
          * 「映画の日」「レディースデイ」など ※割引区分、割引コード、特定日等の組み合わせで登録するため名称で連携の方が容易
@@ -210,50 +193,55 @@ export interface IEvent extends EventFactory.IEvent {
  * @function
  * @memberof factory/event/individualScreeningEvent
  */
-export function createFromCOA(performanceFromCOA: COA.services.master.IScheduleResult) {
-    return (screenRoom: MovieTheaterPlaceFactory.IScreeningRoom, screeningEvent: ScreeningEventFactory.IEvent): IEvent => {
-        const identifier = createIdFromCOA({
-            screeningEvent: screeningEvent,
-            dateJouei: performanceFromCOA.dateJouei,
-            screenCode: performanceFromCOA.screenCode,
-            timeBegin: performanceFromCOA.timeBegin
-        });
+export function createFromCOA(params: {
+    performanceFromCOA: COA.services.master.IScheduleResult;
+    screenRoom: MovieTheaterPlaceFactory.IScreeningRoom;
+    screeningEvent: ScreeningEventFactory.IEvent;
+    serviceKubuns: COA.services.master.IKubunNameResult[];
+    acousticKubuns: COA.services.master.IKubunNameResult[];
+}): IEvent {
+    const identifier = createIdFromCOA({
+        screeningEvent: params.screeningEvent,
+        dateJouei: params.performanceFromCOA.dateJouei,
+        screenCode: params.performanceFromCOA.screenCode,
+        timeBegin: params.performanceFromCOA.timeBegin
+    });
 
-        return {
-            ...EventFactory.create({
-                eventStatus: EventStatusType.EventScheduled,
-                typeOf: EventType.IndividualScreeningEvent,
-                identifier: identifier,
-                name: screeningEvent.name
-            }),
-            ...{
-                workPerformed: screeningEvent.workPerformed,
-                location: {
-                    typeOf: screenRoom.typeOf,
-                    branchCode: screenRoom.branchCode,
-                    name: screenRoom.name
-                },
-                endDate: moment(`${performanceFromCOA.dateJouei} ${performanceFromCOA.timeEnd} +09:00`, 'YYYYMMDD HHmm Z').toDate(),
-                startDate: moment(`${performanceFromCOA.dateJouei} ${performanceFromCOA.timeBegin} +09:00`, 'YYYYMMDD HHmm Z').toDate(),
-                superEvent: screeningEvent,
-                coaInfo: {
-                    theaterCode: screeningEvent.location.branchCode,
-                    dateJouei: performanceFromCOA.dateJouei,
-                    titleCode: performanceFromCOA.titleCode,
-                    titleBranchNum: performanceFromCOA.titleBranchNum,
-                    timeBegin: performanceFromCOA.timeBegin,
-                    screenCode: performanceFromCOA.screenCode,
-                    trailerTime: performanceFromCOA.trailerTime,
-                    kbnService: performanceFromCOA.kbnService,
-                    kbnAcoustic: performanceFromCOA.kbnAcoustic,
-                    nameServiceDay: performanceFromCOA.nameServiceDay,
-                    availableNum: performanceFromCOA.availableNum,
-                    rsvStartDate: performanceFromCOA.rsvStartDate,
-                    rsvEndDate: performanceFromCOA.rsvEndDate,
-                    flgEarlyBooking: performanceFromCOA.flgEarlyBooking
-                }
+    return {
+        ...EventFactory.create({
+            eventStatus: EventStatusType.EventScheduled,
+            typeOf: EventType.IndividualScreeningEvent,
+            identifier: identifier,
+            name: params.screeningEvent.name
+        }),
+        ...{
+            workPerformed: params.screeningEvent.workPerformed,
+            location: {
+                typeOf: params.screenRoom.typeOf,
+                branchCode: params.screenRoom.branchCode,
+                name: params.screenRoom.name
+            },
+            // tslint:disable-next-line:max-line-length
+            endDate: moment(`${params.performanceFromCOA.dateJouei} ${params.performanceFromCOA.timeEnd} +09:00`, 'YYYYMMDD HHmm Z').toDate(),
+            startDate: moment(`${params.performanceFromCOA.dateJouei} ${params.performanceFromCOA.timeBegin} +09:00`, 'YYYYMMDD HHmm Z').toDate(),
+            superEvent: params.screeningEvent,
+            coaInfo: {
+                theaterCode: params.screeningEvent.location.branchCode,
+                dateJouei: params.performanceFromCOA.dateJouei,
+                titleCode: params.performanceFromCOA.titleCode,
+                titleBranchNum: params.performanceFromCOA.titleBranchNum,
+                timeBegin: params.performanceFromCOA.timeBegin,
+                screenCode: params.performanceFromCOA.screenCode,
+                trailerTime: params.performanceFromCOA.trailerTime,
+                kbnService: params.serviceKubuns.find((kubun) => kubun.kubunCode === params.performanceFromCOA.kbnService),
+                kbnAcoustic: params.acousticKubuns.find((kubun) => kubun.kubunCode === params.performanceFromCOA.kbnAcoustic),
+                nameServiceDay: params.performanceFromCOA.nameServiceDay,
+                availableNum: params.performanceFromCOA.availableNum,
+                rsvStartDate: params.performanceFromCOA.rsvStartDate,
+                rsvEndDate: params.performanceFromCOA.rsvEndDate,
+                flgEarlyBooking: params.performanceFromCOA.flgEarlyBooking
             }
-        };
+        }
     };
 }
 

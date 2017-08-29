@@ -1,6 +1,6 @@
 /**
+ * screen event factory
  * 劇場の上映イベントファクトリー
- *
  * @namespace factory/creativeWork/movie
  */
 import * as COA from '@motionpicture/coa-service';
@@ -10,40 +10,51 @@ import IMultilingualString from '../multilingualString';
 import * as MovieTheaterPlaceFactory from '../place/movieTheater';
 import PlaceType from '../placeType';
 /**
- * 上映イベントインターフェース
- * COAの劇場作品に相当します。
+ * performed work interface
+ * 上映作品インターフェース
+ * @export
+ * @interface
+ * @memberof factory/creativeWork/movie
+ */
+export interface IWorkPerformed {
+    /**
+     * 作品識別子
+     * COAタイトルコードに相当します。
+     */
+    identifier: string;
+    /**
+     * 作品原題
+     */
+    name: string;
+    /**
+     * 上映時間
+     */
+    duration: string;
+    /**
+     * 映倫区分(PG12,R15,R18)
+     */
+    contentRating?: COA.services.master.IKubunNameResult;
+    /**
+     * スキーマタイプ
+     */
+    typeOf: CreativeWorkType;
+}
+/**
+ * screening event interface
+ * 上映イベントインターフェース(COAの劇場作品に相当)
+ * @export
+ * @interface
+ * @memberof factory/creativeWork/movie
  */
 export interface IEvent extends EventFactory.IEvent {
     /**
      * 映像区分(２D、３D)
      */
-    videoFormat: string;
+    videoFormat?: COA.services.master.IKubunNameResult;
     /**
      * 上映作品
      */
-    workPerformed: {
-        /**
-         * 作品識別子
-         * COAタイトルコードに相当します。
-         */
-        identifier: string;
-        /**
-         * 作品原題
-         */
-        name: string;
-        /**
-         * 上映時間
-         */
-        duration: string;
-        /**
-         * 映倫区分(PG12,R15,R18)
-         */
-        contentRating: string;
-        /**
-         * スキーマタイプ
-         */
-        typeOf: CreativeWorkType;
-    };
+    workPerformed: IWorkPerformed;
     /**
      * 上映場所
      */
@@ -93,11 +104,11 @@ export interface IEvent extends EventFactory.IEvent {
         /**
          * 上映方式区分(ＩＭＡＸ，４ＤＸ等)
          */
-        kbnJoueihousiki: string;
+        kbnJoueihousiki?: COA.services.master.IKubunNameResult;
         /**
          * 字幕吹替区分(字幕、吹き替え)
          */
-        kbnJimakufukikae: string;
+        kbnJimakufukikae?: COA.services.master.IKubunNameResult;
         /**
          * ムビチケ使用フラグ
          * 1：ムビチケ使用対象
@@ -113,5 +124,12 @@ export interface IEvent extends EventFactory.IEvent {
 /**
  * COAの作品抽出結果からFilmオブジェクトを作成する
  */
-export declare function createFromCOA(filmFromCOA: COA.services.master.ITitleResult): (movieTheater: MovieTheaterPlaceFactory.IPlace) => IEvent;
+export declare function createFromCOA(params: {
+    filmFromCOA: COA.services.master.ITitleResult;
+    movieTheater: MovieTheaterPlaceFactory.IPlace;
+    eirinKubuns: COA.services.master.IKubunNameResult[];
+    eizouKubuns: COA.services.master.IKubunNameResult[];
+    joueihousikiKubuns: COA.services.master.IKubunNameResult[];
+    jimakufukikaeKubuns: COA.services.master.IKubunNameResult[];
+}): IEvent;
 export declare function createIdentifier(theaterCode: string, titleCode: string, titleBranchNum: string): string;
