@@ -1,15 +1,12 @@
 import * as NotificationFactory from '../notification';
 /**
- * Eメール通知インターフェース
- * @memberof tobereplaced$
- *
- * @param {string} id
- * @param {string} from
- * @param {string} to
- * @param {string} subject
- * @param {string} content
+ * email notification data interface
+ * Eメール通知データインターフェース
+ * @export
+ * @interface
+ * @memberof factory/notification/email
  */
-export interface INotification extends NotificationFactory.INotification {
+export interface IData {
     /**
      * 送信元メールアドレス
      */
@@ -29,17 +26,26 @@ export interface INotification extends NotificationFactory.INotification {
     /**
      * 送信予定日時(nullの場合はなるはやで送信)
      */
-    send_at: Date;
+    send_at?: Date;
 }
 /**
- *
- * @memberof tobereplaced$
+ * email notification interface
+ * Eメール通知インターフェース
+ * @export
+ * @interface
+ * @memberof factory/notification/email
+ */
+export interface INotification extends NotificationFactory.INotification {
+    data: IData;
+}
+/**
+ * create email notification object
+ * Eメール通知オブジェクトを作成する
+ * @export
+ * @function
+ * @memberof factory/notification/email
  */
 export declare function create(args: {
     id?: string;
-    from: string;
-    to: string;
-    subject: string;
-    content: string;
-    send_at?: Date;
+    data: IData;
 }): INotification;

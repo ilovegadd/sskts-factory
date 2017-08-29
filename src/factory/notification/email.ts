@@ -1,6 +1,6 @@
 /**
+ * email notification factory
  * Eメール通知ファクトリー
- *
  * @namespace factory/notification/email
  */
 
@@ -15,16 +15,13 @@ import NotificationGroup from '../notificationGroup';
 import ObjectId from '../objectId';
 
 /**
- * Eメール通知インターフェース
- * @memberof tobereplaced$
- *
- * @param {string} id
- * @param {string} from
- * @param {string} to
- * @param {string} subject
- * @param {string} content
+ * email notification data interface
+ * Eメール通知データインターフェース
+ * @export
+ * @interface
+ * @memberof factory/notification/email
  */
-export interface INotification extends NotificationFactory.INotification {
+export interface IData {
     /**
      * 送信元メールアドレス
      */
@@ -45,32 +42,41 @@ export interface INotification extends NotificationFactory.INotification {
     /**
      * 送信予定日時(nullの場合はなるはやで送信)
      */
-    send_at: Date;
+    send_at?: Date;
 }
 
 /**
- *
- * @memberof tobereplaced$
+ * email notification interface
+ * Eメール通知インターフェース
+ * @export
+ * @interface
+ * @memberof factory/notification/email
+ */
+export interface INotification extends NotificationFactory.INotification {
+    data: IData;
+}
+
+/**
+ * create email notification object
+ * Eメール通知オブジェクトを作成する
+ * @export
+ * @function
+ * @memberof factory/notification/email
  */
 export function create(args: {
     id?: string,
-    // tslint:disable-next-line:no-reserved-keywords
-    from: string;
-    to: string;
-    subject: string;
-    content: string;
-    send_at?: Date;
+    data: IData
 }): INotification {
-    if (_.isEmpty(args.from)) throw new ArgumentNullError('from');
-    if (_.isEmpty(args.to)) throw new ArgumentNullError('to');
-    if (_.isEmpty(args.subject)) throw new ArgumentNullError('subject');
-    if (_.isEmpty(args.content)) throw new ArgumentNullError('content');
+    if (_.isEmpty(args.data.from)) throw new ArgumentNullError('from');
+    if (_.isEmpty(args.data.to)) throw new ArgumentNullError('to');
+    if (_.isEmpty(args.data.subject)) throw new ArgumentNullError('subject');
+    if (_.isEmpty(args.data.content)) throw new ArgumentNullError('content');
 
-    if (!validator.isEmail(args.from)) throw new ArgumentError('from', 'from should be email');
-    if (!validator.isEmail(args.to)) throw new ArgumentError('to', 'to should be email');
+    if (!validator.isEmail(args.data.from)) throw new ArgumentError('from', 'from should be email');
+    if (!validator.isEmail(args.data.to)) throw new ArgumentError('to', 'to should be email');
 
-    if (args.send_at !== undefined) {
-        if (!_.isDate(args.send_at)) throw new ArgumentError('send_at', 'send_at should be Date');
+    if (args.data.send_at !== undefined) {
+        if (!_.isDate(args.data.send_at)) throw new ArgumentError('send_at', 'send_at should be Date');
     }
 
     // todo sendgridの仕様上72時間後までしか設定できないのでバリデーション追加するかもしれない
@@ -78,10 +84,6 @@ export function create(args: {
     return {
         id: (args.id === undefined) ? ObjectId().toString() : args.id,
         group: NotificationGroup.EMAIL,
-        from: args.from,
-        to: args.to,
-        subject: args.subject,
-        content: args.content,
-        send_at: (args.send_at === undefined) ? new Date() : args.send_at
+        data: args.data
     };
 }
