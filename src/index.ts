@@ -1,3 +1,5 @@
+// tslint:disable:max-classes-per-file
+
 /**
  * sskts-factory
  * @module
@@ -52,6 +54,26 @@ import TransactionStatusType from './factory/transactionStatusType';
 import TransactionTasksExportationStatus from './factory/transactionTasksExportationStatus';
 import TransactionType from './factory/transactionType';
 import * as URLFactory from './factory/url';
+
+import { SSKTSError } from './error';
+import AlreadyInUseError from './error/alreadyInUse';
+import ArgumentError from './error/argument';
+import ArgumentNullError from './error/argumentNull';
+import NotFoundError from './error/notFound';
+import ServiceUnavailableError from './error/serviceUnavailable';
+
+import ErrorCode from './errorCode';
+
+export namespace error {
+    export class SSKTS extends SSKTSError { }
+    export class AlreadyInUse extends AlreadyInUseError { }
+    export class Argument extends ArgumentError { }
+    export class ArgumentNull extends ArgumentNullError { }
+    export class NotFound extends NotFoundError { }
+    export class ServiceUnavailable extends ServiceUnavailableError { }
+}
+
+export import errorCode = ErrorCode;
 
 (<any>mongoose).Promise = global.Promise;
 

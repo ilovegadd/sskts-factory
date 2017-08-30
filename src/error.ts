@@ -1,19 +1,21 @@
+import ErrorCode from './errorCode';
+
 /**
- * SSKTSFactoryError
+ * SSKTSError
  *
- * @class SSKTSFactoryError
+ * @class SSKTSError
  * @extends {Error}
  */
-export default class SSKTSFactoryError extends Error {
-    public readonly code: string;
+export class SSKTSError extends Error {
+    public readonly reason: ErrorCode;
 
-    constructor(code: string, message?: string) {
+    constructor(code: ErrorCode, message?: string) {
         super(message);
 
-        this.name = 'SSKTSFactoryError';
-        this.code = code;
+        this.name = 'SSKTSError';
+        this.reason = code;
 
         // Set the prototype explicitly.
-        Object.setPrototypeOf(this, SSKTSFactoryError.prototype);
+        Object.setPrototypeOf(this, SSKTSError.prototype);
     }
 }

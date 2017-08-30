@@ -1,11 +1,11 @@
-import SSKTSFactoryError from '../error';
+import { SSKTSError } from '../error';
 /**
  * ArgumentNullError
  *
  * @class ArgumentNullError
- * @extends {SSKTSFactoryError}
+ * @extends {SSKTSError}
  */
-export default class ArgumentNullError extends SSKTSFactoryError {
+export default class ArgumentNullError extends SSKTSError {
     readonly argumentName: string;
     constructor(argumentName: string, message?: string);
 }

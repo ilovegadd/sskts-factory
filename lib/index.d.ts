@@ -45,6 +45,28 @@ import TransactionStatusType from './factory/transactionStatusType';
 import TransactionTasksExportationStatus from './factory/transactionTasksExportationStatus';
 import TransactionType from './factory/transactionType';
 import * as URLFactory from './factory/url';
+import { SSKTSError } from './error';
+import AlreadyInUseError from './error/alreadyInUse';
+import ArgumentError from './error/argument';
+import ArgumentNullError from './error/argumentNull';
+import NotFoundError from './error/notFound';
+import ServiceUnavailableError from './error/serviceUnavailable';
+import ErrorCode from './errorCode';
+export declare namespace error {
+    class SSKTS extends SSKTSError {
+    }
+    class AlreadyInUse extends AlreadyInUseError {
+    }
+    class Argument extends ArgumentError {
+    }
+    class ArgumentNull extends ArgumentNullError {
+    }
+    class NotFound extends NotFoundError {
+    }
+    class ServiceUnavailable extends ServiceUnavailableError {
+    }
+}
+export import errorCode = ErrorCode;
 export declare namespace authorization {
     export import gmo = GMOAuthorizationFactory;
     export import mvtk = MvtkAuthorizationFactory;

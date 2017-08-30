@@ -1,15 +1,15 @@
 import * as util from 'util';
 
-import SSKTSFactoryError from '../error';
+import { SSKTSError } from '../error';
 import ErrorCode from '../errorCode';
 
 /**
  * AlreadyInUseError
  *
  * @class AlreadyInUseError
- * @extends {SSKTSFactoryError}
+ * @extends {SSKTSError}
  */
-export default class AlreadyInUseError extends SSKTSFactoryError {
+export default class AlreadyInUseError extends SSKTSError {
     public readonly entityName: string;
     public readonly fieldNames: string[];
 

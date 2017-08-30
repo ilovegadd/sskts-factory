@@ -1,10 +1,11 @@
+import ErrorCode from './errorCode';
 /**
- * SSKTSFactoryError
+ * SSKTSError
  *
- * @class SSKTSFactoryError
+ * @class SSKTSError
  * @extends {Error}
  */
-export default class SSKTSFactoryError extends Error {
-    readonly code: string;
-    constructor(code: string, message?: string);
+export declare class SSKTSError extends Error {
+    readonly reason: ErrorCode;
+    constructor(code: ErrorCode, message?: string);
 }
