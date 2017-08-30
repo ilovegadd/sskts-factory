@@ -49,8 +49,11 @@ import { SSKTSError } from './error';
 import AlreadyInUseError from './error/alreadyInUse';
 import ArgumentError from './error/argument';
 import ArgumentNullError from './error/argumentNull';
+import ForbiddenError from './error/forbidden';
 import NotFoundError from './error/notFound';
+import NotImplementedError from './error/notImplemented';
 import ServiceUnavailableError from './error/serviceUnavailable';
+import UnauthorizedError from './error/unauthorized';
 import ErrorCode from './errorCode';
 export declare namespace error {
     class SSKTS extends SSKTSError {
@@ -59,11 +62,17 @@ export declare namespace error {
     }
     class Argument extends ArgumentError {
     }
+    class Forbidden extends ForbiddenError {
+    }
     class ArgumentNull extends ArgumentNullError {
     }
     class NotFound extends NotFoundError {
     }
+    class NotImplemented extends NotImplementedError {
+    }
     class ServiceUnavailable extends ServiceUnavailableError {
+    }
+    class Unauthorized extends UnauthorizedError {
     }
 }
 export import errorCode = ErrorCode;

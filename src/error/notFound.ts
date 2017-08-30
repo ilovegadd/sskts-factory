@@ -17,7 +17,7 @@ export default class NotFoundError extends SSKTSError {
             message = util.format('Not Found: "%s"', entityName);
         }
 
-        super(ErrorCode.Argument, message);
+        super(ErrorCode.NotFound, message);
 
         this.entityName = entityName;
 

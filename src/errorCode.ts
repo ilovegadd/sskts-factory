@@ -8,7 +8,11 @@ enum ErrorCode {
     AlreadyInUse = 'AlreadyInUse',
     Argument = 'Argument',
     ArgumentNull = 'ArgumentNull',
-    ServiceUnavailable = 'ServiceUnavailable'
+    Forbidden = 'Forbidden',
+    NotFound = 'NotFound',
+    NotImplemented = 'NotImplemented',
+    ServiceUnavailable = 'ServiceUnavailable',
+    Unauthorized = 'Unauthorized'
 }
 
 export default ErrorCode;
