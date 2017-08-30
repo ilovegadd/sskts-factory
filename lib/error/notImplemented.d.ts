@@ -1,4 +1,4 @@
-import { SSKTSError } from '../error';
+import { SSKTSError } from './sskts';
 /**
  * NotImplementedError
  *

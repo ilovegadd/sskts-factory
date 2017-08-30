@@ -1,7 +1,7 @@
 import * as util from 'util';
 
-import { SSKTSError } from '../error';
 import ErrorCode from '../errorCode';
+import { SSKTSError } from './sskts';
 
 /**
  * NotFoundError

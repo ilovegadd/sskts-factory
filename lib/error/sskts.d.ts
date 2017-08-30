@@ -1,4 +1,4 @@
-import ErrorCode from './errorCode';
+import ErrorCode from '../errorCode';
 /**
  * SSKTSError
  *

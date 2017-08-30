@@ -45,36 +45,9 @@ import TransactionStatusType from './factory/transactionStatusType';
 import TransactionTasksExportationStatus from './factory/transactionTasksExportationStatus';
 import TransactionType from './factory/transactionType';
 import * as URLFactory from './factory/url';
-import { SSKTSError } from './error';
-import AlreadyInUseError from './error/alreadyInUse';
-import ArgumentError from './error/argument';
-import ArgumentNullError from './error/argumentNull';
-import ForbiddenError from './error/forbidden';
-import NotFoundError from './error/notFound';
-import NotImplementedError from './error/notImplemented';
-import ServiceUnavailableError from './error/serviceUnavailable';
-import UnauthorizedError from './error/unauthorized';
 import ErrorCode from './errorCode';
-export declare namespace error {
-    class SSKTS extends SSKTSError {
-    }
-    class AlreadyInUse extends AlreadyInUseError {
-    }
-    class Argument extends ArgumentError {
-    }
-    class Forbidden extends ForbiddenError {
-    }
-    class ArgumentNull extends ArgumentNullError {
-    }
-    class NotFound extends NotFoundError {
-    }
-    class NotImplemented extends NotImplementedError {
-    }
-    class ServiceUnavailable extends ServiceUnavailableError {
-    }
-    class Unauthorized extends UnauthorizedError {
-    }
-}
+import * as errors from './errors';
+export import errors = errors;
 export import errorCode = ErrorCode;
 export declare namespace authorization {
     export import gmo = GMOAuthorizationFactory;
