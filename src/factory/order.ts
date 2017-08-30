@@ -2,7 +2,8 @@
  * order factory
  * An order is a confirmation of a transaction (a receipt),
  * which can contain multiple line items, each represented by an Offer that has been accepted by the customer.
- *
+ * 注文ファクトリー
+ * 注文は、確定した注文取引の領収証に値するものです。
  * @namespace factory/order
  */
 
@@ -13,6 +14,7 @@ import { IAuthorization as IMvtkAuthorization } from './authorization/mvtk';
 import AuthorizationGroup from './authorizationGroup';
 import { IEvent as IIndividualScreeningEvent } from './event/individualScreeningEvent';
 import OrderStatus from './orderStatus';
+import { IContact, IPerson } from './person';
 import PriceCurrency from './priceCurrency';
 import { IEventReservation } from './reservation/event';
 import ReservationStatusType from './reservationStatusType';
@@ -20,6 +22,7 @@ import { ITransaction } from './transaction/placeOrder';
 
 /**
  * payment method interface
+ * 決済方法イーターフェース
  * @export
  * @interface
  * @memberof factory/order
@@ -38,6 +41,7 @@ export interface IPaymentMethod {
 
 /**
  * discount interface
+ * 割引インターフェース
  * @export
  * @interface
  * @memberof factory/order
@@ -60,6 +64,7 @@ export interface IDiscount {
 
 /**
  * offered item type
+ * 供給アイテムインターフェース
  * @export
  * @type
  * @memberof factory/order
@@ -68,6 +73,7 @@ export type IItemOffered = IEventReservation<IIndividualScreeningEvent>;
 
 /**
  * key for inquiry of the order
+ * 注文照会キーインターフェース
  * @export
  * @interface
  * @memberof factory/order
@@ -80,6 +86,7 @@ export interface IOrderInquiryKey {
 
 /**
  * offer interface
+ * 供給インターフェース
  * @export
  * @interface
  * @memberof factory/order
@@ -96,6 +103,7 @@ export interface IOffer {
 
 /**
  * seller interface
+ * 販売者インターフェース
  * @export
  * @interface
  * @memberof factory/order
@@ -114,24 +122,18 @@ export interface ISeller {
 
 /**
  * customer interface
+ * 購入者インターフェース
  * @export
  * @interface
  * @memberof factory/order
  */
-export interface ICustomer {
-    typeOf: string;
-    /**
-     * Name of the Person.
-     */
+export type ICustomer = IPerson & IContact & {
     name: string;
-    /**
-     * URL of the item.
-     */
-    url: string;
-}
+};
 
 /**
  * order interface
+ * 注文インターフェース
  * @export
  * @interface
  * @memberof factory/order
@@ -206,6 +208,7 @@ export interface IOrder {
 
 /**
  * create order object from transaction parameters
+ * 取引オブジェクトから注文オブジェクトを生成する
  * @export
  * @function
  * @memberof factory/order
@@ -271,9 +274,14 @@ export function createFromPlaceOrderTransaction(params: {
 
     const seller: ISeller = params.transaction.seller;
     const customer: ICustomer = {
-        typeOf: params.transaction.agent.typeOf,
-        name: `${cutomerContact.familyName} ${cutomerContact.givenName}`,
-        url: ''
+        ...{
+            id: params.transaction.agent.id,
+            typeOf: params.transaction.agent.typeOf,
+            name: `${cutomerContact.familyName} ${cutomerContact.givenName}`,
+            url: '',
+            memberOf: params.transaction.agent.memberOf
+        },
+        ...params.transaction.object.customerContact
     };
 
     const acceptedOffers = seatReservationAuthorization.object.acceptedOffers.map((offer) => {

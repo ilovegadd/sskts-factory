@@ -1,4 +1,5 @@
 /**
+ * placeOrder transaction factory
  * 注文取引ファクトリー
  * @namespace factory/transaction/placeOrder
  */
@@ -8,7 +9,7 @@ import * as SeatReservationAuthorizationFactory from '../authorization/seatReser
 import * as ClientUserFactory from '../clientUser';
 import * as OrderFactory from '../order';
 import * as OwnershipInfoFactory from '../ownershipInfo';
-import * as ProgramMembershipFactory from '../programMembership';
+import { IContact, IPerson } from '../person';
 import { IReservation } from '../reservation';
 import * as TaskFactory from '../task';
 import * as TranstransactionFactory from '../transaction';
@@ -16,6 +17,7 @@ import TransactionStatusType from '../transactionStatusType';
 import TransactionTasksExportationStatus from '../transactionTasksExportationStatus';
 /**
  * available payment info interface
+ * 利用可能な決済情報インターフェース
  * @export
  * @type
  * @memberof factory/transaction/placeOrder
@@ -23,6 +25,7 @@ import TransactionTasksExportationStatus from '../transactionTasksExportationSta
 export declare type IAvailablePaymentInfo = GMOAuthorizationFactory.IAuthorization;
 /**
  * available discount info interface
+ * 利用可能な割引情報インターフェース
  * @export
  * @type
  * @memberof factory/transaction/placeOrder
@@ -30,17 +33,14 @@ export declare type IAvailablePaymentInfo = GMOAuthorizationFactory.IAuthorizati
 export declare type IAvailableDiscount = MvtkAuthorizationFactory.IAuthorization;
 /**
  * customer contact interface
+ * 購入者連作先インターフェース
  * @export
  * @interface
  * @memberof factory/transaction/placeOrder
  */
-export interface ICustomerContact {
-    givenName: string;
-    familyName: string;
-    email: string;
-    telephone: string;
-}
+export declare type ICustomerContact = IContact;
 /**
+ * seller interface
  * 販売者インターフェース
  * @export
  * @interface
@@ -53,18 +53,15 @@ export interface ISeller {
     url: string;
 }
 /**
+ * agent interface
  * 購入者インターフェース
  * @export
  * @interface
  * @memberof factory/transaction/placeOrder
  */
-export interface IAgent {
-    id: string;
-    typeOf: string;
-    memberOf?: ProgramMembershipFactory.IProgramMembership;
-    url: string;
-}
+export declare type IAgent = IPerson;
 /**
+ * result interface
  * 取引結果インターフェース
  * @export
  * @interface
@@ -81,6 +78,7 @@ export interface IResult {
     ownershipInfos: OwnershipInfoFactory.IOwnershipInfo<IReservation>[];
 }
 /**
+ * error interface
  * エラーインターフェース
  * @export
  * @interface
@@ -88,6 +86,7 @@ export interface IResult {
  */
 export declare type IError = any;
 /**
+ * object of a transaction interface
  * 取引対象物インターフェース
  * @export
  * @interface
@@ -117,6 +116,7 @@ export interface IObject {
 }
 /**
  * place order transaction interface
+ * 注文取引インターフェース
  * @export
  * @interface
  * @memberof factory/transaction/placeOrder
@@ -146,6 +146,7 @@ export interface ITransaction extends TranstransactionFactory.ITransaction {
 }
 /**
  * create placeOrderTransaction object.
+ * 注文取引オブジェクトを生成する。
  * @export
  * @interface
  * @memberof factory/transaction/placeOrder

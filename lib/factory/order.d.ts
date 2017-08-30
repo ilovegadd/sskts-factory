@@ -1,10 +1,12 @@
 import { IEvent as IIndividualScreeningEvent } from './event/individualScreeningEvent';
 import OrderStatus from './orderStatus';
+import { IContact, IPerson } from './person';
 import PriceCurrency from './priceCurrency';
 import { IEventReservation } from './reservation/event';
 import { ITransaction } from './transaction/placeOrder';
 /**
  * payment method interface
+ * 決済方法イーターフェース
  * @export
  * @interface
  * @memberof factory/order
@@ -22,6 +24,7 @@ export interface IPaymentMethod {
 }
 /**
  * discount interface
+ * 割引インターフェース
  * @export
  * @interface
  * @memberof factory/order
@@ -43,6 +46,7 @@ export interface IDiscount {
 }
 /**
  * offered item type
+ * 供給アイテムインターフェース
  * @export
  * @type
  * @memberof factory/order
@@ -50,6 +54,7 @@ export interface IDiscount {
 export declare type IItemOffered = IEventReservation<IIndividualScreeningEvent>;
 /**
  * key for inquiry of the order
+ * 注文照会キーインターフェース
  * @export
  * @interface
  * @memberof factory/order
@@ -61,6 +66,7 @@ export interface IOrderInquiryKey {
 }
 /**
  * offer interface
+ * 供給インターフェース
  * @export
  * @interface
  * @memberof factory/order
@@ -76,6 +82,7 @@ export interface IOffer {
 }
 /**
  * seller interface
+ * 販売者インターフェース
  * @export
  * @interface
  * @memberof factory/order
@@ -93,23 +100,17 @@ export interface ISeller {
 }
 /**
  * customer interface
+ * 購入者インターフェース
  * @export
  * @interface
  * @memberof factory/order
  */
-export interface ICustomer {
-    typeOf: string;
-    /**
-     * Name of the Person.
-     */
+export declare type ICustomer = IPerson & IContact & {
     name: string;
-    /**
-     * URL of the item.
-     */
-    url: string;
-}
+};
 /**
  * order interface
+ * 注文インターフェース
  * @export
  * @interface
  * @memberof factory/order
@@ -183,6 +184,7 @@ export interface IOrder {
 }
 /**
  * create order object from transaction parameters
+ * 取引オブジェクトから注文オブジェクトを生成する
  * @export
  * @function
  * @memberof factory/order
