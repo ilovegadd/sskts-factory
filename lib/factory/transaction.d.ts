@@ -3,7 +3,11 @@ import TransactionStatusType from './transactionStatusType';
 import TransactionTasksExportationStatus from './transactionTasksExportationStatus';
 import TransactionType from './transactionType';
 /**
+ * transaction interface
  * 取引インターフェース
+ * @export
+ * @interface
+ * @memberof factory/transaction
  */
 export interface ITransaction {
     /**
@@ -62,13 +66,13 @@ export interface ITransaction {
 }
 /**
  * 取引を作成する
- *
  * @export
+ * @function
  * @returns {ITransaction} 取引
  * @memberof factory/transaction
  */
 export declare function create(args: {
-    id?: string;
+    id: string;
     typeOf: TransactionType;
     status: TransactionStatusType;
     agent: any;

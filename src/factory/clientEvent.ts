@@ -8,8 +8,6 @@
  * @namespace factory/clientEvent
  */
 
-import ObjectId from './objectId';
-
 export interface IClientEvent {
     id: string;
     client: string;
@@ -26,7 +24,7 @@ export interface IClientEvent {
 }
 
 export function create(args: {
-    id?: string;
+    id: string;
     client: string;
     occurredAt: Date;
     url?: string;
@@ -42,7 +40,7 @@ export function create(args: {
     // todo validation
 
     const event: IClientEvent = {
-        id: (args.id === undefined) ? ObjectId().toString() : args.id,
+        id: args.id,
         client: args.client,
         occurredAt: args.occurredAt,
         url: (args.url !== undefined) ? args.url : '',

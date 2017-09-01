@@ -1,6 +1,6 @@
 /**
+ * transaction factory
  * 取引ファクトリー
- *
  * @namespace factory/transaction
  */
 
@@ -9,14 +9,17 @@ import * as _ from 'underscore';
 import ArgumentError from '../error/argument';
 import ArgumentNullError from '../error/argumentNull';
 
-import ObjectId from './objectId';
 import * as TaskFactory from './task';
 import TransactionStatusType from './transactionStatusType';
 import TransactionTasksExportationStatus from './transactionTasksExportationStatus';
 import TransactionType from './transactionType';
 
 /**
+ * transaction interface
  * 取引インターフェース
+ * @export
+ * @interface
+ * @memberof factory/transaction
  */
 export interface ITransaction {
     /**
@@ -76,13 +79,13 @@ export interface ITransaction {
 
 /**
  * 取引を作成する
- *
  * @export
+ * @function
  * @returns {ITransaction} 取引
  * @memberof factory/transaction
  */
 export function create(args: {
-    id?: string;
+    id: string;
     typeOf: TransactionType;
     status: TransactionStatusType;
     agent: any;
@@ -100,7 +103,7 @@ export function create(args: {
     if (!_.isDate(args.expires)) throw new ArgumentError('expires', 'expires should be Date');
 
     return {
-        id: (args.id === undefined) ? ObjectId().toString() : args.id,
+        id: args.id,
         typeOf: args.typeOf,
         status: args.status,
         agent: args.agent,

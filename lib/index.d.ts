@@ -1,3 +1,7 @@
+/**
+ * sskts-factory
+ * @module
+ */
 import * as GMOAuthorizationFactory from './factory/authorization/gmo';
 import * as MvtkAuthorizationFactory from './factory/authorization/mvtk';
 import * as seatReservationAuthorizationFactory from './factory/authorization/seatReservation';

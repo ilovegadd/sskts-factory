@@ -46,6 +46,6 @@ export interface INotification extends NotificationFactory.INotification {
  * @memberof factory/notification/email
  */
 export declare function create(args: {
-    id?: string;
+    id: string;
     data: IData;
 }): INotification;

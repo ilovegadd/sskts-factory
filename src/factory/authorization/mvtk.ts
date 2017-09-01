@@ -1,6 +1,6 @@
 /**
+ * mvtk authorization factory
  * ムビチケ着券情報ファクトリー
- *
  * @namespace factory/authorization/mvtk
  */
 
@@ -10,7 +10,6 @@ import ArgumentError from '../../error/argument';
 
 import * as AuthorizationFactory from '../authorization';
 import AuthorizationGroup from '../authorizationGroup';
-import ObjectId from '../objectId';
 
 // tslint:disable-next-line:no-suspicious-comment
 // TODO ムビチケ着券OUTに変更
@@ -67,7 +66,7 @@ export interface IAuthorization extends AuthorizationFactory.IAuthorization {
 }
 
 export function create(args: {
-    id?: string;
+    id: string;
     price: number;
     result: IResult;
     object: IObject;
@@ -76,7 +75,7 @@ export function create(args: {
     if (args.price <= 0) throw new ArgumentError('price', 'price should be greater than 0');
 
     return {
-        id: (args.id === undefined) ? ObjectId().toString() : args.id,
+        id: args.id,
         group: AuthorizationGroup.MVTK,
         price: args.price,
         result: args.result,

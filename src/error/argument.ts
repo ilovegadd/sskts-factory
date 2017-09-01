@@ -1,5 +1,3 @@
-import * as util from 'util';
-
 import ErrorCode from '../errorCode';
 import { SSKTSError } from './sskts';
 
@@ -14,7 +12,7 @@ export default class ArgumentError extends SSKTSError {
 
     constructor(argumentName: string, message?: string) {
         if (message === undefined || message.length === 0) {
-            message = util.format('Invalid or missing argument supplied: %s', argumentName);
+            message = `Invalid or missing argument supplied: ${argumentName}`;
         }
 
         super(ErrorCode.Argument, message);

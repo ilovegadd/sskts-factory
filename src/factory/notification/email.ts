@@ -12,7 +12,6 @@ import ArgumentNullError from '../../error/argumentNull';
 
 import * as NotificationFactory from '../notification';
 import NotificationGroup from '../notificationGroup';
-import ObjectId from '../objectId';
 
 /**
  * email notification data interface
@@ -64,7 +63,7 @@ export interface INotification extends NotificationFactory.INotification {
  * @memberof factory/notification/email
  */
 export function create(args: {
-    id?: string,
+    id: string,
     data: IData
 }): INotification {
     if (_.isEmpty(args.data.from)) throw new ArgumentNullError('from');
@@ -82,7 +81,7 @@ export function create(args: {
     // todo sendgridの仕様上72時間後までしか設定できないのでバリデーション追加するかもしれない
 
     return {
-        id: (args.id === undefined) ? ObjectId().toString() : args.id,
+        id: args.id,
         group: NotificationGroup.EMAIL,
         data: args.data
     };

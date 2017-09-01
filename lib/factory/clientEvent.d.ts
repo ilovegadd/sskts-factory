@@ -1,3 +1,12 @@
+/**
+ * アプリケーションクライアントイベントファクトリー
+ * クライアントサイドで発生したイベントを生成する
+ * クライアントサイドからapiを通じて生成される想定
+ *
+ * todo jsdoc整備(一通り実装してからやる)
+ *
+ * @namespace factory/clientEvent
+ */
 export interface IClientEvent {
     id: string;
     client: string;
@@ -13,7 +22,7 @@ export interface IClientEvent {
     transaction?: string;
 }
 export declare function create(args: {
-    id?: string;
+    id: string;
     client: string;
     occurredAt: Date;
     url?: string;

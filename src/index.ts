@@ -5,8 +5,6 @@
  * @module
  */
 
-import * as mongoose from 'mongoose';
-
 import * as GMOAuthorizationFactory from './factory/authorization/gmo';
 import * as MvtkAuthorizationFactory from './factory/authorization/mvtk';
 import * as seatReservationAuthorizationFactory from './factory/authorization/seatReservation';
@@ -60,8 +58,6 @@ import * as errors from './errors';
 
 export import errors = errors;
 export import errorCode = ErrorCode;
-
-(<any>mongoose).Promise = global.Promise;
 
 export namespace authorization {
     export import gmo = GMOAuthorizationFactory;

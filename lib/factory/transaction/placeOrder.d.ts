@@ -152,7 +152,7 @@ export interface ITransaction extends TranstransactionFactory.ITransaction {
  * @memberof factory/transaction/placeOrder
  */
 export declare function create(args: {
-    id?: string;
+    id: string;
     status: TransactionStatusType;
     agent: IAgent;
     seller: ISeller;

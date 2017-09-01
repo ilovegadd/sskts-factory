@@ -44,7 +44,7 @@ export interface IAuthorization extends AuthorizationFactory.IAuthorization {
     object: IObject;
 }
 export declare function create(args: {
-    id?: string;
+    id: string;
     price: number;
     result: IResult;
     object: IObject;

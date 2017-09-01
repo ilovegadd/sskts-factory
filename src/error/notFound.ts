@@ -1,5 +1,3 @@
-import * as util from 'util';
-
 import ErrorCode from '../errorCode';
 import { SSKTSError } from './sskts';
 
@@ -14,7 +12,7 @@ export default class NotFoundError extends SSKTSError {
 
     constructor(entityName: string, message?: string) {
         if (message === undefined || message.length === 0) {
-            message = util.format('Not Found: "%s"', entityName);
+            message = `Not Found: ${entityName}`;
         }
 
         super(ErrorCode.NotFound, message);

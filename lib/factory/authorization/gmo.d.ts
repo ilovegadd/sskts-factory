@@ -1,6 +1,6 @@
 /**
+ * GMO authorization factory
  * GMOオーソリファクトリー
- *
  * @namespace factory/authorization/gmo
  */
 import * as GMO from '@motionpicture/gmo-service';
@@ -25,7 +25,7 @@ export interface IAuthorization extends AuthorizationFactory.IAuthorization {
     object: IObject;
 }
 export declare function create(args: {
-    id?: string;
+    id: string;
     price: number;
     result: GMO.services.credit.IExecTranResult;
     object: IObject;

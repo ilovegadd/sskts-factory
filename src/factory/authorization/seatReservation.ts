@@ -7,7 +7,6 @@ import * as COA from '@motionpicture/coa-service';
 
 import * as AuthorizationFactory from '../authorization';
 import AuthorizationGroup from '../authorizationGroup';
-import ObjectId from '../objectId';
 import PriceCurrency from '../priceCurrency';
 
 import * as IndividualScreeningEventFactory from '../event/individualScreeningEvent';
@@ -83,7 +82,8 @@ export function createFromCOATmpReserve(params: {
     const price = params.offers.reduce((a, b) => a + b.ticketInfo.salePrice + b.ticketInfo.mvtkSalesPrice, 0);
 
     return {
-        id: ObjectId().toString(),
+        // tslint:disable-next-line:max-line-length
+        id: `SeatReservationAuthorization-${params.individualScreeningEvent.superEvent.location.branchCode}-${params.reserveSeatsTemporarilyResult.tmpReserveNum}`,
         group: AuthorizationGroup.COA_SEAT_RESERVATION,
         price: price,
         result: params.reserveSeatsTemporarilyResult,

@@ -1,5 +1,3 @@
-import * as util from 'util';
-
 import ErrorCode from '../errorCode';
 import { SSKTSError } from './sskts';
 
@@ -15,7 +13,7 @@ export default class AlreadyInUseError extends SSKTSError {
 
     constructor(entityName: string, fieldNames: string[], message?: string) {
         if (message === undefined || message.length === 0) {
-            message = util.format('The specified \'%s\' value is already in use for: %s', entityName, fieldNames.join(', '));
+            message = `The specified '${entityName}' value is already in use for: ${fieldNames.join(', ')}`;
         }
 
         super(ErrorCode.AlreadyInUse, message);

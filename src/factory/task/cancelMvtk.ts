@@ -18,7 +18,7 @@ export interface ITask extends TaskFactory.ITask {
 }
 
 export function create(args: {
-    id?: string;
+    id: string;
     status: TaskStatus;
     runsAt: Date;
     remainingNumberOfTries: number;

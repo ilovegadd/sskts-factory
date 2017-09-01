@@ -50,7 +50,7 @@ export interface ITask {
     data: any;
 }
 export declare function create(args: {
-    id?: string;
+    id: string;
     name: TaskName;
     status: TaskStatus;
     runsAt: Date;

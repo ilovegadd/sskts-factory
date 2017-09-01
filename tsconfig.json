@@ -37,9 +37,7 @@
         "target": "es6",
         "watch": false
     },
-    "exclude": [
-        "docs",
-        "node_modules",
-        "lib"
+    "include": [
+        "./src/**/*"
     ]
 }

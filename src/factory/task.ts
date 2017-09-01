@@ -9,7 +9,6 @@ import * as _ from 'underscore';
 import ArgumentError from '../error/argument';
 import ArgumentNullError from '../error/argumentNull';
 
-import ObjectId from './objectId';
 import * as TaskExecutionResult from './taskExecutionResult';
 import TaskName from './taskName';
 import TaskStatus from './taskStatus';
@@ -64,7 +63,7 @@ export interface ITask {
 }
 
 export function create(args: {
-    id?: string;
+    id: string;
     name: TaskName;
     status: TaskStatus;
     runsAt: Date;
@@ -95,7 +94,7 @@ export function create(args: {
     }
 
     return {
-        id: (args.id === undefined) ? ObjectId().toString() : args.id,
+        id: args.id,
         name: args.name,
         status: args.status,
         runsAt: args.runsAt,
