@@ -12,6 +12,7 @@ import PlaceType from './placeType';
  */
 export interface IPlace {
     id?: string;
+    identifier?: string;
     name?: IMultilingualString;
     description?: IMultilingualString;
     address?: IMultilingualString;
@@ -19,7 +20,8 @@ export interface IPlace {
     containedInPlace?: IPlace;
     containsPlace?: IPlace[];
     maximumAttendeeCapacity?: number;
-    openingHoursSpecification?: any; // todo 型定義
+    // tslint:disable-next-line:no-suspicious-comment
+    openingHoursSpecification?: any; // TODO 型定義
     smokingAllowed?: boolean;
     telephone?: string;
     url?: string;
@@ -31,6 +33,7 @@ export interface IPlace {
 
 export function create(args: {
     id?: string;
+    identifier?: string;
     name?: IMultilingualString;
     description?: IMultilingualString;
     address?: IMultilingualString;
@@ -38,7 +41,8 @@ export function create(args: {
     containedInPlace?: IPlace;
     containsPlace?: IPlace[];
     maximumAttendeeCapacity?: number;
-    openingHoursSpecification?: any; // todo 型定義
+    // tslint:disable-next-line:no-suspicious-comment
+    openingHoursSpecification?: any; // TODO 型定義
     smokingAllowed?: boolean;
     telephone?: string;
     url?: URL;
@@ -46,6 +50,7 @@ export function create(args: {
 }): IPlace {
     return {
         id: args.id,
+        identifier: args.identifier,
         name: args.name,
         description: args.description,
         address: args.address,

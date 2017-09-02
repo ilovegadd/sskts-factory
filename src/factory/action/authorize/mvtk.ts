@@ -24,7 +24,7 @@ export interface IResult {
 }
 
 // tslint:disable-next-line:no-suspicious-comment
-// todo ムビチケ着券INに変更
+// TODO ムビチケ着券INに変更
 export interface IObject {
     price: number;
     seatInfoSyncIn: ISeatInfoSyncIn;

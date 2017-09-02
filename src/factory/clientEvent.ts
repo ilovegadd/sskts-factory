@@ -2,9 +2,6 @@
  * アプリケーションクライアントイベントファクトリー
  * クライアントサイドで発生したイベントを生成する
  * クライアントサイドからapiを通じて生成される想定
- *
- * todo jsdoc整備(一通り実装してからやる)
- *
  * @namespace factory/clientEvent
  */
 
@@ -37,8 +34,6 @@ export function create(args: {
     location?: number[];
     transaction?: string;
 }): IClientEvent {
-    // todo validation
-
     const event: IClientEvent = {
         id: args.id,
         client: args.client,

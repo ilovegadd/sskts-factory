@@ -62,6 +62,7 @@ export interface IScreeningRoom extends PlaceFactory.IPlace {
  * @memberof factory/place/movieTheater
  */
 export interface IPlaceWithoutScreeningRoom extends PlaceFactory.IPlace {
+    identifier: string;
     /**
      * スクリーン数
      */
@@ -107,7 +108,10 @@ export function createFromCOA(
     theaterFromCOA: COA.services.master.ITheaterResult,
     screensFromCOA: COA.services.master.IScreenResult[]
 ): IPlace {
+    const identifier = `MovieTheater-${theaterFromCOA.theaterCode}`;
+
     return {
+        identifier: identifier,
         screenCount: screensFromCOA.length,
         branchCode: theaterFromCOA.theaterCode,
         name: {

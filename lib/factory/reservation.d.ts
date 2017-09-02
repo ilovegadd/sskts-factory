@@ -3,10 +3,14 @@
  * @namespace factory/reservation
  */
 import * as EventFactory from './event';
+import IMultilingualString from './multilingualString';
 import { ICOATicketInfo } from './offer';
 import PriceCurrency from './priceCurrency';
 import ReservationStatusType from './reservationStatusType';
 import * as URLFactory from './url';
+export declare enum ReservationType {
+    EventReservation = "EventReservation",
+}
 /**
  * under name interface
  * @export
@@ -15,7 +19,7 @@ import * as URLFactory from './url';
  */
 export interface IUnderName {
     typeOf: string;
-    name: string;
+    name: IMultilingualString;
 }
 /**
  * seat interface

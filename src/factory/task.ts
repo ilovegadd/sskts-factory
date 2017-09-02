@@ -73,7 +73,6 @@ export function create(args: {
     executionResults: TaskExecutionResult.ITaskExecutionResult[];
     data: any;
 }): ITask {
-    // todo validation
     if (_.isEmpty(args.status)) {
         throw new ArgumentNullError('status');
     }

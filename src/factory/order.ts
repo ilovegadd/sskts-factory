@@ -288,8 +288,14 @@ export function createFromPlaceOrderTransaction(params: {
 
     const acceptedOffers = seatReservationAuthorizeAction.object.acceptedOffers.map((offer) => {
         offer.itemOffered.reservationStatus = ReservationStatusType.ReservationConfirmed;
-        offer.itemOffered.underName.name = customer.name;
-        offer.itemOffered.reservedTicket.underName.name = customer.name;
+        offer.itemOffered.underName.name = {
+            ja: customer.name,
+            en: customer.name
+        };
+        offer.itemOffered.reservedTicket.underName.name = {
+            ja: customer.name,
+            en: customer.name
+        };
 
         return offer;
     });

@@ -15,8 +15,6 @@ export function create(args: {
     executedAt: Date;
     error: string;
 }): ITaskExecutionResult {
-    // todo validation
-
     return {
         id: args.id,
         executedAt: args.executedAt,

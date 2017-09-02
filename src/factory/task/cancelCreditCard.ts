@@ -26,7 +26,5 @@ export function create(args: {
     executionResults: TaskExecutionResult.ITaskExecutionResult[];
     data: IData;
 }): ITask {
-    // todo validation
-
     return TaskFactory.create({ ...args, ...{ name: TaskName.CancelCreditCard } });
 }

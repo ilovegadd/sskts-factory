@@ -6,7 +6,7 @@
 import * as COA from '@motionpicture/coa-service';
 
 import { IEvent } from '../event';
-import { IReservation } from '../reservation';
+import { IReservation, ReservationType } from '../reservation';
 
 import ArgumentError from '../../error/argument';
 
@@ -48,7 +48,7 @@ export function createFromCOATmpReserve(params: {
         const now = new Date();
 
         return {
-            typeOf: 'EventReservation',
+            typeOf: ReservationType.EventReservation,
             additionalTicketText: '',
             modifiedTime: now,
             numSeats: 1,
@@ -60,12 +60,7 @@ export function createFromCOATmpReserve(params: {
             reservedTicket: {
                 coaTicketInfo: selectedTicket,
                 dateIssued: now,
-                // tslint:disable-next-line:no-suspicious-comment
-                // TODO organizerに修正
-                issuedBy: {
-                    typeOf: params.individualScreeningEvent.superEvent.location.typeOf,
-                    name: params.individualScreeningEvent.superEvent.location.name.ja
-                },
+                issuedBy: params.individualScreeningEvent.superEvent.organizer,
                 totalPrice: selectedTicket.salePrice,
                 priceCurrency: PriceCurrency.JPY,
                 ticketedSeat: {
@@ -78,12 +73,18 @@ export function createFromCOATmpReserve(params: {
                 ticketToken: ticketToken,
                 underName: {
                     typeOf: 'Person',
-                    name: ''
+                    name: {
+                        ja: '',
+                        en: ''
+                    }
                 }
             },
             underName: {
                 typeOf: 'Person',
-                name: ''
+                name: {
+                    ja: '',
+                    en: ''
+                }
             }
         };
     });

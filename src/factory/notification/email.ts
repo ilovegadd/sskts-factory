@@ -78,7 +78,8 @@ export function create(args: {
         if (!_.isDate(args.data.send_at)) throw new ArgumentError('send_at', 'send_at should be Date');
     }
 
-    // todo sendgridの仕様上72時間後までしか設定できないのでバリデーション追加するかもしれない
+    // tslint:disable-next-line:no-suspicious-comment
+    // TODO sendgridの仕様上72時間後までしか設定できないのでバリデーション追加するかもしれない
 
     return {
         id: args.id,

@@ -1,7 +1,5 @@
 /**
  * 在庫状況ファクトリー
- * todo jsdoc
- *
  * @namespace factory/stockStatus
  */
 

@@ -10,6 +10,7 @@ import PlaceType from './placeType';
  */
 export interface IPlace {
     id?: string;
+    identifier?: string;
     name?: IMultilingualString;
     description?: IMultilingualString;
     address?: IMultilingualString;
@@ -28,6 +29,7 @@ export interface IPlace {
 }
 export declare function create(args: {
     id?: string;
+    identifier?: string;
     name?: IMultilingualString;
     description?: IMultilingualString;
     address?: IMultilingualString;

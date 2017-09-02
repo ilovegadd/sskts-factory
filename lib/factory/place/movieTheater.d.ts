@@ -55,6 +55,7 @@ export interface IScreeningRoom extends PlaceFactory.IPlace {
  * @memberof factory/place/movieTheater
  */
 export interface IPlaceWithoutScreeningRoom extends PlaceFactory.IPlace {
+    identifier: string;
     /**
      * スクリーン数
      */

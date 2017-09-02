@@ -39,6 +39,11 @@ export interface IWorkPerformed {
      */
     typeOf: CreativeWorkType;
 }
+export interface IOrganizer {
+    typeOf: string;
+    identifier: string;
+    name: IMultilingualString;
+}
 /**
  * screening event interface
  * 上映イベントインターフェース(COAの劇場作品に相当)
@@ -76,6 +81,7 @@ export interface IEvent extends EventFactory.IEvent {
          */
         kanaName: string;
     };
+    organizer: IOrganizer;
     /**
      * 作品タイトル名（カナ）
      */

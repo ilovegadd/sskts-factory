@@ -46,6 +46,12 @@ export interface IWorkPerformed {
     typeOf: CreativeWorkType;
 }
 
+export interface IOrganizer {
+    typeOf: string;
+    identifier: string;
+    name: IMultilingualString;
+}
+
 /**
  * screening event interface
  * 上映イベントインターフェース(COAの劇場作品に相当)
@@ -83,9 +89,7 @@ export interface IEvent extends EventFactory.IEvent {
          */
         kanaName: string;
     };
-    // tslint:disable-next-line:no-suspicious-comment
-    // TODO 提供劇場
-    // organizer: MovieTheaterOrganizationFactory.IOrganization
+    organizer: IOrganizer;
     /**
      * 作品タイトル名（カナ）
      */
@@ -164,6 +168,11 @@ export function createFromCOA(params: {
             name: params.movieTheater.name,
             kanaName: params.movieTheater.kanaName,
             typeOf: params.movieTheater.typeOf
+        },
+        organizer: {
+            typeOf: params.movieTheater.typeOf,
+            identifier: params.movieTheater.identifier,
+            name: params.movieTheater.name
         },
         videoFormat: params.eizouKubuns.find((kubun) => kubun.kubunCode === params.filmFromCOA.kbnEizou),
         workPerformed: {

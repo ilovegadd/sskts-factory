@@ -124,7 +124,7 @@ export function create(args: {
     telephone: string;
     url: URLFactory.IURL;
 }): IOrganization {
-    const identifier = `MovieTheaterOrganization-${args.branchCode}`;
+    const identifier = `MovieTheater-${args.branchCode}`;
 
     return {
         ...OrganizationFactory.create({
