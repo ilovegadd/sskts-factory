@@ -1,7 +1,6 @@
 /**
- * GMO承認資産移動タスクファクトリー
- *
- * @namespace factory/task/settleGMO
+ * クレジットカード承認解除タスクファクトリー
+ * @namespace factory/task/cancelCreditCard
  */
 
 import * as TaskFactory from '../task';
@@ -29,5 +28,5 @@ export function create(args: {
 }): ITask {
     // todo validation
 
-    return TaskFactory.create({ ...args, ...{ name: TaskName.SettleGMO } });
+    return TaskFactory.create({ ...args, ...{ name: TaskName.CancelCreditCard } });
 }

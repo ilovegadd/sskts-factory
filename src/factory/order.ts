@@ -9,9 +9,9 @@
 
 import ArgumentError from '../error/argument';
 
-import { IAuthorization as IGMOAuthorization } from './authorization/gmo';
-import { IAuthorization as IMvtkAuthorization } from './authorization/mvtk';
-import AuthorizationGroup from './authorizationGroup';
+import { AuthorizeActionPurpose } from './action/authorize';
+import { IAction as ICreditCardAuthorizeAction } from './action/authorize/creditCard';
+import { IAction as IMvtkAuthorizeAction } from './action/authorize/mvtk';
 import { IEvent as IIndividualScreeningEvent } from './event/individualScreeningEvent';
 import OrderStatus from './orderStatus';
 import { IContact, IPerson } from './person';
@@ -218,8 +218,8 @@ export function createFromPlaceOrderTransaction(params: {
     transaction: ITransaction
 }): IOrder {
     // seatReservation exists?
-    const seatReservationAuthorization = params.transaction.object.seatReservation;
-    if (seatReservationAuthorization === undefined) {
+    const seatReservationAuthorizeAction = params.transaction.object.seatReservation;
+    if (seatReservationAuthorizeAction === undefined) {
         throw new ArgumentError('transaction', 'seat reservation does not exist');
     }
 
@@ -229,23 +229,23 @@ export function createFromPlaceOrderTransaction(params: {
 
     const cutomerContact = params.transaction.object.customerContact;
     const orderInquiryKey = {
-        theaterCode: seatReservationAuthorization.object.updTmpReserveSeatArgs.theaterCode,
-        confirmationNumber: seatReservationAuthorization.result.tmpReserveNum,
+        theaterCode: seatReservationAuthorizeAction.object.updTmpReserveSeatArgs.theaterCode,
+        confirmationNumber: seatReservationAuthorizeAction.result.updTmpReserveSeatResult.tmpReserveNum,
         telephone: cutomerContact.telephone
     };
 
     // 結果作成
     const discounts: IDiscount[] = [];
     params.transaction.object.discountInfos.forEach((discountInfo) => {
-        switch (discountInfo.group) {
-            case AuthorizationGroup.MVTK:
-                const discountCode = (<IMvtkAuthorization>discountInfo).result.knyknrNoInfo.map(
+        switch (discountInfo.purpose.typeOf) {
+            case AuthorizeActionPurpose.Mvtk:
+                const discountCode = (<IMvtkAuthorizeAction>discountInfo).object.seatInfoSyncIn.knyknrNoInfo.map(
                     (knshInfo) => knshInfo.knyknrNo
                 ).join(',');
 
                 discounts.push({
                     name: 'ムビチケカード',
-                    discount: discountInfo.price,
+                    discount: (<IMvtkAuthorizeAction>discountInfo).result.price,
                     discountCode: discountCode,
                     discountCurrency: PriceCurrency.JPY
                 });
@@ -258,12 +258,12 @@ export function createFromPlaceOrderTransaction(params: {
 
     const paymentMethods: IPaymentMethod[] = [];
     params.transaction.object.paymentInfos.forEach((paymentInfo) => {
-        switch (paymentInfo.group) {
-            case AuthorizationGroup.GMO:
+        switch (paymentInfo.purpose.typeOf) {
+            case AuthorizeActionPurpose.CreditCard:
                 paymentMethods.push({
                     name: 'クレジットカード',
                     paymentMethod: 'CreditCard',
-                    paymentMethodId: (<IGMOAuthorization>paymentInfo).result.orderId
+                    paymentMethodId: (<ICreditCardAuthorizeAction>paymentInfo).result.execTranResult.orderId
                 });
                 break;
 
@@ -278,13 +278,15 @@ export function createFromPlaceOrderTransaction(params: {
             id: params.transaction.agent.id,
             typeOf: params.transaction.agent.typeOf,
             name: `${cutomerContact.familyName} ${cutomerContact.givenName}`,
-            url: '',
-            memberOf: params.transaction.agent.memberOf
+            url: ''
         },
         ...params.transaction.object.customerContact
     };
+    if (params.transaction.agent.memberOf !== undefined) {
+        customer.memberOf = params.transaction.agent.memberOf;
+    }
 
-    const acceptedOffers = seatReservationAuthorization.object.acceptedOffers.map((offer) => {
+    const acceptedOffers = seatReservationAuthorizeAction.object.acceptedOffers.map((offer) => {
         offer.itemOffered.reservationStatus = ReservationStatusType.ReservationConfirmed;
         offer.itemOffered.underName.name = customer.name;
         offer.itemOffered.reservedTicket.underName.name = customer.name;
@@ -300,7 +302,7 @@ export function createFromPlaceOrderTransaction(params: {
         typeOf: 'Order',
         seller: seller,
         customer: customer,
-        price: seatReservationAuthorization.price - discounts.reduce((a, b) => a + b.discount, 0),
+        price: seatReservationAuthorizeAction.result.price - discounts.reduce((a, b) => a + b.discount, 0),
         priceCurrency: PriceCurrency.JPY,
         paymentMethods: paymentMethods,
         discounts: discounts,

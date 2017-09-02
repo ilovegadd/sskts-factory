@@ -2,10 +2,11 @@
  * sskts-factory
  * @module
  */
-import * as GMOAuthorizationFactory from './factory/authorization/gmo';
-import * as MvtkAuthorizationFactory from './factory/authorization/mvtk';
-import * as seatReservationAuthorizationFactory from './factory/authorization/seatReservation';
-import AuthorizationGroup from './factory/authorizationGroup';
+import { ActionStatusType, ActionType } from './factory/action';
+import * as AuthorizeActionFactory from './factory/action/authorize';
+import * as CreditCardAuthorizeActionFactory from './factory/action/authorize/creditCard';
+import * as MvtkAuthorizeActionFactory from './factory/action/authorize/mvtk';
+import * as seatReservationAuthorizeActionFactory from './factory/action/authorize/seatReservation';
 import * as ClientEventFactory from './factory/clientEvent';
 import * as ClientUserFactory from './factory/clientUser';
 import * as MovieCreativeWorkFactory from './factory/creativeWork/movie';
@@ -32,12 +33,12 @@ import PriceCurrency from './factory/priceCurrency';
 import * as EventReservationFactory from './factory/reservation/event';
 import ReservationStatusType from './factory/reservationStatusType';
 import * as TaskFactory from './factory/task';
-import * as CancelGMOTaskFactory from './factory/task/cancelGMO';
+import * as CancelCreditCardTaskFactory from './factory/task/cancelCreditCard';
 import * as CancelMvtkTaskFactory from './factory/task/cancelMvtk';
 import * as CancelSeatReservationTaskFactory from './factory/task/cancelSeatReservation';
 import * as CreateOrderTaskFactory from './factory/task/createOrder';
 import * as SendEmailNotificationTaskFactory from './factory/task/sendEmailNotification';
-import * as SettleGMOTaskFactory from './factory/task/settleGMO';
+import * as SettleCreditCardTaskFactory from './factory/task/settleCreditCard';
 import * as SettleMvtkTaskFactory from './factory/task/settleMvtk';
 import * as SettleSeatReservationTaskFactory from './factory/task/settleSeatReservation';
 import * as TaskExecutionResultFactory from './factory/taskExecutionResult';
@@ -53,12 +54,16 @@ import ErrorCode from './errorCode';
 import * as errors from './errors';
 export import errors = errors;
 export import errorCode = ErrorCode;
-export declare namespace authorization {
-    export import gmo = GMOAuthorizationFactory;
-    export import mvtk = MvtkAuthorizationFactory;
-    export import seatReservation = seatReservationAuthorizationFactory;
+export import actionStatusType = ActionStatusType;
+export import actionType = ActionType;
+export declare namespace action {
+    namespace authorize {
+        export import authorizeActionPurpose = AuthorizeActionFactory.AuthorizeActionPurpose;
+        export import creditCard = CreditCardAuthorizeActionFactory;
+        export import mvtk = MvtkAuthorizeActionFactory;
+        export import seatReservation = seatReservationAuthorizeActionFactory;
+    }
 }
-export import authorizationGroup = AuthorizationGroup;
 export declare namespace paymentMethod {
     namespace paymentCard {
         export import creditCard = CreditCardFactory;
@@ -104,12 +109,12 @@ export declare namespace reservation {
 export import reservationStatusType = ReservationStatusType;
 export declare namespace task {
     export import ITask = TaskFactory.ITask;
-    export import cancelGMO = CancelGMOTaskFactory;
+    export import cancelCreditCard = CancelCreditCardTaskFactory;
     export import cancelMvtk = CancelMvtkTaskFactory;
     export import cancelSeatReservation = CancelSeatReservationTaskFactory;
     export import createOrder = CreateOrderTaskFactory;
     export import sendEmailNotification = SendEmailNotificationTaskFactory;
-    export import settleGMO = SettleGMOTaskFactory;
+    export import settleCreditCard = SettleCreditCardTaskFactory;
     export import settleMvtk = SettleMvtkTaskFactory;
     export import settleSeatReservation = SettleSeatReservationTaskFactory;
 }

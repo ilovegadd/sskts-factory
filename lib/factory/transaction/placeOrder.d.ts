@@ -3,9 +3,9 @@
  * 注文取引ファクトリー
  * @namespace factory/transaction/placeOrder
  */
-import * as GMOAuthorizationFactory from '../authorization/gmo';
-import * as MvtkAuthorizationFactory from '../authorization/mvtk';
-import * as SeatReservationAuthorizationFactory from '../authorization/seatReservation';
+import * as CreditCardAuthorizeActionFactory from '../action/authorize/creditCard';
+import * as MvtkauthorizeActionFactory from '../action/authorize/mvtk';
+import * as SeatReservationauthorizeActionFactory from '../action/authorize/seatReservation';
 import * as ClientUserFactory from '../clientUser';
 import * as OrderFactory from '../order';
 import * as OwnershipInfoFactory from '../ownershipInfo';
@@ -22,7 +22,7 @@ import TransactionTasksExportationStatus from '../transactionTasksExportationSta
  * @type
  * @memberof factory/transaction/placeOrder
  */
-export declare type IAvailablePaymentInfo = GMOAuthorizationFactory.IAuthorization;
+export declare type IAvailablePaymentInfo = CreditCardAuthorizeActionFactory.IAction;
 /**
  * available discount info interface
  * 利用可能な割引情報インターフェース
@@ -30,7 +30,7 @@ export declare type IAvailablePaymentInfo = GMOAuthorizationFactory.IAuthorizati
  * @type
  * @memberof factory/transaction/placeOrder
  */
-export declare type IAvailableDiscount = MvtkAuthorizationFactory.IAuthorization;
+export declare type IAvailableDiscount = MvtkauthorizeActionFactory.IAction;
 /**
  * customer contact interface
  * 購入者連作先インターフェース
@@ -108,7 +108,7 @@ export interface IObject {
     /**
      * 座席予約情報
      */
-    seatReservation?: SeatReservationAuthorizationFactory.IAuthorization;
+    seatReservation?: SeatReservationauthorizeActionFactory.IAction;
     /**
      * discount infos
      */

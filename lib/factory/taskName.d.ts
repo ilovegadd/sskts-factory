@@ -1,15 +1,15 @@
 /**
+ * task name
  * タスク名
- *
  * @namespace factory/taskName
  */
 declare enum TaskName {
     CancelSeatReservation = "cancelSeatReservation",
-    CancelGMO = "cancelGMO",
+    CancelCreditCard = "cancelCreditCard",
     CancelMvtk = "cancelMvtk",
     SendEmailNotification = "sendEmailNotification",
     SettleSeatReservation = "settleSeatReservation",
-    SettleGMO = "settleGMO",
+    SettleCreditCard = "settleCreditCard",
     SettleMvtk = "settleMvtk",
     CreateOrder = "createOrder",
 }

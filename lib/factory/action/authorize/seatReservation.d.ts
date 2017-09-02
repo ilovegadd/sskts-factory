@@ -3,15 +3,27 @@
  * @namespace factory/authorization/seatReservation
  */
 import * as COA from '@motionpicture/coa-service';
-import * as AuthorizationFactory from '../authorization';
-import PriceCurrency from '../priceCurrency';
-import * as IndividualScreeningEventFactory from '../event/individualScreeningEvent';
-import { ISeatReservationOffer } from '../offer';
-import * as EventReservationFactory from '../reservation/event';
+import { ActionStatusType } from '../../action';
+import * as IndividualScreeningEventFactory from '../../event/individualScreeningEvent';
+import { ISeatReservationOffer } from '../../offer';
+import PriceCurrency from '../../priceCurrency';
+import * as EventReservationFactory from '../../reservation/event';
+import * as AuthorizeActionFactory from '../authorize';
+export interface IAgent {
+    typeOf: string;
+    id: string;
+}
+export interface IRecipient {
+    typeOf: string;
+    id: string;
+}
 /**
  * authorization result interface (COA tmp reserve result)
  */
-export declare type IResult = COA.services.reserve.IUpdTmpReserveSeatResult;
+export interface IResult {
+    price: number;
+    updTmpReserveSeatResult: COA.services.reserve.IUpdTmpReserveSeatResult;
+}
 /**
  * authorization object
  */
@@ -59,13 +71,18 @@ export declare type IReservation = EventReservationFactory.IEventReservation<Ind
  * @interface
  * @memberof factory/authorization/seatReservation
  */
-export interface IAuthorization extends AuthorizationFactory.IAuthorization {
+export interface IAction extends AuthorizeActionFactory.IAction {
     result: IResult;
     object: IObject;
 }
 export declare function createFromCOATmpReserve(params: {
+    agent: IAgent;
+    recipient: IRecipient;
+    actionStatus: ActionStatusType;
+    startDate: Date;
+    endDate?: Date;
     updTmpReserveSeatArgs: COA.services.reserve.IUpdTmpReserveSeatArgs;
     reserveSeatsTemporarilyResult: COA.services.reserve.IUpdTmpReserveSeatResult;
     offers: ISeatReservationOffer[];
     individualScreeningEvent: IndividualScreeningEventFactory.IEvent;
-}): IAuthorization;
+}): IAction;

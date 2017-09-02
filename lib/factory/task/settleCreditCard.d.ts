@@ -1,7 +1,6 @@
 /**
- * GMO承認解除タスクファクトリー
- *
- * @namespace factory/task/cancelGMO
+ * クレジットカード承認資産移動タスクファクトリー
+ * @namespace factory/task/settleCreditCard
  */
 import * as TaskFactory from '../task';
 import * as TaskExecutionResult from '../taskExecutionResult';

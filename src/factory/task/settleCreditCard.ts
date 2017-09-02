@@ -1,18 +1,22 @@
 /**
- * GMO承認資産移動タスクファクトリー
- *
- * @namespace factory/task/settleGMO
+ * クレジットカード承認資産移動タスクファクトリー
+ * @namespace factory/task/settleCreditCard
  */
+
 import * as TaskFactory from '../task';
 import * as TaskExecutionResult from '../taskExecutionResult';
+import TaskName from '../taskName';
 import TaskStatus from '../taskStatus';
+
 export interface IData {
     transactionId: string;
 }
+
 export interface ITask extends TaskFactory.ITask {
     data: IData;
 }
-export declare function create(args: {
+
+export function create(args: {
     id: string;
     status: TaskStatus;
     runsAt: Date;
@@ -21,4 +25,8 @@ export declare function create(args: {
     numberOfTried: number;
     executionResults: TaskExecutionResult.ITaskExecutionResult[];
     data: IData;
-}): ITask;
+}): ITask {
+    // todo validation
+
+    return TaskFactory.create({ ...args, ...{ name: TaskName.SettleCreditCard } });
+}
