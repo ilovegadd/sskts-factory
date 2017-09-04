@@ -4,7 +4,7 @@
  * @ignore
  */
 
-const factory = require('../lib/index');
+const factory = require('../');
 
 const transaction = factory.transaction.placeOrder.create({
     status: factory.transactionStatusType.InProgress,
