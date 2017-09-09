@@ -23,13 +23,17 @@ export interface IRecipient {
  * オーソリ対象インターフェース
  */
 export interface IObject {
-    entryTranArgs: GMO.services.credit.IEntryTranArgs;
-    execTranArgs: GMO.services.credit.IExecTranArgs;
+    transactionId: string;
+    orderId: string;
+    amount: number;
+    method: GMO.utils.util.Method;
     payType: GMO.utils.util.PayType;
 }
 
 export interface IResult {
     price: number;
+    entryTranArgs: GMO.services.credit.IEntryTranArgs;
+    execTranArgs: GMO.services.credit.IExecTranArgs;
     execTranResult: GMO.services.credit.IExecTranResult;
 }
 
@@ -37,7 +41,7 @@ export interface IResult {
  * GMOオーソリインターフェース
  */
 export interface IAction extends AuthorizeActionFactory.IAction {
-    result: IResult;
+    result?: IResult;
     object: IObject;
 }
 

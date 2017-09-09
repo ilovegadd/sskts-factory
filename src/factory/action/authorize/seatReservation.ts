@@ -27,6 +27,14 @@ export interface IRecipient {
  */
 export interface IResult {
     price: number;
+    /**
+     * 受け入れられた供給情報
+     */
+    acceptedOffers: IAcceptedOffer[];
+    /**
+     * COAの仮予約パラメーター
+     */
+    updTmpReserveSeatArgs: COA.services.reserve.IUpdTmpReserveSeatArgs;
     updTmpReserveSeatResult: COA.services.reserve.IUpdTmpReserveSeatResult;
 }
 
@@ -34,14 +42,9 @@ export interface IResult {
  * authorization object
  */
 export interface IObject {
-    /**
-     * COAの仮予約パラメーター
-     */
-    updTmpReserveSeatArgs: COA.services.reserve.IUpdTmpReserveSeatArgs;
-    /**
-     * 受け入れられた供給情報
-     */
-    acceptedOffers: IAcceptedOffer[];
+    transactionId: string;
+    individualScreeningEvent: IndividualScreeningEventFactory.IEvent;
+    offers: ISeatReservationOffer[];
 }
 
 /**
@@ -81,54 +84,59 @@ export type IReservation = EventReservationFactory.IEventReservation<IndividualS
  * @memberof factory/authorization/seatReservation
  */
 export interface IAction extends AuthorizeActionFactory.IAction {
-    result: IResult;
+    result?: IResult;
     object: IObject;
 }
 
 export function createFromCOATmpReserve(params: {
+    id: string;
+    transactionId: string;
     agent: IAgent;
     recipient: IRecipient;
     actionStatus: ActionStatusType;
     startDate: Date;
     endDate?: Date;
-    updTmpReserveSeatArgs: COA.services.reserve.IUpdTmpReserveSeatArgs;
-    reserveSeatsTemporarilyResult: COA.services.reserve.IUpdTmpReserveSeatResult;
+    // updTmpReserveSeatArgs: COA.services.reserve.IUpdTmpReserveSeatArgs;
+    // reserveSeatsTemporarilyResult: COA.services.reserve.IUpdTmpReserveSeatResult;
     offers: ISeatReservationOffer[],
     individualScreeningEvent: IndividualScreeningEventFactory.IEvent
 }): IAction {
-    const price = params.offers.reduce((a, b) => a + b.ticketInfo.salePrice + b.ticketInfo.mvtkSalesPrice, 0);
+    // const price = params.offers.reduce((a, b) => a + b.ticketInfo.salePrice + b.ticketInfo.mvtkSalesPrice, 0);
     // tslint:disable-next-line:max-line-length no-magic-numbers
-    const id = `SeatReservationAuthorizeAction-${(new Date()).toISOString().slice(0, 10)}-${params.individualScreeningEvent.superEvent.location.branchCode} -${params.reserveSeatsTemporarilyResult.tmpReserveNum}`;
+    // const id = `SeatReservationAuthorizeAction-${(new Date()).toISOString().slice(0, 10)}-${params.individualScreeningEvent.superEvent.location.branchCode} -${params.reserveSeatsTemporarilyResult.tmpReserveNum}`;
 
     return {
         // tslint:disable-next-line:max-line-length
-        id: id,
+        id: params.id,
         actionStatus: params.actionStatus,
         typeOf: ActionType.AuthorizeAction,
         purpose: {
             typeOf: AuthorizeActionFactory.AuthorizeActionPurpose.SeatReservation
         },
-        result: {
-            updTmpReserveSeatResult: params.reserveSeatsTemporarilyResult,
-            price: price
-        },
+        // result: {
+        //     updTmpReserveSeatResult: params.reserveSeatsTemporarilyResult,
+        //     price: price
+        // },
         object: {
-            updTmpReserveSeatArgs: params.updTmpReserveSeatArgs,
-            acceptedOffers: EventReservationFactory.createFromCOATmpReserve(params).map((eventReservation) => {
-                return {
-                    itemOffered: eventReservation,
-                    price: eventReservation.price,
-                    priceCurrency: PriceCurrency.JPY,
-                    seller: {
-                        typeOf: params.individualScreeningEvent.superEvent.location.typeOf,
-                        name: params.individualScreeningEvent.superEvent.location.name.ja
-                    }
-                };
-            })
+            transactionId: params.transactionId,
+            offers: params.offers,
+            individualScreeningEvent: params.individualScreeningEvent
+            // updTmpReserveSeatArgs: params.updTmpReserveSeatArgs,
+            // acceptedOffers: EventReservationFactory.createFromCOATmpReserve(params).map((eventReservation) => {
+            //     return {
+            //         itemOffered: eventReservation,
+            //         price: eventReservation.price,
+            //         priceCurrency: PriceCurrency.JPY,
+            //         seller: {
+            //             typeOf: params.individualScreeningEvent.superEvent.location.typeOf,
+            //             name: params.individualScreeningEvent.superEvent.location.name.ja
+            //         }
+            //     };
+            // })
         },
         agent: params.agent,
         recipient: params.recipient,
-        startDate: params.startDate,
-        endDate: params.endDate
+        startDate: params.startDate
+        // endDate: params.endDate
     };
 }

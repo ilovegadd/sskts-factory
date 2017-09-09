@@ -18,6 +18,7 @@ export interface IResult {
 }
 export interface IObject {
     price: number;
+    transactionId: string;
     seatInfoSyncIn: ISeatInfoSyncIn;
 }
 export interface ISeatInfoSyncIn {

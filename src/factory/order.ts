@@ -10,7 +10,6 @@
 import ArgumentError from '../error/argument';
 
 import { AuthorizeActionPurpose } from './action/authorize';
-import { IAction as ICreditCardAuthorizeAction } from './action/authorize/creditCard';
 import { IAction as IMvtkAuthorizeAction } from './action/authorize/mvtk';
 import { IEvent as IIndividualScreeningEvent } from './event/individualScreeningEvent';
 import OrderStatus from './orderStatus';
@@ -222,6 +221,9 @@ export function createFromPlaceOrderTransaction(params: {
     if (seatReservationAuthorizeAction === undefined) {
         throw new ArgumentError('transaction', 'seat reservation does not exist');
     }
+    if (seatReservationAuthorizeAction.result === undefined) {
+        throw new ArgumentError('transaction', 'seat reservation result does not exist');
+    }
 
     if (params.transaction.object.customerContact === undefined) {
         throw new ArgumentError('transaction', 'customer contact does not exist');
@@ -229,7 +231,7 @@ export function createFromPlaceOrderTransaction(params: {
 
     const cutomerContact = params.transaction.object.customerContact;
     const orderInquiryKey = {
-        theaterCode: seatReservationAuthorizeAction.object.updTmpReserveSeatArgs.theaterCode,
+        theaterCode: seatReservationAuthorizeAction.result.updTmpReserveSeatArgs.theaterCode,
         confirmationNumber: seatReservationAuthorizeAction.result.updTmpReserveSeatResult.tmpReserveNum,
         telephone: cutomerContact.telephone
     };
@@ -260,10 +262,14 @@ export function createFromPlaceOrderTransaction(params: {
     params.transaction.object.paymentInfos.forEach((paymentInfo) => {
         switch (paymentInfo.purpose.typeOf) {
             case AuthorizeActionPurpose.CreditCard:
+                if (paymentInfo.result === undefined) {
+                    throw new ArgumentError('transaction', 'paymentInfo result does not exist');
+                }
+
                 paymentMethods.push({
                     name: 'クレジットカード',
                     paymentMethod: 'CreditCard',
-                    paymentMethodId: (<ICreditCardAuthorizeAction>paymentInfo).result.execTranResult.orderId
+                    paymentMethodId: paymentInfo.result.execTranResult.orderId
                 });
                 break;
 
@@ -286,7 +292,7 @@ export function createFromPlaceOrderTransaction(params: {
         customer.memberOf = params.transaction.agent.memberOf;
     }
 
-    const acceptedOffers = seatReservationAuthorizeAction.object.acceptedOffers.map((offer) => {
+    const acceptedOffers = seatReservationAuthorizeAction.result.acceptedOffers.map((offer) => {
         offer.itemOffered.reservationStatus = ReservationStatusType.ReservationConfirmed;
         offer.itemOffered.underName.name = {
             ja: customer.name,

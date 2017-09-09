@@ -22,20 +22,23 @@ export interface IRecipient {
  */
 export interface IResult {
     price: number;
+    /**
+     * 受け入れられた供給情報
+     */
+    acceptedOffers: IAcceptedOffer[];
+    /**
+     * COAの仮予約パラメーター
+     */
+    updTmpReserveSeatArgs: COA.services.reserve.IUpdTmpReserveSeatArgs;
     updTmpReserveSeatResult: COA.services.reserve.IUpdTmpReserveSeatResult;
 }
 /**
  * authorization object
  */
 export interface IObject {
-    /**
-     * COAの仮予約パラメーター
-     */
-    updTmpReserveSeatArgs: COA.services.reserve.IUpdTmpReserveSeatArgs;
-    /**
-     * 受け入れられた供給情報
-     */
-    acceptedOffers: IAcceptedOffer[];
+    transactionId: string;
+    individualScreeningEvent: IndividualScreeningEventFactory.IEvent;
+    offers: ISeatReservationOffer[];
 }
 /**
  * 供給情報インターフェース
@@ -72,17 +75,17 @@ export declare type IReservation = EventReservationFactory.IEventReservation<Ind
  * @memberof factory/authorization/seatReservation
  */
 export interface IAction extends AuthorizeActionFactory.IAction {
-    result: IResult;
+    result?: IResult;
     object: IObject;
 }
 export declare function createFromCOATmpReserve(params: {
+    id: string;
+    transactionId: string;
     agent: IAgent;
     recipient: IRecipient;
     actionStatus: ActionStatusType;
     startDate: Date;
     endDate?: Date;
-    updTmpReserveSeatArgs: COA.services.reserve.IUpdTmpReserveSeatArgs;
-    reserveSeatsTemporarilyResult: COA.services.reserve.IUpdTmpReserveSeatResult;
     offers: ISeatReservationOffer[];
     individualScreeningEvent: IndividualScreeningEventFactory.IEvent;
 }): IAction;

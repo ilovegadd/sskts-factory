@@ -27,6 +27,7 @@ export interface IResult {
 // TODO ムビチケ着券INに変更
 export interface IObject {
     price: number;
+    transactionId: string;
     seatInfoSyncIn: ISeatInfoSyncIn;
 }
 
