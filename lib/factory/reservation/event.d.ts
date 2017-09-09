@@ -14,7 +14,7 @@ export interface IEventReservation<T extends IEvent> extends IReservation {
     reservationFor: T;
 }
 export declare function createFromCOATmpReserve(params: {
-    reserveSeatsTemporarilyResult: COA.services.reserve.IUpdTmpReserveSeatResult;
+    updTmpReserveSeatResult: COA.services.reserve.IUpdTmpReserveSeatResult;
     offers: ISeatReservationOffer[];
     individualScreeningEvent: IndividualScreeningEventFactory.IEvent;
 }): IEventReservation<IndividualScreeningEventFactory.IEvent>[];

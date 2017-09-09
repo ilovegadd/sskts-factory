@@ -1,6 +1,6 @@
 /**
- * seat reservation authorization factory
- * @namespace factory/authorization/seatReservation
+ * seat reservation authorize action factory
+ * @namespace action.authorize.seatReservation
  */
 
 import * as COA from '@motionpicture/coa-service';
@@ -8,29 +8,41 @@ import * as COA from '@motionpicture/coa-service';
 import { ActionStatusType, ActionType } from '../../action';
 import * as IndividualScreeningEventFactory from '../../event/individualScreeningEvent';
 import { ISeatReservationOffer } from '../../offer';
-import PriceCurrency from '../../priceCurrency';
-import * as EventReservationFactory from '../../reservation/event';
 import * as AuthorizeActionFactory from '../authorize';
 
+/**
+ * authorize action agent interface
+ * 認可アクション主体インターフェース
+ * @export
+ * @interface
+ * @memberof action.authorize.seatReservation
+ */
 export interface IAgent {
     typeOf: string;
     id: string;
 }
 
+/**
+ * authorize action recipient interface
+ * 認可アクション受取人インターフェース
+ * @export
+ * @interface
+ * @memberof action.authorize.seatReservation
+ */
 export interface IRecipient {
     typeOf: string;
     id: string;
 }
 
 /**
- * authorization result interface (COA tmp reserve result)
+ * authorize action result interface
+ * 認可アクション結果
+ * @export
+ * @interface
+ * @memberof action.authorize.seatReservation
  */
 export interface IResult {
     price: number;
-    /**
-     * 受け入れられた供給情報
-     */
-    acceptedOffers: IAcceptedOffer[];
     /**
      * COAの仮予約パラメーター
      */
@@ -39,7 +51,11 @@ export interface IResult {
 }
 
 /**
- * authorization object
+ * authorize action object
+ * 認可アクション対象
+ * @export
+ * @interface
+ * @memberof action.authorize.seatReservation
  */
 export interface IObject {
     transactionId: string;
@@ -48,95 +64,55 @@ export interface IObject {
 }
 
 /**
- * 供給情報インターフェース
- */
-export interface IAcceptedOffer {
-    /**
-     * 受け入れられた予約情報
-     */
-    itemOffered: IReservation;
-    /**
-     * 金額
-     */
-    price: number;
-    /**
-     * 通貨
-     */
-    priceCurrency: PriceCurrency;
-    /**
-     * 販売者
-     */
-    seller: {
-        typeOf: string;
-        name: string;
-    };
-}
-
-/**
- * 予約インターフェース
- */
-export type IReservation = EventReservationFactory.IEventReservation<IndividualScreeningEventFactory.IEvent>;
-
-/**
- * seat reservation authorization factory
+ * authorize action error interface
  * @export
  * @interface
- * @memberof factory/authorization/seatReservation
+ * @memberof action.authorize.seatReservation
+ */
+export type IError = any;
+
+/**
+ * seat reservation authorize action interface
+ * 座席予約認可アクションインターフェース
+ * @export
+ * @interface
+ * @memberof action.authorize.seatReservation
  */
 export interface IAction extends AuthorizeActionFactory.IAction {
     result?: IResult;
     object: IObject;
 }
 
-export function createFromCOATmpReserve(params: {
+/**
+ * create seatReservation authorize action object
+ * @export
+ * @function
+ * @memberof action.authorize.seatReservation
+ */
+export function create(params: {
     id: string;
-    transactionId: string;
     agent: IAgent;
     recipient: IRecipient;
     actionStatus: ActionStatusType;
     startDate: Date;
     endDate?: Date;
-    // updTmpReserveSeatArgs: COA.services.reserve.IUpdTmpReserveSeatArgs;
-    // reserveSeatsTemporarilyResult: COA.services.reserve.IUpdTmpReserveSeatResult;
-    offers: ISeatReservationOffer[],
-    individualScreeningEvent: IndividualScreeningEventFactory.IEvent
+    object: IObject;
+    result?: IResult;
+    error?: IError;
 }): IAction {
-    // const price = params.offers.reduce((a, b) => a + b.ticketInfo.salePrice + b.ticketInfo.mvtkSalesPrice, 0);
-    // tslint:disable-next-line:max-line-length no-magic-numbers
-    // const id = `SeatReservationAuthorizeAction-${(new Date()).toISOString().slice(0, 10)}-${params.individualScreeningEvent.superEvent.location.branchCode} -${params.reserveSeatsTemporarilyResult.tmpReserveNum}`;
-
     return {
-        // tslint:disable-next-line:max-line-length
         id: params.id,
         actionStatus: params.actionStatus,
         typeOf: ActionType.AuthorizeAction,
         purpose: {
             typeOf: AuthorizeActionFactory.AuthorizeActionPurpose.SeatReservation
         },
-        // result: {
-        //     updTmpReserveSeatResult: params.reserveSeatsTemporarilyResult,
-        //     price: price
-        // },
-        object: {
-            transactionId: params.transactionId,
-            offers: params.offers,
-            individualScreeningEvent: params.individualScreeningEvent
-            // updTmpReserveSeatArgs: params.updTmpReserveSeatArgs,
-            // acceptedOffers: EventReservationFactory.createFromCOATmpReserve(params).map((eventReservation) => {
-            //     return {
-            //         itemOffered: eventReservation,
-            //         price: eventReservation.price,
-            //         priceCurrency: PriceCurrency.JPY,
-            //         seller: {
-            //             typeOf: params.individualScreeningEvent.superEvent.location.typeOf,
-            //             name: params.individualScreeningEvent.superEvent.location.name.ja
-            //         }
-            //     };
-            // })
-        },
+        object: params.object,
+        result: params.result,
+        error: params.error,
         agent: params.agent,
         recipient: params.recipient,
-        startDate: params.startDate
-        // endDate: params.endDate
+        startDate: params.startDate,
+        endDate: params.endDate
     };
 }

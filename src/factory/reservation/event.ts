@@ -23,13 +23,13 @@ export interface IEventReservation<T extends IEvent> extends IReservation {
 }
 
 export function createFromCOATmpReserve(params: {
-    reserveSeatsTemporarilyResult: COA.services.reserve.IUpdTmpReserveSeatResult;
+    updTmpReserveSeatResult: COA.services.reserve.IUpdTmpReserveSeatResult;
     offers: ISeatReservationOffer[],
     individualScreeningEvent: IndividualScreeningEventFactory.IEvent
 }): IEventReservation<IndividualScreeningEventFactory.IEvent>[] {
     const ticketInfos = params.offers.map((offer) => offer.ticketInfo);
 
-    return params.reserveSeatsTemporarilyResult.listTmpReserve.map((tmpReserve, index) => {
+    return params.updTmpReserveSeatResult.listTmpReserve.map((tmpReserve, index) => {
         const selectedTicket = ticketInfos.find((ticket) => ticket.seatNum === tmpReserve.seatNum);
         if (selectedTicket === undefined) {
             throw new ArgumentError('offers', 'offers.ticketInfo not matched with tmpReserveSeatResult');
@@ -40,7 +40,7 @@ export function createFromCOATmpReserve(params: {
             params.individualScreeningEvent.coaInfo.theaterCode,
             params.individualScreeningEvent.coaInfo.dateJouei,
             // tslint:disable-next-line:no-magic-numbers
-            (`00000000${params.reserveSeatsTemporarilyResult.tmpReserveNum}`).slice(-8),
+            (`00000000${params.updTmpReserveSeatResult.tmpReserveNum}`).slice(-8),
             // tslint:disable-next-line:no-magic-numbers
             (`000${index + 1}`).slice(-3)
         ].join('');
@@ -55,7 +55,7 @@ export function createFromCOATmpReserve(params: {
             price: selectedTicket.salePrice,
             priceCurrency: PriceCurrency.JPY,
             reservationFor: params.individualScreeningEvent,
-            reservationNumber: `${params.reserveSeatsTemporarilyResult.tmpReserveNum}-${index.toString()}`,
+            reservationNumber: `${params.updTmpReserveSeatResult.tmpReserveNum}-${index.toString()}`,
             reservationStatus: ReservationStatusType.ReservationHold,
             reservedTicket: {
                 coaTicketInfo: selectedTicket,

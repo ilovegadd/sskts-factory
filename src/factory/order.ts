@@ -4,7 +4,7 @@
  * which can contain multiple line items, each represented by an Offer that has been accepted by the customer.
  * 注文ファクトリー
  * 注文は、確定した注文取引の領収証に値するものです。
- * @namespace factory/order
+ * @namespace order
  */
 
 import ArgumentError from '../error/argument';
@@ -15,7 +15,7 @@ import { IEvent as IIndividualScreeningEvent } from './event/individualScreening
 import OrderStatus from './orderStatus';
 import { IContact, IPerson } from './person';
 import PriceCurrency from './priceCurrency';
-import { IEventReservation } from './reservation/event';
+import * as EventReservationFactory from './reservation/event';
 import ReservationStatusType from './reservationStatusType';
 import { ITransaction } from './transaction/placeOrder';
 
@@ -24,7 +24,7 @@ import { ITransaction } from './transaction/placeOrder';
  * 決済方法イーターフェース
  * @export
  * @interface
- * @memberof factory/order
+ * @memberof order
  */
 export interface IPaymentMethod {
     name: string;
@@ -43,7 +43,7 @@ export interface IPaymentMethod {
  * 割引インターフェース
  * @export
  * @interface
- * @memberof factory/order
+ * @memberof order
  */
 export interface IDiscount {
     name: string;
@@ -66,16 +66,16 @@ export interface IDiscount {
  * 供給アイテムインターフェース
  * @export
  * @type
- * @memberof factory/order
+ * @memberof order
  */
-export type IItemOffered = IEventReservation<IIndividualScreeningEvent>;
+export type IItemOffered = EventReservationFactory.IEventReservation<IIndividualScreeningEvent>;
 
 /**
  * key for inquiry of the order
  * 注文照会キーインターフェース
  * @export
  * @interface
- * @memberof factory/order
+ * @memberof order
  */
 export interface IOrderInquiryKey {
     theaterCode: string;
@@ -88,12 +88,24 @@ export interface IOrderInquiryKey {
  * 供給インターフェース
  * @export
  * @interface
- * @memberof factory/order
+ * @memberof order
  */
 export interface IOffer {
+    /**
+     * 受け入れられた予約情報
+     */
     itemOffered: IItemOffered;
+    /**
+     * 金額
+     */
     price: number;
+    /**
+     * 通貨
+     */
     priceCurrency: PriceCurrency;
+    /**
+     * 販売者
+     */
     seller: {
         typeOf: string;
         name: string;
@@ -105,7 +117,7 @@ export interface IOffer {
  * 販売者インターフェース
  * @export
  * @interface
- * @memberof factory/order
+ * @memberof order
  */
 export interface ISeller {
     typeOf: string;
@@ -124,7 +136,7 @@ export interface ISeller {
  * 購入者インターフェース
  * @export
  * @interface
- * @memberof factory/order
+ * @memberof order
  */
 export type ICustomer = IPerson & IContact & {
     name: string;
@@ -135,7 +147,7 @@ export type ICustomer = IPerson & IContact & {
  * 注文インターフェース
  * @export
  * @interface
- * @memberof factory/order
+ * @memberof order
  */
 export interface IOrder {
     /**
@@ -210,7 +222,7 @@ export interface IOrder {
  * 取引オブジェクトから注文オブジェクトを生成する
  * @export
  * @function
- * @memberof factory/order
+ * @memberof order
  */
 // tslint:disable-next-line:max-func-body-length
 export function createFromPlaceOrderTransaction(params: {
@@ -292,18 +304,32 @@ export function createFromPlaceOrderTransaction(params: {
         customer.memberOf = params.transaction.agent.memberOf;
     }
 
-    const acceptedOffers = seatReservationAuthorizeAction.result.acceptedOffers.map((offer) => {
-        offer.itemOffered.reservationStatus = ReservationStatusType.ReservationConfirmed;
-        offer.itemOffered.underName.name = {
+    // 座席仮予約から容認供給情報を生成する
+    // 座席予約以外の注文アイテムが追加された場合は、このロジックに修正が加えられることになる
+    const acceptedOffers = EventReservationFactory.createFromCOATmpReserve({
+        updTmpReserveSeatResult: seatReservationAuthorizeAction.result.updTmpReserveSeatResult,
+        offers: seatReservationAuthorizeAction.object.offers,
+        individualScreeningEvent: seatReservationAuthorizeAction.object.individualScreeningEvent
+    }).map((eventReservation) => {
+        eventReservation.reservationStatus = ReservationStatusType.ReservationConfirmed;
+        eventReservation.underName.name = {
             ja: customer.name,
             en: customer.name
         };
-        offer.itemOffered.reservedTicket.underName.name = {
+        eventReservation.reservedTicket.underName.name = {
             ja: customer.name,
             en: customer.name
         };
 
-        return offer;
+        return {
+            itemOffered: eventReservation,
+            price: eventReservation.price,
+            priceCurrency: PriceCurrency.JPY,
+            seller: {
+                typeOf: seatReservationAuthorizeAction.object.individualScreeningEvent.superEvent.location.typeOf,
+                name: seatReservationAuthorizeAction.object.individualScreeningEvent.superEvent.location.name.ja
+            }
+        };
     });
 
     const orderDate = new Date();
@@ -322,7 +348,8 @@ export function createFromPlaceOrderTransaction(params: {
         orderNumber: orderNumber,
         acceptedOffers: acceptedOffers,
         // tslint:disable-next-line:no-suspicious-comment
-        url: '', // TODO confirmation URL
+        // TODO add confirmation URL domain
+        url: `/inquiry/login?theater=${orderInquiryKey.theaterCode}&reserve=${orderInquiryKey.confirmationNumber}`,
         orderStatus: OrderStatus.OrderDelivered,
         orderDate: orderDate,
         isGift: false,
