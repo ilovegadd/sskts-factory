@@ -1,7 +1,6 @@
 /**
  * ムビチケ承認解除タスクファクトリー
- *
- * @namespace factory/task/cancelMvtk
+ * @namespace task.cancelMvtk
  */
 import * as TaskFactory from '../task';
 import * as TaskExecutionResult from '../taskExecutionResult';

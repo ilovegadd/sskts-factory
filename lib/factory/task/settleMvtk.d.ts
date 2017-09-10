@@ -1,7 +1,6 @@
 /**
  * ムビチケ承認資産移動タスクファクトリー
- *
- * @namespace factory/task/settleMvtk
+ * @namespace task.settleMvtk
  */
 import * as TaskFactory from '../task';
 import * as TaskExecutionResult from '../taskExecutionResult';

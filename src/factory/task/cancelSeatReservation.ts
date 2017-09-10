@@ -1,7 +1,6 @@
 /**
  * 座席予約承認解除タスクファクトリー
- *
- * @namespace factory/task/cancelSeatReservation
+ * @namespace task.cancelSeatReservation
  */
 
 import * as TaskFactory from '../task';

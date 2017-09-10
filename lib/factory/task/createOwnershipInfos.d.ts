@@ -1,22 +1,17 @@
 /**
- * クレジットカード承認資産移動タスクファクトリー
- * @namespace task.settleCreditCard
+ * 所有権作成タスクファクトリー
+ * @namespace task.createOwnershipInfos
  */
-
 import * as TaskFactory from '../task';
 import * as TaskExecutionResult from '../taskExecutionResult';
-import TaskName from '../taskName';
 import TaskStatus from '../taskStatus';
-
 export interface IData {
     transactionId: string;
 }
-
 export interface ITask extends TaskFactory.ITask {
     data: IData;
 }
-
-export function create(args: {
+export declare function create(args: {
     id: string;
     status: TaskStatus;
     runsAt: Date;
@@ -25,6 +20,4 @@ export function create(args: {
     numberOfTried: number;
     executionResults: TaskExecutionResult.ITaskExecutionResult[];
     data: IData;
-}): ITask {
-    return TaskFactory.create({ ...args, ...{ name: TaskName.SettleCreditCard } });
-}
+}): ITask;

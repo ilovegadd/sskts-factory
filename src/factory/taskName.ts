@@ -1,7 +1,7 @@
 /**
  * task name
  * タスク名
- * @namespace factory/taskName
+ * @namespace taskName
  */
 
 enum TaskName {
@@ -12,7 +12,8 @@ enum TaskName {
     SettleSeatReservation = 'settleSeatReservation',
     SettleCreditCard = 'settleCreditCard',
     SettleMvtk = 'settleMvtk',
-    CreateOrder = 'createOrder'
+    CreateOrder = 'createOrder',
+    CreateOwnershipInfos = 'createOwnershipInfos'
 }
 
 export default TaskName;

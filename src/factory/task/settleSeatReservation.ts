@@ -1,7 +1,6 @@
 /**
  * 座席予約承認資産移動ファクトリー
- *
- * @namespace factory/task/settleSeatReservation
+ * @namespace task.settleSeatReservation
  */
 
 import * as TaskFactory from '../task';

@@ -37,6 +37,7 @@ import * as CancelCreditCardTaskFactory from './factory/task/cancelCreditCard';
 import * as CancelMvtkTaskFactory from './factory/task/cancelMvtk';
 import * as CancelSeatReservationTaskFactory from './factory/task/cancelSeatReservation';
 import * as CreateOrderTaskFactory from './factory/task/createOrder';
+import * as CreateOwnershipInfosTaskFactory from './factory/task/createOwnershipInfos';
 import * as SendEmailNotificationTaskFactory from './factory/task/sendEmailNotification';
 import * as SettleCreditCardTaskFactory from './factory/task/settleCreditCard';
 import * as SettleMvtkTaskFactory from './factory/task/settleMvtk';
@@ -113,6 +114,7 @@ export declare namespace task {
     export import cancelMvtk = CancelMvtkTaskFactory;
     export import cancelSeatReservation = CancelSeatReservationTaskFactory;
     export import createOrder = CreateOrderTaskFactory;
+    export import createOwnershipInfos = CreateOwnershipInfosTaskFactory;
     export import sendEmailNotification = SendEmailNotificationTaskFactory;
     export import settleCreditCard = SettleCreditCardTaskFactory;
     export import settleMvtk = SettleMvtkTaskFactory;

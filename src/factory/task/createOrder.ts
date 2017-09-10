@@ -1,7 +1,6 @@
 /**
  * 注文作成タスクファクトリー
- *
- * @namespace factory/task/createOrder
+ * @namespace task.createOrder
  */
 
 import * as TaskFactory from '../task';

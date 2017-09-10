@@ -1,6 +1,6 @@
 /**
- * クレジットカード承認資産移動タスクファクトリー
- * @namespace task.settleCreditCard
+ * 所有権作成タスクファクトリー
+ * @namespace task.createOwnershipInfos
  */
 
 import * as TaskFactory from '../task';
@@ -26,5 +26,5 @@ export function create(args: {
     executionResults: TaskExecutionResult.ITaskExecutionResult[];
     data: IData;
 }): ITask {
-    return TaskFactory.create({ ...args, ...{ name: TaskName.SettleCreditCard } });
+    return TaskFactory.create({ ...args, ...{ name: TaskName.CreateOwnershipInfos } });
 }

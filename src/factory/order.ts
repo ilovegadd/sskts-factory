@@ -10,6 +10,7 @@
 import ArgumentError from '../error/argument';
 
 import { AuthorizeActionPurpose } from './action/authorize';
+import { IAction as ICreditCardAuthorizeAction } from './action/authorize/creditCard';
 import { IAction as IMvtkAuthorizeAction } from './action/authorize/mvtk';
 import { IEvent as IIndividualScreeningEvent } from './event/individualScreeningEvent';
 import OrderStatus from './orderStatus';
@@ -229,7 +230,9 @@ export function createFromPlaceOrderTransaction(params: {
     transaction: ITransaction
 }): IOrder {
     // seatReservation exists?
-    const seatReservationAuthorizeAction = params.transaction.object.seatReservation;
+    const seatReservationAuthorizeAction = params.transaction.object.authorizeActions.find((action) => {
+        return action.purpose.typeOf === AuthorizeActionPurpose.SeatReservation;
+    });
     if (seatReservationAuthorizeAction === undefined) {
         throw new ArgumentError('transaction', 'seat reservation does not exist');
     }
@@ -250,45 +253,35 @@ export function createFromPlaceOrderTransaction(params: {
 
     // 結果作成
     const discounts: IDiscount[] = [];
-    params.transaction.object.discountInfos.forEach((discountInfo) => {
-        switch (discountInfo.purpose.typeOf) {
-            case AuthorizeActionPurpose.Mvtk:
-                const discountCode = (<IMvtkAuthorizeAction>discountInfo).object.seatInfoSyncIn.knyknrNoInfo.map(
-                    (knshInfo) => knshInfo.knyknrNo
-                ).join(',');
+    params.transaction.object.authorizeActions
+        .filter((action) => action.purpose.typeOf === AuthorizeActionPurpose.Mvtk)
+        .forEach((mvtkAuthorizeAction: IMvtkAuthorizeAction) => {
+            const discountCode = mvtkAuthorizeAction.object.seatInfoSyncIn.knyknrNoInfo.map(
+                (knshInfo) => knshInfo.knyknrNo
+            ).join(',');
 
-                discounts.push({
-                    name: 'ムビチケカード',
-                    discount: (<IMvtkAuthorizeAction>discountInfo).result.price,
-                    discountCode: discountCode,
-                    discountCurrency: PriceCurrency.JPY
-                });
-                break;
-
-            default:
-                break;
-        }
-    });
+            discounts.push({
+                name: 'ムビチケカード',
+                discount: mvtkAuthorizeAction.result.price,
+                discountCode: discountCode,
+                discountCurrency: PriceCurrency.JPY
+            });
+        });
 
     const paymentMethods: IPaymentMethod[] = [];
-    params.transaction.object.paymentInfos.forEach((paymentInfo) => {
-        switch (paymentInfo.purpose.typeOf) {
-            case AuthorizeActionPurpose.CreditCard:
-                if (paymentInfo.result === undefined) {
-                    throw new ArgumentError('transaction', 'paymentInfo result does not exist');
-                }
+    params.transaction.object.authorizeActions
+        .filter((action) => action.purpose.typeOf === AuthorizeActionPurpose.CreditCard)
+        .forEach((creditCardAuthorizeAction: ICreditCardAuthorizeAction) => {
+            if (creditCardAuthorizeAction.result === undefined) {
+                throw new ArgumentError('transaction', 'creditCardAuthorizeAction result does not exist');
+            }
 
-                paymentMethods.push({
-                    name: 'クレジットカード',
-                    paymentMethod: 'CreditCard',
-                    paymentMethodId: paymentInfo.result.execTranResult.orderId
-                });
-                break;
-
-            default:
-                break;
-        }
-    });
+            paymentMethods.push({
+                name: 'クレジットカード',
+                paymentMethod: 'CreditCard',
+                paymentMethodId: creditCardAuthorizeAction.result.execTranResult.orderId
+            });
+        });
 
     const seller: ISeller = params.transaction.seller;
     const customer: ICustomer = {

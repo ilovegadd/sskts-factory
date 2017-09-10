@@ -1,11 +1,9 @@
 /**
  * placeOrder transaction factory
  * 注文取引ファクトリー
- * @namespace factory/transaction/placeOrder
+ * @namespace transaction.placeOrder
  */
-import * as CreditCardAuthorizeActionFactory from '../action/authorize/creditCard';
-import * as MvtkauthorizeActionFactory from '../action/authorize/mvtk';
-import * as SeatReservationauthorizeActionFactory from '../action/authorize/seatReservation';
+import { IAction as IAuthorizeAction } from '../action/authorize';
 import * as ClientUserFactory from '../clientUser';
 import * as OrderFactory from '../order';
 import * as OwnershipInfoFactory from '../ownershipInfo';
@@ -16,27 +14,11 @@ import * as TranstransactionFactory from '../transaction';
 import TransactionStatusType from '../transactionStatusType';
 import TransactionTasksExportationStatus from '../transactionTasksExportationStatus';
 /**
- * available payment info interface
- * 利用可能な決済情報インターフェース
- * @export
- * @type
- * @memberof factory/transaction/placeOrder
- */
-export declare type IAvailablePaymentInfo = CreditCardAuthorizeActionFactory.IAction;
-/**
- * available discount info interface
- * 利用可能な割引情報インターフェース
- * @export
- * @type
- * @memberof factory/transaction/placeOrder
- */
-export declare type IAvailableDiscount = MvtkauthorizeActionFactory.IAction;
-/**
  * customer contact interface
  * 購入者連作先インターフェース
  * @export
  * @interface
- * @memberof factory/transaction/placeOrder
+ * @memberof transaction.placeOrder
  */
 export declare type ICustomerContact = IContact;
 /**
@@ -44,7 +26,7 @@ export declare type ICustomerContact = IContact;
  * 販売者インターフェース
  * @export
  * @interface
- * @memberof factory/transaction/placeOrder
+ * @memberof transaction.placeOrder
  */
 export interface ISeller {
     typeOf: string;
@@ -57,7 +39,7 @@ export interface ISeller {
  * 購入者インターフェース
  * @export
  * @interface
- * @memberof factory/transaction/placeOrder
+ * @memberof transaction.placeOrder
  */
 export declare type IAgent = IPerson;
 /**
@@ -65,7 +47,7 @@ export declare type IAgent = IPerson;
  * 取引結果インターフェース
  * @export
  * @interface
- * @memberof factory/transaction/placeOrder
+ * @memberof transaction.placeOrder
  */
 export interface IResult {
     /**
@@ -82,7 +64,7 @@ export interface IResult {
  * エラーインターフェース
  * @export
  * @interface
- * @memberof factory/transaction/placeOrder
+ * @memberof transaction.placeOrder
  */
 export declare type IError = any;
 /**
@@ -90,7 +72,7 @@ export declare type IError = any;
  * 取引対象物インターフェース
  * @export
  * @interface
- * @memberof factory/transaction/placeOrder
+ * @memberof transaction.placeOrder
  */
 export interface IObject {
     /**
@@ -102,24 +84,16 @@ export interface IObject {
      */
     customerContact?: ICustomerContact;
     /**
-     * payment infos
+     * 認可アクションリスト
      */
-    paymentInfos: IAvailablePaymentInfo[];
-    /**
-     * 座席予約情報
-     */
-    seatReservation?: SeatReservationauthorizeActionFactory.IAction;
-    /**
-     * discount infos
-     */
-    discountInfos: IAvailableDiscount[];
+    authorizeActions: IAuthorizeAction[];
 }
 /**
  * place order transaction interface
  * 注文取引インターフェース
  * @export
  * @interface
- * @memberof factory/transaction/placeOrder
+ * @memberof transaction.placeOrder
  */
 export interface ITransaction extends TranstransactionFactory.ITransaction {
     /**
@@ -149,7 +123,7 @@ export interface ITransaction extends TranstransactionFactory.ITransaction {
  * 注文取引オブジェクトを生成する。
  * @export
  * @interface
- * @memberof factory/transaction/placeOrder
+ * @memberof transaction.placeOrder
  */
 export declare function create(args: {
     id: string;

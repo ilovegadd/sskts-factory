@@ -1,6 +1,6 @@
 /**
  * クレジットカード承認解除タスクファクトリー
- * @namespace factory/task/cancelCreditCard
+ * @namespace task.cancelCreditCard
  */
 import * as TaskFactory from '../task';
 import * as TaskExecutionResult from '../taskExecutionResult';

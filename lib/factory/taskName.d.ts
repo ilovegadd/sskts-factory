@@ -1,7 +1,7 @@
 /**
  * task name
  * タスク名
- * @namespace factory/taskName
+ * @namespace taskName
  */
 declare enum TaskName {
     CancelSeatReservation = "cancelSeatReservation",
@@ -12,5 +12,6 @@ declare enum TaskName {
     SettleCreditCard = "settleCreditCard",
     SettleMvtk = "settleMvtk",
     CreateOrder = "createOrder",
+    CreateOwnershipInfos = "createOwnershipInfos",
 }
 export default TaskName;

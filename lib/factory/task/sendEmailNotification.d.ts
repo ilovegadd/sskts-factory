@@ -1,7 +1,6 @@
 /**
  * メール送信タスクファクトリー
- *
- * @namespace factory/task/sendEmailNotification
+ * @namespace task.sendEmailNotification
  */
 import * as EmailNotificationFactory from '../notification/email';
 import * as TaskFactory from '../task';
