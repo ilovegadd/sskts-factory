@@ -12,7 +12,7 @@ export interface IData {
 export interface IAttributes extends TaskFactory.IAttributes {
     data: IData;
 }
-export declare type ITransaction = IExtendId<IAttributes>;
+export declare type ITask = IExtendId<IAttributes>;
 export declare function createAttributes(params: {
     status: TaskStatus;
     runsAt: Date;

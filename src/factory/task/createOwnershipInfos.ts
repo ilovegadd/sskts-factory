@@ -17,7 +17,7 @@ export interface IAttributes extends TaskFactory.IAttributes {
     data: IData;
 }
 
-export type ITransaction = IExtendId<IAttributes>;
+export type ITask = IExtendId<IAttributes>;
 
 export function createAttributes(params: {
     status: TaskStatus;
