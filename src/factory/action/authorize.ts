@@ -19,8 +19,8 @@ export interface IPurpose {
 
 export interface IAttributes extends ActionFactory.IAttributes {
     purpose: IPurpose;
-    agent: any;
-    recipient: any;
+    agent: ActionFactory.IParticipant;
+    recipient: ActionFactory.IParticipant;
     result?: any;
     error?: any;
     object: any;
