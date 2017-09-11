@@ -1,6 +1,6 @@
 /**
  * reservation factory
- * @namespace factory/reservation
+ * @namespace reservation
  */
 import * as EventFactory from './event';
 import IMultilingualString from './multilingualString';
@@ -15,7 +15,7 @@ export declare enum ReservationType {
  * under name interface
  * @export
  * @interface
- * @memberof factory/reservation
+ * @memberof reservation
  */
 export interface IUnderName {
     typeOf: string;
@@ -25,7 +25,7 @@ export interface IUnderName {
  * seat interface
  * @export
  * @interface
- * @memberof factory/reservation
+ * @memberof reservation
  */
 export interface ISeat {
     /**
@@ -50,7 +50,7 @@ export interface ISeat {
  * 予約チケット情報
  * @export
  * @interface
- * @memberof factory/reservation
+ * @memberof reservation
  */
 export interface ITicket {
     /**
@@ -108,7 +108,7 @@ export interface ITicket {
  * For offers of tickets, restaurant reservations, flights, or rental cars, use Offer.
  * @export
  * @interface
- * @memberof factory/reservation
+ * @memberof reservation
  */
 export interface IReservation {
     /**
@@ -187,7 +187,7 @@ export interface IReservation {
  * create reservation object
  * @export
  * @function
- * @memberof factory/reservation
+ * @memberof reservation
  */
 export declare function create(params: {
     additionalTicketText: string;

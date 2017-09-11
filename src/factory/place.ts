@@ -1,7 +1,6 @@
 /**
  * 場所ファクトリー
- *
- * @namespace factory/place
+ * @namespace place
  */
 
 import IMultilingualString from './multilingualString';
@@ -31,7 +30,7 @@ export interface IPlace {
     typeOf: PlaceType;
 }
 
-export function create(args: {
+export function create(params: {
     id?: string;
     identifier?: string;
     name?: IMultilingualString;
@@ -49,19 +48,19 @@ export function create(args: {
     typeOf: PlaceType;
 }): IPlace {
     return {
-        id: args.id,
-        identifier: args.identifier,
-        name: args.name,
-        description: args.description,
-        address: args.address,
-        branchCode: args.branchCode,
-        containedInPlace: args.containedInPlace,
-        containsPlace: args.containsPlace,
-        maximumAttendeeCapacity: args.maximumAttendeeCapacity,
-        openingHoursSpecification: args.openingHoursSpecification,
-        smokingAllowed: args.smokingAllowed,
-        telephone: args.telephone,
-        url: (args.url !== undefined) ? args.url.toString() : undefined,
-        typeOf: args.typeOf
+        id: params.id,
+        identifier: params.identifier,
+        name: params.name,
+        description: params.description,
+        address: params.address,
+        branchCode: params.branchCode,
+        containedInPlace: params.containedInPlace,
+        containsPlace: params.containsPlace,
+        maximumAttendeeCapacity: params.maximumAttendeeCapacity,
+        openingHoursSpecification: params.openingHoursSpecification,
+        smokingAllowed: params.smokingAllowed,
+        telephone: params.telephone,
+        url: (params.url !== undefined) ? params.url.toString() : undefined,
+        typeOf: params.typeOf
     };
 }

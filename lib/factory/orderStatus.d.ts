@@ -1,7 +1,6 @@
 /**
  * 注文ステータス
- *
- * @namespace factory/orderStatus
+ * @namespace orderStatus
  */
 declare enum OrderStatus {
     OrderCancelled = "OrderCancelled",

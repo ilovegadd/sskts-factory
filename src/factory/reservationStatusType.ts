@@ -1,6 +1,6 @@
 /**
  * Enumerated status values for Reservation.
- * @enum {ReservationStatusType}
+ * @enum reservationStatusType
  */
 enum ReservationStatusType {
     /**

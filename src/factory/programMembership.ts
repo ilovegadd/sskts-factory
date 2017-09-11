@@ -1,6 +1,6 @@
 /**
  * programMembership factory
- * @namespace factory/programMembership
+ * @namespace programMembership
  */
 
 /**
@@ -8,7 +8,7 @@
  * (e.g. "StarAliance"), traveler clubs (e.g. "AAA"), purchase clubs ("Safeway Club"), etc.
  * @export
  * @interface {IProgramMembership}
- * @memberof factory/programMembership
+ * @memberof programMembership
  */
 export interface IProgramMembership {
     membershipNumber: string;

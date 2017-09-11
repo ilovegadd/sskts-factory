@@ -1,7 +1,7 @@
 /**
  * イベントステータス
  *
- * @namespace/factory/eventStatusType
+ * @namespace eventStatusType
  */
 declare enum EventStatusType {
     EventCancelled = "EventCancelled",

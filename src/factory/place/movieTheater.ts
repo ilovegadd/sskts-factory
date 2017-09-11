@@ -1,7 +1,7 @@
 /**
  * 劇場ファクトリー
  *
- * @namespace factory/place/movieTheater
+ * @namespace place.movieTheater
  */
 
 import * as COA from '@motionpicture/coa-service';
@@ -59,7 +59,7 @@ export interface IScreeningRoom extends PlaceFactory.IPlace {
  * place interface without screening room
  * @export
  * @interface
- * @memberof factory/place/movieTheater
+ * @memberof place.movieTheater
  */
 export interface IPlaceWithoutScreeningRoom extends PlaceFactory.IPlace {
     identifier: string;
@@ -102,7 +102,7 @@ export type IPlace = IPlaceWithoutScreeningRoom & {
  * @param {COA.services.master.TheaterResult} theaterFromCOA
  * @param {COA.services.master.IScreenResult[]} screensFromCOA
  * @returns {IPlace}
- * @memberof factory/place/movieTheater
+ * @memberof place.movieTheater
  */
 export function createFromCOA(
     theaterFromCOA: COA.services.master.ITheaterResult,
@@ -131,7 +131,7 @@ export function createFromCOA(
  *
  * @param {COA.services.master.ScreenResult} screenFromCOA
  * @returns {IScreeningRoom}
- * @memberof factory/place/movieTheater
+ * @memberof place.movieTheater
  */
 export function createScreeningRoomFromCOA(screenFromCOA: COA.services.master.IScreenResult): IScreeningRoom {
     const sections: IScreeningRoomSection[] = [];

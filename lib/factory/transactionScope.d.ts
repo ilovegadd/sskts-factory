@@ -1,3 +1,9 @@
+/**
+ * transactionScope interface
+ * @export
+ * @interface
+ * @memberof transactionScope
+ */
 export interface ITransactionScope {
     /**
      * いつから開始準備状態か
@@ -28,7 +34,13 @@ export interface ITransactionScope {
      */
     theater?: string;
 }
-export declare function create(args: {
+/**
+ * create transactionScope object
+ * @export
+ * @function
+ * @memberof transactionScope
+ */
+export declare function create(params: {
     readyFrom: Date;
     readyThrough: Date;
     client?: string;
@@ -36,7 +48,9 @@ export declare function create(args: {
 }): ITransactionScope;
 /**
  * スコープを文字列に変換する
- *
+ * @export
+ * @function
+ * @memberof transactionScope
  * @param {ITransactionScope} scope アクションスコープ
  */
 export declare function scope2String(scope: ITransactionScope): string;

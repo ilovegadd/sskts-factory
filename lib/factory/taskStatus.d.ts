@@ -1,7 +1,7 @@
 /**
  * タスクステータス
  *
- * @namespace factory/taskStatus
+ * @namespace taskStatus
  */
 declare enum TaskStatus {
     /**

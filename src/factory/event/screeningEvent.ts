@@ -1,7 +1,7 @@
 /**
  * screen event factory
  * 劇場の上映イベントファクトリー
- * @namespace factory/creativeWork/movie
+ * @namespace event.screeningEvent
  */
 
 import * as COA from '@motionpicture/coa-service';
@@ -20,7 +20,7 @@ import PlaceType from '../placeType';
  * 上映作品インターフェース
  * @export
  * @interface
- * @memberof factory/creativeWork/movie
+ * @memberof event.screeningEvent
  */
 export interface IWorkPerformed {
     /**
@@ -57,7 +57,7 @@ export interface IOrganizer {
  * 上映イベントインターフェース(COAの劇場作品に相当)
  * @export
  * @interface
- * @memberof factory/creativeWork/movie
+ * @memberof event.screeningEvent
  */
 export interface IEvent extends EventFactory.IEvent {
     /**
@@ -138,6 +138,9 @@ export interface IEvent extends EventFactory.IEvent {
 
 /**
  * COAの作品抽出結果からFilmオブジェクトを作成する
+ * @export
+ * @function
+ * @memberof event.screeningEvent
  */
 export function createFromCOA(params: {
     filmFromCOA: COA.services.master.ITitleResult;

@@ -1,6 +1,6 @@
 /**
  * 在庫状況ファクトリー
- * @namespace factory/stockStatus
+ * @namespace stockStatus
  */
 import StockStatusGroup from './stockStatusGroup';
 /**

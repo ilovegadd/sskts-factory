@@ -1,7 +1,7 @@
 /**
  * 作品タイプ
  *
- * @namespace factory/creativeWorkType
+ * @namespace creativeWorkType
  */
 
 enum CreativeWorkType {

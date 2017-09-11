@@ -1,7 +1,6 @@
 /**
  * 組織タイプ
- *
- * @namespace factory/organizationType
+ * @namespace organizationType
  */
 
 enum OrganizationType {

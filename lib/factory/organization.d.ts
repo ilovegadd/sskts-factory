@@ -1,7 +1,6 @@
 /**
  * 組織ファクトリー
- *
- * @namespace factory/organization
+ * @namespace organization
  */
 import IMultilingualString from './multilingualString';
 import OrganizationType from './organizationType';
@@ -19,7 +18,7 @@ export interface IOrganization {
     telephone?: string;
     url?: URLFactory.IURL;
 }
-export declare function create(args: {
+export declare function create(params: {
     id?: string;
     identifier: string;
     name: IMultilingualString;

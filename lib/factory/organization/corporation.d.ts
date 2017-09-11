@@ -1,7 +1,6 @@
 /**
  * 企業ファクトリー
- *
- * @namespace factory/organization/corporation
+ * @namespace organization.corporation
  */
 import IMultilingualString from '../multilingualString';
 import * as OrganizationFactory from '../organization';
@@ -15,7 +14,7 @@ export interface IOrganization extends OrganizationFactory.IOrganization {
      */
     identifier: CorporationOrganizationIdentifier;
 }
-export declare function create(args: {
+export declare function create(params: {
     identifier: CorporationOrganizationIdentifier;
     name: IMultilingualString;
     legalName?: IMultilingualString;

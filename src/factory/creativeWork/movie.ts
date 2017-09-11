@@ -1,7 +1,6 @@
 /**
- * 映画ファクトリー
- *
- * @namespace factory/creativeWork/movie
+ * 映画作品ファクトリー
+ * @namespace creativeWork.movie
  */
 
 import * as COA from '@motionpicture/coa-service';
@@ -10,6 +9,12 @@ import * as moment from 'moment';
 import * as CreativeWorkFactory from '../creativeWork';
 import CreativeWorkType from '../creativeWorkType';
 
+/**
+ * movie creativeWork interface
+ * @export
+ * @interface
+ * @memberof creativeWork.movie
+ */
 export interface ICreativeWork extends CreativeWorkFactory.ICreativeWork {
     identifier: string;
     name: string;
@@ -19,6 +24,9 @@ export interface ICreativeWork extends CreativeWorkFactory.ICreativeWork {
 
 /**
  * COAの作品抽出結果からFilmオブジェクトを作成する
+ * @export
+ * @function
+ * @memberof creativeWork.movie
  */
 export function createFromCOA(filmFromCOA: COA.services.master.ITitleResult): ICreativeWork {
     return {

@@ -1,7 +1,6 @@
 /**
  * 取引タスクエクスポートステータス
- *
- * @namespace factory/transactionTasksExportationStatus
+ * @namespace transactionTasksExportationStatus
  */
 
 enum TransactionTasksExportationStatus {

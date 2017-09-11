@@ -1,7 +1,7 @@
 /**
  * 作品ファクトリー
  *
- * @namespace factory/creativeWork
+ * @namespace creativeWork
  */
 
 import CreativeWorkType from './creativeWorkType';
@@ -22,7 +22,7 @@ export interface ICreativeWork {
     typeOf: CreativeWorkType;
 }
 
-export function create(args: {
+export function create(params: {
     identifier: string;
     name: string;
     description?: string;
@@ -34,14 +34,14 @@ export function create(args: {
     typeOf: CreativeWorkType;
 }): ICreativeWork {
     return {
-        identifier: args.identifier,
-        name: args.name,
-        description: args.description,
-        copyrightHolder: args.copyrightHolder,
-        copyrightYear: args.copyrightYear,
-        datePublished: args.datePublished,
-        license: (args.license !== undefined) ? args.license.toString() : undefined,
-        thumbnailUrl: (args.thumbnailUrl !== undefined) ? args.thumbnailUrl.toString() : undefined,
-        typeOf: args.typeOf
+        identifier: params.identifier,
+        name: params.name,
+        description: params.description,
+        copyrightHolder: params.copyrightHolder,
+        copyrightYear: params.copyrightYear,
+        datePublished: params.datePublished,
+        license: (params.license !== undefined) ? params.license.toString() : undefined,
+        thumbnailUrl: (params.thumbnailUrl !== undefined) ? params.thumbnailUrl.toString() : undefined,
+        typeOf: params.typeOf
     };
 }

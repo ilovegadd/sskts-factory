@@ -1,7 +1,7 @@
 /**
  * individual screening event factory
  * 個々の上映イベントファクトリー
- * @namespace factory/event/individualScreeningEvent
+ * @namespace event.individualScreeningEvent
  */
 
 import * as COA from '@motionpicture/coa-service';
@@ -23,7 +23,7 @@ import PlaceType from '../placeType';
  * 個々の上映イベントの検索条件インターフェース
  * @export
  * @interface
- * @memberof factory/event/individualScreeningEvent
+ * @memberof event.individualScreeningEvent
  */
 export interface ISearchConditions {
     day: string;
@@ -36,13 +36,15 @@ export interface ISearchConditions {
  * 表現を変更する場合、このインターフェースを変更して対応する
  * @export
  * @type
- * @memberof factory/event/individualScreeningEvent
+ * @memberof event.individualScreeningEvent
  */
 export type IItemAvailability = number;
 
 /**
  * 座席数から在庫状況表現を生成する
- *
+ * @export
+ * @function
+ * @memberof event.individualScreeningEvent
  * @param {number} numberOfAvailableSeats 空席数
  * @param {number} numberOfAllSeats 全座席数
  * @returns {IItemAvailability} 在庫状況表現
@@ -68,7 +70,7 @@ export function createItemAvailability(numberOfAvailableSeats: number, numberOfA
  * event offer interface
  * @export
  * @interface
- * @memberof factory/event/individualScreeningEvent
+ * @memberof event.individualScreeningEvent
  */
 export interface IOffer {
     typeOf: string;
@@ -80,7 +82,7 @@ export interface IOffer {
  * event with offer interface
  * @export
  * @interface
- * @memberof factory/event/individualScreeningEvent
+ * @memberof event.individualScreeningEvent
  */
 export type IEventWithOffer = IEvent & {
     offer: IOffer;
@@ -91,7 +93,7 @@ export type IEventWithOffer = IEvent & {
  * 個々の上映イベントインターフェース(COAのスケジュールに相当)
  * @export
  * @interface
- * @memberof factory/event/individualScreeningEvent
+ * @memberof event.individualScreeningEvent
  */
 export interface IEvent extends EventFactory.IEvent {
     /**
@@ -191,7 +193,7 @@ export interface IEvent extends EventFactory.IEvent {
  * create individualScreeningEvent from COA performance
  * @export
  * @function
- * @memberof factory/event/individualScreeningEvent
+ * @memberof event.individualScreeningEvent
  */
 export function createFromCOA(params: {
     performanceFromCOA: COA.services.master.IScheduleResult;
@@ -249,18 +251,18 @@ export function createFromCOA(params: {
  * create id by COA infos.
  * @export
  * @function
- * @memberof factory/event/individualScreeningEvent
+ * @memberof event.individualScreeningEvent
  */
-export function createIdFromCOA(args: {
+export function createIdFromCOA(params: {
     screeningEvent: ScreeningEventFactory.IEvent,
     dateJouei: string;
     screenCode: string;
     timeBegin: string;
 }): string {
     return [
-        args.screeningEvent.identifier,
-        args.dateJouei,
-        args.screenCode,
-        args.timeBegin
+        params.screeningEvent.identifier,
+        params.dateJouei,
+        params.screenCode,
+        params.timeBegin
     ].join('');
 }

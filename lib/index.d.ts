@@ -109,6 +109,7 @@ export declare namespace reservation {
 }
 export import reservationStatusType = ReservationStatusType;
 export declare namespace task {
+    export import IAttributes = TaskFactory.IAttributes;
     export import ITask = TaskFactory.ITask;
     export import cancelCreditCard = CancelCreditCardTaskFactory;
     export import cancelMvtk = CancelMvtkTaskFactory;

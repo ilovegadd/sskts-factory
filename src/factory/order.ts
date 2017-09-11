@@ -10,8 +10,8 @@
 import ArgumentError from '../error/argument';
 
 import { AuthorizeActionPurpose } from './action/authorize';
-import { IAction as ICreditCardAuthorizeAction } from './action/authorize/creditCard';
-import { IAction as IMvtkAuthorizeAction } from './action/authorize/mvtk';
+import { IAction as ICreditCardAuthorizeAction, IResult as ICreditCardAuthorizeActionResult } from './action/authorize/creditCard';
+import { IAction as IMvtkAuthorizeAction, IResult as IMvtkAuthorizeActionResult } from './action/authorize/mvtk';
 import { IEvent as IIndividualScreeningEvent } from './event/individualScreeningEvent';
 import OrderStatus from './orderStatus';
 import { IContact, IPerson } from './person';
@@ -262,7 +262,7 @@ export function createFromPlaceOrderTransaction(params: {
 
             discounts.push({
                 name: 'ムビチケカード',
-                discount: mvtkAuthorizeAction.result.price,
+                discount: (<IMvtkAuthorizeActionResult>mvtkAuthorizeAction.result).price,
                 discountCode: discountCode,
                 discountCurrency: PriceCurrency.JPY
             });
@@ -272,14 +272,10 @@ export function createFromPlaceOrderTransaction(params: {
     params.transaction.object.authorizeActions
         .filter((action) => action.purpose.typeOf === AuthorizeActionPurpose.CreditCard)
         .forEach((creditCardAuthorizeAction: ICreditCardAuthorizeAction) => {
-            if (creditCardAuthorizeAction.result === undefined) {
-                throw new ArgumentError('transaction', 'creditCardAuthorizeAction result does not exist');
-            }
-
             paymentMethods.push({
                 name: 'クレジットカード',
                 paymentMethod: 'CreditCard',
-                paymentMethodId: creditCardAuthorizeAction.result.execTranResult.orderId
+                paymentMethodId: (<ICreditCardAuthorizeActionResult>creditCardAuthorizeAction.result).execTranResult.orderId
             });
         });
 

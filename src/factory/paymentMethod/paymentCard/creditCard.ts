@@ -1,6 +1,6 @@
 /**
  * credit card factory
- * @namespace factory/paymentMethod/paymentCard/creditCard
+ * @namespace paymentMethod.paymentCard.creditCard
  */
 
 import * as GMO from '@motionpicture/gmo-service';
@@ -12,7 +12,7 @@ import { IPaymentCard } from '../paymentCard';
  * @export
  * @interface
  * @extends {CardFactory.ICard}
- * @memberof factory/paymentMethod/paymentCard/creditCard
+ * @memberof paymentMethod.paymentCard.creditCard
  */
 export interface ICheckedCard extends IPaymentCard {
     /**
@@ -56,7 +56,7 @@ export interface ICheckedCard extends IPaymentCard {
 /**
  * 生の有効性確認前GMOカードインターフェース
  * @interface
- * @memberof factory/paymentMethod/paymentCard/creditCard
+ * @memberof paymentMethod.paymentCard.creditCard
  */
 export interface IUncheckedCardRaw {
     cardNo: string;
@@ -68,7 +68,7 @@ export interface IUncheckedCardRaw {
 /**
  * トークン化有効性確認前GMOカードインターフェース
  * @interface
- * @memberof factory/paymentMethod/paymentCard/creditCard
+ * @memberof paymentMethod.paymentCard.creditCard
  */
 export interface IUncheckedCardTokenized {
     token: string;
@@ -89,7 +89,7 @@ export interface IUnauthorizedCardOfMember {
  * @export
  * @param {GMO.services.card.ISearchCardResult} searchCardResult GMOカード検索結果
  * @returns {ICheckedCard} 有効性確認済みカード
- * @memberof factory/paymentMethod/paymentCard/creditCard
+ * @memberof paymentMethod.paymentCard.creditCard
  */
 export function createCheckedCardFromGMOSearchCardResult(
     searchCardResult: GMO.services.card.ISearchCardResult
@@ -114,7 +114,7 @@ export function createCheckedCardFromGMOSearchCardResult(
  * @param {string} params.expire 有効期限 名義人
  * @param {string} params.holderName
  * @returns {IUncheckedCardRaw} 生の有効性確認前GMOカード
- * @memberof factory/paymentMethod/paymentCard/creditCard
+ * @memberof paymentMethod.paymentCard.creditCard
  */
 export function createUncheckedCardRaw(params: {
     cardNo: string;
@@ -130,7 +130,7 @@ export function createUncheckedCardRaw(params: {
  * @export
  * @param {string} params.token
  * @returns {IUncheckedCardTokenized} トークン化有効性確認前GMOカード
- * @memberof factory/paymentMethod/paymentCard/creditCard
+ * @memberof paymentMethod.paymentCard.creditCard
  */
 export function createUncheckedCardTokenized(params: {
     token: string;

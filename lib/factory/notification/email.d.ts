@@ -4,7 +4,7 @@ import * as NotificationFactory from '../notification';
  * Eメール通知データインターフェース
  * @export
  * @interface
- * @memberof factory/notification/email
+ * @memberof notification.email
  */
 export interface IData {
     /**
@@ -33,7 +33,7 @@ export interface IData {
  * Eメール通知インターフェース
  * @export
  * @interface
- * @memberof factory/notification/email
+ * @memberof notification.email
  */
 export interface INotification extends NotificationFactory.INotification {
     data: IData;
@@ -43,9 +43,9 @@ export interface INotification extends NotificationFactory.INotification {
  * Eメール通知オブジェクトを作成する
  * @export
  * @function
- * @memberof factory/notification/email
+ * @memberof notification.email
  */
-export declare function create(args: {
+export declare function create(params: {
     id: string;
     data: IData;
 }): INotification;

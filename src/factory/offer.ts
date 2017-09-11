@@ -1,6 +1,6 @@
 /**
  * offer factory
- * @namespace factory/offer
+ * @namespace offer
  */
 
 import * as COA from '@motionpicture/coa-service';
@@ -14,7 +14,7 @@ import PriceCurrency from './priceCurrency';
  * to stream a TV show over the internet, to repair a motorcycle, or to loan a book.
  * @export
  * @interface
- * @memberof factory/offer
+ * @memberof offer
  */
 export interface IOffer {
     /**
@@ -32,7 +32,7 @@ export interface IOffer {
  * COA券種情報
  * @export
  * @interface
- * @memberof factory/offer
+ * @memberof offer
  */
 export type ICOATicketInfo = COA.services.reserve.IUpdReserveTicket & {
     /**
@@ -53,7 +53,7 @@ export type ICOATicketInfo = COA.services.reserve.IUpdReserveTicket & {
  * seat reservation offer interface
  * @export
  * @interface
- * @memberof factory/offer
+ * @memberof offer
  */
 export interface ISeatReservationOffer {
     /**

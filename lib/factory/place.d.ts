@@ -1,7 +1,6 @@
 /**
  * 場所ファクトリー
- *
- * @namespace factory/place
+ * @namespace place
  */
 import IMultilingualString from './multilingualString';
 import PlaceType from './placeType';
@@ -27,7 +26,7 @@ export interface IPlace {
      */
     typeOf: PlaceType;
 }
-export declare function create(args: {
+export declare function create(params: {
     id?: string;
     identifier?: string;
     name?: IMultilingualString;

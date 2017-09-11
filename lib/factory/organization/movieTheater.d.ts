@@ -1,7 +1,6 @@
 /**
  * 劇場組織ファクトリー
- *
- * @namespace factory/organization/movieTheater
+ * @namespace organization.movieTheater
  */
 import IMultilingualString from '../multilingualString';
 import * as OrganizationFactory from '../organization';
@@ -106,7 +105,7 @@ export declare type IPublicFields = IOrganizationWithoutGMOInfo & {
         shopId: string;
     };
 };
-export declare function create(args: {
+export declare function create(params: {
     name: IMultilingualString;
     branchCode: string;
     gmoInfo: IGMOInfo;

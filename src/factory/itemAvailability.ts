@@ -1,7 +1,7 @@
 /**
  * 商品在庫状況
  *
- * @namespace factory/itemAvailability
+ * @namespace itemAvailability
  */
 
 enum ItemAvailability {

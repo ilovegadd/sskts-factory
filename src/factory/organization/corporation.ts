@@ -1,7 +1,6 @@
 /**
  * 企業ファクトリー
- *
- * @namespace factory/organization/corporation
+ * @namespace organization.corporation
  */
 
 import IMultilingualString from '../multilingualString';
@@ -19,22 +18,22 @@ export interface IOrganization extends OrganizationFactory.IOrganization {
     identifier: CorporationOrganizationIdentifier;
 }
 
-export function create(args: {
+export function create(params: {
     identifier: CorporationOrganizationIdentifier;
     name: IMultilingualString;
     legalName?: IMultilingualString;
 }): IOrganization {
     const organization = OrganizationFactory.create({
-        identifier: args.identifier,
-        name: args.name,
-        legalName: args.legalName,
+        identifier: params.identifier,
+        name: params.name,
+        legalName: params.legalName,
         typeOf: OrganizationType.Corporation
     });
 
     return {
         ...organization,
         ...{
-            identifier: args.identifier
+            identifier: params.identifier
         }
     };
 }

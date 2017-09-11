@@ -1,7 +1,6 @@
 /**
  * 組織ファクトリー
- *
- * @namespace factory/organization
+ * @namespace organization
  */
 
 import IMultilingualString from './multilingualString';
@@ -22,7 +21,7 @@ export interface IOrganization {
     url?: URLFactory.IURL;
 }
 
-export function create(args: {
+export function create(params: {
     id?: string;
     identifier: string;
     name: IMultilingualString;
@@ -33,13 +32,13 @@ export function create(args: {
     url?: URLFactory.IURL;
 }): IOrganization {
     return {
-        id: (args.id === undefined) ? '' : args.id,
-        identifier: args.identifier,
-        name: args.name,
-        legalName: (args.legalName === undefined) ? { ja: '', en: '' } : args.legalName,
-        typeOf: args.typeOf,
-        location: args.location,
-        telephone: args.telephone,
-        url: (args.url !== undefined) ? args.url.toString() : undefined
+        id: (params.id === undefined) ? '' : params.id,
+        identifier: params.identifier,
+        name: params.name,
+        legalName: (params.legalName === undefined) ? { ja: '', en: '' } : params.legalName,
+        typeOf: params.typeOf,
+        location: params.location,
+        telephone: params.telephone,
+        url: (params.url !== undefined) ? params.url.toString() : undefined
     };
 }

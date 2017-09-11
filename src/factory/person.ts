@@ -1,7 +1,7 @@
 /**
  * person factory
  * 人物ファクトリー
- * @namespace factory/person
+ * @namespace person
  */
 
 import * as ProgramMembershipFactory from './programMembership';
@@ -11,7 +11,7 @@ import * as ProgramMembershipFactory from './programMembership';
  * 連絡先インターフェース
  * @export
  * @interface {IPerson}
- * @memberof factory/person
+ * @memberof person
  */
 export interface IContact {
     /**
@@ -41,7 +41,7 @@ export interface IContact {
  * 人物インターフェース
  * @export
  * @interface {IPerson}
- * @memberof factory/person
+ * @memberof person
  */
 export interface IPerson {
     /**

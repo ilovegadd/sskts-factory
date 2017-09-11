@@ -1,7 +1,6 @@
 /**
  * 取引ステータス
- *
- * @namespace factory/transactionStatusType
+ * @namespace transactionStatusType
  */
 declare enum TransactionStatusType {
     InProgress = "InProgress",

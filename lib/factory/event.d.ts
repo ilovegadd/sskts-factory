@@ -1,7 +1,7 @@
 /**
  * イベントファクトリー
  *
- * @namespace factory/event
+ * @namespace event
  */
 import * as CreativeWorkFactory from './creativeWork';
 import EventStatusType from './eventStatusType';
@@ -70,7 +70,7 @@ export interface IEvent {
      */
     workPerformed?: CreativeWorkFactory.ICreativeWork;
 }
-export declare function create(args: {
+export declare function create(params: {
     typeOf: EventType;
     identifier: string;
     name: IMultilingualString;

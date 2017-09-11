@@ -1,7 +1,6 @@
 /**
  * 注文ステータス
- *
- * @namespace factory/orderStatus
+ * @namespace orderStatus
  */
 
 enum OrderStatus {

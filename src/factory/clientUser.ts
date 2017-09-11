@@ -2,7 +2,7 @@
  * アプリケーションクライアントユーザーファクトリー
  * クライアントサイドでapiを利用するユーザー
  *
- * @namespace factory/clientUser
+ * @namespace clientUser
  */
 
 /**
@@ -10,7 +10,7 @@
  *
  * @export
  * @interface IClientUser
- * @memberof factory/clientUser
+ * @memberof clientUser
  */
 export interface IClientUser {
     sub: string;

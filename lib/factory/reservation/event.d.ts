@@ -1,6 +1,6 @@
 /**
  * event reservation factory
- * @namespace factory/reservation/event
+ * @namespace reservation.event
  */
 import * as COA from '@motionpicture/coa-service';
 import { IEvent } from '../event';

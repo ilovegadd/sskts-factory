@@ -1,7 +1,7 @@
 /**
  * 在庫状況グループ
  *
- * @namespace factory/stockStatusGroup
+ * @namespace stockStatusGroup
  */
 declare enum StockStatusGroup {
     /**

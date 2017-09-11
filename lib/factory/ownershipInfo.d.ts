@@ -1,19 +1,19 @@
 /**
  * ownershipInfo factory
  *
- * @namespace factory/ownershipInfo
+ * @namespace ownershipInfo
  */
 import { IReservation } from './reservation';
 /**
  * good interface (Product or Service)
  * @interface {IOwner}
- * @memberof factory/ownershipInfo
+ * @memberof ownershipInfo
  */
 export declare type IGood = IReservation;
 /**
  * owner interface
  * @interface {IOwner}
- * @memberof factory/ownershipInfo
+ * @memberof ownershipInfo
  */
 export interface IOwner {
     typeOf: string;
@@ -23,7 +23,7 @@ export interface IOwner {
 /**
  * ownershipInfo interface
  * @interface {IOwnershipInfo}
- * @memberof factory/ownershipInfo
+ * @memberof ownershipInfo
  */
 export interface IOwnershipInfo<T extends IGood> {
     /**
@@ -58,9 +58,9 @@ export interface IOwnershipInfo<T extends IGood> {
 /**
  * create ownershipInfo
  * @function
- * @memberof factory/ownershipInfo
+ * @memberof ownershipInfo
  */
-export declare function create(args: {
+export declare function create(params: {
     ownedBy: IOwner;
     acquiredFrom: IOwner;
     ownedFrom: Date;

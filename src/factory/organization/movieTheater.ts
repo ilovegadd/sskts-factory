@@ -1,7 +1,6 @@
 /**
  * 劇場組織ファクトリー
- *
- * @namespace factory/organization/movieTheater
+ * @namespace organization.movieTheater
  */
 
 import IMultilingualString from '../multilingualString';
@@ -115,7 +114,7 @@ export type IPublicFields = IOrganizationWithoutGMOInfo & {
     };
 };
 
-export function create(args: {
+export function create(params: {
     name: IMultilingualString;
     branchCode: string; // 劇場コード
     gmoInfo: IGMOInfo;
@@ -124,21 +123,21 @@ export function create(args: {
     telephone: string;
     url: URLFactory.IURL;
 }): IOrganization {
-    const identifier = `MovieTheater-${args.branchCode}`;
+    const identifier = `MovieTheater-${params.branchCode}`;
 
     return {
         ...OrganizationFactory.create({
             identifier: identifier,
-            name: args.name,
+            name: params.name,
             typeOf: OrganizationType.MovieTheater
         }),
         ...{
-            branchCode: args.branchCode,
-            gmoInfo: args.gmoInfo,
-            parentOrganization: args.parentOrganization,
-            location: args.location,
-            telephone: args.telephone,
-            url: args.url
+            branchCode: params.branchCode,
+            gmoInfo: params.gmoInfo,
+            parentOrganization: params.parentOrganization,
+            location: params.location,
+            telephone: params.telephone,
+            url: params.url
         }
     };
 }

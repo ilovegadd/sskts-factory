@@ -1,7 +1,6 @@
 /**
  * 場所タイプ
- *
- * @namespace factory/placeType
+ * @namespace placeType
  */
 declare enum PlaceType {
     MovieTheater = "MovieTheater",

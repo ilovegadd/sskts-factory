@@ -1,7 +1,6 @@
 /**
  * 取引タイプ
- *
- * @namespace factory/transactionType
+ * @namespace transactionType
  */
 declare enum TransactionType {
     /**

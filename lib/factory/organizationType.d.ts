@@ -1,7 +1,6 @@
 /**
  * 組織タイプ
- *
- * @namespace factory/organizationType
+ * @namespace organizationType
  */
 declare enum OrganizationType {
     Corporation = "Corporation",

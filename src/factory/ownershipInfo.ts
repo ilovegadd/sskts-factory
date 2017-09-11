@@ -1,7 +1,7 @@
 /**
  * ownershipInfo factory
  *
- * @namespace factory/ownershipInfo
+ * @namespace ownershipInfo
  */
 
 import { IReservation } from './reservation';
@@ -9,14 +9,14 @@ import { IReservation } from './reservation';
 /**
  * good interface (Product or Service)
  * @interface {IOwner}
- * @memberof factory/ownershipInfo
+ * @memberof ownershipInfo
  */
 export type IGood = IReservation;
 
 /**
  * owner interface
  * @interface {IOwner}
- * @memberof factory/ownershipInfo
+ * @memberof ownershipInfo
  */
 export interface IOwner {
     typeOf: string;
@@ -27,7 +27,7 @@ export interface IOwner {
 /**
  * ownershipInfo interface
  * @interface {IOwnershipInfo}
- * @memberof factory/ownershipInfo
+ * @memberof ownershipInfo
  */
 export interface IOwnershipInfo<T extends IGood> {
     /**
@@ -63,9 +63,9 @@ export interface IOwnershipInfo<T extends IGood> {
 /**
  * create ownershipInfo
  * @function
- * @memberof factory/ownershipInfo
+ * @memberof ownershipInfo
  */
-export function create(args: {
+export function create(params: {
     ownedBy: IOwner;
     acquiredFrom: IOwner;
     ownedFrom: Date;
@@ -76,11 +76,11 @@ export function create(args: {
         typeOf: 'OwnershipInfo',
         // tslint:disable-next-line:no-suspicious-comment
         // TODO 所有権の固有値仕様を決定
-        identifier: `Reservation-${args.typeOfGood.reservationNumber}`,
-        ownedBy: args.ownedBy,
-        acquiredFrom: args.acquiredFrom,
-        ownedFrom: args.ownedFrom,
-        ownedThrough: args.ownedThrough,
-        typeOfGood: args.typeOfGood
+        identifier: `Reservation-${params.typeOfGood.reservationNumber}`,
+        ownedBy: params.ownedBy,
+        acquiredFrom: params.acquiredFrom,
+        ownedFrom: params.ownedFrom,
+        ownedThrough: params.ownedThrough,
+        typeOfGood: params.typeOfGood
     };
 }

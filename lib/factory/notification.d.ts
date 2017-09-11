@@ -1,14 +1,14 @@
 /**
  * notification factory
  * 通知ファクトリー
- * @namespace factory/notification
+ * @namespace notification
  */
 /**
  * notification interface
  * 通知インターフェース
  * @export
  * @interface
- * @memberof factory/notification
+ * @memberof notification
  */
 export interface INotification {
     id: string;

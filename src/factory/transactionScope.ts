@@ -1,7 +1,6 @@
 /**
  * 取引スコープファクトリー
- *
- * @namespace factory/transactionScope
+ * @namespace transactionScope
  */
 
 import * as moment from 'moment';
@@ -9,6 +8,12 @@ import * as _ from 'underscore';
 
 import ArgumentError from '../error/argument';
 
+/**
+ * transactionScope interface
+ * @export
+ * @interface
+ * @memberof transactionScope
+ */
 export interface ITransactionScope {
     /**
      * いつから開始準備状態か
@@ -40,31 +45,39 @@ export interface ITransactionScope {
     theater?: string;
 }
 
-export function create(args: {
+/**
+ * create transactionScope object
+ * @export
+ * @function
+ * @memberof transactionScope
+ */
+export function create(params: {
     readyFrom: Date;
     readyThrough: Date;
     client?: string;
     theater?: string;
 }): ITransactionScope {
-    if (!_.isDate(args.readyFrom)) throw new ArgumentError('readyFrom', 'readyFrom should be Date');
-    if (!_.isDate(args.readyThrough)) throw new ArgumentError('readyThrough', 'readyThrough should be Date');
+    if (!_.isDate(params.readyFrom)) throw new ArgumentError('readyFrom', 'readyFrom should be Date');
+    if (!_.isDate(params.readyThrough)) throw new ArgumentError('readyThrough', 'readyThrough should be Date');
 
     // untilはfromより遅くなければならない
-    if (args.readyThrough.getTime() <= args.readyFrom.getTime()) {
+    if (params.readyThrough.getTime() <= params.readyFrom.getTime()) {
         throw new ArgumentError('readyThrough', 'readyThrough must be later than readyFrom');
     }
 
     return {
-        readyFrom: args.readyFrom,
-        readyThrough: args.readyThrough,
-        client: args.client,
-        theater: args.theater
+        readyFrom: params.readyFrom,
+        readyThrough: params.readyThrough,
+        client: params.client,
+        theater: params.theater
     };
 }
 
 /**
  * スコープを文字列に変換する
- *
+ * @export
+ * @function
+ * @memberof transactionScope
  * @param {ITransactionScope} scope アクションスコープ
  */
 export function scope2String(scope: ITransactionScope) {

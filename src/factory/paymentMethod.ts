@@ -1,13 +1,12 @@
 /**
  * paymentMethod factory
- *
- * @namespace factory/paymentMethod
+ * @namespace paymentMethod
  */
 
 /**
  * payment method interface
  * @interface {IPaymentMethod}
- * @memberof factory/paymentMethod
+ * @memberof paymentMethod
  */
 export interface IPaymentMethod {
     typeOf: string;

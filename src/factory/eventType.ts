@@ -1,7 +1,7 @@
 /**
  * イベントタイプ
  *
- * @namespace/factory/eventType
+ * @namespace eventType
  */
 
 enum EventType {

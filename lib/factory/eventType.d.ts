@@ -1,7 +1,7 @@
 /**
  * イベントタイプ
  *
- * @namespace/factory/eventType
+ * @namespace eventType
  */
 declare enum EventType {
     ScreeningEvent = "ScreeningEvent",

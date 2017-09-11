@@ -1,7 +1,7 @@
 /**
  * 作品ファクトリー
  *
- * @namespace factory/creativeWork
+ * @namespace creativeWork
  */
 import CreativeWorkType from './creativeWorkType';
 export interface ICopyrightHolder {
@@ -18,7 +18,7 @@ export interface ICreativeWork {
     thumbnailUrl?: string;
     typeOf: CreativeWorkType;
 }
-export declare function create(args: {
+export declare function create(params: {
     identifier: string;
     name: string;
     description?: string;

@@ -1,7 +1,7 @@
 /**
  * イベントファクトリー
  *
- * @namespace factory/event
+ * @namespace event
  */
 
 import * as CreativeWorkFactory from './creativeWork';
@@ -75,7 +75,7 @@ export interface IEvent {
     workPerformed?: CreativeWorkFactory.ICreativeWork;
 }
 
-export function create(args: {
+export function create(params: {
     typeOf: EventType;
     identifier: string;
     name: IMultilingualString;
@@ -92,19 +92,19 @@ export function create(args: {
     workPerformed?: CreativeWorkFactory.ICreativeWork;
 }): IEvent {
     return {
-        identifier: args.identifier,
-        name: (args.name === undefined) ? { ja: '', en: '' } : args.name,
-        description: args.description,
-        doorTime: args.doorTime,
-        duration: (args.duration === undefined) ? undefined : args.duration.toString(),
-        endDate: args.endDate,
-        eventStatus: args.eventStatus,
-        location: args.location,
-        startDate: args.startDate,
-        workPerformed: args.workPerformed,
-        maximumAttendeeCapacity: args.maximumAttendeeCapacity,
-        // offers: args.offers,
-        remainingAttendeeCapacity: args.remainingAttendeeCapacity,
-        typeOf: args.typeOf
+        identifier: params.identifier,
+        name: (params.name === undefined) ? { ja: '', en: '' } : params.name,
+        description: params.description,
+        doorTime: params.doorTime,
+        duration: (params.duration === undefined) ? undefined : params.duration.toString(),
+        endDate: params.endDate,
+        eventStatus: params.eventStatus,
+        location: params.location,
+        startDate: params.startDate,
+        workPerformed: params.workPerformed,
+        maximumAttendeeCapacity: params.maximumAttendeeCapacity,
+        // offers: params.offers,
+        remainingAttendeeCapacity: params.remainingAttendeeCapacity,
+        typeOf: params.typeOf
     };
 }

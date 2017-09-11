@@ -1,7 +1,6 @@
 /**
  * 企業識別子
- *
- * @namespace factory/organizationIdentifier/corporation
+ * @namespace organizationIdentifier.corporation
  */
 
 enum CorporationOrganizationIdentifier {

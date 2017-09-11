@@ -1,7 +1,6 @@
 /**
  * URLファクトリー
- *
- * @namespace factory/url
+ * @namespace url
  */
 
 export type IURL = string;

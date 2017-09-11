@@ -1,7 +1,6 @@
 /**
  * 通知グループ
- *
- * @namespace factory/notificationGroup
+ * @namespace notificationGroup
  */
 
 enum NotificationGroup {

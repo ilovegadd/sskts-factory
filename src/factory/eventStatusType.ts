@@ -1,7 +1,7 @@
 /**
  * イベントステータス
  *
- * @namespace/factory/eventStatusType
+ * @namespace eventStatusType
  */
 
 enum EventStatusType {
