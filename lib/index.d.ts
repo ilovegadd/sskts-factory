@@ -2,7 +2,7 @@
  * sskts-factory
  * @module
  */
-import { ActionStatusType, ActionType } from './factory/action';
+import * as ActionFactory from './factory/action';
 import * as AuthorizeActionFactory from './factory/action/authorize';
 import * as CreditCardAuthorizeActionFactory from './factory/action/authorize/creditCard';
 import * as MvtkAuthorizeActionFactory from './factory/action/authorize/mvtk';
@@ -55,10 +55,11 @@ import ErrorCode from './errorCode';
 import * as errors from './errors';
 export import errors = errors;
 export import errorCode = ErrorCode;
-export import actionStatusType = ActionStatusType;
-export import actionType = ActionType;
+export import actionStatusType = ActionFactory.ActionStatusType;
+export import actionType = ActionFactory.ActionType;
 export declare namespace action {
     namespace authorize {
+        export import IAction = AuthorizeActionFactory.IAction;
         export import authorizeActionPurpose = AuthorizeActionFactory.AuthorizeActionPurpose;
         export import creditCard = CreditCardAuthorizeActionFactory;
         export import mvtk = MvtkAuthorizeActionFactory;
