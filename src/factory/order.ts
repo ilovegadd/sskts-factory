@@ -8,7 +8,9 @@
  */
 
 import ArgumentError from '../error/argument';
+import NotImplementedError from '../error/notImplemented';
 
+import { ActionStatusType } from './action';
 import { AuthorizeActionPurpose } from './action/authorize';
 import { IAction as ICreditCardAuthorizeAction, IResult as ICreditCardAuthorizeActionResult } from './action/authorize/creditCard';
 import { IAction as IMvtkAuthorizeAction, IResult as IMvtkAuthorizeActionResult } from './action/authorize/mvtk';
@@ -230,18 +232,21 @@ export function createFromPlaceOrderTransaction(params: {
     transaction: ITransaction
 }): IOrder {
     // seatReservation exists?
-    const seatReservationAuthorizeAction = params.transaction.object.authorizeActions.find((action) => {
-        return action.purpose.typeOf === AuthorizeActionPurpose.SeatReservation;
-    });
-    if (seatReservationAuthorizeAction === undefined) {
-        throw new ArgumentError('transaction', 'seat reservation does not exist');
+    const seatReservationAuthorizeActions = params.transaction.object.authorizeActions
+        .filter((action) => action.actionStatus === ActionStatusType.CompletedActionStatus)
+        .filter((action) => action.purpose.typeOf === AuthorizeActionPurpose.SeatReservation);
+    if (seatReservationAuthorizeActions.length === 0) {
+        throw new ArgumentError('transaction', 'Seat reservation does not exist.');
     }
+    if (seatReservationAuthorizeActions.length > 1) {
+        throw new NotImplementedError('Number of seat reservation authorizeAction must be 1.');
+    }
+    const seatReservationAuthorizeAction = seatReservationAuthorizeActions[0];
     if (seatReservationAuthorizeAction.result === undefined) {
-        throw new ArgumentError('transaction', 'seat reservation result does not exist');
+        throw new ArgumentError('transaction', 'Seat reservation result does not exist.');
     }
-
     if (params.transaction.object.customerContact === undefined) {
-        throw new ArgumentError('transaction', 'customer contact does not exist');
+        throw new ArgumentError('transaction', 'Customer contact does not exist');
     }
 
     const cutomerContact = params.transaction.object.customerContact;
@@ -254,6 +259,7 @@ export function createFromPlaceOrderTransaction(params: {
     // 結果作成
     const discounts: IDiscount[] = [];
     params.transaction.object.authorizeActions
+        .filter((action) => action.actionStatus === ActionStatusType.CompletedActionStatus)
         .filter((action) => action.purpose.typeOf === AuthorizeActionPurpose.Mvtk)
         .forEach((mvtkAuthorizeAction: IMvtkAuthorizeAction) => {
             const discountCode = mvtkAuthorizeAction.object.seatInfoSyncIn.knyknrNoInfo.map(
@@ -270,6 +276,7 @@ export function createFromPlaceOrderTransaction(params: {
 
     const paymentMethods: IPaymentMethod[] = [];
     params.transaction.object.authorizeActions
+        .filter((action) => action.actionStatus === ActionStatusType.CompletedActionStatus)
         .filter((action) => action.purpose.typeOf === AuthorizeActionPurpose.CreditCard)
         .forEach((creditCardAuthorizeAction: ICreditCardAuthorizeAction) => {
             paymentMethods.push({
