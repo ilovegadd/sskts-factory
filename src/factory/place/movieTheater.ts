@@ -84,6 +84,10 @@ export interface IPlaceWithoutScreeningRoom extends PlaceFactory.IPlace {
      * 劇場住所
      */
     address?: IMultilingualString;
+    /**
+     * 電話番号
+     */
+    telephone: string;
 }
 
 /**
@@ -122,7 +126,8 @@ export function createFromCOA(
         containsPlace: screensFromCOA.map((screenFromCOA) => {
             return createScreeningRoomFromCOA(screenFromCOA);
         }),
-        typeOf: PlaceType.MovieTheater
+        typeOf: PlaceType.MovieTheater,
+        telephone: theaterFromCOA.theaterTelNum
     };
 }
 

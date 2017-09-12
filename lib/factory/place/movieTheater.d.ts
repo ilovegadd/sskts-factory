@@ -77,6 +77,10 @@ export interface IPlaceWithoutScreeningRoom extends PlaceFactory.IPlace {
      * 劇場住所
      */
     address?: IMultilingualString;
+    /**
+     * 電話番号
+     */
+    telephone: string;
 }
 /**
  * 劇場施設インターフェース
