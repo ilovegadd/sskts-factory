@@ -24,6 +24,7 @@ export interface IParticipant {
  */
 export declare enum ActionType {
     AuthorizeAction = "AuthorizeAction",
+    PrintAction = "PrintAction",
 }
 /**
  * アクションステータス

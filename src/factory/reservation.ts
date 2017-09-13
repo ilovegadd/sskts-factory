@@ -32,6 +32,7 @@ export interface IUnderName {
  * @memberof reservation
  */
 export interface ISeat {
+    typeOf: string;
     /**
      * The cabin/class of the seat.
      */
@@ -58,6 +59,7 @@ export interface ISeat {
  * @memberof reservation
  */
 export interface ITicket {
+    typeOf: string;
     /**
      * COA券種情報
      */

@@ -58,12 +58,14 @@ export function createFromCOATmpReserve(params: {
             reservationNumber: `${params.updTmpReserveSeatResult.tmpReserveNum}-${index.toString()}`,
             reservationStatus: ReservationStatusType.ReservationHold,
             reservedTicket: {
+                typeOf: 'Ticket',
                 coaTicketInfo: selectedTicket,
                 dateIssued: now,
                 issuedBy: params.individualScreeningEvent.superEvent.organizer,
                 totalPrice: selectedTicket.salePrice,
                 priceCurrency: PriceCurrency.JPY,
                 ticketedSeat: {
+                    typeOf: 'Seat',
                     seatingType: '',
                     seatNumber: tmpReserve.seatNum,
                     seatRow: '',

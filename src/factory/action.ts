@@ -26,7 +26,8 @@ export interface IParticipant {
  * @memberof action
  */
 export enum ActionType {
-    AuthorizeAction = 'AuthorizeAction'
+    AuthorizeAction = 'AuthorizeAction',
+    PrintAction = 'PrintAction'
 }
 
 /**

@@ -7,6 +7,8 @@ import * as AuthorizeActionFactory from './factory/action/authorize';
 import * as CreditCardAuthorizeActionFactory from './factory/action/authorize/creditCard';
 import * as MvtkAuthorizeActionFactory from './factory/action/authorize/mvtk';
 import * as seatReservationAuthorizeActionFactory from './factory/action/authorize/seatReservation';
+import * as PrintActionFactory from './factory/action/transfer/print';
+import * as PrintTicketActionFactory from './factory/action/transfer/print/ticket';
 import * as ClientEventFactory from './factory/clientEvent';
 import * as ClientUserFactory from './factory/clientUser';
 import * as MovieCreativeWorkFactory from './factory/creativeWork/movie';
@@ -60,10 +62,19 @@ export import actionType = ActionFactory.ActionType;
 export declare namespace action {
     namespace authorize {
         export import IAction = AuthorizeActionFactory.IAction;
+        export import IAttributes = AuthorizeActionFactory.IAttributes;
         export import authorizeActionPurpose = AuthorizeActionFactory.AuthorizeActionPurpose;
         export import creditCard = CreditCardAuthorizeActionFactory;
         export import mvtk = MvtkAuthorizeActionFactory;
         export import seatReservation = seatReservationAuthorizeActionFactory;
+    }
+    namespace transfer {
+        namespace print {
+            export import IAction = PrintActionFactory.IAction;
+            export import IAttributes = PrintActionFactory.IAttributes;
+            export import IRecipient = PrintActionFactory.IRecipient;
+            export import ticket = PrintTicketActionFactory;
+        }
     }
 }
 export declare namespace paymentMethod {
