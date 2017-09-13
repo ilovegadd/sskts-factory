@@ -60,6 +60,7 @@ export import errorCode = ErrorCode;
 export import actionStatusType = ActionFactory.ActionStatusType;
 export import actionType = ActionFactory.ActionType;
 export declare namespace action {
+    export import IParticipant = ActionFactory.IParticipant;
     namespace authorize {
         export import IAction = AuthorizeActionFactory.IAction;
         export import IAttributes = AuthorizeActionFactory.IAttributes;
