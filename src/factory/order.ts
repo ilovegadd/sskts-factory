@@ -229,7 +229,10 @@ export interface IOrder {
  */
 // tslint:disable-next-line:max-func-body-length
 export function createFromPlaceOrderTransaction(params: {
-    transaction: ITransaction
+    transaction: ITransaction;
+    orderDate: Date;
+    orderStatus: OrderStatus;
+    isGift: boolean;
 }): IOrder {
     // seatReservation exists?
     const seatReservationAuthorizeActions = params.transaction.object.authorizeActions
@@ -328,9 +331,8 @@ export function createFromPlaceOrderTransaction(params: {
         };
     });
 
-    const orderDate = new Date();
-    // tslint:disable-next-line:no-magic-numbers
-    const orderNumber = `${orderDate.toISOString().slice(0, 10)}-${orderInquiryKey.theaterCode}-${orderInquiryKey.confirmationNumber}`;
+    // tslint:disable-next-line:max-line-length no-magic-numbers
+    const orderNumber = `${params.orderDate.toISOString().slice(0, 10)}-${orderInquiryKey.theaterCode}-${orderInquiryKey.confirmationNumber}`;
 
     return {
         typeOf: 'Order',
@@ -343,12 +345,10 @@ export function createFromPlaceOrderTransaction(params: {
         confirmationNumber: orderInquiryKey.confirmationNumber,
         orderNumber: orderNumber,
         acceptedOffers: acceptedOffers,
-        // tslint:disable-next-line:no-suspicious-comment
-        // TODO add confirmation URL domain
         url: `/inquiry/login?theater=${orderInquiryKey.theaterCode}&reserve=${orderInquiryKey.confirmationNumber}`,
-        orderStatus: OrderStatus.OrderDelivered,
-        orderDate: orderDate,
-        isGift: false,
+        orderStatus: params.orderStatus,
+        orderDate: params.orderDate,
+        isGift: params.isGift,
         orderInquiryKey: orderInquiryKey
     };
 }

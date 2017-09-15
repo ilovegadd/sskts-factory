@@ -66,6 +66,7 @@ export interface IOwnershipInfo<T extends IGood> {
  * @memberof ownershipInfo
  */
 export function create(params: {
+    identifier: string;
     ownedBy: IOwner;
     acquiredFrom: IOwner;
     ownedFrom: Date;
@@ -74,9 +75,7 @@ export function create(params: {
 }): IOwnershipInfo<IGood> {
     return {
         typeOf: 'OwnershipInfo',
-        // tslint:disable-next-line:no-suspicious-comment
-        // TODO 所有権の固有値仕様を決定
-        identifier: `Reservation-${params.typeOfGood.reservationNumber}`,
+        identifier: params.identifier,
         ownedBy: params.ownedBy,
         acquiredFrom: params.acquiredFrom,
         ownedFrom: params.ownedFrom,

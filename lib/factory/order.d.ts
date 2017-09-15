@@ -203,4 +203,7 @@ export interface IOrder {
  */
 export declare function createFromPlaceOrderTransaction(params: {
     transaction: ITransaction;
+    orderDate: Date;
+    orderStatus: OrderStatus;
+    isGift: boolean;
 }): IOrder;

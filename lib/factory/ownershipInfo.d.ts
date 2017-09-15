@@ -61,6 +61,7 @@ export interface IOwnershipInfo<T extends IGood> {
  * @memberof ownershipInfo
  */
 export declare function create(params: {
+    identifier: string;
     ownedBy: IOwner;
     acquiredFrom: IOwner;
     ownedFrom: Date;

@@ -19,8 +19,7 @@ export interface IPlace {
     containedInPlace?: IPlace;
     containsPlace?: IPlace[];
     maximumAttendeeCapacity?: number;
-    // tslint:disable-next-line:no-suspicious-comment
-    openingHoursSpecification?: any; // TODO 型定義
+    openingHoursSpecification?: any;
     smokingAllowed?: boolean;
     telephone?: string;
     url?: string;
@@ -40,8 +39,7 @@ export function create(params: {
     containedInPlace?: IPlace;
     containsPlace?: IPlace[];
     maximumAttendeeCapacity?: number;
-    // tslint:disable-next-line:no-suspicious-comment
-    openingHoursSpecification?: any; // TODO 型定義
+    openingHoursSpecification?: any;
     smokingAllowed?: boolean;
     telephone?: string;
     url?: URL;
