@@ -14,14 +14,13 @@ import * as PrintActionFactory from './factory/action/transfer/print';
 import * as PrintTicketActionFactory from './factory/action/transfer/print/ticket';
 import * as ClientEventFactory from './factory/clientEvent';
 import * as ClientUserFactory from './factory/clientUser';
+import * as EmailMessageFactory from './factory/creativeWork/message/email';
 import * as MovieCreativeWorkFactory from './factory/creativeWork/movie';
 import CreativeWorkType from './factory/creativeWorkType';
 import * as IndividualScreeningEventFactory from './factory/event/individualScreeningEvent';
 import * as ScreeningEventFactory from './factory/event/screeningEvent';
 import EventType from './factory/eventType';
 import IMultilingualString from './factory/multilingualString';
-import * as EmailNotificationFactory from './factory/notification/email';
-import NotificationGroup from './factory/notificationGroup';
 import * as OfferFactory from './factory/offer';
 import * as OrderFactory from './factory/order';
 import OrderStatus from './factory/orderStatus';
@@ -93,19 +92,18 @@ export namespace paymentMethod {
 export import clientEvent = ClientEventFactory;
 export import clientUser = ClientUserFactory;
 export namespace creativeWork {
+    export namespace message {
+        export import email = EmailMessageFactory;
+    }
     export import movie = MovieCreativeWorkFactory;
 }
 export import creativeWorkType = CreativeWorkType;
-export namespace notification {
-    export import email = EmailNotificationFactory;
-}
 export namespace event {
     export import individualScreeningEvent = IndividualScreeningEventFactory;
     export import screeningEvent = ScreeningEventFactory;
 }
 export import eventType = EventType;
 export type multilingualString = IMultilingualString;
-export import notificationGroup = NotificationGroup;
 export import offer = OfferFactory;
 export import order = OrderFactory;
 export import orderStatus = OrderStatus;
