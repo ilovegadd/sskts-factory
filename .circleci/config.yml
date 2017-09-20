@@ -77,4 +77,4 @@ workflows:
             - test
           filters:
             branches:
-              only: release-1.0.0-prerelease
+              only: release/1.0.0-prerelease
