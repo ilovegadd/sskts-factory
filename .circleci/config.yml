@@ -42,6 +42,8 @@ jobs:
       - checkout
       # - attach_workspace:
       #     at: ./
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: ls node_modules
           command: ls ./node_modules
