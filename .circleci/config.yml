@@ -11,6 +11,12 @@ jobs:
     steps:
       - checkout
       - run:
+          name: echo NPM_TOKEN
+          command: printenv NPM_TOKEN
+      - run:
+          name: npm config set
+          command: npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+      - run:
           name: echo node version
           command: node -v
       - run:
