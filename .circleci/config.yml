@@ -40,6 +40,8 @@ jobs:
       - image: circleci/node:latest
     steps:
       - checkout
+      - attach_workspace:
+          at: ./
       - run:
           name: run npm test
           command: npm test
