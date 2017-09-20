@@ -18,9 +18,15 @@ jobs:
       - run:
           name: configure npm for private modules
           command: npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: install npm packages
           command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
       - run:
           name: compile typescript
           command: npm run build
