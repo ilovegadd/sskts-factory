@@ -1,6 +1,6 @@
 {
   "name": "@motionpicture/sskts-factory",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha.3",
   "description": "sskts factory library",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -21,11 +21,7 @@
     "nyc": "nyc mocha",
     "snyk": "snyk test --ignore-policy",
     "test": "npm run check",
-    "tslint": "tslint --type-check --project tsconfig.json -c tslint.json src/**/*.ts",
-    "preversion": "npm run clean && npm run build && npm test && npm run doc",
-    "version": "git add -A",
-    "postversion": "git push origin --tags",
-    "prepublishOnly": "npm run clean && npm run build && npm test"
+    "tslint": "tslint --type-check --project tsconfig.json -c tslint.json src/**/*.ts"
   },
   "author": {
     "name": "Motionpicture co.,ltd."
