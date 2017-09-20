@@ -30,23 +30,13 @@ jobs:
       - run:
           name: compile typescript
           command: npm run build
-      # persist node_modules for test job
-      # - persist_to_workspace:
-      #     root: ./
-      #     paths:
-      #       - node_modules/*
   test:
     docker:
       - image: circleci/node:latest
     steps:
       - checkout
-      # - attach_workspace:
-      #     at: ./
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: ls node_modules
-          command: ls ./node_modules
       - run:
           name: run npm test
           command: npm test
@@ -59,17 +49,32 @@ jobs:
       # - store_artifacts:
       #     path: coverage
       #     prefix: coverage
-
+  prerelease:
+    docker:
+      - image: circleci/node:latest
+    # environment:
+    #   HEROKU_APP: "sleepy-refuge-55486"
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          command: npm version 1.0.0-alpha.$CIRCLE_BUILD_NUM
+      - run:
+          command: npm publish --tag next
 # Used for orchestrating all jobs.
 workflows:
   version: 2
 
-  build_and_test:
+  build-test-and-prerelease:
     jobs:
       - build
       - test:
           requires:
             - build
-          # filters:
-          #   branches:
-          #     only: master
+      - prerelease:
+          requires:
+            - test
+          filters:
+            branches:
+              only: release-1.0.0-prerelease
