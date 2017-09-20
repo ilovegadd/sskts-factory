@@ -26,22 +26,25 @@ jobs:
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
-            - node_modules
+            - ./node_modules
       - run:
           name: compile typescript
           command: npm run build
       # persist node_modules for test job
-      - persist_to_workspace:
-          root: ./
-          paths:
-            - node_modules/*
+      # - persist_to_workspace:
+      #     root: ./
+      #     paths:
+      #       - node_modules/*
   test:
     docker:
       - image: circleci/node:latest
     steps:
       - checkout
-      - attach_workspace:
-          at: ./
+      # - attach_workspace:
+      #     at: ./
+      - run:
+          name: ls node_modules
+          command: ls ./node_modules
       - run:
           name: run npm test
           command: npm test
