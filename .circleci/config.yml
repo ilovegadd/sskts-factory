@@ -1,6 +1,7 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/project
     # The primary container is an instance of the first list image listed. Your build commands run in this container.
     docker:
       - image: circleci/node:latest
@@ -31,22 +32,11 @@ jobs:
           name: compile typescript
           command: npm run build
   test:
+    working_directory: ~/project
     docker:
       - image: circleci/node:latest
     steps:
       - checkout
-      - run:
-          name: configure npm for private modules
-          command: npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install npm packages
-          command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - node_modules
       - run:
           name: run npm test
           command: npm test
