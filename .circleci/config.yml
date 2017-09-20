@@ -1,7 +1,6 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/project
     # The primary container is an instance of the first list image listed. Your build commands run in this container.
     docker:
       - image: circleci/node:latest
@@ -31,8 +30,12 @@ jobs:
       - run:
           name: compile typescript
           command: npm run build
+      # persist node_modules for test job
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - node_modules/*
   test:
-    working_directory: ~/project
     docker:
       - image: circleci/node:latest
     steps:
