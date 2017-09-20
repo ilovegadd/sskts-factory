@@ -11,8 +11,14 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Update npm
-          command: 'sudo npm install -g npm@latest'
+          name: echo node version
+          command: node -v
+      - run:
+          name: echo npm version
+          command: npm -v
+      # - run:
+      #     name: Update npm
+      #     command: 'sudo npm install -g npm@latest'
       - run:
           name: Install npm packages
           command: npm install
