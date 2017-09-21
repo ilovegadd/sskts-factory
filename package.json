@@ -16,7 +16,7 @@
   "scripts": {
     "build": "tsc",
     "check": "npm run tslint && nsp check && npm run snyk",
-    "clean": "rimraf test/**/*.js ./lib npm-debug.log* ./doc",
+    "clean": "rimraf test/**/*.js ./lib npm-debug.log* ./doc ./coverage ./.nyc_output",
     "doc": "node_modules/.bin/jsdoc -c jsdoc.json",
     "nyc": "nyc mocha",
     "snyk": "snyk test --ignore-policy",
