@@ -52,14 +52,12 @@ jobs:
   prerelease:
     docker:
       - image: circleci/node:latest
-    # environment:
-    #   HEROKU_APP: "sleepy-refuge-55486"
     steps:
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          command: npm version 1.0.0-alpha.$CIRCLE_BUILD_NUM
+    #   - run:
+    #       command: npm version 1.0.0-alpha.$CIRCLE_BUILD_NUM
       - run:
           command: npm publish --tag next
 # Used for orchestrating all jobs.
@@ -77,4 +75,4 @@ workflows:
             - test
           filters:
             branches:
-              only: release-1.0.0-prerelease
+              only: release/1.0.0-alpha
