@@ -60,7 +60,9 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Generate docs
-          command: npm run doc
+          command: |
+            npm run build
+            npm run doc
   prerelease:
     docker:
       - image: circleci/node:latest
