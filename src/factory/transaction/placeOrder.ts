@@ -11,7 +11,6 @@ import * as OrderFactory from '../order';
 import * as OwnershipInfoFactory from '../ownershipInfo';
 import { IContact, IPerson } from '../person';
 import { IReservation } from '../reservation';
-import * as TaskFactory from '../task';
 import * as TransactionFactory from '../transaction';
 import TransactionStatusType from '../transactionStatusType';
 import TransactionTasksExportationStatus from '../transactionTasksExportationStatus';
@@ -149,8 +148,7 @@ export function createAttributes(params: {
     startDate?: Date;
     endDate?: Date;
     tasksExportedAt?: Date;
-    tasksExportationStatus?: TransactionTasksExportationStatus;
-    tasks?: TaskFactory.ITask[];
+    tasksExportationStatus: TransactionTasksExportationStatus;
 }): IAttributes {
     return {
         ...TransactionFactory.createAttributes({
@@ -164,8 +162,7 @@ export function createAttributes(params: {
             startDate: params.startDate,
             endDate: params.endDate,
             tasksExportedAt: params.tasksExportedAt,
-            tasksExportationStatus: params.tasksExportationStatus,
-            tasks: params.tasks
+            tasksExportationStatus: params.tasksExportationStatus
         }),
         ...{
             seller: params.seller,
