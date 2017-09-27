@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
+### Added
+
 ### Changed
 
 ### Deprecated
@@ -15,6 +17,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Security
 
 
+## v1.0.2 - 2017-09-27
+### Changed
+- transfer repository to organization.
+
+### Security
+- update dependencies.
 
 ## v1.0.1 - 2017-09-25
 ### Added
