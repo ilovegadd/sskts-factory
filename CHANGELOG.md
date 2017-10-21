@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Added
 
 ### Changed
+- 座席予約の供給情報インターフェースを調整。
+- イベントステータスをエクスポート。
 
 ### Deprecated
 
