@@ -19,9 +19,10 @@ import * as MovieCreativeWorkFactory from './factory/creativeWork/movie';
 import CreativeWorkType from './factory/creativeWorkType';
 import * as IndividualScreeningEventFactory from './factory/event/individualScreeningEvent';
 import * as ScreeningEventFactory from './factory/event/screeningEvent';
+import EventStatusType from './factory/eventStatusType';
 import EventType from './factory/eventType';
 import IMultilingualString from './factory/multilingualString';
-import * as OfferFactory from './factory/offer';
+import * as SeatReservationOfferFactory from './factory/offer/seatReservation';
 import * as OrderFactory from './factory/order';
 import OrderStatus from './factory/orderStatus';
 import * as CorporationOrganizationFactory from './factory/organization/corporation';
@@ -102,9 +103,12 @@ export namespace event {
     export import individualScreeningEvent = IndividualScreeningEventFactory;
     export import screeningEvent = ScreeningEventFactory;
 }
+export import eventStatusType = EventStatusType;
 export import eventType = EventType;
 export type multilingualString = IMultilingualString;
-export import offer = OfferFactory;
+export namespace offer {
+    export import seatReservation = SeatReservationOfferFactory;
+}
 export import order = OrderFactory;
 export import orderStatus = OrderStatus;
 export namespace organization {

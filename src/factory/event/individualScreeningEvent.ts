@@ -209,6 +209,12 @@ export function createFromCOA(params: {
         timeBegin: params.performanceFromCOA.timeBegin
     });
 
+    // COA情報を整形して開始日時と終了日時を作成
+    // tslint:disable-next-line:max-line-length
+    const endDate = moment(`${params.performanceFromCOA.dateJouei} ${params.performanceFromCOA.timeEnd} +09:00`, 'YYYYMMDD HHmm Z').toDate();
+    // tslint:disable-next-line:max-line-length
+    const startDate = moment(`${params.performanceFromCOA.dateJouei} ${params.performanceFromCOA.timeBegin} +09:00`, 'YYYYMMDD HHmm Z').toDate();
+
     return {
         ...EventFactory.create({
             eventStatus: EventStatusType.EventScheduled,
@@ -223,9 +229,8 @@ export function createFromCOA(params: {
                 branchCode: params.screenRoom.branchCode,
                 name: params.screenRoom.name
             },
-            // tslint:disable-next-line:max-line-length
-            endDate: moment(`${params.performanceFromCOA.dateJouei} ${params.performanceFromCOA.timeEnd} +09:00`, 'YYYYMMDD HHmm Z').toDate(),
-            startDate: moment(`${params.performanceFromCOA.dateJouei} ${params.performanceFromCOA.timeBegin} +09:00`, 'YYYYMMDD HHmm Z').toDate(),
+            endDate: endDate,
+            startDate: startDate,
             superEvent: params.screeningEvent,
             coaInfo: {
                 theaterCode: params.screeningEvent.location.branchCode,

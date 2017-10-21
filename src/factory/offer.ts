@@ -1,9 +1,7 @@
 /**
- * offer factory
+ * 供給情報ファクトリー
  * @namespace offer
  */
-
-import * as COA from '@motionpicture/coa-service';
 
 import PriceCurrency from './priceCurrency';
 
@@ -26,46 +24,4 @@ export interface IOffer {
      * when attached to PriceSpecification and its subtypes.
      */
     priceCurrency: PriceCurrency;
-}
-
-/**
- * COA券種情報
- * @export
- * @interface
- * @memberof offer
- */
-export type ICOATicketInfo = COA.services.reserve.IUpdReserveTicket & {
-    /**
-     * チケット名
-     */
-    ticketName: string;
-    /**
-     * チケット名（カナ）
-     */
-    ticketNameKana: string;
-    /**
-     * チケット名（英）
-     */
-    ticketNameEng: string;
-};
-
-/**
- * seat reservation offer interface
- * @export
- * @interface
- * @memberof offer
- */
-export interface ISeatReservationOffer {
-    /**
-     * seat section
-     */
-    seatSection: string;
-    /**
-     * seat number
-     */
-    seatNumber: string;
-    /**
-     * ticket info
-     */
-    ticketInfo: ICOATicketInfo;
 }

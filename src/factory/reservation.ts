@@ -5,7 +5,7 @@
 
 import * as EventFactory from './event';
 import IMultilingualString from './multilingualString';
-import { ICOATicketInfo } from './offer';
+import { ICOATicketInfoWithDetails } from './offer/seatReservation';
 import PriceCurrency from './priceCurrency';
 import ReservationStatusType from './reservationStatusType';
 import * as URLFactory from './url';
@@ -63,7 +63,7 @@ export interface ITicket {
     /**
      * COA券種情報
      */
-    coaTicketInfo: ICOATicketInfo;
+    coaTicketInfo: ICOATicketInfoWithDetails;
     /**
      * The date the ticket was issued.
      */
