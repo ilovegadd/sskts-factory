@@ -4,6 +4,7 @@
  * @namespace person
  */
 
+import PersonType from './personType';
 import * as ProgramMembershipFactory from './programMembership';
 
 /**
@@ -47,7 +48,7 @@ export interface IPerson {
     /**
      * type of object
      */
-    typeOf: string;
+    typeOf: PersonType;
     /**
      * person id (Amazon Cognito User Identifier)
      */

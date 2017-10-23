@@ -17,6 +17,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Security
 
 
+## v2.1.0 - 2017-10-23
+### Added
+- 人物タイプインターフェースを追加。
+- 決済方法タイプインターフェースを追加。
+
 ## v2.0.0 - 2017-10-21
 ### Changed
 - 座席予約の供給情報インターフェースを調整。

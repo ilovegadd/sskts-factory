@@ -3,12 +3,14 @@
  * @namespace paymentMethod
  */
 
+import PaymentMethodType from './paymentMethodType';
+
 /**
  * payment method interface
  * @interface {IPaymentMethod}
  * @memberof paymentMethod
  */
 export interface IPaymentMethod {
-    typeOf: string;
+    typeOf: PaymentMethodType;
     identifier: string;
 }

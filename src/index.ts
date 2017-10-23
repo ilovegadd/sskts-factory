@@ -1,5 +1,3 @@
-// tslint:disable:max-classes-per-file
-
 /**
  * sskts-factory
  * @module
@@ -31,7 +29,9 @@ import CorporationOrganizationIdentifier from './factory/organizationIdentifier/
 import OrganizationType from './factory/organizationType';
 import * as OwnershipInfoFactory from './factory/ownershipInfo';
 import * as CreditCardFactory from './factory/paymentMethod/paymentCard/creditCard';
+import PaymentMethodType from './factory/paymentMethodType';
 import * as PersonFactory from './factory/person';
+import PersonType from './factory/personType';
 import * as MovieTheaterPlaceFactory from './factory/place/movieTheater';
 import PlaceType from './factory/placeType';
 import PriceCurrency from './factory/priceCurrency';
@@ -124,7 +124,9 @@ export import priceCurrency = PriceCurrency;
 export namespace place {
     export import movieTheater = MovieTheaterPlaceFactory;
 }
+export import paymentMethodType = PaymentMethodType;
 export import person = PersonFactory;
+export import personType = PersonType;
 export import placeType = PlaceType;
 export namespace reservation {
     // tslint:disable-next-line:no-shadowed-variable
