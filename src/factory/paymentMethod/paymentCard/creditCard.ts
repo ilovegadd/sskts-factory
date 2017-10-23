@@ -5,6 +5,7 @@
 
 import * as GMO from '@motionpicture/gmo-service';
 
+import PaymentMethodType from '../../paymentMethodType';
 import { IPaymentCard } from '../paymentCard';
 
 /**
@@ -95,8 +96,8 @@ export function createCheckedCardFromGMOSearchCardResult(
     searchCardResult: GMO.services.card.ISearchCardResult
 ): ICheckedCard {
     return {
-        typeOf: 'CreditCard',
-        identifier: `CreditCard-${searchCardResult.cardSeq}`,
+        typeOf: PaymentMethodType.CreditCard,
+        identifier: `${PaymentMethodType.CreditCard}-${searchCardResult.cardSeq}`,
         cardSeq: searchCardResult.cardSeq,
         cardName: searchCardResult.cardName,
         cardNo: searchCardResult.cardNo,

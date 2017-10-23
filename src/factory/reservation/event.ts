@@ -12,6 +12,8 @@ import ArgumentError from '../../error/argument';
 
 import * as IndividualScreeningEventFactory from '../event/individualScreeningEvent';
 import { IOfferWithDetails as ISeatReservationOffer } from '../offer/seatReservation';
+import PersonType from '../personType';
+import PlaceType from '../placeType';
 import ReservationStatusType from '../reservationStatusType';
 
 export interface IEventReservation<T extends IEvent> extends IReservation {
@@ -70,7 +72,7 @@ export function createFromCOATmpReserve(params: {
                 totalPrice: requestedOffer.price,
                 priceCurrency: requestedOffer.priceCurrency,
                 ticketedSeat: {
-                    typeOf: 'Seat',
+                    typeOf: PlaceType.Seat,
                     seatingType: '',
                     seatNumber: tmpReserve.seatNum,
                     seatRow: '',
@@ -79,7 +81,7 @@ export function createFromCOATmpReserve(params: {
                 ticketNumber: ticketToken,
                 ticketToken: ticketToken,
                 underName: {
-                    typeOf: 'Person',
+                    typeOf: PersonType.Person,
                     name: {
                         ja: '',
                         en: ''
@@ -87,7 +89,7 @@ export function createFromCOATmpReserve(params: {
                 }
             },
             underName: {
-                typeOf: 'Person',
+                typeOf: PersonType.Person,
                 name: {
                     ja: '',
                     en: ''

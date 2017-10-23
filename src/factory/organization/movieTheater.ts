@@ -6,6 +6,7 @@
 import IMultilingualString from '../multilingualString';
 import * as OrganizationFactory from '../organization';
 import OrganizationType from '../organizationType';
+import PlaceType from '../placeType';
 import * as URLFactory from '../url';
 
 /**
@@ -33,7 +34,7 @@ export interface ILocation {
     /**
      * スキーマタイプ
      */
-    typeOf: string;
+    typeOf: PlaceType;
     /**
      * 枝番号
      * COAの劇場コードにあたります。
@@ -52,7 +53,7 @@ export interface IParentOrganization {
     /**
      * スキーマタイプ
      */
-    typeOf: string;
+    typeOf: OrganizationType;
     /**
      * 組織識別子
      */

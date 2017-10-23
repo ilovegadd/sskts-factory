@@ -6,6 +6,9 @@
 import * as EventFactory from './event';
 import IMultilingualString from './multilingualString';
 import { ICOATicketInfoWithDetails } from './offer/seatReservation';
+import OrganizationType from './organizationType';
+import PersonType from './personType';
+import PlaceType from './placeType';
 import PriceCurrency from './priceCurrency';
 import ReservationStatusType from './reservationStatusType';
 import * as URLFactory from './url';
@@ -21,7 +24,7 @@ export enum ReservationType {
  * @memberof reservation
  */
 export interface IUnderName {
-    typeOf: string;
+    typeOf: OrganizationType | PersonType;
     name: IMultilingualString;
 }
 
@@ -32,7 +35,7 @@ export interface IUnderName {
  * @memberof reservation
  */
 export interface ISeat {
-    typeOf: string;
+    typeOf: PlaceType;
     /**
      * The cabin/class of the seat.
      */

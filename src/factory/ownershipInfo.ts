@@ -4,6 +4,8 @@
  * @namespace ownershipInfo
  */
 
+import OrganizationType from './organizationType';
+import PersonType from './personType';
 import { IReservation } from './reservation';
 
 /**
@@ -19,7 +21,7 @@ export type IGood = IReservation;
  * @memberof ownershipInfo
  */
 export interface IOwner {
-    typeOf: string;
+    typeOf: OrganizationType | PersonType;
     id: string;
     name: string;
 }

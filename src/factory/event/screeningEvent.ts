@@ -12,6 +12,8 @@ import * as EventFactory from '../event';
 import EventStatusType from '../eventStatusType';
 import EventType from '../eventType';
 import IMultilingualString from '../multilingualString';
+import OrganizationType from '../organizationType';
+import PersonType from '../personType';
 import * as MovieTheaterPlaceFactory from '../place/movieTheater';
 import PlaceType from '../placeType';
 
@@ -47,7 +49,7 @@ export interface IWorkPerformed {
 }
 
 export interface IOrganizer {
-    typeOf: string;
+    typeOf: OrganizationType | PersonType;
     identifier: string;
     name: IMultilingualString;
 }
@@ -159,7 +161,11 @@ export function createFromCOA(params: {
 
     return {
         // title_codeは劇場をまたいで共有、title_branch_numは劇場毎に管理
-        identifier: createIdentifier(params.movieTheater.branchCode, params.filmFromCOA.titleCode, params.filmFromCOA.titleBranchNum),
+        identifier: createIdentifier({
+            theaterCode: params.movieTheater.branchCode,
+            titleCode: params.filmFromCOA.titleCode,
+            titleBranchNum: params.filmFromCOA.titleBranchNum
+        }),
         name: {
             ja: params.filmFromCOA.titleName,
             en: params.filmFromCOA.titleNameEng
@@ -173,7 +179,7 @@ export function createFromCOA(params: {
             typeOf: params.movieTheater.typeOf
         },
         organizer: {
-            typeOf: params.movieTheater.typeOf,
+            typeOf: OrganizationType.MovieTheater,
             identifier: params.movieTheater.identifier,
             name: params.movieTheater.name
         },
@@ -200,6 +206,20 @@ export function createFromCOA(params: {
     };
 }
 
-export function createIdentifier(theaterCode: string, titleCode: string, titleBranchNum: string) {
-    return `${theaterCode}${titleCode}${titleBranchNum}`;
+/**
+ * COA情報から上映イベント識別子を作成する
+ * @export
+ * @function
+ * @memberof event.screeningEvent
+ */
+export function createIdentifier(params: {
+    theaterCode: string,
+    titleCode: string,
+    titleBranchNum: string
+}) {
+    return [
+        params.theaterCode,
+        params.titleCode,
+        params.titleBranchNum
+    ].join('');
 }

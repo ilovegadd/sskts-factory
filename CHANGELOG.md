@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 ### Added
+- 人物タイプインターフェースを追加。
+- 決済方法タイプインターフェースを追加。
 
 ### Changed
 

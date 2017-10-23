@@ -202,8 +202,10 @@ export function createFromCOA(params: {
     serviceKubuns: COA.services.master.IKubunNameResult[];
     acousticKubuns: COA.services.master.IKubunNameResult[];
 }): IEvent {
-    const identifier = createIdFromCOA({
-        screeningEvent: params.screeningEvent,
+    const identifier = createIdentifierFromCOA({
+        theaterCode: params.screeningEvent.location.branchCode,
+        titleCode: params.screeningEvent.workPerformed.identifier,
+        titleBranchNum: params.screeningEvent.coaInfo.titleBranchNum,
         dateJouei: params.performanceFromCOA.dateJouei,
         screenCode: params.performanceFromCOA.screenCode,
         timeBegin: params.performanceFromCOA.timeBegin
@@ -253,19 +255,21 @@ export function createFromCOA(params: {
 }
 
 /**
- * create id by COA infos.
+ * COA情報から個々の上映イベント識別子を作成する
  * @export
  * @function
  * @memberof event.individualScreeningEvent
  */
-export function createIdFromCOA(params: {
-    screeningEvent: ScreeningEventFactory.IEvent,
+export function createIdentifierFromCOA(params: {
+    theaterCode: string,
+    titleCode: string,
+    titleBranchNum: string,
     dateJouei: string;
     screenCode: string;
     timeBegin: string;
 }): string {
     return [
-        params.screeningEvent.identifier,
+        ScreeningEventFactory.createIdentifier(params),
         params.dateJouei,
         params.screenCode,
         params.timeBegin

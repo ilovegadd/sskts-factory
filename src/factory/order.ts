@@ -16,7 +16,9 @@ import { IAction as ICreditCardAuthorizeAction, IResult as ICreditCardAuthorizeA
 import { IAction as IMvtkAuthorizeAction, IResult as IMvtkAuthorizeActionResult } from './action/authorize/mvtk';
 import { IEvent as IIndividualScreeningEvent } from './event/individualScreeningEvent';
 import OrderStatus from './orderStatus';
+import OrganizationType from './organizationType';
 import { IContact, IPerson } from './person';
+import PersonType from './personType';
 import PriceCurrency from './priceCurrency';
 import * as EventReservationFactory from './reservation/event';
 import ReservationStatusType from './reservationStatusType';
@@ -110,7 +112,7 @@ export interface IOffer {
      * 販売者
      */
     seller: {
-        typeOf: string;
+        typeOf: OrganizationType | PersonType;
         name: string;
     };
 }
@@ -123,7 +125,7 @@ export interface IOffer {
  * @memberof order
  */
 export interface ISeller {
-    typeOf: string;
+    typeOf: OrganizationType | PersonType;
     /**
      * Name of the Organization.
      */
