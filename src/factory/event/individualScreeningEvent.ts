@@ -26,8 +26,49 @@ import PlaceType from '../placeType';
  * @memberof event.individualScreeningEvent
  */
 export interface ISearchConditions {
-    day: string;
-    theater: string;
+    /**
+     * 上映日
+     * @deprecated since version 2.1.0
+     */
+    day?: string;
+    /**
+     * 劇場コード
+     * @deprecated since version 2.1.0
+     */
+    theater?: string;
+    /**
+     * イベント名称
+     */
+    name?: string;
+    /**
+     * 開始日時(in ISO 8601 date format) from
+     */
+    startFrom?: Date;
+    /**
+     * 開始日時(in ISO 8601 date format) through
+     */
+    startThrough?: Date;
+    /**
+     * 終了日時(in ISO 8601 date format) from
+     */
+    endFrom?: Date;
+    /**
+     * 終了日時(in ISO 8601 date format) through
+     */
+    endThrough?: Date;
+    /**
+     * イベントステータス
+     * イベントがキャンセル、あるいは、延期された場合に主に使用されます。
+     */
+    eventStatuses?: EventStatusType[];
+    /**
+     * イベントが実行される場所の枝番号リスト
+     */
+    locationBranchCodes?: string[];
+    /**
+     * イベントで上演される作品識別子リスト
+     */
+    workPerformedIdentifiers?: string[];
 }
 
 /**
