@@ -6,7 +6,6 @@
 
 import * as COA from '@motionpicture/coa-service';
 import * as moment from 'moment';
-import * as _ from 'underscore';
 
 import ArgumentError from '../../error/argument';
 
@@ -28,12 +27,12 @@ import PlaceType from '../placeType';
 export interface ISearchConditions {
     /**
      * 上映日
-     * @deprecated since version 2.1.0
+     * @deprecated since version 2.1.0 startFromとstartThroughを使ってください。
      */
     day?: string;
     /**
      * 劇場コード
-     * @deprecated since version 2.1.0
+     * @deprecated since version 2.1.0 locationBranchCodesを使ってください。
      */
     theater?: string;
     /**
@@ -62,9 +61,9 @@ export interface ISearchConditions {
      */
     eventStatuses?: EventStatusType[];
     /**
-     * イベントが実行される場所の枝番号リスト
+     * 親イベント(劇場の上映イベント)が実施される場所の識別子リスト
      */
-    locationBranchCodes?: string[];
+    superEventLocationIdentifiers?: string[];
     /**
      * イベントで上演される作品識別子リスト
      */
@@ -91,11 +90,11 @@ export type IItemAvailability = number;
  * @returns {IItemAvailability} 在庫状況表現
  */
 export function createItemAvailability(numberOfAvailableSeats: number, numberOfAllSeats: number): IItemAvailability {
-    if (!_.isNumber(numberOfAvailableSeats)) {
-        throw new ArgumentError('numberOfAvailableSeats', 'numberOfAvailableSeats should be number');
+    if (!Number.isInteger(numberOfAvailableSeats)) {
+        throw new ArgumentError('numberOfAvailableSeats', 'numberOfAvailableSeats must be number.');
     }
-    if (!_.isNumber(numberOfAllSeats)) {
-        throw new ArgumentError('numberOfAllSeats', 'numberOfAllSeats should be number');
+    if (!Number.isInteger(numberOfAllSeats)) {
+        throw new ArgumentError('numberOfAllSeats', 'numberOfAllSeats must be number.');
     }
 
     if (numberOfAllSeats === 0) {
@@ -146,15 +145,16 @@ export interface IEvent extends EventFactory.IEvent {
      */
     location: {
         /**
-         * スキーマタイプ
+         * 場所タイプ
          */
         typeOf: PlaceType;
         /**
-         * スクリーンコード
+         * 場所枝番号
+         * スクリーンコードに該当します。
          */
         branchCode: string;
         /**
-         * スクリーン名称
+         * 場所名称
          */
         name: IMultilingualString;
     };

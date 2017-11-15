@@ -3,7 +3,6 @@
  * @namespace creativeWork.message.email
  */
 
-import * as _ from 'underscore';
 import * as validator from 'validator';
 
 import ArgumentError from '../../../error/argument';
@@ -47,13 +46,25 @@ export function create(params: {
     about: string;
     text: string;
 }): ICreativeWork {
-    if (_.isEmpty(params.sender)) throw new ArgumentNullError('sender');
-    if (_.isEmpty(params.toRecipient)) throw new ArgumentNullError('to');
-    if (_.isEmpty(params.about)) throw new ArgumentNullError('about');
-    if (_.isEmpty(params.text)) throw new ArgumentNullError('text');
+    if (params.sender === null || typeof params.sender !== 'object') {
+        throw new ArgumentNullError('sender');
+    }
+    if (params.toRecipient === null || typeof params.toRecipient !== 'object') {
+        throw new ArgumentNullError('sender');
+    }
+    if (typeof params.about !== 'string' || validator.isEmpty(params.about)) {
+        throw new ArgumentNullError('about');
+    }
+    if (typeof params.text !== 'string' || validator.isEmpty(params.text)) {
+        throw new ArgumentNullError('text');
+    }
 
-    if (!validator.isEmail(params.sender.email)) throw new ArgumentError('sender.email', 'sender.email must be email');
-    if (!validator.isEmail(params.toRecipient.email)) throw new ArgumentError('toRecipient.email', 'toRecipient.email must be email');
+    if (typeof params.sender.email !== 'string' || !validator.isEmail(params.sender.email)) {
+        throw new ArgumentError('sender.email', 'sender.email must be email.');
+    }
+    if (typeof params.toRecipient.email !== 'string' || !validator.isEmail(params.toRecipient.email)) {
+        throw new ArgumentError('toRecipient.email', 'toRecipient.email must be email.');
+    }
 
     return {
         typeOf: CreativeWorkType.EmailMessage,

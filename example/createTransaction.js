@@ -1,14 +1,17 @@
 /**
- * a sample creating a transaction
- *
+ * 取引作成サンプル
  * @ignore
  */
 
 const factory = require('../');
 
-const transaction = factory.transaction.placeOrder.create({
+const transaction = factory.transaction.placeOrder.createAttributes({
     status: factory.transactionStatusType.InProgress,
-    expires: new Date()
+    expires: new Date(),
+    tasksExportationStatus: factory.transactionTasksExportationStatus.Unexported,
+    agent: {},
+    seller: {},
+    object: {}
 });
 
 console.log('transaction:', transaction);

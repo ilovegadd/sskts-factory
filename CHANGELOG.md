@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ## Unreleased
 ### Added
 - 個々の上映イベントの検索条件にプロパティを追加。
+- 上映イベントの場所に識別子プロパティを追加。
 
 ### Changed
 
@@ -16,6 +17,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 
 ### Security
+- テストコードを補強。
 
 
 ## v2.1.0 - 2017-10-23
