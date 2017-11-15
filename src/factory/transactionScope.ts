@@ -4,7 +4,6 @@
  */
 
 import * as moment from 'moment';
-import * as _ from 'underscore';
 
 import ArgumentError from '../error/argument';
 
@@ -57,12 +56,16 @@ export function create(params: {
     client?: string;
     theater?: string;
 }): ITransactionScope {
-    if (!_.isDate(params.readyFrom)) throw new ArgumentError('readyFrom', 'readyFrom should be Date');
-    if (!_.isDate(params.readyThrough)) throw new ArgumentError('readyThrough', 'readyThrough should be Date');
+    if (!(params.readyFrom instanceof Date)) {
+        throw new ArgumentError('readyFrom', 'readyFrom must be Date.');
+    }
+    if (!(params.readyThrough instanceof Date)) {
+        throw new ArgumentError('readyThrough', 'readyThrough must be Date.');
+    }
 
-    // untilはfromより遅くなければならない
+    // readyThroughはreadyFromより遅くなければならない
     if (params.readyThrough.getTime() <= params.readyFrom.getTime()) {
-        throw new ArgumentError('readyThrough', 'readyThrough must be later than readyFrom');
+        throw new ArgumentError('readyThrough', 'readyThrough must be later than readyFrom.');
     }
 
     return {
@@ -85,9 +88,14 @@ export function scope2String(scope: ITransactionScope) {
     scopeStr += `:readyFrom:${moment(scope.readyFrom).unix()}`;
     scopeStr += `:readyThrough:${moment(scope.readyThrough).unix()}`;
 
+    // tslint:disable-next-line:no-single-line-block-comment
+    /* istanbul ignore else */
     if (scope.client !== undefined) {
         scopeStr += `:client:${scope.client}`;
     }
+
+    // tslint:disable-next-line:no-single-line-block-comment
+    /* istanbul ignore else */
     if (scope.theater !== undefined) {
         scopeStr += `:theater:${scope.theater}`;
     }

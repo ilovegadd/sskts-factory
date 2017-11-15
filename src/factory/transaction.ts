@@ -4,7 +4,7 @@
  * @namespace transaction
  */
 
-import * as _ from 'underscore';
+import * as validator from 'validator';
 
 import ArgumentError from '../error/argument';
 import ArgumentNullError from '../error/argumentNull';
@@ -90,8 +90,24 @@ export function createAttributes(params: {
     tasksExportedAt?: Date;
     tasksExportationStatus: TransactionTasksExportationStatus;
 }): IAttributes {
-    if (_.isEmpty(params.status)) throw new ArgumentNullError('status');
-    if (!_.isDate(params.expires)) throw new ArgumentError('expires', 'expires should be Date');
+    if (typeof params.status !== 'string' || validator.isEmpty(params.status)) {
+        throw new ArgumentNullError('status');
+    }
+    if (typeof params.tasksExportationStatus !== 'string' || validator.isEmpty(params.tasksExportationStatus)) {
+        throw new ArgumentNullError('tasksExportationStatus');
+    }
+    if (!(params.expires instanceof Date)) {
+        throw new ArgumentError('expires', 'expires must be Date.');
+    }
+    if (params.startDate !== undefined && !(params.startDate instanceof Date)) {
+        throw new ArgumentError('startDate', 'startDate must be Date.');
+    }
+    if (params.endDate !== undefined && !(params.endDate instanceof Date)) {
+        throw new ArgumentError('endDate', 'endDate must be Date.');
+    }
+    if (params.tasksExportedAt !== undefined && !(params.tasksExportedAt instanceof Date)) {
+        throw new ArgumentError('tasksExportedAt', 'tasksExportedAt must be Date.');
+    }
 
     return {
         typeOf: params.typeOf,

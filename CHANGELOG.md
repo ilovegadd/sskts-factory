@@ -17,6 +17,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Security
 
 
+## v2.2.0 - 2017-11-15
+### Added
+- 個々の上映イベントの検索条件にプロパティを追加。
+- 上映イベントの場所に識別子プロパティを追加。
+
+### Security
+- テストコードを補強。
+
 ## v2.1.0 - 2017-10-23
 ### Added
 - 人物タイプインターフェースを追加。

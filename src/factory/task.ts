@@ -3,7 +3,7 @@
  * @namespace task
  */
 
-import * as _ from 'underscore';
+import * as validator from 'validator';
 
 import ArgumentError from '../error/argument';
 import ArgumentNullError from '../error/argumentNull';
@@ -73,23 +73,26 @@ export function createAttributes(params: {
     executionResults: TaskExecutionResult.ITaskExecutionResult[];
     data: any;
 }): IAttributes {
-    if (_.isEmpty(params.status)) {
+    if (typeof params.name !== 'string' || validator.isEmpty(params.name)) {
+        throw new ArgumentNullError('name');
+    }
+    if (typeof params.status !== 'string' || validator.isEmpty(params.status)) {
         throw new ArgumentNullError('status');
     }
-    if (!_.isDate(params.runsAt)) {
-        throw new ArgumentError('runsAt', 'runsAt should be Date');
+    if (!(params.runsAt instanceof Date)) {
+        throw new ArgumentError('runsAt', 'runsAt must be Date.');
     }
-    if (!_.isNumber(params.remainingNumberOfTries)) {
-        throw new ArgumentError('remainingNumberOfTries', 'remainingNumberOfTries should be number');
+    if (!Number.isInteger(params.remainingNumberOfTries)) {
+        throw new ArgumentError('remainingNumberOfTries', 'remainingNumberOfTries must be number.');
     }
-    if (!_.isNull(params.lastTriedAt) && !_.isDate(params.lastTriedAt)) {
-        throw new ArgumentError('lastTriedAt', 'lastTriedAt should be Date or null');
+    if (params.lastTriedAt !== null && !(params.lastTriedAt instanceof Date)) {
+        throw new ArgumentError('lastTriedAt', 'lastTriedAt must be Date or null.');
     }
-    if (!_.isNumber(params.numberOfTried)) {
-        throw new ArgumentError('numberOfTried', 'numberOfTried should be number');
+    if (!Number.isInteger(params.numberOfTried)) {
+        throw new ArgumentError('numberOfTried', 'numberOfTried must be number.');
     }
-    if (!_.isArray(params.executionResults)) {
-        throw new ArgumentError('executionResults', 'executionResults should be array');
+    if (!Array.isArray(params.executionResults)) {
+        throw new ArgumentError('executionResults', 'executionResults must be array.');
     }
 
     return {

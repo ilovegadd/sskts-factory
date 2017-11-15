@@ -79,6 +79,10 @@ export interface IEvent extends EventFactory.IEvent {
          */
         typeOf: PlaceType;
         /**
+         * 識別子
+         */
+        identifier: string;
+        /**
          * 劇場コード
          */
         branchCode: string;
@@ -173,6 +177,7 @@ export function createFromCOA(params: {
         kanaName: params.filmFromCOA.titleNameKana,
         alternativeHeadline: params.filmFromCOA.titleNameShort,
         location: {
+            identifier: params.movieTheater.identifier,
             branchCode: params.movieTheater.branchCode,
             name: params.movieTheater.name,
             kanaName: params.movieTheater.kanaName,
