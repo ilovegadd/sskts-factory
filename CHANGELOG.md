@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 ### Added
+- 注文取引のオブジェクトにWAITER許可証プロパティを追加。
 
 ### Changed
 
