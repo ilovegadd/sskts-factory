@@ -10,7 +10,7 @@ import { SSKTSError } from './sskts';
 export default class NotImplementedError extends SSKTSError {
     constructor(message?: string) {
         if (message === undefined || message.length === 0) {
-            message = 'Method is not yet implemented';
+            message = 'Method is not yet implemented.';
         }
 
         super(ErrorCode.NotImplemented, message);

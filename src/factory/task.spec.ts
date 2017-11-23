@@ -7,7 +7,7 @@
 
 import * as assert from 'power-assert';
 
-import * as errors from '../errors';
+import * as errors from './errors';
 import * as TaskFactory from './task';
 
 let TEST_CREATE_PARAMS: any;

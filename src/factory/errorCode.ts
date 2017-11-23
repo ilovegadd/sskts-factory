@@ -10,8 +10,8 @@ enum ErrorCode {
     Forbidden = 'Forbidden',
     NotFound = 'NotFound',
     NotImplemented = 'NotImplemented',
-    ServiceUnavailable = 'ServiceUnavailable',
     RateLimitExceeded = 'RateLimitExceeded',
+    ServiceUnavailable = 'ServiceUnavailable',
     Unauthorized = 'Unauthorized'
 }
 

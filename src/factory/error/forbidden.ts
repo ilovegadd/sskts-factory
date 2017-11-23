@@ -10,7 +10,7 @@ import { SSKTSError } from './sskts';
 export default class ForbiddenError extends SSKTSError {
     constructor(message?: string) {
         if (message === undefined || message.length === 0) {
-            message = 'Forbidden';
+            message = 'Forbidden.';
         }
 
         super(ErrorCode.Forbidden, message);
