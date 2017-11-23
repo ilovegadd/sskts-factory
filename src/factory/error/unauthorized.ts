@@ -10,7 +10,7 @@ import { SSKTSError } from './sskts';
 export default class UnauthorizedError extends SSKTSError {
     constructor(message?: string) {
         if (message === undefined || message.length === 0) {
-            message = 'Unauthorized';
+            message = 'Unauthorized.';
         }
 
         super(ErrorCode.Unauthorized, message);

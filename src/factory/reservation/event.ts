@@ -8,7 +8,7 @@ import * as COA from '@motionpicture/coa-service';
 import { IEvent } from '../event';
 import { IReservation, ReservationType } from '../reservation';
 
-import ArgumentError from '../../error/argument';
+import ArgumentError from '../error/argument';
 
 import * as IndividualScreeningEventFactory from '../event/individualScreeningEvent';
 import { IOfferWithDetails as ISeatReservationOffer } from '../offer/seatReservation';

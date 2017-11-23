@@ -7,7 +7,7 @@
 import * as COA from '@motionpicture/coa-service';
 import * as moment from 'moment';
 
-import ArgumentError from '../../error/argument';
+import ArgumentError from '../error/argument';
 
 import * as EventFactory from '../event';
 import * as ScreeningEventFactory from '../event/screeningEvent';
