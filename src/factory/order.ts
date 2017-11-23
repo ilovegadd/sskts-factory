@@ -7,8 +7,8 @@
  * @namespace order
  */
 
-import ArgumentError from '../error/argument';
-import NotImplementedError from '../error/notImplemented';
+import ArgumentError from './error/argument';
+import NotImplementedError from './error/notImplemented';
 
 import { ActionStatusType } from './action';
 import { AuthorizeActionPurpose } from './action/authorize';

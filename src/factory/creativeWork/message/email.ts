@@ -5,8 +5,8 @@
 
 import * as validator from 'validator';
 
-import ArgumentError from '../../../error/argument';
-import ArgumentNullError from '../../../error/argumentNull';
+import ArgumentError from '../../error/argument';
+import ArgumentNullError from '../../error/argumentNull';
 
 import * as CreativeWorkFactory from '../../creativeWork';
 import CreativeWorkType from '../../creativeWorkType';

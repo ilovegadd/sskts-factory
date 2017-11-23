@@ -5,7 +5,7 @@
 
 import * as moment from 'moment';
 
-import ArgumentError from '../error/argument';
+import ArgumentError from './error/argument';
 
 /**
  * transactionScope interface

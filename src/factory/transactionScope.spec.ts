@@ -8,7 +8,7 @@
 import * as moment from 'moment';
 import * as assert from 'power-assert';
 
-import * as errors from '../errors';
+import * as errors from './errors';
 import * as TransactionScopeFactory from './transactionScope';
 
 describe('transactionScope.create()', () => {

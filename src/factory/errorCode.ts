@@ -1,6 +1,5 @@
 /**
  * エラーコード
- *
  * @module errorCode
  */
 
@@ -11,6 +10,7 @@ enum ErrorCode {
     Forbidden = 'Forbidden',
     NotFound = 'NotFound',
     NotImplemented = 'NotImplemented',
+    RateLimitExceeded = 'RateLimitExceeded',
     ServiceUnavailable = 'ServiceUnavailable',
     Unauthorized = 'Unauthorized'
 }

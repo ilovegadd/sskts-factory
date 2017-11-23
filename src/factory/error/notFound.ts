@@ -12,7 +12,7 @@ export default class NotFoundError extends SSKTSError {
 
     constructor(entityName: string, message?: string) {
         if (message === undefined || message.length === 0) {
-            message = `Not Found: ${entityName}`;
+            message = `Not Found: ${entityName}.`;
         }
 
         super(ErrorCode.NotFound, message);

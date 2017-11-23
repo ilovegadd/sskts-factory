@@ -2,24 +2,24 @@ import ErrorCode from '../errorCode';
 import { SSKTSError } from './sskts';
 
 /**
- * ArgumentError
+ * ArgumentNullError
  *
- * @class ArgumentError
+ * @class ArgumentNullError
  * @extends {SSKTSError}
  */
-export default class ArgumentError extends SSKTSError {
+export default class ArgumentNullError extends SSKTSError {
     public readonly argumentName: string;
 
     constructor(argumentName: string, message?: string) {
         if (message === undefined || message.length === 0) {
-            message = `Invalid or missing argument supplied: ${argumentName}`;
+            message = `Missing argument: ${argumentName}.`;
         }
 
-        super(ErrorCode.Argument, message);
+        super(ErrorCode.ArgumentNull, message);
 
         this.argumentName = argumentName;
 
         // Set the prototype explicitly.
-        Object.setPrototypeOf(this, ArgumentError.prototype);
+        Object.setPrototypeOf(this, ArgumentNullError.prototype);
     }
 }

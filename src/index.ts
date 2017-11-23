@@ -57,8 +57,8 @@ import TransactionTasksExportationStatus from './factory/transactionTasksExporta
 import TransactionType from './factory/transactionType';
 import * as URLFactory from './factory/url';
 
-import ErrorCode from './errorCode';
-import * as errors from './errors';
+import ErrorCode from './factory/errorCode';
+import * as errors from './factory/errors';
 
 export import errors = errors;
 export import errorCode = ErrorCode;

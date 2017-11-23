@@ -10,7 +10,7 @@ import { SSKTSError } from './sskts';
 export default class ServiceUnavailableError extends SSKTSError {
     constructor(message?: string) {
         if (message === undefined || message.length === 0) {
-            message = 'service unavailable temporarily';
+            message = 'Service unavailable temporarily.';
         }
 
         super(ErrorCode.ServiceUnavailable, message);
