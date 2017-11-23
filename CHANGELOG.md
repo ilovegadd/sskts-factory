@@ -5,8 +5,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 ### Added
-- 注文取引のオブジェクトにWAITER許可証プロパティを追加。
-- RateLimitExceededエラーを追加。
 
 ### Changed
 
@@ -18,6 +16,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Security
 
+
+## v2.3.0 - 2017-11-23
+### Added
+- 注文取引のオブジェクトにWAITER許可証プロパティを追加。
+- RateLimitExceededエラーを追加。
 
 ## v2.2.0 - 2017-11-15
 ### Added
