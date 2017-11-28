@@ -17,6 +17,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Security
 
 
+## v2.3.1 - 2017-11-28
+### Fixed
+- add a node security exception [Regular Expression Denial of Service](https://nodesecurity.io/advisories/532).
+
 ## v2.3.0 - 2017-11-23
 ### Added
 - 注文取引のオブジェクトにWAITER許可証プロパティを追加。

@@ -1,6 +1,6 @@
 {
   "name": "@motionpicture/sskts-factory",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "SSKTS factory library.",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -55,11 +55,11 @@
     "power-assert": "^1.4.4",
     "rimraf": "^2.6.2",
     "sinon": "^3.3.0",
-    "snyk": "^1.49.5",
+    "snyk": "^1.52.0",
     "ts-node": "^3.3.0",
     "tslint": "^5.8.0",
     "tslint-microsoft-contrib": "^5.0.1",
-    "typescript": "^2.6.1"
+    "typescript": "^2.6.2"
   },
   "dependencies": {
     "@motionpicture/coa-service": "^4.0.8",
@@ -67,7 +67,7 @@
     "@motionpicture/waiter-domain": "^2.0.1",
     "debug": "^3.1.0",
     "moment": "^2.19.2",
-    "validator": "^9.1.1"
+    "validator": "^9.1.2"
   },
   "repository": {
     "type": "git",
