@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Removed
 
 ### Fixed
+- add a node security exception [Regular Expression Denial of Service](https://nodesecurity.io/advisories/532).
 
 ### Security
 
