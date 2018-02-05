@@ -17,7 +17,7 @@ export interface IPurpose {
     typeOf: AuthorizeActionPurpose;
 }
 
-export interface IAttributes extends ActionFactory.IAttributes {
+export interface IAttributes<TObject, TResult> extends ActionFactory.IAttributes<TObject, TResult> {
     purpose: IPurpose;
     agent: ActionFactory.IParticipant;
     recipient: ActionFactory.IParticipant;
@@ -28,4 +28,4 @@ export interface IAttributes extends ActionFactory.IAttributes {
     endDate?: Date;
 }
 
-export type IAction = IExtendId<IAttributes>;
+export type IAction<TObject, TResult> = IExtendId<IAttributes<TObject, TResult>>;

@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
 ### Added
+- 注文返品取引インターフェースを追加。
+- 注文返品アクションインターフェースを追加。
+- クレジットカード売上取消タスクインターフェースを追加。
+- 注文返品タスクインターフェースを追加。
 
 ### Changed
 

@@ -5,9 +5,13 @@
 
 enum TransactionType {
     /**
-     * 注文
+     * 注文取引
      */
-    PlaceOrder = 'PlaceOrder'
+    PlaceOrder = 'PlaceOrder',
+    /**
+     * 注文返品取引
+     */
+    ReturnOrder = 'ReturnOrder'
 }
 
 export default TransactionType;

@@ -10,6 +10,7 @@ import * as MvtkAuthorizeActionFactory from './factory/action/authorize/mvtk';
 import * as seatReservationAuthorizeActionFactory from './factory/action/authorize/seatReservation';
 import * as PrintActionFactory from './factory/action/transfer/print';
 import * as PrintTicketActionFactory from './factory/action/transfer/print/ticket';
+import * as ReturnOrderActionFactory from './factory/action/transfer/return/order';
 import * as ClientEventFactory from './factory/clientEvent';
 import * as ClientUserFactory from './factory/clientUser';
 import * as EmailMessageFactory from './factory/creativeWork/message/email';
@@ -43,6 +44,8 @@ import * as CancelMvtkTaskFactory from './factory/task/cancelMvtk';
 import * as CancelSeatReservationTaskFactory from './factory/task/cancelSeatReservation';
 import * as CreateOrderTaskFactory from './factory/task/createOrder';
 import * as CreateOwnershipInfosTaskFactory from './factory/task/createOwnershipInfos';
+import * as ReturnCreditCardSalesTaskFactory from './factory/task/returnCreditCardSales';
+import * as ReturnOrderTaskFactory from './factory/task/returnOrder';
 import * as SendEmailNotificationTaskFactory from './factory/task/sendEmailNotification';
 import * as SettleCreditCardTaskFactory from './factory/task/settleCreditCard';
 import * as SettleMvtkTaskFactory from './factory/task/settleMvtk';
@@ -51,6 +54,7 @@ import * as TaskExecutionResultFactory from './factory/taskExecutionResult';
 import TaskName from './factory/taskName';
 import TaskStatus from './factory/taskStatus';
 import * as PlaceOrderTransactionFactory from './factory/transaction/placeOrder';
+import * as ReturnOrderTransactionFactory from './factory/transaction/returnOrder';
 import * as TransactionScopeFactory from './factory/transactionScope';
 import TransactionStatusType from './factory/transactionStatusType';
 import TransactionTasksExportationStatus from './factory/transactionTasksExportationStatus';
@@ -82,6 +86,7 @@ export namespace action {
             export import IRecipient = PrintActionFactory.IRecipient;
             export import ticket = PrintTicketActionFactory;
         }
+        export import returnOrder = ReturnOrderActionFactory;
     }
 }
 
@@ -141,6 +146,8 @@ export namespace task {
     export import cancelSeatReservation = CancelSeatReservationTaskFactory;
     export import createOrder = CreateOrderTaskFactory;
     export import createOwnershipInfos = CreateOwnershipInfosTaskFactory;
+    export import returnCreditCardSales = ReturnCreditCardSalesTaskFactory;
+    export import returnOrder = ReturnOrderTaskFactory;
     export import sendEmailNotification = SendEmailNotificationTaskFactory;
     export import settleCreditCard = SettleCreditCardTaskFactory;
     export import settleMvtk = SettleMvtkTaskFactory;
@@ -151,6 +158,7 @@ export import taskName = TaskName;
 export import taskStatus = TaskStatus;
 export namespace transaction {
     export import placeOrder = PlaceOrderTransactionFactory;
+    export import returnOrder = ReturnOrderTransactionFactory;
 }
 export import transactionScope = TransactionScopeFactory;
 export import transactionStatusType = TransactionStatusType;

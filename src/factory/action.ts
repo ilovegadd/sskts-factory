@@ -29,7 +29,8 @@ export interface IParticipant {
  */
 export enum ActionType {
     AuthorizeAction = 'AuthorizeAction',
-    PrintAction = 'PrintAction'
+    PrintAction = 'PrintAction',
+    ReturnAction = 'ReturnAction'
 }
 
 /**
@@ -52,16 +53,16 @@ export enum ActionStatusType {
  * @interface
  * @memberof action
  */
-export interface IAttributes {
+export interface IAttributes<TObject, TResult> {
     typeOf: ActionType;
     actionStatus: ActionStatusType;
     agent?: IParticipant;
     recipient?: IParticipant;
-    result?: any;
+    result?: TResult;
     error?: any;
-    object?: any;
+    object?: TObject;
     startDate?: Date;
     endDate?: Date;
 }
 
-export type IAction = IExtendId<IAttributes>;
+export type IAction<TObject, TResult> = IExtendId<IAttributes<TObject, TResult>>;

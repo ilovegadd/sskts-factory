@@ -1,6 +1,5 @@
 /**
- * 印刷アクションファクトリー
- * @namespace action.transfer.print
+ * 返却アクションファクトリー
  */
 
 import * as ActionFactory from '../../action';
@@ -13,6 +12,7 @@ export type IObject = any;
 export type IResult = any;
 
 export interface IAttributes<TObject, TResult> extends ActionFactory.IAttributes<TObject, TResult> {
+    recipient: ActionFactory.IParticipant;
     result?: IResult;
     object: IObject;
 }
@@ -24,15 +24,17 @@ export function createAttributes(params: {
     result?: IResult;
     object: IObject;
     agent: IAgent;
+    recipient: ActionFactory.IParticipant;
     startDate: Date;
     endDate?: Date;
 }): IAttributes<IObject, IResult> {
     return {
         actionStatus: params.actionStatus,
-        typeOf: ActionFactory.ActionType.PrintAction,
+        typeOf: ActionFactory.ActionType.ReturnAction,
         result: params.result,
         object: params.object,
         agent: params.agent,
+        recipient: params.recipient,
         startDate: params.startDate,
         endDate: params.endDate
     };

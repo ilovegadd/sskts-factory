@@ -110,7 +110,7 @@ export interface IObject {
     /**
      * 認可アクションリスト
      */
-    authorizeActions: IAuthorizeAction[];
+    authorizeActions: IAuthorizeAction<any, any>[];
 }
 
 export type ITransaction = IExtendId<IAttributes>;
@@ -122,7 +122,7 @@ export type ITransaction = IExtendId<IAttributes>;
  * @interface
  * @memberof transaction.placeOrder
  */
-export interface IAttributes extends TransactionFactory.IAttributes {
+export interface IAttributes extends TransactionFactory.IAttributes<IAgent, IObject, IResult> {
     /**
      * 購入者
      */
@@ -167,7 +167,7 @@ export function createAttributes(params: {
     tasksExportationStatus: TransactionTasksExportationStatus;
 }): IAttributes {
     return {
-        ...TransactionFactory.createAttributes({
+        ...TransactionFactory.createAttributes<IAgent, IObject, IResult>({
             typeOf: TransactionType.PlaceOrder,
             status: params.status,
             agent: params.agent,
