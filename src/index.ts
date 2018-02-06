@@ -70,18 +70,27 @@ export import errorCode = ErrorCode;
 export import actionStatusType = ActionFactory.ActionStatusType;
 export import actionType = ActionFactory.ActionType;
 export namespace action {
+    export import IAction = ActionFactory.IAction;
+    export import IAttributes = ActionFactory.IAttributes;
     export import IParticipant = ActionFactory.IParticipant;
+    export import IPurpose = ActionFactory.IPurpose;
+
     export namespace authorize {
+        // tslint:disable-next-line:no-shadowed-variable
         export import IAction = AuthorizeActionFactory.IAction;
+        // tslint:disable-next-line:no-shadowed-variable
         export import IAttributes = AuthorizeActionFactory.IAttributes;
         export import authorizeActionPurpose = AuthorizeActionFactory.AuthorizeActionPurpose;
         export import creditCard = CreditCardAuthorizeActionFactory;
         export import mvtk = MvtkAuthorizeActionFactory;
         export import seatReservation = seatReservationAuthorizeActionFactory;
     }
+
     export namespace transfer {
         export namespace print {
+            // tslint:disable-next-line:no-shadowed-variable
             export import IAction = PrintActionFactory.IAction;
+            // tslint:disable-next-line:no-shadowed-variable
             export import IAttributes = PrintActionFactory.IAttributes;
             export import IRecipient = PrintActionFactory.IRecipient;
             export import ticket = PrintTicketActionFactory;

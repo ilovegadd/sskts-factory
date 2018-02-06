@@ -48,21 +48,59 @@ export enum ActionStatusType {
 }
 
 /**
+ * アクション目的インターフェース
+ */
+export interface IPurpose {
+    typeOf: string;
+}
+
+/**
  * アクション属性
  * @export
  * @interface
  * @memberof action
  */
 export interface IAttributes<TObject, TResult> {
+    /**
+     * アクションタイプ
+     */
     typeOf: ActionType;
+    /**
+     * アクション状態
+     */
     actionStatus: ActionStatusType;
-    agent?: IParticipant;
+    /**
+     * アクション主体者
+     */
+    agent: IParticipant;
+    /**
+     * アクション受取者
+     */
     recipient?: IParticipant;
+    /**
+     * アクション結果
+     */
     result?: TResult;
+    /**
+     * アクション失敗時のエラー結果
+     */
     error?: any;
-    object?: TObject;
-    startDate?: Date;
+    /**
+     * アクション対象
+     */
+    object: TObject;
+    /**
+     * 開始日時
+     */
+    startDate: Date;
+    /**
+     * 終了日時
+     */
     endDate?: Date;
+    /**
+     * 目的
+     */
+    purpose?: IPurpose;
 }
 
 export type IAction<TObject, TResult> = IExtendId<IAttributes<TObject, TResult>>;

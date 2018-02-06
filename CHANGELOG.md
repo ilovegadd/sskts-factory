@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - 注文返品タスクインターフェースを追加。
 
 ### Changed
+- アクションインターフェースを拡張。
 
 ### Deprecated
 
