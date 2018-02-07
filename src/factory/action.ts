@@ -33,7 +33,8 @@ export enum ActionType {
     PayAction = 'PayAction',
     PrintAction = 'PrintAction',
     ReturnAction = 'ReturnAction',
-    SendAction = 'SendAction'
+    SendAction = 'SendAction',
+    UseAction = 'UseAction'
 }
 
 /**

@@ -29,14 +29,16 @@ export type IAgent = IPerson;
  * @export
  */
 export interface IResult {
-    /**
-     * 注文返品アクション属性
-     */
-    returnOrderActionAttributes: IReturnOrderActionAttributes;
-    /**
-     * 返金アクション属性
-     */
-    returnPayActionAttributes: IReturnPayActionAttributes;
+    postActions: {
+        /**
+         * 注文返品アクション属性
+         */
+        returnOrderAction: IReturnOrderActionAttributes;
+        /**
+         * 返金アクション属性
+         */
+        returnPayAction: IReturnPayActionAttributes;
+    };
 }
 
 /**

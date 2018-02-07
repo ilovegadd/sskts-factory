@@ -8,6 +8,7 @@ import * as AuthorizeActionFactory from './factory/action/authorize';
 import * as CreditCardAuthorizeActionFactory from './factory/action/authorize/creditCard';
 import * as MvtkAuthorizeActionFactory from './factory/action/authorize/mvtk';
 import * as seatReservationAuthorizeActionFactory from './factory/action/authorize/seatReservation';
+import * as UseMvtkActionFactory from './factory/action/consume/use/mvtk';
 import * as OrderActionFactory from './factory/action/trade/order';
 import * as PayActionFactory from './factory/action/trade/pay';
 import * as PrintActionFactory from './factory/action/transfer/print';
@@ -15,6 +16,7 @@ import * as PrintTicketActionFactory from './factory/action/transfer/print/ticke
 import * as ReturnOrderActionFactory from './factory/action/transfer/return/order';
 import * as ReturnPayActionFactory from './factory/action/transfer/return/pay';
 import * as SendOrderActionFactory from './factory/action/transfer/send/order';
+
 import * as ClientEventFactory from './factory/clientEvent';
 import * as ClientUserFactory from './factory/clientUser';
 import * as EmailMessageFactory from './factory/creativeWork/message/email';
@@ -119,6 +121,12 @@ export namespace action {
         export namespace send {
             // tslint:disable-next-line:no-shadowed-variable
             export import order = SendOrderActionFactory;
+        }
+    }
+
+    export namespace consume {
+        export namespace use {
+            export import mvtk = UseMvtkActionFactory;
         }
     }
 }

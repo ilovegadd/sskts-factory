@@ -13,9 +13,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - 支払アクションを追加。
 - 返金アクションを追加。
 - 注文配送アクションを追加。
+- 使用アクションを追加。
 
 ### Changed
 - アクションインターフェースを拡張。
+- 取引結果にポストアクションを定義。
 
 ### Deprecated
 
