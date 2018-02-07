@@ -58,7 +58,7 @@ export type IError = any;
  * @interface
  * @memberof action.authorize.seatReservation
  */
-export interface IAttributes extends AuthorizeActionFactory.IAttributes {
+export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
     result?: IResult;
     object: IObject;
 }

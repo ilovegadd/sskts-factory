@@ -103,7 +103,7 @@ export interface IZskInfo {
 /**
  * ムビチケ着券情報
  */
-export interface IAttributes extends AuthorizeActionFactory.IAttributes {
+export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
     result?: IResult;
     object: IObject;
 }

@@ -1,6 +1,5 @@
 /**
- * 印刷アクションファクトリー
- * @namespace action.transfer.print
+ * 使用アクションファクトリー
  */
 
 import * as ActionFactory from '../../action';
@@ -29,7 +28,7 @@ export function createAttributes(params: {
 }): IAttributes<IObject, IResult> {
     return {
         actionStatus: params.actionStatus,
-        typeOf: ActionFactory.ActionType.PrintAction,
+        typeOf: ActionFactory.ActionType.UseAction,
         result: params.result,
         object: params.object,
         agent: params.agent,

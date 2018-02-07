@@ -14,7 +14,7 @@ import TransactionStatusType from './transactionStatusType';
 import TransactionTasksExportationStatus from './transactionTasksExportationStatus';
 import TransactionType from './transactionType';
 
-export type ITransaction = IExtendId<IAttributes>;
+export type ITransaction<TAgent, TObject, TResult> = IExtendId<IAttributes<TAgent, TObject, TResult>>;
 
 /**
  * transaction interface
@@ -23,7 +23,7 @@ export type ITransaction = IExtendId<IAttributes>;
  * @interface
  * @memberof transaction
  */
-export interface IAttributes {
+export interface IAttributes<TAgent, TObject, TResult> {
     /**
      * 取引タイプ
      */
@@ -35,11 +35,11 @@ export interface IAttributes {
     /**
      * 取引主体
      */
-    agent: any;
+    agent: TAgent;
     /**
      * 取引結果
      */
-    result?: any;
+    result?: TResult;
     /**
      * 取引エラー
      */
@@ -47,7 +47,7 @@ export interface IAttributes {
     /**
      * 取引対象
      */
-    object?: any;
+    object?: TObject;
     /**
      * 取引進行期限
      */
@@ -77,7 +77,7 @@ export interface IAttributes {
  * @returns {IAttributes} 取引属性
  * @memberof transaction
  */
-export function createAttributes(params: {
+export function createAttributes<TAgent, TObject, TResult>(params: {
     typeOf: TransactionType;
     status: TransactionStatusType;
     agent: any;
@@ -89,7 +89,7 @@ export function createAttributes(params: {
     endDate?: Date;
     tasksExportedAt?: Date;
     tasksExportationStatus: TransactionTasksExportationStatus;
-}): IAttributes {
+}): IAttributes<TAgent, TObject, TResult> {
     if (typeof params.status !== 'string' || validator.isEmpty(params.status)) {
         throw new ArgumentNullError('status');
     }

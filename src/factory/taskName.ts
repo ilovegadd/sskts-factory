@@ -13,7 +13,15 @@ enum TaskName {
     SettleCreditCard = 'settleCreditCard',
     SettleMvtk = 'settleMvtk',
     CreateOrder = 'createOrder',
-    CreateOwnershipInfos = 'createOwnershipInfos'
+    CreateOwnershipInfos = 'createOwnershipInfos',
+    /**
+     * クレジットカード売上取消
+     */
+    ReturnCreditCardSales = 'returnCreditCardSales',
+    /**
+     * 注文返品
+     */
+    ReturnOrder = 'returnOrder'
 }
 
 export default TaskName;
