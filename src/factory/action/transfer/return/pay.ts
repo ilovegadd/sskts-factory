@@ -10,10 +10,13 @@ import * as ReturnActionFactory from '../return';
 export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;
 
-export interface IObject {
+/**
+ * 返却対象は支払アクション
+ * 分析利便性のためにorderNumberを追加
+ */
+export type IObject = PayActionFactory.IAction & {
     orderNumber: string;
-    payAction: PayActionFactory.IAction;
-}
+};
 
 export type IResult = any;
 

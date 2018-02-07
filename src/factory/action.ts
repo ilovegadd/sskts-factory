@@ -32,7 +32,8 @@ export enum ActionType {
     OrderAction = 'OrderAction',
     PayAction = 'PayAction',
     PrintAction = 'PrintAction',
-    ReturnAction = 'ReturnAction'
+    ReturnAction = 'ReturnAction',
+    SendAction = 'SendAction'
 }
 
 /**

@@ -14,6 +14,7 @@ import * as PrintActionFactory from './factory/action/transfer/print';
 import * as PrintTicketActionFactory from './factory/action/transfer/print/ticket';
 import * as ReturnOrderActionFactory from './factory/action/transfer/return/order';
 import * as ReturnPayActionFactory from './factory/action/transfer/return/pay';
+import * as SendOrderActionFactory from './factory/action/transfer/send/order';
 import * as ClientEventFactory from './factory/clientEvent';
 import * as ClientUserFactory from './factory/clientUser';
 import * as EmailMessageFactory from './factory/creativeWork/message/email';
@@ -113,6 +114,11 @@ export namespace action {
             export import pay = ReturnPayActionFactory;
             // tslint:disable-next-line:no-shadowed-variable
             export import order = ReturnOrderActionFactory;
+        }
+
+        export namespace send {
+            // tslint:disable-next-line:no-shadowed-variable
+            export import order = SendOrderActionFactory;
         }
     }
 }
