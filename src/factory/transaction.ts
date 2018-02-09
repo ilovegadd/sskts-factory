@@ -68,6 +68,10 @@ export interface IAttributes<TAgent, TObject, TResult> {
      * タスクエクスポート状態
      */
     tasksExportationStatus: TransactionTasksExportationStatus;
+    /**
+     * 事後に発生するアクション
+     */
+    potentialActions?: any;
 }
 
 /**
@@ -89,6 +93,7 @@ export function createAttributes<TAgent, TObject, TResult>(params: {
     endDate?: Date;
     tasksExportedAt?: Date;
     tasksExportationStatus: TransactionTasksExportationStatus;
+    potentialActions: any;
 }): IAttributes<TAgent, TObject, TResult> {
     if (typeof params.status !== 'string' || validator.isEmpty(params.status)) {
         throw new ArgumentNullError('status');
@@ -120,6 +125,7 @@ export function createAttributes<TAgent, TObject, TResult>(params: {
         startDate: params.startDate,
         endDate: params.endDate,
         tasksExportedAt: params.tasksExportedAt,
-        tasksExportationStatus: params.tasksExportationStatus
+        tasksExportationStatus: params.tasksExportationStatus,
+        potentialActions: params.potentialActions
     };
 }

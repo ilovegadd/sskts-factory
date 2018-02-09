@@ -70,10 +70,6 @@ export interface IAttributes<TObject, TResult> {
      */
     typeOf: ActionType;
     /**
-     * アクション状態
-     */
-    actionStatus: ActionStatusType;
-    /**
      * アクション主体者
      */
     agent: IParticipant;
@@ -94,6 +90,25 @@ export interface IAttributes<TObject, TResult> {
      */
     object: TObject;
     /**
+     * 目的
+     */
+    purpose?: IPurpose;
+    /**
+     * 事後に発生するアクション
+     */
+    potentialActions?: any;
+}
+
+/**
+ * アクション動的属性インターフェース
+ * リポジトリーに保管時にセット、あるいは変更される
+ */
+export interface IDynamicAttributes {
+    /**
+     * アクション状態
+     */
+    actionStatus: ActionStatusType;
+    /**
      * 開始日時
      */
     startDate: Date;
@@ -101,10 +116,9 @@ export interface IAttributes<TObject, TResult> {
      * 終了日時
      */
     endDate?: Date;
-    /**
-     * 目的
-     */
-    purpose?: IPurpose;
 }
 
-export type IAction<TObject, TResult> = IExtendId<IAttributes<TObject, TResult>>;
+/**
+ * 抽象アクションインターフェース
+ */
+export type IAction<TAttributes extends IAttributes<any, any>> = IExtendId<TAttributes & IDynamicAttributes>;

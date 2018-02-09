@@ -28,18 +28,7 @@ export type IAgent = IPerson;
  * 取引結果インターフェース
  * @export
  */
-export interface IResult {
-    postActions: {
-        /**
-         * 注文返品アクション属性
-         */
-        returnOrderAction: IReturnOrderActionAttributes;
-        /**
-         * 返金アクション属性
-         */
-        returnPayAction: IReturnPayActionAttributes;
-    };
-}
+export type IResult = any;
 
 /**
  * error interface
@@ -78,6 +67,17 @@ export interface IObject {
     reason: Reason;
 }
 
+export interface IPotentialActions {
+    /**
+     * 注文返品アクション属性
+     */
+    returnOrder: IReturnOrderActionAttributes;
+    /**
+     * 返金アクション属性
+     */
+    refund: IReturnPayActionAttributes;
+}
+
 export type ITransaction = IExtendId<IAttributes>;
 
 /**
@@ -101,6 +101,10 @@ export interface IAttributes extends TransactionFactory.IAttributes<IAgent, IObj
      * 取引の対象物
      */
     object: IObject;
+    /**
+     * 事後発生アクション
+     */
+    potentialActions?: IPotentialActions;
 }
 
 /**
@@ -118,6 +122,7 @@ export function createAttributes(params: {
     endDate?: Date;
     tasksExportedAt?: Date;
     tasksExportationStatus: TransactionTasksExportationStatus;
+    potentialActions?: IPotentialActions;
 }): IAttributes {
     return {
         ...TransactionFactory.createAttributes<IAgent, IObject, IResult>({
@@ -131,7 +136,8 @@ export function createAttributes(params: {
             startDate: params.startDate,
             endDate: params.endDate,
             tasksExportedAt: params.tasksExportedAt,
-            tasksExportationStatus: params.tasksExportationStatus
+            tasksExportationStatus: params.tasksExportationStatus,
+            potentialActions: params.potentialActions
         }),
         ...{
             object: params.object
