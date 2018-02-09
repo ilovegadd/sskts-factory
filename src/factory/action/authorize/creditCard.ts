@@ -34,8 +34,6 @@ export interface IResult {
  * GMOオーソリインターフェース
  */
 export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
-    result?: IResult;
-    object: IObject;
 }
 
 export type IAction = ActionFactory.IAction<IAttributes>;

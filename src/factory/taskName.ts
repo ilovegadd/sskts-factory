@@ -19,9 +19,9 @@ enum TaskName {
      */
     SendOrder = 'sendOrder',
     /**
-     * クレジットカード売上取消
+     * クレジットカード返金
      */
-    ReturnCreditCardSales = 'returnCreditCardSales',
+    RefundCreditCard = 'refundCreditCard',
     /**
      * 注文返品
      */

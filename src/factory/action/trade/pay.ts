@@ -14,7 +14,6 @@ export type IRecipient = ActionFactory.IParticipant;
 export type IPurpose = IOrder;
 
 export interface IObject {
-    orderNumber: string;
     /**
      * 決済方法
      */
@@ -37,8 +36,6 @@ export interface IResult {
 }
 
 export interface IAttributes extends ActionFactory.IAttributes<IObject, IResult> {
-    result?: IResult;
-    object: IObject;
     purpose: IPurpose;
 }
 

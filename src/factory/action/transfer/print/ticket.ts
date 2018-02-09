@@ -25,8 +25,6 @@ export interface IObject extends ITicket {
 export type IResult = any;
 
 export interface IAttributes extends PrintActionFactory.IAttributes<IObject, IResult> {
-    result?: IResult;
-    object: IObject;
 }
 
 export type IAction = PrintActionFactory.IAction<IAttributes>;

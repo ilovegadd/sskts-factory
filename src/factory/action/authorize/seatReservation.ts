@@ -58,8 +58,6 @@ export type IError = any;
  * @memberof action.authorize.seatReservation
  */
 export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
-    result?: IResult;
-    object: IObject;
 }
 
 export type IAction = ActionFactory.IAction<IAttributes>;

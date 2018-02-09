@@ -22,8 +22,6 @@ export interface IPurpose {
 export interface IAttributes<TObject, TResult> extends ActionFactory.IAttributes<TObject, TResult> {
     purpose: IPurpose;
     recipient: ActionFactory.IParticipant;
-    result?: IResult;
-    object: IObject;
 }
 
 export type IAction<TAttributes extends IAttributes<IObject, IResult>> = ActionFactory.IAction<TAttributes>;

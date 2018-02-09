@@ -11,10 +11,10 @@ import * as seatReservationAuthorizeActionFactory from './factory/action/authori
 import * as UseMvtkActionFactory from './factory/action/consume/use/mvtk';
 import * as OrderActionFactory from './factory/action/trade/order';
 import * as PayActionFactory from './factory/action/trade/pay';
+import * as RefundActionFactory from './factory/action/trade/refund';
 import * as PrintActionFactory from './factory/action/transfer/print';
 import * as PrintTicketActionFactory from './factory/action/transfer/print/ticket';
 import * as ReturnOrderActionFactory from './factory/action/transfer/return/order';
-import * as ReturnPayActionFactory from './factory/action/transfer/return/pay';
 import * as SendOrderActionFactory from './factory/action/transfer/send/order';
 
 import * as ClientEventFactory from './factory/clientEvent';
@@ -50,7 +50,7 @@ import * as CancelMvtkTaskFactory from './factory/task/cancelMvtk';
 import * as CancelSeatReservationTaskFactory from './factory/task/cancelSeatReservation';
 import * as CreateOrderTaskFactory from './factory/task/createOrder';
 import * as CreateOwnershipInfosTaskFactory from './factory/task/createOwnershipInfos';
-import * as ReturnCreditCardSalesTaskFactory from './factory/task/returnCreditCardSales';
+import * as RefundCreditCardTaskFactory from './factory/task/refundCreditCard';
 import * as ReturnOrderTaskFactory from './factory/task/returnOrder';
 import * as SendEmailNotificationTaskFactory from './factory/task/sendEmailNotification';
 import * as SendOrderTaskFactory from './factory/task/sendOrder';
@@ -97,6 +97,7 @@ export namespace action {
         // tslint:disable-next-line:no-shadowed-variable
         export import order = OrderActionFactory;
         export import pay = PayActionFactory;
+        export import refund = RefundActionFactory;
     }
 
     export namespace transfer {
@@ -114,7 +115,6 @@ export namespace action {
          * returnはネームスペース名に使えないのでreturnAction
          */
         export namespace returnAction {
-            export import pay = ReturnPayActionFactory;
             // tslint:disable-next-line:no-shadowed-variable
             export import order = ReturnOrderActionFactory;
         }
@@ -188,7 +188,7 @@ export namespace task {
     export import cancelSeatReservation = CancelSeatReservationTaskFactory;
     export import createOrder = CreateOrderTaskFactory;
     export import createOwnershipInfos = CreateOwnershipInfosTaskFactory;
-    export import returnCreditCardSales = ReturnCreditCardSalesTaskFactory;
+    export import refundCreditCard = RefundCreditCardTaskFactory;
     export import returnOrder = ReturnOrderTaskFactory;
     export import sendEmailNotification = SendEmailNotificationTaskFactory;
     export import sendOrder = SendOrderTaskFactory;

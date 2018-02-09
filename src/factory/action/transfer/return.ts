@@ -12,8 +12,6 @@ export type IResult = any;
 
 export interface IAttributes<TObject, TResult> extends ActionFactory.IAttributes<TObject, TResult> {
     recipient: ActionFactory.IParticipant;
-    result?: IResult;
-    object: IObject;
 }
 
 export type IAction<TAttributes extends IAttributes<IObject, IResult>> = ActionFactory.IAction<TAttributes>;

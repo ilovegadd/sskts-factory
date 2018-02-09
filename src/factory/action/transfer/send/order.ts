@@ -19,8 +19,6 @@ export interface IPotentialActions {
 
 export interface IAttributes extends SendActionFactory.IAttributes<IObject, IResult> {
     recipient: IRecipient;
-    result?: IResult;
-    object: IObject;
     potentialActions: IPotentialActions;
 }
 
