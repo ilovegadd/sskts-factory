@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - 返金アクションを追加。
 - 注文配送アクションを追加。
 - 使用アクションを追加。
+- 注文配送タスクを追加。
 
 ### Changed
 - アクションインターフェースを拡張。

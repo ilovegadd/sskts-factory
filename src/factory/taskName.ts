@@ -15,6 +15,10 @@ enum TaskName {
     CreateOrder = 'createOrder',
     CreateOwnershipInfos = 'createOwnershipInfos',
     /**
+     * 注文配送
+     */
+    SendOrder = 'sendOrder',
+    /**
      * クレジットカード売上取消
      */
     ReturnCreditCardSales = 'returnCreditCardSales',

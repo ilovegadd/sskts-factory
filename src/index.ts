@@ -53,6 +53,7 @@ import * as CreateOwnershipInfosTaskFactory from './factory/task/createOwnership
 import * as ReturnCreditCardSalesTaskFactory from './factory/task/returnCreditCardSales';
 import * as ReturnOrderTaskFactory from './factory/task/returnOrder';
 import * as SendEmailNotificationTaskFactory from './factory/task/sendEmailNotification';
+import * as SendOrderTaskFactory from './factory/task/sendOrder';
 import * as SettleCreditCardTaskFactory from './factory/task/settleCreditCard';
 import * as SettleMvtkTaskFactory from './factory/task/settleMvtk';
 import * as SettleSeatReservationTaskFactory from './factory/task/settleSeatReservation';
@@ -190,6 +191,7 @@ export namespace task {
     export import returnCreditCardSales = ReturnCreditCardSalesTaskFactory;
     export import returnOrder = ReturnOrderTaskFactory;
     export import sendEmailNotification = SendEmailNotificationTaskFactory;
+    export import sendOrder = SendOrderTaskFactory;
     export import settleCreditCard = SettleCreditCardTaskFactory;
     export import settleMvtk = SettleMvtkTaskFactory;
     export import settleSeatReservation = SettleSeatReservationTaskFactory;
