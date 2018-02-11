@@ -19,6 +19,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Changed
 - アクションインターフェースを拡張。
 - アクションと取引に対して潜在アクション属性を定義。
+- 承認アクションのobjectに型を定義し、purposeを取引型に変更。
 
 ### Deprecated
 

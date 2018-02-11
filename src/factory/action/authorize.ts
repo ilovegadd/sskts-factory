@@ -15,9 +15,7 @@ export enum AuthorizeActionPurpose {
     SeatReservation = 'SeatReservation'
 }
 
-export interface IPurpose {
-    typeOf: AuthorizeActionPurpose;
-}
+export type IPurpose = any;
 
 export interface IAttributes<TObject, TResult> extends ActionFactory.IAttributes<TObject, TResult> {
     purpose: IPurpose;

@@ -8,6 +8,7 @@ import * as COA from '@motionpicture/coa-service';
 import * as ActionFactory from '../../action';
 import * as IndividualScreeningEventFactory from '../../event/individualScreeningEvent';
 import { IOfferWithDetails as ISeatReservationOffer } from '../../offer/seatReservation';
+import { ITransaction } from '../../transaction/placeOrder';
 import * as AuthorizeActionFactory from '../authorize';
 
 export type IAgent = ActionFactory.IParticipant;
@@ -37,10 +38,13 @@ export interface IResult {
  * @memberof action.authorize.seatReservation
  */
 export interface IObject {
+    typeOf: 'SeatReservation';
     transactionId: string;
     individualScreeningEvent: IndividualScreeningEventFactory.IEvent;
     offers: ISeatReservationOffer[];
 }
+
+export type IPurpose = ITransaction;
 
 /**
  * authorize action error interface
@@ -74,16 +78,15 @@ export function createAttributes(params: {
     object: IObject;
     result?: IResult;
     error?: IError;
+    purpose: IPurpose;
 }): IAttributes {
     return {
         typeOf: ActionFactory.ActionType.AuthorizeAction,
-        purpose: {
-            typeOf: AuthorizeActionFactory.AuthorizeActionPurpose.SeatReservation
-        },
         object: params.object,
         result: params.result,
         error: params.error,
         agent: params.agent,
-        recipient: params.recipient
+        recipient: params.recipient,
+        purpose: params.purpose
     };
 }

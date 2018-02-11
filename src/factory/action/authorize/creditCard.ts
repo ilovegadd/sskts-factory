@@ -7,6 +7,7 @@
 import * as GMO from '@motionpicture/gmo-service';
 
 import * as ActionFactory from '../../action';
+import { ITransaction } from '../../transaction/placeOrder';
 import * as AuthorizeActionFactory from '../authorize';
 
 export type IAgent = ActionFactory.IParticipant;
@@ -16,6 +17,7 @@ export type IRecipient = ActionFactory.IParticipant;
  * オーソリ対象インターフェース
  */
 export interface IObject {
+    typeOf: 'CreditCard';
     transactionId: string;
     orderId: string;
     amount: number;
@@ -30,6 +32,8 @@ export interface IResult {
     execTranResult: GMO.services.credit.IExecTranResult;
 }
 
+export type IPurpose = ITransaction;
+
 /**
  * GMOオーソリインターフェース
  */
@@ -43,15 +47,14 @@ export function createAttributes(params: {
     object: IObject;
     agent: IAgent;
     recipient: IRecipient;
+    purpose: IPurpose;
 }): IAttributes {
     return {
         typeOf: ActionFactory.ActionType.AuthorizeAction,
-        purpose: {
-            typeOf: AuthorizeActionFactory.AuthorizeActionPurpose.CreditCard
-        },
         result: params.result,
         object: params.object,
         agent: params.agent,
-        recipient: params.recipient
+        recipient: params.recipient,
+        purpose: params.purpose
     };
 }

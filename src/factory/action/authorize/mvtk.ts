@@ -5,6 +5,7 @@
  */
 
 import * as ActionFactory from '../../action';
+import { ITransaction } from '../../transaction/placeOrder';
 import * as AuthorizeActionFactory from '../authorize';
 
 export type IAgent = ActionFactory.IParticipant;
@@ -19,8 +20,9 @@ export interface IResult {
 // tslint:disable-next-line:no-suspicious-comment
 // TODO ムビチケ着券INに変更
 export interface IObject {
-    price: number;
+    typeOf: 'Mvtk';
     transactionId: string;
+    price: number;
     seatInfoSyncIn: ISeatInfoSyncIn;
 }
 
@@ -99,6 +101,8 @@ export interface IZskInfo {
     zskCd: string;
 }
 
+export type IPurpose = ITransaction;
+
 /**
  * ムビチケ着券情報
  */
@@ -112,15 +116,14 @@ export function createAttributes(params: {
     object: IObject;
     agent: IAgent;
     recipient: IRecipient;
+    purpose: IPurpose;
 }): IAttributes {
     return {
         typeOf: ActionFactory.ActionType.AuthorizeAction,
-        purpose: {
-            typeOf: AuthorizeActionFactory.AuthorizeActionPurpose.Mvtk
-        },
         result: params.result,
         object: params.object,
         agent: params.agent,
-        recipient: params.recipient
+        recipient: params.recipient,
+        purpose: params.purpose
     };
 }
