@@ -24,6 +24,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Deprecated
 
 ### Removed
+- 取引から注文を作成するファンクションを削除。
 
 ### Fixed
 
