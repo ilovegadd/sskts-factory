@@ -9,6 +9,7 @@ enum TaskName {
     CancelCreditCard = 'cancelCreditCard',
     CancelMvtk = 'cancelMvtk',
     SendEmailNotification = 'sendEmailNotification',
+    sendEmailMessage = 'sendEmailMessage',
     SettleSeatReservation = 'settleSeatReservation',
     SettleCreditCard = 'settleCreditCard',
     SettleMvtk = 'settleMvtk',

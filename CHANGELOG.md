@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - 注文配送アクションを追加。
 - 使用アクションを追加。
 - 注文配送タスクを追加。
+- Eメール送信アクションをパラメーターに持つ、新しいEメール送信タスクを追加。
 
 ### Changed
 - アクションインターフェースを拡張。

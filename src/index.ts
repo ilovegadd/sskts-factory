@@ -15,6 +15,7 @@ import * as RefundActionFactory from './factory/action/trade/refund';
 import * as PrintActionFactory from './factory/action/transfer/print';
 import * as PrintTicketActionFactory from './factory/action/transfer/print/ticket';
 import * as ReturnOrderActionFactory from './factory/action/transfer/return/order';
+import * as SendEmailMessageActionFactory from './factory/action/transfer/send/message/email';
 import * as SendOrderActionFactory from './factory/action/transfer/send/order';
 
 import * as ClientEventFactory from './factory/clientEvent';
@@ -44,7 +45,7 @@ import PlaceType from './factory/placeType';
 import PriceCurrency from './factory/priceCurrency';
 import * as EventReservationFactory from './factory/reservation/event';
 import ReservationStatusType from './factory/reservationStatusType';
-import * as TaskFactory from './factory/task';
+
 import * as CancelCreditCardTaskFactory from './factory/task/cancelCreditCard';
 import * as CancelMvtkTaskFactory from './factory/task/cancelMvtk';
 import * as CancelSeatReservationTaskFactory from './factory/task/cancelSeatReservation';
@@ -52,11 +53,14 @@ import * as CreateOrderTaskFactory from './factory/task/createOrder';
 import * as CreateOwnershipInfosTaskFactory from './factory/task/createOwnershipInfos';
 import * as RefundCreditCardTaskFactory from './factory/task/refundCreditCard';
 import * as ReturnOrderTaskFactory from './factory/task/returnOrder';
+import * as SendEmailMessageTaskFactory from './factory/task/sendEmailMessage';
 import * as SendEmailNotificationTaskFactory from './factory/task/sendEmailNotification';
 import * as SendOrderTaskFactory from './factory/task/sendOrder';
 import * as SettleCreditCardTaskFactory from './factory/task/settleCreditCard';
 import * as SettleMvtkTaskFactory from './factory/task/settleMvtk';
 import * as SettleSeatReservationTaskFactory from './factory/task/settleSeatReservation';
+
+import * as TaskFactory from './factory/task';
 import * as TaskExecutionResultFactory from './factory/taskExecutionResult';
 import TaskName from './factory/taskName';
 import TaskStatus from './factory/taskStatus';
@@ -120,6 +124,9 @@ export namespace action {
         }
 
         export namespace send {
+            export namespace message {
+                export import email = SendEmailMessageActionFactory;
+            }
             // tslint:disable-next-line:no-shadowed-variable
             export import order = SendOrderActionFactory;
         }
@@ -190,6 +197,10 @@ export namespace task {
     export import createOwnershipInfos = CreateOwnershipInfosTaskFactory;
     export import refundCreditCard = RefundCreditCardTaskFactory;
     export import returnOrder = ReturnOrderTaskFactory;
+    export import sendEmailMessage = SendEmailMessageTaskFactory;
+    /**
+     * @deprecated use task.sendEmailMessage
+     */
     export import sendEmailNotification = SendEmailNotificationTaskFactory;
     export import sendOrder = SendOrderTaskFactory;
     export import settleCreditCard = SettleCreditCardTaskFactory;
