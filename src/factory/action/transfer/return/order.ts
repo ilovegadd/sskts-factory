@@ -3,8 +3,8 @@
  */
 
 import * as ActionFactory from '../../../action';
-import { IAttributes as IRefundActionAttributes } from '../../../action/trade/refund';
 import { IOrder } from '../../../order';
+import { IAttributes as IRefundActionAttributes } from '../../trade/refund';
 import * as ReturnActionFactory from '../return';
 
 export type IAgent = ActionFactory.IParticipant;
