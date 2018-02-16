@@ -21,6 +21,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - アクションインターフェースを拡張。
 - アクションと取引に対して潜在アクション属性を定義。
 - 承認アクションのobjectに型を定義し、purposeを取引型に変更。
+- 注文取引オブジェクトのWAITER許可証属性を必須に変更。
 
 ### Deprecated
 

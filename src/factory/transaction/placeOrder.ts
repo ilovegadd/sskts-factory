@@ -88,18 +88,14 @@ export type IError = any;
  * @memberof transaction.placeOrder
  */
 export interface IObject {
-    // tslint:disable-next-line:no-suspicious-comment
     /**
      * WAITER許可証トークン
-     * TODO v3.0.0で必須プロパティに変更
      */
-    passportToken?: waiter.factory.passport.IEncodedPassport;
-    // tslint:disable-next-line:no-suspicious-comment
+    passportToken: waiter.factory.passport.IEncodedPassport;
     /**
      * WAITER許可証
-     * TODO v3.0.0で必須プロパティに変更
      */
-    passport?: waiter.factory.passport.IPassport;
+    passport: waiter.factory.passport.IPassport;
     /**
      * user object of the client where a transaction is processing.
      */
