@@ -25,6 +25,10 @@ export interface IPotentialActions {
      */
     payCreditCard?: IPayActionAttributes;
     /**
+     * クレジットカード決済アクション
+     */
+    payPecorino?: IPayActionAttributes;
+    /**
      * ムビチケ使用アクション
      */
     useMvtk?: IUseMvtkActionAttributes;

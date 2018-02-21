@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - 使用アクションを追加。
 - 注文配送タスクを追加。
 - Eメール送信アクションをパラメーターに持つ、新しいEメール送信タスクを追加。
+- Pecorino支払タスクを追加。
 
 ### Changed
 - アクションインターフェースを拡張。
