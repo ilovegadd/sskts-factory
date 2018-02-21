@@ -13,8 +13,6 @@ import PersonType from './personType';
  * 関係者を表現する最低限のインターフェース
  * 継承先にて、インターフェースが強化される可能性あり
  * @export
- * @interface
- * @memberof action
  */
 export interface IParticipant {
     typeOf: OrganizationType | PersonType;
@@ -24,8 +22,6 @@ export interface IParticipant {
 /**
  * アクションタイプ
  * @export
- * @enum
- * @memberof action
  */
 export enum ActionType {
     AuthorizeAction = 'AuthorizeAction',
@@ -41,8 +37,6 @@ export enum ActionType {
 /**
  * アクションステータス
  * @export
- * @enum
- * @memberof action
  */
 export enum ActionStatusType {
     ActiveActionStatus = 'ActiveActionStatus',
@@ -62,8 +56,6 @@ export interface IPurpose {
 /**
  * アクション属性
  * @export
- * @interface
- * @memberof action
  */
 export interface IAttributes<TObject, TResult> {
     /**

@@ -1,7 +1,5 @@
 /**
  * イベントステータス
- *
- * @namespace eventStatusType
  */
 
 enum EventStatusType {

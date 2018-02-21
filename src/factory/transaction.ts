@@ -20,8 +20,6 @@ export type ITransaction<TAgent, TObject, TResult> = IExtendId<IAttributes<TAgen
  * transaction interface
  * 取引インターフェース
  * @export
- * @interface
- * @memberof transaction
  */
 export interface IAttributes<TAgent, TObject, TResult> {
     /**
@@ -77,9 +75,7 @@ export interface IAttributes<TAgent, TObject, TResult> {
 /**
  * 取引を作成する
  * @export
- * @function
- * @returns {IAttributes} 取引属性
- * @memberof transaction
+ * @returns 取引属性
  */
 export function createAttributes<TAgent, TObject, TResult>(params: {
     typeOf: TransactionType;

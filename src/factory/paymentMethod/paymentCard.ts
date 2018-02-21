@@ -1,6 +1,5 @@
 /**
  * payment card factory
- *
  * @namespace paymentMethod.paymentCard
  */
 
@@ -8,8 +7,6 @@ import { IPaymentMethod } from '../paymentMethod';
 
 /**
  * payment card interface
- * @interface {IPaymentCard}
- * @memberof paymentMethod.paymentCard
  */
 export interface IPaymentCard extends IPaymentMethod {
     /**

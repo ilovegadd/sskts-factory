@@ -26,13 +26,11 @@ export interface IEventReservation<T extends IEvent> extends IReservation {
 /**
  * 座席仮予約からイベント予約データを作成する
  * @export
- * @function
- * @memberof reservation.event
  */
 export function createFromCOATmpReserve(params: {
     updTmpReserveSeatResult: COA.services.reserve.IUpdTmpReserveSeatResult;
-    offers: ISeatReservationOffer[],
-    individualScreeningEvent: IndividualScreeningEventFactory.IEvent
+    offers: ISeatReservationOffer[];
+    individualScreeningEvent: IndividualScreeningEventFactory.IEvent;
 }): IEventReservation<IndividualScreeningEventFactory.IEvent>[] {
     return params.updTmpReserveSeatResult.listTmpReserve.map((tmpReserve, index) => {
         const requestedOffer = params.offers.find((offer) => {

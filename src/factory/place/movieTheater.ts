@@ -58,8 +58,6 @@ export interface IScreeningRoom extends PlaceFactory.IPlace {
 /**
  * place interface without screening room
  * @export
- * @interface
- * @memberof place.movieTheater
  */
 export interface IPlaceWithoutScreeningRoom extends PlaceFactory.IPlace {
     identifier: string;
@@ -103,10 +101,8 @@ export type IPlace = IPlaceWithoutScreeningRoom & {
 /**
  * COAのマスター抽出結果から作成する
  *
- * @param {COA.services.master.TheaterResult} theaterFromCOA
- * @param {COA.services.master.IScreenResult[]} screensFromCOA
- * @returns {IPlace}
- * @memberof place.movieTheater
+ * @param theaterFromCOA
+ * @param screensFromCOA
  */
 export function createFromCOA(
     theaterFromCOA: COA.services.master.ITheaterResult,
@@ -133,10 +129,7 @@ export function createFromCOA(
 
 /**
  * COAのスクリーン抽出結果から上映室を作成する
- *
- * @param {COA.services.master.ScreenResult} screenFromCOA
- * @returns {IScreeningRoom}
- * @memberof place.movieTheater
+ * @param screenFromCOA
  */
 export function createScreeningRoomFromCOA(screenFromCOA: COA.services.master.IScreenResult): IScreeningRoom {
     const sections: IScreeningRoomSection[] = [];

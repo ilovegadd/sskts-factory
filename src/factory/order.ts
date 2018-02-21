@@ -19,8 +19,6 @@ import * as EventReservationFactory from './reservation/event';
  * payment method interface
  * 決済方法イーターフェース
  * @export
- * @interface
- * @memberof order
  */
 export interface IPaymentMethod {
     name: string;
@@ -38,8 +36,6 @@ export interface IPaymentMethod {
  * discount interface
  * 割引インターフェース
  * @export
- * @interface
- * @memberof order
  */
 export interface IDiscount {
     name: string;
@@ -61,8 +57,6 @@ export interface IDiscount {
  * offered item type
  * 供給アイテムインターフェース
  * @export
- * @type
- * @memberof order
  */
 export type IItemOffered = EventReservationFactory.IEventReservation<IIndividualScreeningEvent>;
 
@@ -70,8 +64,6 @@ export type IItemOffered = EventReservationFactory.IEventReservation<IIndividual
  * key for inquiry of the order
  * 注文照会キーインターフェース
  * @export
- * @interface
- * @memberof order
  */
 export interface IOrderInquiryKey {
     theaterCode: string;
@@ -83,8 +75,6 @@ export interface IOrderInquiryKey {
  * offer interface
  * 供給インターフェース
  * @export
- * @interface
- * @memberof order
  */
 export interface IOffer {
     /**
@@ -112,8 +102,6 @@ export interface IOffer {
  * seller interface
  * 販売者インターフェース
  * @export
- * @interface
- * @memberof order
  */
 export interface ISeller {
     typeOf: OrganizationType | PersonType;
@@ -131,8 +119,6 @@ export interface ISeller {
  * customer interface
  * 購入者インターフェース
  * @export
- * @interface
- * @memberof order
  */
 export type ICustomer = IPerson & IContact & {
     name: string;
@@ -142,8 +128,6 @@ export type ICustomer = IPerson & IContact & {
  * order interface
  * 注文インターフェース
  * @export
- * @interface
- * @memberof order
  */
 export interface IOrder {
     /**

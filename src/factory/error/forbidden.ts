@@ -3,13 +3,12 @@ import { SSKTSError } from './sskts';
 
 /**
  * ForbiddenError
- *
- * @class ForbiddenError
  * @extends {SSKTSError}
  */
 export default class ForbiddenError extends SSKTSError {
     constructor(message?: string) {
         if (message === undefined || message.length === 0) {
+            // tslint:disable-next-line:no-parameter-reassignment
             message = 'Forbidden.';
         }
 

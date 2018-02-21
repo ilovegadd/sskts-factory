@@ -1,7 +1,6 @@
 /**
  * task name
  * タスク名
- * @namespace taskName
  */
 
 enum TaskName {

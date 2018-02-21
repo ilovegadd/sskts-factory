@@ -20,8 +20,6 @@ export enum ReservationType {
 /**
  * under name interface
  * @export
- * @interface
- * @memberof reservation
  */
 export interface IUnderName {
     typeOf: OrganizationType | PersonType;
@@ -31,8 +29,6 @@ export interface IUnderName {
 /**
  * seat interface
  * @export
- * @interface
- * @memberof reservation
  */
 export interface ISeat {
     typeOf: PlaceType;
@@ -58,8 +54,6 @@ export interface ISeat {
 /**
  * 予約チケット情報
  * @export
- * @interface
- * @memberof reservation
  */
 export interface ITicket {
     typeOf: string;
@@ -118,8 +112,6 @@ export interface ITicket {
  * e.g. in confirmation emails or HTML pages with individual confirmations of reservations.
  * For offers of tickets, restaurant reservations, flights, or rental cars, use Offer.
  * @export
- * @interface
- * @memberof reservation
  */
 export interface IReservation {
     /**
@@ -198,8 +190,6 @@ export interface IReservation {
 /**
  * create reservation object
  * @export
- * @function
- * @memberof reservation
  */
 export function create(params: {
     additionalTicketText: string;

@@ -25,8 +25,6 @@ import TransactionType from '../transactionType';
  * customer contact interface
  * 購入者連作先インターフェース
  * @export
- * @interface
- * @memberof transaction.placeOrder
  */
 export type ICustomerContact = IContact;
 
@@ -34,8 +32,6 @@ export type ICustomerContact = IContact;
  * seller interface
  * 販売者インターフェース
  * @export
- * @interface
- * @memberof transaction.placeOrder
  */
 export interface ISeller {
     typeOf: OrganizationType | PersonType;
@@ -48,8 +44,6 @@ export interface ISeller {
  * agent interface
  * 購入者インターフェース
  * @export
- * @interface
- * @memberof transaction.placeOrder
  */
 export type IAgent = IPerson;
 
@@ -57,8 +51,6 @@ export type IAgent = IPerson;
  * result interface
  * 取引結果インターフェース
  * @export
- * @interface
- * @memberof transaction.placeOrder
  */
 export interface IResult {
     /**
@@ -75,8 +67,6 @@ export interface IResult {
  * error interface
  * エラーインターフェース
  * @export
- * @interface
- * @memberof transaction.placeOrder
  */
 export type IError = any;
 
@@ -84,8 +74,6 @@ export type IError = any;
  * object of a transaction interface
  * 取引対象物インターフェース
  * @export
- * @interface
- * @memberof transaction.placeOrder
  */
 export interface IObject {
     /**
@@ -120,8 +108,6 @@ export type ITransaction = IExtendId<IAttributes>;
  * place order transaction interface
  * 注文取引インターフェース
  * @export
- * @interface
- * @memberof transaction.placeOrder
  */
 export interface IAttributes extends TransactionFactory.IAttributes<IAgent, IObject, IResult> {
     /**
@@ -155,12 +141,10 @@ export interface IAttributes extends TransactionFactory.IAttributes<IAgent, IObj
  * create placeOrderTransaction object.
  * 注文取引オブジェクトを生成する。
  * @export
- * @function
- * @memberof transaction.placeOrder
  */
 export function createAttributes(params: {
     status: TransactionStatusType;
-    agent: IAgent
+    agent: IAgent;
     seller: ISeller;
     result?: IResult;
     error?: IError;

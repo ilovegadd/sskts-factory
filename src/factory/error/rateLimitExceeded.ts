@@ -3,12 +3,12 @@ import { SSKTSError } from './sskts';
 
 /**
  * RateLimitExceededError
- * @class RateLimitExceededError
  * @extends {SSKTSError}
  */
 export default class RateLimitExceededError extends SSKTSError {
     constructor(message?: string) {
         if (message === undefined || message.length === 0) {
+            // tslint:disable-next-line:no-parameter-reassignment
             message = 'Rate limit exceeded.';
         }
 

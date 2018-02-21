@@ -21,8 +21,6 @@ import PlaceType from '../placeType';
  * performed work interface
  * 上映作品インターフェース
  * @export
- * @interface
- * @memberof event.screeningEvent
  */
 export interface IWorkPerformed {
     /**
@@ -58,8 +56,6 @@ export interface IOrganizer {
  * screening event interface
  * 上映イベントインターフェース(COAの劇場作品に相当)
  * @export
- * @interface
- * @memberof event.screeningEvent
  */
 export interface IEvent extends EventFactory.IEvent {
     /**
@@ -133,20 +129,18 @@ export interface IEvent extends EventFactory.IEvent {
          * ムビチケ使用フラグ
          * 1：ムビチケ使用対象
          */
-        flgMvtkUse: string,
+        flgMvtkUse: string;
         /**
          * ムビチケ利用開始日
          * ※日付は西暦8桁 "YYYYMMDD"
          */
-        dateMvtkBegin: string
+        dateMvtkBegin: string;
     };
 }
 
 /**
  * COAの作品抽出結果からFilmオブジェクトを作成する
  * @export
- * @function
- * @memberof event.screeningEvent
  */
 export function createFromCOA(params: {
     filmFromCOA: COA.services.master.ITitleResult;
@@ -214,13 +208,11 @@ export function createFromCOA(params: {
 /**
  * COA情報から上映イベント識別子を作成する
  * @export
- * @function
- * @memberof event.screeningEvent
  */
 export function createIdentifier(params: {
-    theaterCode: string,
-    titleCode: string,
-    titleBranchNum: string
+    theaterCode: string;
+    titleCode: string;
+    titleBranchNum: string;
 }) {
     return [
         params.theaterCode,

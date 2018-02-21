@@ -2,8 +2,6 @@ import ErrorCode from '../errorCode';
 
 /**
  * SSKTSError
- *
- * @class SSKTSError
  * @extends {Error}
  */
 export class SSKTSError extends Error {

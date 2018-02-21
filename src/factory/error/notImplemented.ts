@@ -3,13 +3,12 @@ import { SSKTSError } from './sskts';
 
 /**
  * NotImplementedError
- *
- * @class NotImplementedError
  * @extends {SSKTSError}
  */
 export default class NotImplementedError extends SSKTSError {
     constructor(message?: string) {
         if (message === undefined || message.length === 0) {
+            // tslint:disable-next-line:no-parameter-reassignment
             message = 'Method is not yet implemented.';
         }
 

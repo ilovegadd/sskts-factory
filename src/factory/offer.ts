@@ -11,8 +11,6 @@ import PriceCurrency from './priceCurrency';
  * — for example, an offer to sell tickets to an event, to rent the DVD of a movie,
  * to stream a TV show over the internet, to repair a motorcycle, or to loan a book.
  * @export
- * @interface
- * @memberof offer
  */
 export interface IOffer {
     /**

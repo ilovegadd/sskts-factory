@@ -17,8 +17,6 @@ import TransactionType from '../transactionType';
  * agent interface
  * 購入者インターフェース
  * @export
- * @interface
- * @memberof transaction.returnOrder
  */
 export type IAgent = IPerson;
 
@@ -38,7 +36,6 @@ export type IError = any;
 
 /**
  * 返品理由
- * @enum
  */
 export enum Reason {
     /**

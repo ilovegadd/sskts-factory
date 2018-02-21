@@ -18,8 +18,6 @@ export type IRecipient = ActionFactory.IParticipant;
  * authorize action result interface
  * 認可アクション結果
  * @export
- * @interface
- * @memberof action.authorize.seatReservation
  */
 export interface IResult {
     price: number;
@@ -34,8 +32,6 @@ export interface IResult {
  * authorize action object
  * 認可アクション対象
  * @export
- * @interface
- * @memberof action.authorize.seatReservation
  */
 export interface IObject {
     typeOf: 'SeatReservation';
@@ -49,8 +45,6 @@ export type IPurpose = ITransaction;
 /**
  * authorize action error interface
  * @export
- * @interface
- * @memberof action.authorize.seatReservation
  */
 export type IError = any;
 
@@ -58,8 +52,6 @@ export type IError = any;
  * seat reservation authorize action interface
  * 座席予約認可アクションインターフェース
  * @export
- * @interface
- * @memberof action.authorize.seatReservation
  */
 export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
 }
@@ -69,8 +61,6 @@ export type IAction = ActionFactory.IAction<IAttributes>;
 /**
  * create seatReservation authorize action object
  * @export
- * @function
- * @memberof action.authorize.seatReservation
  */
 export function createAttributes(params: {
     agent: IAgent;
