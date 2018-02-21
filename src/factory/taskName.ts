@@ -4,16 +4,38 @@
  */
 
 enum TaskName {
+    /**
+     * 座席予約承認アクション取消
+     */
     CancelSeatReservation = 'cancelSeatReservation',
+    /**
+     * クレジットカード承認アクション取消
+     */
     CancelCreditCard = 'cancelCreditCard',
+    /**
+     * ムビチケ承認アクション取消
+     */
     CancelMvtk = 'cancelMvtk',
-    SendEmailNotification = 'sendEmailNotification',
-    sendEmailMessage = 'sendEmailMessage',
-    SettleSeatReservation = 'settleSeatReservation',
-    SettleCreditCard = 'settleCreditCard',
-    SettleMvtk = 'settleMvtk',
-    CreateOrder = 'createOrder',
-    CreateOwnershipInfos = 'createOwnershipInfos',
+    /**
+     *  Eメールメッセージ送信
+     */
+    SendEmailMessage = 'sendEmailMessage',
+    /**
+     * ムビチケ使用
+     */
+    UseMvtk = 'useMvtk',
+    /**
+     * 注文受付
+     */
+    PlaceOrder = 'placeOrder',
+    /**
+     * 注文返品
+     */
+    ReturnOrder = 'returnOrder',
+    /**
+     * クレジットカード支払
+     */
+    PayCreditCard = 'payCreditCard',
     /**
      * Pecorino支払
      */
@@ -25,11 +47,7 @@ enum TaskName {
     /**
      * クレジットカード返金
      */
-    RefundCreditCard = 'refundCreditCard',
-    /**
-     * 注文返品
-     */
-    ReturnOrder = 'returnOrder'
+    RefundCreditCard = 'refundCreditCard'
 }
 
 export default TaskName;

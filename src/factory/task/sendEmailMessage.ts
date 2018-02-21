@@ -32,5 +32,5 @@ export function createAttributes(params: {
     executionResults: TaskExecutionResult.ITaskExecutionResult[];
     data: IData;
 }): IAttributes {
-    return TaskFactory.createAttributes({ ...params, ...{ name: TaskName.sendEmailMessage } });
+    return TaskFactory.createAttributes({ ...params, ...{ name: TaskName.SendEmailMessage } });
 }

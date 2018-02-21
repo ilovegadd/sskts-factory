@@ -49,17 +49,14 @@ import ReservationStatusType from './factory/reservationStatusType';
 import * as CancelCreditCardTaskFactory from './factory/task/cancelCreditCard';
 import * as CancelMvtkTaskFactory from './factory/task/cancelMvtk';
 import * as CancelSeatReservationTaskFactory from './factory/task/cancelSeatReservation';
-import * as CreateOrderTaskFactory from './factory/task/createOrder';
-import * as CreateOwnershipInfosTaskFactory from './factory/task/createOwnershipInfos';
+import * as PayCreditCardTaskFactory from './factory/task/payCreditCard';
 import * as PayPecorinoTaskFactory from './factory/task/payPecorino';
+import * as PlaceOrderTaskFactory from './factory/task/placeOrder';
 import * as RefundCreditCardTaskFactory from './factory/task/refundCreditCard';
 import * as ReturnOrderTaskFactory from './factory/task/returnOrder';
 import * as SendEmailMessageTaskFactory from './factory/task/sendEmailMessage';
-import * as SendEmailNotificationTaskFactory from './factory/task/sendEmailNotification';
 import * as SendOrderTaskFactory from './factory/task/sendOrder';
-import * as SettleCreditCardTaskFactory from './factory/task/settleCreditCard';
-import * as SettleMvtkTaskFactory from './factory/task/settleMvtk';
-import * as SettleSeatReservationTaskFactory from './factory/task/settleSeatReservation';
+import * as UseMvtkTaskFactory from './factory/task/useMvtk';
 
 import * as TaskFactory from './factory/task';
 import * as TaskExecutionResultFactory from './factory/taskExecutionResult';
@@ -194,20 +191,14 @@ export namespace task {
     export import cancelCreditCard = CancelCreditCardTaskFactory;
     export import cancelMvtk = CancelMvtkTaskFactory;
     export import cancelSeatReservation = CancelSeatReservationTaskFactory;
-    export import createOrder = CreateOrderTaskFactory;
-    export import createOwnershipInfos = CreateOwnershipInfosTaskFactory;
-    export import payPecorino = PayPecorinoTaskFactory;
+    export import placeOrder = PlaceOrderTaskFactory;
     export import refundCreditCard = RefundCreditCardTaskFactory;
     export import returnOrder = ReturnOrderTaskFactory;
     export import sendEmailMessage = SendEmailMessageTaskFactory;
-    /**
-     * @deprecated use task.sendEmailMessage
-     */
-    export import sendEmailNotification = SendEmailNotificationTaskFactory;
     export import sendOrder = SendOrderTaskFactory;
-    export import settleCreditCard = SettleCreditCardTaskFactory;
-    export import settleMvtk = SettleMvtkTaskFactory;
-    export import settleSeatReservation = SettleSeatReservationTaskFactory;
+    export import payCreditCard = PayCreditCardTaskFactory;
+    export import payPecorino = PayPecorinoTaskFactory;
+    export import useMvtk = UseMvtkTaskFactory;
 }
 export import taskExecutionResult = TaskExecutionResultFactory;
 export import taskName = TaskName;
