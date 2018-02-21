@@ -1,6 +1,5 @@
 /**
  * 決済方法タイプ
- * @namespace paymentMethodType
  */
 
 enum PaymentMethodType {

@@ -20,8 +20,6 @@ export type ITransaction<TAgent, TObject, TResult> = IExtendId<IAttributes<TAgen
  * transaction interface
  * 取引インターフェース
  * @export
- * @interface
- * @memberof transaction
  */
 export interface IAttributes<TAgent, TObject, TResult> {
     /**
@@ -68,14 +66,16 @@ export interface IAttributes<TAgent, TObject, TResult> {
      * タスクエクスポート状態
      */
     tasksExportationStatus: TransactionTasksExportationStatus;
+    /**
+     * 事後に発生するアクション
+     */
+    potentialActions?: any;
 }
 
 /**
  * 取引を作成する
  * @export
- * @function
- * @returns {IAttributes} 取引属性
- * @memberof transaction
+ * @returns 取引属性
  */
 export function createAttributes<TAgent, TObject, TResult>(params: {
     typeOf: TransactionType;
@@ -89,6 +89,7 @@ export function createAttributes<TAgent, TObject, TResult>(params: {
     endDate?: Date;
     tasksExportedAt?: Date;
     tasksExportationStatus: TransactionTasksExportationStatus;
+    potentialActions: any;
 }): IAttributes<TAgent, TObject, TResult> {
     if (typeof params.status !== 'string' || validator.isEmpty(params.status)) {
         throw new ArgumentNullError('status');
@@ -120,6 +121,7 @@ export function createAttributes<TAgent, TObject, TResult>(params: {
         startDate: params.startDate,
         endDate: params.endDate,
         tasksExportedAt: params.tasksExportedAt,
-        tasksExportationStatus: params.tasksExportationStatus
+        tasksExportationStatus: params.tasksExportationStatus,
+        potentialActions: params.potentialActions
     };
 }

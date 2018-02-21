@@ -10,36 +10,22 @@ import ArgumentError from './error/argument';
 /**
  * transactionScope interface
  * @export
- * @interface
- * @memberof transactionScope
  */
 export interface ITransactionScope {
     /**
      * いつから開始準備状態か
-     *
-     * @type {Date}
-     * @memberof ITransactionScope
      */
     readyFrom: Date;
     /**
      * いつまで開始準備状態か
-     *
-     * @type {Date}
-     * @memberof ITransactionScope
      */
     readyThrough: Date;
     /**
      * どのクライアントでやりとりされるアクションなのか
-     *
-     * @type {string}
-     * @memberof ITransactionScope
      */
     client?: string;
     /**
      * どの劇場におけるアクションなのか
-     *
-     * @type {string}
-     * @memberof ITransactionScope
      */
     theater?: string;
 }
@@ -47,8 +33,6 @@ export interface ITransactionScope {
 /**
  * create transactionScope object
  * @export
- * @function
- * @memberof transactionScope
  */
 export function create(params: {
     readyFrom: Date;
@@ -79,9 +63,7 @@ export function create(params: {
 /**
  * スコープを文字列に変換する
  * @export
- * @function
- * @memberof transactionScope
- * @param {ITransactionScope} scope アクションスコープ
+ * @param scope アクションスコープ
  */
 export function scope2String(scope: ITransactionScope) {
     let scopeStr = 'transactionScope';

@@ -1,6 +1,5 @@
 /**
  * 注文ステータス
- * @namespace orderStatus
  */
 
 enum OrderStatus {

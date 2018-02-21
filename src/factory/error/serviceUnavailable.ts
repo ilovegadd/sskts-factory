@@ -3,13 +3,12 @@ import { SSKTSError } from './sskts';
 
 /**
  * ServiceUnavailableError
- *
- * @class ServiceUnavailableError
  * @extends {SSKTSError}
  */
 export default class ServiceUnavailableError extends SSKTSError {
     constructor(message?: string) {
         if (message === undefined || message.length === 0) {
+            // tslint:disable-next-line:no-parameter-reassignment
             message = 'Service unavailable temporarily.';
         }
 

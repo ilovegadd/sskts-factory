@@ -38,17 +38,17 @@ export interface ICOATicketInfo {
     mvtkNum: string;
     /**
      * ムビチケ電子券区分
-     * ムビチケ連携情報より（01：電子、02：紙　※ムビチケ以外は"00"をセット）
+     * ムビチケ連携情報より（01：電子、02：紙 ※ムビチケ以外は"00"をセット）
      */
     mvtkKbnDenshiken: string;
     /**
      * ムビチケ前売券区分
-     * ムビチケ連携情報より（01：全国券、02：劇場券　※ムビチケ以外は"00"をセット）
+     * ムビチケ連携情報より（01：全国券、02：劇場券 ※ムビチケ以外は"00"をセット）
      */
     mvtkKbnMaeuriken: string;
     /**
      * ムビチケ券種区分
-     * ムビチケ連携情報より（01：一般2Ｄ、02：小人2Ｄ、03：一般3Ｄ、…　※ムビチケ以外は"00"をセット）
+     * ムビチケ連携情報より（01：一般2Ｄ、02：小人2Ｄ、03：一般3Ｄ、… ※ムビチケ以外は"00"をセット）
      */
     mvtkKbnKensyu: string;
     /**
@@ -61,8 +61,6 @@ export interface ICOATicketInfo {
 /**
  * COA券種情報
  * @export
- * @interface
- * @memberof offer.seatReservation
  */
 export type ICOATicketInfoWithDetails = COA.services.reserve.IUpdReserveTicket & {
     /**
@@ -82,8 +80,6 @@ export type ICOATicketInfoWithDetails = COA.services.reserve.IUpdReserveTicket &
 /**
  * 座席予約供給情報インターフェース
  * @export
- * @interface
- * @memberof offer.seatReservation
  */
 export interface IOffer {
     /**
@@ -103,8 +99,6 @@ export interface IOffer {
 /**
  * 座席予約供給情報(詳細つき)インターフェース
  * @export
- * @interface
- * @memberof offer.seatReservation
  */
 export interface IOfferWithDetails extends OfferFactory.IOffer {
     /**

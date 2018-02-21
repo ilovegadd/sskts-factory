@@ -1,6 +1,5 @@
 /**
  * 場所タイプ
- * @namespace placeType
  */
 
 enum PlaceType {

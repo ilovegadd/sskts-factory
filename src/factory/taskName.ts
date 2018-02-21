@@ -1,7 +1,6 @@
 /**
  * task name
  * タスク名
- * @namespace taskName
  */
 
 enum TaskName {
@@ -9,15 +8,20 @@ enum TaskName {
     CancelCreditCard = 'cancelCreditCard',
     CancelMvtk = 'cancelMvtk',
     SendEmailNotification = 'sendEmailNotification',
+    sendEmailMessage = 'sendEmailMessage',
     SettleSeatReservation = 'settleSeatReservation',
     SettleCreditCard = 'settleCreditCard',
     SettleMvtk = 'settleMvtk',
     CreateOrder = 'createOrder',
     CreateOwnershipInfos = 'createOwnershipInfos',
     /**
-     * クレジットカード売上取消
+     * 注文配送
      */
-    ReturnCreditCardSales = 'returnCreditCardSales',
+    SendOrder = 'sendOrder',
+    /**
+     * クレジットカード返金
+     */
+    RefundCreditCard = 'refundCreditCard',
     /**
      * 注文返品
      */

@@ -13,8 +13,6 @@ import PersonType from './personType';
  * 関係者を表現する最低限のインターフェース
  * 継承先にて、インターフェースが強化される可能性あり
  * @export
- * @interface
- * @memberof action
  */
 export interface IParticipant {
     typeOf: OrganizationType | PersonType;
@@ -24,14 +22,13 @@ export interface IParticipant {
 /**
  * アクションタイプ
  * @export
- * @enum
- * @memberof action
  */
 export enum ActionType {
     AuthorizeAction = 'AuthorizeAction',
     OrderAction = 'OrderAction',
     PayAction = 'PayAction',
     PrintAction = 'PrintAction',
+    RefundAction = 'RefundAction',
     ReturnAction = 'ReturnAction',
     SendAction = 'SendAction',
     UseAction = 'UseAction'
@@ -40,8 +37,6 @@ export enum ActionType {
 /**
  * アクションステータス
  * @export
- * @enum
- * @memberof action
  */
 export enum ActionStatusType {
     ActiveActionStatus = 'ActiveActionStatus',
@@ -61,18 +56,12 @@ export interface IPurpose {
 /**
  * アクション属性
  * @export
- * @interface
- * @memberof action
  */
 export interface IAttributes<TObject, TResult> {
     /**
      * アクションタイプ
      */
     typeOf: ActionType;
-    /**
-     * アクション状態
-     */
-    actionStatus: ActionStatusType;
     /**
      * アクション主体者
      */
@@ -94,6 +83,25 @@ export interface IAttributes<TObject, TResult> {
      */
     object: TObject;
     /**
+     * 目的
+     */
+    purpose?: IPurpose;
+    /**
+     * 事後に発生するアクション
+     */
+    potentialActions?: any;
+}
+
+/**
+ * アクション動的属性インターフェース
+ * リポジトリーに保管時にセット、あるいは変更される
+ */
+export interface IDynamicAttributes {
+    /**
+     * アクション状態
+     */
+    actionStatus: ActionStatusType;
+    /**
      * 開始日時
      */
     startDate: Date;
@@ -101,10 +109,9 @@ export interface IAttributes<TObject, TResult> {
      * 終了日時
      */
     endDate?: Date;
-    /**
-     * 目的
-     */
-    purpose?: IPurpose;
 }
 
-export type IAction<TObject, TResult> = IExtendId<IAttributes<TObject, TResult>>;
+/**
+ * 抽象アクションインターフェース
+ */
+export type IAction<TAttributes extends IAttributes<any, any>> = IExtendId<TAttributes & IDynamicAttributes>;

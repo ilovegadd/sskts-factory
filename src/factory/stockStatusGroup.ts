@@ -1,7 +1,5 @@
 /**
  * 在庫状況グループ
- *
- * @namespace stockStatusGroup
  */
 
 enum StockStatusGroup {

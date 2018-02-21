@@ -1,36 +1,34 @@
 /**
- * 注文アクションファクトリー
+ * 返金アクションファクトリー
  */
 
 import * as ActionFactory from '../../action';
 import { IOrder } from '../../order';
-import { IAttributes as IUseMvtkActionAttributes } from '../consume/use/mvtk';
-import { IAttributes as IPayActionAttributes } from '../trade/pay';
-import { IAttributes as ISendOrderActionAttributes } from '../transfer/send/order';
+import { IAttributes as ISendEmailMessageActionAttributes } from '../transfer/send/message/email';
+import * as PayActionFactory from './pay';
 
 export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;
 
-export type IObject = IOrder;
+/**
+ * 返却対象は支払アクション
+ */
+export type IObject = PayActionFactory.IAction;
 
 export type IResult = any;
 
 export interface IPotentialActions {
     /**
-     * 注文配送アクション
+     * 返金処理完了を通知するEメール送信アクション
      */
-    sendOrder: ISendOrderActionAttributes;
-    /**
-     * クレジットカード決済アクション
-     */
-    payCreditCard?: IPayActionAttributes;
-    /**
-     * ムビチケ使用アクション
-     */
-    useMvtk?: IUseMvtkActionAttributes;
+    sendEmailMessage?: ISendEmailMessageActionAttributes;
 }
 
+export type IPurpose = IOrder;
+
 export interface IAttributes extends ActionFactory.IAttributes<IObject, IResult> {
+    recipient: IRecipient;
+    purpose: IPurpose;
     potentialActions: IPotentialActions;
 }
 
@@ -40,13 +38,17 @@ export function createAttributes(params: {
     result?: IResult;
     object: IObject;
     agent: IAgent;
+    purpose: IPurpose;
+    recipient: IRecipient;
     potentialActions: IPotentialActions;
 }): IAttributes {
     return {
-        typeOf: ActionFactory.ActionType.OrderAction,
+        typeOf: ActionFactory.ActionType.RefundAction,
         result: params.result,
         object: params.object,
         agent: params.agent,
+        recipient: params.recipient,
+        purpose: params.purpose,
         potentialActions: params.potentialActions
     };
 }

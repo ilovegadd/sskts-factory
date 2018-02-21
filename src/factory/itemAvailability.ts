@@ -1,7 +1,5 @@
 /**
  * 商品在庫状況
- *
- * @namespace itemAvailability
  */
 
 enum ItemAvailability {
