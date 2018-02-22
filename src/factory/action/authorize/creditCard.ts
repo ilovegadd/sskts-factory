@@ -13,12 +13,15 @@ import * as AuthorizeActionFactory from '../authorize';
 export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;
 
+export enum ObjectType {
+    CreditCard = 'CreditCard'
+}
+
 /**
  * オーソリ対象インターフェース
  */
 export interface IObject {
-    typeOf: 'CreditCard';
-    transactionId: string;
+    typeOf: ObjectType;
     orderId: string;
     amount: number;
     method: GMO.utils.util.Method;

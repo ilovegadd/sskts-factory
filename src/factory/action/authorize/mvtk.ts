@@ -11,6 +11,10 @@ import * as AuthorizeActionFactory from '../authorize';
 export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;
 
+export enum ObjectType {
+    Mvtk = 'Mvtk'
+}
+
 // tslint:disable-next-line:no-suspicious-comment
 // TODO ムビチケ着券OUTに変更
 export interface IResult {
@@ -20,8 +24,7 @@ export interface IResult {
 // tslint:disable-next-line:no-suspicious-comment
 // TODO ムビチケ着券INに変更
 export interface IObject {
-    typeOf: 'Mvtk';
-    transactionId: string;
+    typeOf: ObjectType;
     price: number;
     seatInfoSyncIn: ISeatInfoSyncIn;
 }

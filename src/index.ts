@@ -64,7 +64,6 @@ import TaskName from './factory/taskName';
 import TaskStatus from './factory/taskStatus';
 import * as PlaceOrderTransactionFactory from './factory/transaction/placeOrder';
 import * as ReturnOrderTransactionFactory from './factory/transaction/returnOrder';
-import * as TransactionScopeFactory from './factory/transactionScope';
 import TransactionStatusType from './factory/transactionStatusType';
 import TransactionTasksExportationStatus from './factory/transactionTasksExportationStatus';
 import TransactionType from './factory/transactionType';
@@ -89,7 +88,6 @@ export namespace action {
         export import IAction = AuthorizeActionFactory.IAction;
         // tslint:disable-next-line:no-shadowed-variable
         export import IAttributes = AuthorizeActionFactory.IAttributes;
-        export import authorizeActionPurpose = AuthorizeActionFactory.AuthorizeActionPurpose;
         export import creditCard = CreditCardAuthorizeActionFactory;
         export import mvtk = MvtkAuthorizeActionFactory;
         export import seatReservation = seatReservationAuthorizeActionFactory;
@@ -207,7 +205,6 @@ export namespace transaction {
     export import placeOrder = PlaceOrderTransactionFactory;
     export import returnOrder = ReturnOrderTransactionFactory;
 }
-export import transactionScope = TransactionScopeFactory;
 export import transactionStatusType = TransactionStatusType;
 export import transactionTasksExportationStatus = TransactionTasksExportationStatus;
 export import transactionType = TransactionType;

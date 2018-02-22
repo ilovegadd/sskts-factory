@@ -10,8 +10,12 @@ import * as UseActionFactory from '../use';
 export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;
 
+export enum ObjectType {
+    Mvtk = 'Mvtk'
+}
+
 export interface IObject {
-    typeOf: 'Mvtk';
+    typeOf: ObjectType;
     seatInfoSyncIn: ISeatInfoSyncIn;
 }
 

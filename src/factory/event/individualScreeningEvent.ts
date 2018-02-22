@@ -24,16 +24,6 @@ import PlaceType from '../placeType';
  */
 export interface ISearchConditions {
     /**
-     * 上映日
-     * @deprecated since version 2.1.0 startFromとstartThroughを使ってください。
-     */
-    day?: string;
-    /**
-     * 劇場コード
-     * @deprecated since version 2.1.0 locationBranchCodesを使ってください。
-     */
-    theater?: string;
-    /**
      * イベント名称
      */
     name?: string;

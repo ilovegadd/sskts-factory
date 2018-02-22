@@ -28,6 +28,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Removed
 - 取引から注文を作成するファンクションを削除。
+- 取引スコープファクトリーを削除。
+- イベント検索条件属性からdayとtheaterを削除。
 
 ### Fixed
 

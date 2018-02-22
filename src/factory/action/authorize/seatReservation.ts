@@ -14,6 +14,10 @@ import * as AuthorizeActionFactory from '../authorize';
 export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;
 
+export enum ObjectType {
+    SeatReservation = 'SeatReservation'
+}
+
 /**
  * authorize action result interface
  * 認可アクション結果
@@ -34,8 +38,7 @@ export interface IResult {
  * @export
  */
 export interface IObject {
-    typeOf: 'SeatReservation';
-    transactionId: string;
+    typeOf: ObjectType;
     individualScreeningEvent: IndividualScreeningEventFactory.IEvent;
     offers: ISeatReservationOffer[];
 }

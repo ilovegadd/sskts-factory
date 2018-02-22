@@ -1,22 +1,26 @@
 /**
- * authorize action factory
  * 承認アクションファクトリー
  * @namespace action.authorize
  */
 
 import * as ActionFactory from '../action';
 
+/**
+ * 承認対象インターフェース
+ */
 export type IObject = any;
+/**
+ * 承認結果インターフェース
+ */
 export type IResult = any;
-
-export enum AuthorizeActionPurpose {
-    CreditCard = 'CreditCard',
-    Mvtk = 'Mvtk',
-    SeatReservation = 'SeatReservation'
-}
-
+/**
+ * 承認目的インターフェース
+ */
 export type IPurpose = any;
 
+/**
+ * アクション属性インターフェース
+ */
 export interface IAttributes<TObject, TResult> extends ActionFactory.IAttributes<TObject, TResult> {
     purpose: IPurpose;
     recipient: ActionFactory.IParticipant;
