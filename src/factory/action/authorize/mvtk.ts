@@ -5,6 +5,7 @@
  */
 
 import * as ActionFactory from '../../action';
+import ActionType from '../../actionType';
 import { ITransaction } from '../../transaction/placeOrder';
 import * as AuthorizeActionFactory from '../authorize';
 
@@ -122,7 +123,7 @@ export function createAttributes(params: {
     purpose: IPurpose;
 }): IAttributes {
     return {
-        typeOf: ActionFactory.ActionType.AuthorizeAction,
+        typeOf: ActionType.AuthorizeAction,
         result: params.result,
         object: params.object,
         agent: params.agent,

@@ -3,6 +3,7 @@
  */
 
 import * as ActionFactory from '../../action';
+import ActionType from '../../actionType';
 import { IOrder } from '../../order';
 import { IAttributes as IUseMvtkActionAttributes } from '../consume/use/mvtk';
 import { IAttributes as IPayActionAttributes } from '../trade/pay';
@@ -35,7 +36,7 @@ export interface IPotentialActions {
 }
 
 export interface IAttributes extends ActionFactory.IAttributes<IObject, IResult> {
-    potentialActions: IPotentialActions;
+    potentialActions?: IPotentialActions;
 }
 
 export type IAction = ActionFactory.IAction<IAttributes>;
@@ -44,10 +45,10 @@ export function createAttributes(params: {
     result?: IResult;
     object: IObject;
     agent: IAgent;
-    potentialActions: IPotentialActions;
+    potentialActions?: IPotentialActions;
 }): IAttributes {
     return {
-        typeOf: ActionFactory.ActionType.OrderAction,
+        typeOf: ActionType.OrderAction,
         result: params.result,
         object: params.object,
         agent: params.agent,

@@ -4,6 +4,7 @@
  */
 
 import * as ActionFactory from '../../../action';
+import ActionStatusType from '../../../actionStatusType';
 import * as PrintActionFactory from '../print';
 
 export type IAgent = ActionFactory.IParticipant;
@@ -30,7 +31,7 @@ export interface IAttributes extends PrintActionFactory.IAttributes<IObject, IRe
 export type IAction = PrintActionFactory.IAction<IAttributes>;
 
 export function createAttributes(params: {
-    actionStatus: ActionFactory.ActionStatusType;
+    actionStatus: ActionStatusType;
     result?: IResult;
     object: IObject;
     agent: IAgent;

@@ -3,6 +3,7 @@
  */
 
 import * as ActionFactory from '../../action';
+import ActionType from '../../actionType';
 import { IOrder } from '../../order';
 import { IAttributes as ISendEmailMessageActionAttributes } from '../transfer/send/message/email';
 import * as PayActionFactory from './pay';
@@ -29,7 +30,7 @@ export type IPurpose = IOrder;
 export interface IAttributes extends ActionFactory.IAttributes<IObject, IResult> {
     recipient: IRecipient;
     purpose: IPurpose;
-    potentialActions: IPotentialActions;
+    potentialActions?: IPotentialActions;
 }
 
 export type IAction = ActionFactory.IAction<IAttributes>;
@@ -40,10 +41,10 @@ export function createAttributes(params: {
     agent: IAgent;
     purpose: IPurpose;
     recipient: IRecipient;
-    potentialActions: IPotentialActions;
+    potentialActions?: IPotentialActions;
 }): IAttributes {
     return {
-        typeOf: ActionFactory.ActionType.RefundAction,
+        typeOf: ActionType.RefundAction,
         result: params.result,
         object: params.object,
         agent: params.agent,

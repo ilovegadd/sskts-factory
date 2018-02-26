@@ -4,6 +4,7 @@
  */
 
 import * as ActionFactory from '../../action';
+import ActionType from '../../actionType';
 
 export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;
@@ -22,7 +23,7 @@ export function createAttributes(params: {
     agent: IAgent;
 }): IAttributes<IObject, IResult> {
     return {
-        typeOf: ActionFactory.ActionType.PrintAction,
+        typeOf: ActionType.PrintAction,
         result: params.result,
         object: params.object,
         agent: params.agent

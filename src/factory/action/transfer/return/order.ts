@@ -26,7 +26,7 @@ export interface IPotentialActions {
 
 export interface IAttributes extends ReturnActionFactory.IAttributes<IObject, IResult> {
     recipient: IRecipient;
-    potentialActions: IPotentialActions;
+    potentialActions?: IPotentialActions;
 }
 
 export type IAction = ReturnActionFactory.IAction<IAttributes>;
@@ -36,7 +36,7 @@ export function createAttributes(params: {
     object: IObject;
     agent: IAgent;
     recipient: IRecipient;
-    potentialActions: IPotentialActions;
+    potentialActions?: IPotentialActions;
 }): IAttributes {
     return {
         ...ReturnActionFactory.createAttributes(params),

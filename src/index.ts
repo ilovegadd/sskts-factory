@@ -17,6 +17,8 @@ import * as PrintTicketActionFactory from './factory/action/transfer/print/ticke
 import * as ReturnOrderActionFactory from './factory/action/transfer/return/order';
 import * as SendEmailMessageActionFactory from './factory/action/transfer/send/message/email';
 import * as SendOrderActionFactory from './factory/action/transfer/send/order';
+import ActionStatusType from './factory/actionStatusType';
+import ActionType from './factory/actionType';
 
 import * as ClientEventFactory from './factory/clientEvent';
 import * as ClientUserFactory from './factory/clientUser';
@@ -75,8 +77,8 @@ import * as errors from './factory/errors';
 export import errors = errors;
 export import errorCode = ErrorCode;
 
-export import actionStatusType = ActionFactory.ActionStatusType;
-export import actionType = ActionFactory.ActionType;
+export import actionStatusType = ActionStatusType;
+export import actionType = ActionType;
 export namespace action {
     export import IAction = ActionFactory.IAction;
     export import IAttributes = ActionFactory.IAttributes;

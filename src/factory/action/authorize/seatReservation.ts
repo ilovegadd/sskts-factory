@@ -6,6 +6,7 @@
 import * as COA from '@motionpicture/coa-service';
 
 import * as ActionFactory from '../../action';
+import ActionType from '../../actionType';
 import * as IndividualScreeningEventFactory from '../../event/individualScreeningEvent';
 import { IOfferWithDetails as ISeatReservationOffer } from '../../offer/seatReservation';
 import { ITransaction } from '../../transaction/placeOrder';
@@ -74,7 +75,7 @@ export function createAttributes(params: {
     purpose: IPurpose;
 }): IAttributes {
     return {
-        typeOf: ActionFactory.ActionType.AuthorizeAction,
+        typeOf: ActionType.AuthorizeAction,
         object: params.object,
         result: params.result,
         error: params.error,

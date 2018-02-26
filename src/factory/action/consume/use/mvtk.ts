@@ -3,6 +3,7 @@
  */
 
 import * as ActionFactory from '../../../action';
+import ActionStatusType from '../../../actionStatusType';
 import { IOrder } from '../../../order';
 import { ISeatInfoSyncIn } from '../../authorize/mvtk';
 import * as UseActionFactory from '../use';
@@ -30,7 +31,7 @@ export interface IAttributes extends UseActionFactory.IAttributes<IObject, IResu
 export type IAction = UseActionFactory.IAction<IAttributes>;
 
 export function createAttributes(params: {
-    actionStatus: ActionFactory.ActionStatusType;
+    actionStatus: ActionStatusType;
     result?: IResult;
     object: IObject;
     agent: IAgent;
