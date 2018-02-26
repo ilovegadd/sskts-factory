@@ -57,7 +57,7 @@
     "power-assert": "^1.4.4",
     "rimraf": "^2.6.2",
     "sinon": "^3.3.0",
-    "snyk": "^1.69.7",
+    "snyk": "^1.69.9",
     "ts-node": "^3.3.0",
     "tslint": "^5.9.1",
     "tslint-microsoft-contrib": "^5.0.3",

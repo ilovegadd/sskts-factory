@@ -7,6 +7,7 @@ import * as ActionFactory from './factory/action';
 import * as AuthorizeActionFactory from './factory/action/authorize';
 import * as CreditCardAuthorizeActionFactory from './factory/action/authorize/creditCard';
 import * as MvtkAuthorizeActionFactory from './factory/action/authorize/mvtk';
+import * as PecorinoAuthorizeActionFactory from './factory/action/authorize/pecorino';
 import * as seatReservationAuthorizeActionFactory from './factory/action/authorize/seatReservation';
 import * as UseMvtkActionFactory from './factory/action/consume/use/mvtk';
 import * as OrderActionFactory from './factory/action/trade/order';
@@ -92,6 +93,7 @@ export namespace action {
         export import IAttributes = AuthorizeActionFactory.IAttributes;
         export import creditCard = CreditCardAuthorizeActionFactory;
         export import mvtk = MvtkAuthorizeActionFactory;
+        export import pecorino = PecorinoAuthorizeActionFactory;
         export import seatReservation = seatReservationAuthorizeActionFactory;
     }
 
