@@ -1,3 +1,5 @@
+// tslint:disable-next-line:no-require-imports
+import setPrototypeOf = require('setprototypeof');
 import ErrorCode from '../errorCode';
 import { SSKTSError } from './sskts';
 
@@ -9,16 +11,15 @@ export default class NotFoundError extends SSKTSError {
     public readonly entityName: string;
 
     constructor(entityName: string, message?: string) {
+        let actualMessage = message;
         if (message === undefined || message.length === 0) {
-            // tslint:disable-next-line:no-parameter-reassignment
-            message = `Not Found: ${entityName}.`;
+            actualMessage = `Not Found: ${entityName}.`;
         }
 
-        super(ErrorCode.NotFound, message);
+        super(ErrorCode.NotFound, actualMessage);
 
         this.entityName = entityName;
 
-        // Set the prototype explicitly.
-        Object.setPrototypeOf(this, NotFoundError.prototype);
+        setPrototypeOf(this, NotFoundError.prototype);
     }
 }

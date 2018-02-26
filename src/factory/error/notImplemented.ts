@@ -1,3 +1,5 @@
+// tslint:disable-next-line:no-require-imports
+import setPrototypeOf = require('setprototypeof');
 import ErrorCode from '../errorCode';
 import { SSKTSError } from './sskts';
 
@@ -7,14 +9,13 @@ import { SSKTSError } from './sskts';
  */
 export default class NotImplementedError extends SSKTSError {
     constructor(message?: string) {
+        let actualMessage = message;
         if (message === undefined || message.length === 0) {
-            // tslint:disable-next-line:no-parameter-reassignment
-            message = 'Method is not yet implemented.';
+            actualMessage = 'Method is not yet implemented.';
         }
 
-        super(ErrorCode.NotImplemented, message);
+        super(ErrorCode.NotImplemented, actualMessage);
 
-        // Set the prototype explicitly.
-        Object.setPrototypeOf(this, NotImplementedError.prototype);
+        setPrototypeOf(this, NotImplementedError.prototype);
     }
 }

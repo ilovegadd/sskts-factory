@@ -1,3 +1,5 @@
+// tslint:disable-next-line:no-require-imports
+import setPrototypeOf = require('setprototypeof');
 import ErrorCode from '../errorCode';
 import { SSKTSError } from './sskts';
 
@@ -7,14 +9,13 @@ import { SSKTSError } from './sskts';
  */
 export default class ForbiddenError extends SSKTSError {
     constructor(message?: string) {
+        let actualMessage = message;
         if (message === undefined || message.length === 0) {
-            // tslint:disable-next-line:no-parameter-reassignment
-            message = 'Forbidden.';
+            actualMessage = 'Forbidden.';
         }
 
-        super(ErrorCode.Forbidden, message);
+        super(ErrorCode.Forbidden, actualMessage);
 
-        // Set the prototype explicitly.
-        Object.setPrototypeOf(this, ForbiddenError.prototype);
+        setPrototypeOf(this, ForbiddenError.prototype);
     }
 }

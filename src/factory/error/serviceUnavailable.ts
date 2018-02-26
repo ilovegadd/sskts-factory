@@ -1,3 +1,5 @@
+// tslint:disable-next-line:no-require-imports
+import setPrototypeOf = require('setprototypeof');
 import ErrorCode from '../errorCode';
 import { SSKTSError } from './sskts';
 
@@ -7,14 +9,13 @@ import { SSKTSError } from './sskts';
  */
 export default class ServiceUnavailableError extends SSKTSError {
     constructor(message?: string) {
+        let actualMessage = message;
         if (message === undefined || message.length === 0) {
-            // tslint:disable-next-line:no-parameter-reassignment
-            message = 'Service unavailable temporarily.';
+            actualMessage = 'Service unavailable temporarily.';
         }
 
-        super(ErrorCode.ServiceUnavailable, message);
+        super(ErrorCode.ServiceUnavailable, actualMessage);
 
-        // Set the prototype explicitly.
-        Object.setPrototypeOf(this, ServiceUnavailableError.prototype);
+        setPrototypeOf(this, ServiceUnavailableError.prototype);
     }
 }

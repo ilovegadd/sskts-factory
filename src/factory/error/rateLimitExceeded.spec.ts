@@ -6,22 +6,21 @@
 import * as assert from 'assert';
 
 import RateLimitExceededError from './rateLimitExceeded';
-import { SSKTSError } from './sskts';
 
 describe('new RateLimitExceededError()', () => {
-    it('正しくインスタンス化できる', async () => {
+    it('正しくインスタンス化できる', () => {
         const message = 'test message';
         const error = new RateLimitExceededError(message);
-        assert(error instanceof Error);
+        assert(error instanceof RateLimitExceededError);
         assert.equal(error.message, message);
-        assert.equal(error.name, SSKTSError.name);
+        assert.equal(error.name, 'SSKTSError');
         assert.equal(typeof error.stack, 'string');
     });
 
-    it('メッセージを指定しなくても、正しくインスタンス化できる', async () => {
+    it('メッセージを指定しなくても、正しくインスタンス化できる', () => {
         const error = new RateLimitExceededError();
-        assert(error instanceof Error);
-        assert.equal(error.name, SSKTSError.name);
+        assert(error instanceof RateLimitExceededError);
+        assert.equal(error.name, 'SSKTSError');
         assert.equal(typeof error.message, 'string');
         assert.equal(typeof error.stack, 'string');
     });

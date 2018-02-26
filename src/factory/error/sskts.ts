@@ -12,8 +12,5 @@ export class SSKTSError extends Error {
 
         this.name = 'SSKTSError';
         this.reason = code;
-
-        // Set the prototype explicitly.
-        Object.setPrototypeOf(this, SSKTSError.prototype);
     }
 }

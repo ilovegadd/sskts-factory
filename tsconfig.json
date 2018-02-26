@@ -34,10 +34,13 @@
         "stripInternal": false,
         "suppressExcessPropertyErrors": false,
         "suppressImplicitAnyIndexErrors": false,
-        "target": "es6",
+        "target": "es5",
         "watch": false
     },
     "include": [
-        "./src/**/*"
+        "src"
+    ],
+    "exclude": [
+        "**/*.spec.ts"
     ]
 }

@@ -33,9 +33,9 @@ export function createFromCOATmpReserve(params: {
     individualScreeningEvent: IndividualScreeningEventFactory.IEvent;
 }): IEventReservation<IndividualScreeningEventFactory.IEvent>[] {
     return params.updTmpReserveSeatResult.listTmpReserve.map((tmpReserve, index) => {
-        const requestedOffer = params.offers.find((offer) => {
+        const requestedOffer = params.offers.filter((offer) => {
             return (offer.seatNumber === tmpReserve.seatNum && offer.seatSection === tmpReserve.seatSection);
-        });
+        })[0];
         if (requestedOffer === undefined) {
             throw new ArgumentError('offers', '要求された供給情報と仮予約結果が一致しません。');
         }

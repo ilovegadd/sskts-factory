@@ -182,12 +182,12 @@ export function createFromCOA(params: {
             identifier: params.movieTheater.identifier,
             name: params.movieTheater.name
         },
-        videoFormat: params.eizouKubuns.find((kubun) => kubun.kubunCode === params.filmFromCOA.kbnEizou),
+        videoFormat: params.eizouKubuns.filter((kubun) => kubun.kubunCode === params.filmFromCOA.kbnEizou)[0],
         workPerformed: {
             identifier: params.filmFromCOA.titleCode,
             name: params.filmFromCOA.titleNameOrig,
             duration: moment.duration(params.filmFromCOA.showTime, 'm').toISOString(),
-            contentRating: params.eirinKubuns.find((kubun) => kubun.kubunCode === params.filmFromCOA.kbnEirin),
+            contentRating: params.eirinKubuns.filter((kubun) => kubun.kubunCode === params.filmFromCOA.kbnEirin)[0],
             typeOf: CreativeWorkType.Movie
         },
         duration: moment.duration(params.filmFromCOA.showTime, 'm').toISOString(),
@@ -195,8 +195,8 @@ export function createFromCOA(params: {
         startDate: startDate,
         coaInfo: {
             titleBranchNum: params.filmFromCOA.titleBranchNum,
-            kbnJoueihousiki: params.joueihousikiKubuns.find((kubun) => kubun.kubunCode === params.filmFromCOA.kbnJoueihousiki),
-            kbnJimakufukikae: params.jimakufukikaeKubuns.find((kubun) => kubun.kubunCode === params.filmFromCOA.kbnJimakufukikae),
+            kbnJoueihousiki: params.joueihousikiKubuns.filter((kubun) => kubun.kubunCode === params.filmFromCOA.kbnJoueihousiki)[0],
+            kbnJimakufukikae: params.jimakufukikaeKubuns.filter((kubun) => kubun.kubunCode === params.filmFromCOA.kbnJimakufukikae)[0],
             flgMvtkUse: params.filmFromCOA.flgMvtkUse,
             dateMvtkBegin: params.filmFromCOA.dateMvtkBegin
         },

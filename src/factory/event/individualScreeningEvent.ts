@@ -5,6 +5,7 @@
  */
 
 import * as COA from '@motionpicture/coa-service';
+import * as _ from 'lodash';
 import * as moment from 'moment';
 
 import ArgumentError from '../error/argument';
@@ -73,10 +74,10 @@ export type IItemAvailability = number;
  * @param numberOfAllSeats 全座席数
  */
 export function createItemAvailability(numberOfAvailableSeats: number, numberOfAllSeats: number): IItemAvailability {
-    if (!Number.isInteger(numberOfAvailableSeats)) {
+    if (!_.isInteger(numberOfAvailableSeats)) {
         throw new ArgumentError('numberOfAvailableSeats', 'numberOfAvailableSeats must be number.');
     }
-    if (!Number.isInteger(numberOfAllSeats)) {
+    if (!_.isInteger(numberOfAllSeats)) {
         throw new ArgumentError('numberOfAllSeats', 'numberOfAllSeats must be number.');
     }
 
@@ -258,8 +259,8 @@ export function createFromCOA(params: {
                 timeBegin: params.performanceFromCOA.timeBegin,
                 screenCode: params.performanceFromCOA.screenCode,
                 trailerTime: params.performanceFromCOA.trailerTime,
-                kbnService: params.serviceKubuns.find((kubun) => kubun.kubunCode === params.performanceFromCOA.kbnService),
-                kbnAcoustic: params.acousticKubuns.find((kubun) => kubun.kubunCode === params.performanceFromCOA.kbnAcoustic),
+                kbnService: params.serviceKubuns.filter((kubun) => kubun.kubunCode === params.performanceFromCOA.kbnService)[0],
+                kbnAcoustic: params.acousticKubuns.filter((kubun) => kubun.kubunCode === params.performanceFromCOA.kbnAcoustic)[0],
                 nameServiceDay: params.performanceFromCOA.nameServiceDay,
                 availableNum: params.performanceFromCOA.availableNum,
                 rsvStartDate: params.performanceFromCOA.rsvStartDate,
