@@ -6,7 +6,8 @@
 import * as COA from '@motionpicture/coa-service';
 
 import { IEvent } from '../event';
-import { IReservation, ReservationType } from '../reservation';
+import { IReservation } from '../reservation';
+import ReservationType from '../reservationType';
 
 import ArgumentError from '../error/argument';
 

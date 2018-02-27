@@ -1,9 +1,8 @@
 /**
- * reservation factory
+ * 予約ファクトリー
  * @namespace reservation
  */
 
-import * as EventFactory from './event';
 import IMultilingualString from './multilingualString';
 import { ICOATicketInfoWithDetails } from './offer/seatReservation';
 import OrganizationType from './organizationType';
@@ -11,11 +10,8 @@ import PersonType from './personType';
 import PlaceType from './placeType';
 import PriceCurrency from './priceCurrency';
 import ReservationStatusType from './reservationStatusType';
+import ReservationType from './reservationType';
 import * as URLFactory from './url';
-
-export enum ReservationType {
-    EventReservation = 'EventReservation'
-}
 
 /**
  * under name interface
@@ -117,7 +113,7 @@ export interface IReservation {
     /**
      * type of object
      */
-    typeOf: string;
+    typeOf: ReservationType;
     /**
      * Any additional text to appear on a ticket, such as additional privileges or identifiers.
      */
@@ -185,35 +181,4 @@ export interface IReservation {
      * The person or organization the reservation is for.
      */
     underName: IUnderName;
-}
-
-/**
- * create reservation object
- * @export
- */
-export function create(params: {
-    additionalTicketText: string;
-    bookingAgent?: string;
-    bookingTime?: Date;
-    cancelReservationUrl?: URLFactory.IURL;
-    checkinUrl?: URLFactory.IURL;
-    confirmReservationUrl?: URLFactory.IURL;
-    modifiedTime: Date;
-    modifyReservationUrl?: URLFactory.IURL;
-    numSeats: number;
-    price: number;
-    priceCurrency: PriceCurrency;
-    programMembershipUsed?: string;
-    reservationFor: EventFactory.IEvent;
-    reservationNumber: string;
-    reservationStatus: ReservationStatusType;
-    reservedTicket: ITicket;
-    underName: IUnderName;
-}): IReservation {
-    return {
-        ...params,
-        ...{
-            typeOf: 'Reservation'
-        }
-    };
 }

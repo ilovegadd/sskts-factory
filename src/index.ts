@@ -48,6 +48,7 @@ import PlaceType from './factory/placeType';
 import PriceCurrency from './factory/priceCurrency';
 import * as EventReservationFactory from './factory/reservation/event';
 import ReservationStatusType from './factory/reservationStatusType';
+import ReservationType from './factory/reservationType';
 
 import * as CancelCreditCardTaskFactory from './factory/task/cancelCreditCard';
 import * as CancelMvtkTaskFactory from './factory/task/cancelMvtk';
@@ -187,6 +188,7 @@ export namespace reservation {
     export import event = EventReservationFactory;
 }
 export import reservationStatusType = ReservationStatusType;
+export import reservationType = ReservationType;
 export namespace task {
     export import IAttributes = TaskFactory.IAttributes;
     export import ITask = TaskFactory.ITask;
