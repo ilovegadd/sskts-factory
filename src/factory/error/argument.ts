@@ -1,25 +1,25 @@
+// tslint:disable-next-line:no-require-imports
+import setPrototypeOf = require('setprototypeof');
 import ErrorCode from '../errorCode';
 import { SSKTSError } from './sskts';
 
 /**
  * ArgumentError
- *
- * @class ArgumentError
  * @extends {SSKTSError}
  */
 export default class ArgumentError extends SSKTSError {
     public readonly argumentName: string;
 
     constructor(argumentName: string, message?: string) {
+        let actualMessage = message;
         if (message === undefined || message.length === 0) {
-            message = `Invalid or missing argument supplied: ${argumentName}.`;
+            actualMessage = `Invalid or missing argument supplied: ${argumentName}.`;
         }
 
-        super(ErrorCode.Argument, message);
+        super(ErrorCode.Argument, actualMessage);
 
         this.argumentName = argumentName;
 
-        // Set the prototype explicitly.
-        Object.setPrototypeOf(this, ArgumentError.prototype);
+        setPrototypeOf(this, ArgumentError.prototype);
     }
 }

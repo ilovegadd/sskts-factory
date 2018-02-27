@@ -5,23 +5,22 @@
 
 import * as assert from 'assert';
 
-import { SSKTSError } from './sskts';
 import UnauthorizedError from './unauthorized';
 
 describe('new UnauthorizedError()', () => {
-    it('正しくインスタンス化できる', async () => {
+    it('正しくインスタンス化できる', () => {
         const message = 'test message';
         const error = new UnauthorizedError(message);
-        assert(error instanceof Error);
+        assert(error instanceof UnauthorizedError);
         assert.equal(error.message, message);
-        assert.equal(error.name, SSKTSError.name);
+        assert.equal(error.name, 'SSKTSError');
         assert.equal(typeof error.stack, 'string');
     });
 
-    it('メッセージを指定しなくても、正しくインスタンス化できる', async () => {
+    it('メッセージを指定しなくても、正しくインスタンス化できる', () => {
         const error = new UnauthorizedError();
-        assert(error instanceof Error);
-        assert.equal(error.name, SSKTSError.name);
+        assert(error instanceof UnauthorizedError);
+        assert.equal(error.name, 'SSKTSError');
         assert.equal(typeof error.message, 'string');
         assert.equal(typeof error.stack, 'string');
     });

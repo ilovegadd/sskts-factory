@@ -12,13 +12,31 @@
 
 ## Table of contents
 
+* [Usage](#usage)
+* [Code Samples](#code-samples)
 * [Jsdoc](#jsdoc)
 * [License](#license)
 
 
+## Usage
+
+```shell
+npm install @motionpicture/sskts-factory
+```
+
+### Environment variables
+
+| Name    | Required | Value           | Purpose |
+| ------- | -------- | --------------- | ------- |
+| `DEBUG` | false    | sskts-factory:* | Debug   |
+
+## Code Samples
+
+Code sample are [here](https://github.com/motionpicture/sskts-factory/tree/master/example).
+
 ## Jsdoc
 
-`npm run doc`でjsdocを作成できます。./docに出力されます。
+`npm run doc` emits jsdoc to ./doc.
 
 ## License
 

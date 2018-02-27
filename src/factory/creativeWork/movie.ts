@@ -12,8 +12,6 @@ import CreativeWorkType from '../creativeWorkType';
 /**
  * movie creativeWork interface
  * @export
- * @interface
- * @memberof creativeWork.movie
  */
 export interface ICreativeWork extends CreativeWorkFactory.ICreativeWork {
     identifier: string;
@@ -25,8 +23,6 @@ export interface ICreativeWork extends CreativeWorkFactory.ICreativeWork {
 /**
  * COAの作品抽出結果からFilmオブジェクトを作成する
  * @export
- * @function
- * @memberof creativeWork.movie
  */
 export function createFromCOA(filmFromCOA: COA.services.master.ITitleResult): ICreativeWork {
     return {

@@ -17,6 +17,34 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Security
 
 
+## v3.0.0 - 2018-02-27
+### Added
+- 注文返品取引インターフェースを追加。
+- 注文返品アクションインターフェースを追加。
+- クレジットカード売上取消タスクインターフェースを追加。
+- 注文返品タスクインターフェースを追加。
+- 注文アクションを追加。
+- 支払アクションを追加。
+- 返金アクションを追加。
+- 注文配送アクションを追加。
+- 使用アクションを追加。
+- 注文配送タスクを追加。
+- Eメール送信アクションをパラメーターに持つ、新しいEメール送信タスクを追加。
+- Pecorino支払タスクを追加。
+- Pecorino口座承認アクションを追加。
+
+### Changed
+- アクションインターフェースを拡張。
+- アクションと取引に対して潜在アクション属性を定義。
+- 承認アクションのobjectに型を定義し、purposeを取引型に変更。
+- 注文取引オブジェクトのWAITER許可証属性を必須に変更。
+- typescriptコンパイルターゲットをes5に変更。
+
+### Removed
+- 取引から注文を作成するファンクションを削除。
+- 取引スコープファクトリーを削除。
+- イベント検索条件属性からdayとtheaterを削除。
+
 ## v2.3.1 - 2017-11-28
 ### Fixed
 - add a node security exception [Regular Expression Denial of Service](https://nodesecurity.io/advisories/532).

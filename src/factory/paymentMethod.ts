@@ -7,8 +7,6 @@ import PaymentMethodType from './paymentMethodType';
 
 /**
  * payment method interface
- * @interface {IPaymentMethod}
- * @memberof paymentMethod
  */
 export interface IPaymentMethod {
     typeOf: PaymentMethodType;

@@ -1,21 +1,21 @@
+// tslint:disable-next-line:no-require-imports
+import setPrototypeOf = require('setprototypeof');
 import ErrorCode from '../errorCode';
 import { SSKTSError } from './sskts';
 
 /**
  * UnauthorizedError
- *
- * @class UnauthorizedError
  * @extends {SSKTSError}
  */
 export default class UnauthorizedError extends SSKTSError {
     constructor(message?: string) {
+        let actualMessage = message;
         if (message === undefined || message.length === 0) {
-            message = 'Unauthorized.';
+            actualMessage = 'Unauthorized.';
         }
 
-        super(ErrorCode.Unauthorized, message);
+        super(ErrorCode.Unauthorized, actualMessage);
 
-        // Set the prototype explicitly.
-        Object.setPrototypeOf(this, UnauthorizedError.prototype);
+        setPrototypeOf(this, UnauthorizedError.prototype);
     }
 }

@@ -5,6 +5,7 @@
  */
 
 import * as COA from '@motionpicture/coa-service';
+import * as _ from 'lodash';
 import * as moment from 'moment';
 
 import ArgumentError from '../error/argument';
@@ -21,20 +22,8 @@ import PlaceType from '../placeType';
  * search conditions interface
  * 個々の上映イベントの検索条件インターフェース
  * @export
- * @interface
- * @memberof event.individualScreeningEvent
  */
 export interface ISearchConditions {
-    /**
-     * 上映日
-     * @deprecated since version 2.1.0 startFromとstartThroughを使ってください。
-     */
-    day?: string;
-    /**
-     * 劇場コード
-     * @deprecated since version 2.1.0 locationBranchCodesを使ってください。
-     */
-    theater?: string;
     /**
      * イベント名称
      */
@@ -75,25 +64,20 @@ export interface ISearchConditions {
  * 上映イベント空席状況表現インターフェース
  * 表現を変更する場合、このインターフェースを変更して対応する
  * @export
- * @type
- * @memberof event.individualScreeningEvent
  */
 export type IItemAvailability = number;
 
 /**
  * 座席数から在庫状況表現を生成する
  * @export
- * @function
- * @memberof event.individualScreeningEvent
- * @param {number} numberOfAvailableSeats 空席数
- * @param {number} numberOfAllSeats 全座席数
- * @returns {IItemAvailability} 在庫状況表現
+ * @param numberOfAvailableSeats 空席数
+ * @param numberOfAllSeats 全座席数
  */
 export function createItemAvailability(numberOfAvailableSeats: number, numberOfAllSeats: number): IItemAvailability {
-    if (!Number.isInteger(numberOfAvailableSeats)) {
+    if (!_.isInteger(numberOfAvailableSeats)) {
         throw new ArgumentError('numberOfAvailableSeats', 'numberOfAvailableSeats must be number.');
     }
-    if (!Number.isInteger(numberOfAllSeats)) {
+    if (!_.isInteger(numberOfAllSeats)) {
         throw new ArgumentError('numberOfAllSeats', 'numberOfAllSeats must be number.');
     }
 
@@ -109,8 +93,6 @@ export function createItemAvailability(numberOfAvailableSeats: number, numberOfA
 /**
  * event offer interface
  * @export
- * @interface
- * @memberof event.individualScreeningEvent
  */
 export interface IOffer {
     typeOf: string;
@@ -121,8 +103,6 @@ export interface IOffer {
 /**
  * event with offer interface
  * @export
- * @interface
- * @memberof event.individualScreeningEvent
  */
 export type IEventWithOffer = IEvent & {
     offer: IOffer;
@@ -132,8 +112,6 @@ export type IEventWithOffer = IEvent & {
  * individual screening event interface
  * 個々の上映イベントインターフェース(COAのスケジュールに相当)
  * @export
- * @interface
- * @memberof event.individualScreeningEvent
  */
 export interface IEvent extends EventFactory.IEvent {
     /**
@@ -233,8 +211,6 @@ export interface IEvent extends EventFactory.IEvent {
 /**
  * create individualScreeningEvent from COA performance
  * @export
- * @function
- * @memberof event.individualScreeningEvent
  */
 export function createFromCOA(params: {
     performanceFromCOA: COA.services.master.IScheduleResult;
@@ -283,8 +259,8 @@ export function createFromCOA(params: {
                 timeBegin: params.performanceFromCOA.timeBegin,
                 screenCode: params.performanceFromCOA.screenCode,
                 trailerTime: params.performanceFromCOA.trailerTime,
-                kbnService: params.serviceKubuns.find((kubun) => kubun.kubunCode === params.performanceFromCOA.kbnService),
-                kbnAcoustic: params.acousticKubuns.find((kubun) => kubun.kubunCode === params.performanceFromCOA.kbnAcoustic),
+                kbnService: params.serviceKubuns.filter((kubun) => kubun.kubunCode === params.performanceFromCOA.kbnService)[0],
+                kbnAcoustic: params.acousticKubuns.filter((kubun) => kubun.kubunCode === params.performanceFromCOA.kbnAcoustic)[0],
                 nameServiceDay: params.performanceFromCOA.nameServiceDay,
                 availableNum: params.performanceFromCOA.availableNum,
                 rsvStartDate: params.performanceFromCOA.rsvStartDate,
@@ -298,13 +274,11 @@ export function createFromCOA(params: {
 /**
  * COA情報から個々の上映イベント識別子を作成する
  * @export
- * @function
- * @memberof event.individualScreeningEvent
  */
 export function createIdentifierFromCOA(params: {
-    theaterCode: string,
-    titleCode: string,
-    titleBranchNum: string,
+    theaterCode: string;
+    titleCode: string;
+    titleBranchNum: string;
     dateJouei: string;
     screenCode: string;
     timeBegin: string;

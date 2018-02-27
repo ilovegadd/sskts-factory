@@ -3,6 +3,7 @@
  * @namespace task
  */
 
+import * as _ from 'lodash';
 import * as validator from 'validator';
 
 import ArgumentError from './error/argument';
@@ -20,45 +21,27 @@ export interface IAttributes {
     status: TaskStatus;
     /**
      * いつ実行するか
-     *
-     * @type {Date}
-     * @memberof ITask
      */
     runsAt: Date;
     /**
      * あと何回トライできるか
-     *
-     * @type {number}
-     * @memberof ITask
      */
     remainingNumberOfTries: number;
     /**
      * 最終トライ日時
-     *
-     * @type {(Date | null)}
-     * @memberof ITask
      */
     lastTriedAt: Date | null;
     /**
      * すでにトライした回数
-     *
-     * @type {number}
-     * @memberof ITask
      */
     numberOfTried: number;
     /**
      * 実行結果リスト
-     *
-     * @type {TaskExecutionResult.ITaskExecutionResult[]}
-     * @memberof ITask
      */
     executionResults: TaskExecutionResult.ITaskExecutionResult[];
     /**
      * データ
      * TaskNameによってインターフェースが決定する
-     *
-     * @type {*}
-     * @memberof ITask
      */
     data: any;
 }
@@ -82,13 +65,13 @@ export function createAttributes(params: {
     if (!(params.runsAt instanceof Date)) {
         throw new ArgumentError('runsAt', 'runsAt must be Date.');
     }
-    if (!Number.isInteger(params.remainingNumberOfTries)) {
+    if (!_.isInteger(params.remainingNumberOfTries)) {
         throw new ArgumentError('remainingNumberOfTries', 'remainingNumberOfTries must be number.');
     }
     if (params.lastTriedAt !== null && !(params.lastTriedAt instanceof Date)) {
         throw new ArgumentError('lastTriedAt', 'lastTriedAt must be Date or null.');
     }
-    if (!Number.isInteger(params.numberOfTried)) {
+    if (!_.isInteger(params.numberOfTried)) {
         throw new ArgumentError('numberOfTried', 'numberOfTried must be number.');
     }
     if (!Array.isArray(params.executionResults)) {

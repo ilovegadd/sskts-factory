@@ -1,6 +1,5 @@
 /**
- * ownershipInfo factory
- *
+ * 所有権ファクトリー
  * @namespace ownershipInfo
  */
 
@@ -10,15 +9,11 @@ import { IReservation } from './reservation';
 
 /**
  * good interface (Product or Service)
- * @interface {IOwner}
- * @memberof ownershipInfo
  */
 export type IGood = IReservation;
 
 /**
  * owner interface
- * @interface {IOwner}
- * @memberof ownershipInfo
  */
 export interface IOwner {
     typeOf: OrganizationType | PersonType;
@@ -28,14 +23,12 @@ export interface IOwner {
 
 /**
  * ownershipInfo interface
- * @interface {IOwnershipInfo}
- * @memberof ownershipInfo
  */
 export interface IOwnershipInfo<T extends IGood> {
     /**
      * object type
      */
-    typeOf: string;
+    typeOf: 'OwnershipInfo';
     /**
      * identifier
      */
@@ -60,28 +53,4 @@ export interface IOwnershipInfo<T extends IGood> {
      * The product that this structured value is referring to.
      */
     typeOfGood: T;
-}
-
-/**
- * create ownershipInfo
- * @function
- * @memberof ownershipInfo
- */
-export function create(params: {
-    identifier: string;
-    ownedBy: IOwner;
-    acquiredFrom: IOwner;
-    ownedFrom: Date;
-    ownedThrough: Date;
-    typeOfGood: IGood;
-}): IOwnershipInfo<IGood> {
-    return {
-        typeOf: 'OwnershipInfo',
-        identifier: params.identifier,
-        ownedBy: params.ownedBy,
-        acquiredFrom: params.acquiredFrom,
-        ownedFrom: params.ownedFrom,
-        ownedThrough: params.ownedThrough,
-        typeOfGood: params.typeOfGood
-    };
 }
