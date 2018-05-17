@@ -1,7 +1,7 @@
 /**
  * Pecorino口座承認アクションファクトリー
- * @namespace action.authorize.pecorino
  */
+import * as pecorinoFactory from '@motionpicture/pecorino-factory';
 
 import * as ActionFactory from '../../action';
 import ActionType from '../../actionType';
@@ -24,11 +24,11 @@ export interface IObject {
     price: number;
 }
 
+export type IPecorinoTransaction = pecorinoFactory.transaction.pay.ITransaction | pecorinoFactory.transaction.transfer.ITransaction;
+
 export interface IResult {
     price: number;
-    // tslint:disable-next-line:no-suspicious-comment
-    // TODO pecorino-factoryから型を引用
-    pecorinoTransaction: any;
+    pecorinoTransaction: IPecorinoTransaction;
     pecorinoEndpoint: string;
 }
 
@@ -40,25 +40,11 @@ export type IError = any;
  * Pecorino承認アクション属性インターフェース
  */
 export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
-}
-
-export type IAction = ActionFactory.IAction<IAttributes>;
-
-export function createAttributes(params: {
-    result?: IResult;
     object: IObject;
     agent: IAgent;
     recipient: IRecipient;
-    error?: IError;
+    typeOf: ActionType.AuthorizeAction;
     purpose: IPurpose;
-}): IAttributes {
-    return {
-        typeOf: ActionType.AuthorizeAction,
-        result: params.result,
-        error: params.error,
-        object: params.object,
-        agent: params.agent,
-        recipient: params.recipient,
-        purpose: params.purpose
-    };
 }
+
+export type IAction = ActionFactory.IAction<IAttributes>;

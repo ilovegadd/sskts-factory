@@ -1,7 +1,7 @@
 /**
  * sskts-factory
- * @module
  */
+import * as pecorinoFactory from '@motionpicture/pecorino-factory';
 
 import * as ActionFactory from './factory/action';
 import * as AuthorizeActionFactory from './factory/action/authorize';
@@ -76,6 +76,7 @@ import * as URLFactory from './factory/url';
 import ErrorCode from './factory/errorCode';
 import * as errors from './factory/errors';
 
+export import pecorino = pecorinoFactory;
 export import errors = errors;
 export import errorCode = ErrorCode;
 
@@ -94,6 +95,7 @@ export namespace action {
         export import IAttributes = AuthorizeActionFactory.IAttributes;
         export import creditCard = CreditCardAuthorizeActionFactory;
         export import mvtk = MvtkAuthorizeActionFactory;
+        // tslint:disable-next-line:no-shadowed-variable
         export import pecorino = PecorinoAuthorizeActionFactory;
         export import seatReservation = seatReservationAuthorizeActionFactory;
     }
