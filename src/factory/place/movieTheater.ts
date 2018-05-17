@@ -100,9 +100,8 @@ export type IPlace = IPlaceWithoutScreeningRoom & {
 
 /**
  * COAのマスター抽出結果から作成する
- *
- * @param theaterFromCOA
- * @param screensFromCOA
+ * @param theaterFromCOA COA劇場抽出結果
+ * @param screensFromCOA COAスクリーン抽出結果
  */
 export function createFromCOA(
     theaterFromCOA: COA.services.master.ITheaterResult,
@@ -129,7 +128,7 @@ export function createFromCOA(
 
 /**
  * COAのスクリーン抽出結果から上映室を作成する
- * @param screenFromCOA
+ * @param screenFromCOA COAスクリーン抽出結果
  */
 export function createScreeningRoomFromCOA(screenFromCOA: COA.services.master.IScreenResult): IScreeningRoom {
     const sections: IScreeningRoomSection[] = [];

@@ -1,12 +1,16 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
+
 ### Added
 
 ### Changed
+
+- update packages.
 
 ### Deprecated
 
@@ -16,9 +20,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Security
 
-
 ## v3.0.0 - 2018-02-27
+
 ### Added
+
 - 注文返品取引インターフェースを追加。
 - 注文返品アクションインターフェースを追加。
 - クレジットカード売上取消タスクインターフェースを追加。
@@ -34,6 +39,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Pecorino口座承認アクションを追加。
 
 ### Changed
+
 - アクションインターフェースを拡張。
 - アクションと取引に対して潜在アクション属性を定義。
 - 承認アクションのobjectに型を定義し、purposeを取引型に変更。
@@ -41,6 +47,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - typescriptコンパイルターゲットをes5に変更。
 
 ### Removed
+
 - 取引から注文を作成するファンクションを削除。
 - 取引スコープファクトリーを削除。
 - イベント検索条件属性からdayとtheaterを削除。
