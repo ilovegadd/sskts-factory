@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Added
 
 - Pecorinoファクトリーをエクスポート。
+- Pecorino口座関連のインターフェースを追加。
 
 ### Changed
 

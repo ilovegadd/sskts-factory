@@ -17,6 +17,10 @@ enum TaskName {
      */
     CancelMvtk = 'cancelMvtk',
     /**
+     * Pecorino口座承認アクション取消
+     */
+    CancelPecorino = 'cancelPecorino',
+    /**
      *  Eメールメッセージ送信
      */
     SendEmailMessage = 'sendEmailMessage',
@@ -47,7 +51,11 @@ enum TaskName {
     /**
      * クレジットカード返金
      */
-    RefundCreditCard = 'refundCreditCard'
+    RefundCreditCard = 'refundCreditCard',
+    /**
+     * Pecorino返金
+     */
+    RefundPecorino = 'refundPecorino'
 }
 
 export default TaskName;

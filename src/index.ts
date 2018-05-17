@@ -34,6 +34,7 @@ import IMultilingualString from './factory/multilingualString';
 import * as SeatReservationOfferFactory from './factory/offer/seatReservation';
 import * as OrderFactory from './factory/order';
 import OrderStatus from './factory/orderStatus';
+import * as OrganizationFactory from './factory/organization';
 import * as CorporationOrganizationFactory from './factory/organization/corporation';
 import * as MovieTheaterOrganizationFactory from './factory/organization/movieTheater';
 import CorporationOrganizationIdentifier from './factory/organizationIdentifier/corporation';
@@ -169,6 +170,8 @@ export namespace offer {
 export import order = OrderFactory;
 export import orderStatus = OrderStatus;
 export namespace organization {
+    export import IOrganization = OrganizationFactory.IOrganization;
+    export import IPaymentAccepted = OrganizationFactory.IPaymentAccepted;
     export import corporation = CorporationOrganizationFactory;
     export import movieTheater = MovieTheaterOrganizationFactory;
 }

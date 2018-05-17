@@ -1,31 +1,11 @@
 /**
  * 劇場組織ファクトリー
- * @namespace organization.movieTheater
  */
-
 import IMultilingualString from '../multilingualString';
 import * as OrganizationFactory from '../organization';
 import OrganizationType from '../organizationType';
 import PlaceType from '../placeType';
 import * as URLFactory from '../url';
-
-/**
- * GMOショップ情報インターフェース
- */
-export interface IGMOInfo {
-    /**
-     * サイトID
-     */
-    siteId: string;
-    /**
-     * ショップID
-     */
-    shopId: string;
-    /**
-     * ショップパス
-     */
-    shopPass: string;
-}
 
 /**
  * 場所インターフェース
@@ -65,6 +45,7 @@ export interface IParentOrganization {
 }
 
 export interface IOrganizationWithoutGMOInfo extends OrganizationFactory.IOrganization {
+    typeOf: OrganizationType.MovieTheater;
     /**
      * 組織識別子
      */
@@ -103,7 +84,7 @@ export type IOrganization = IOrganizationWithoutGMOInfo & {
     /**
      * GMO情報
      */
-    gmoInfo: IGMOInfo;
+    gmoInfo: OrganizationFactory.IGMOInfo;
 };
 
 /**
@@ -114,31 +95,3 @@ export type IPublicFields = IOrganizationWithoutGMOInfo & {
         shopId: string;
     };
 };
-
-export function create(params: {
-    name: IMultilingualString;
-    branchCode: string; // 劇場コード
-    gmoInfo: IGMOInfo;
-    parentOrganization: IParentOrganization;
-    location: ILocation;
-    telephone: string;
-    url: URLFactory.IURL;
-}): IOrganization {
-    const identifier = `MovieTheater-${params.branchCode}`;
-
-    return {
-        ...OrganizationFactory.create({
-            identifier: identifier,
-            name: params.name,
-            typeOf: OrganizationType.MovieTheater
-        }),
-        ...{
-            branchCode: params.branchCode,
-            gmoInfo: params.gmoInfo,
-            parentOrganization: params.parentOrganization,
-            location: params.location,
-            telephone: params.telephone,
-            url: params.url
-        }
-    };
-}
