@@ -9,14 +9,12 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/motionpicture/sskts-factory/badge.svg)](https://snyk.io/test/github/motionpicture/sskts-factory)
 [![npm](https://img.shields.io/npm/dm/@motionpicture/sskts-factory.svg)](https://nodei.co/npm/@motionpicture/sskts-factory/)
 
-
 ## Table of contents
 
 * [Usage](#usage)
 * [Code Samples](#code-samples)
 * [Jsdoc](#jsdoc)
 * [License](#license)
-
 
 ## Usage
 
@@ -27,7 +25,7 @@ npm install @motionpicture/sskts-factory
 ### Environment variables
 
 | Name    | Required | Value           | Purpose |
-| ------- | -------- | --------------- | ------- |
+|---------|----------|-----------------|---------|
 | `DEBUG` | false    | sskts-factory:* | Debug   |
 
 ## Code Samples
