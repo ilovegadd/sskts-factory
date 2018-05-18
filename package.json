@@ -66,7 +66,7 @@
     "typescript": "^2.8.3"
   },
   "dependencies": {
-    "@motionpicture/coa-service": "^4.0.9",
+    "@motionpicture/coa-service": "^4.0.10",
     "@motionpicture/gmo-service": "^4.2.0",
     "@motionpicture/pecorino-factory": "0.0.0-alpha.5",
     "@motionpicture/waiter-domain": "^2.0.2",

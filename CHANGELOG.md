@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - Pecorinoファクトリーをエクスポート。
 - Pecorino口座関連のインターフェースを追加。
+- 脆弱性のあるパッケージをアップデート。
 
 ### Changed
 
