@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Changed
 
 - update packages.
+- 組織に受け入れ可能決済方法属性を追加。
 
 ### Deprecated
 

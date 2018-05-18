@@ -25,8 +25,14 @@ export interface IGMOInfo {
 }
 
 export interface IPecorinoPaymentAccepted {
+    /**
+     * 決済方法タイプ
+     */
     paymentMethodType: PaymentMethodType.Pecorino;
-    accountId: string;
+    /**
+     * 口座番号
+     */
+    accountNumber: string;
 }
 
 /**
