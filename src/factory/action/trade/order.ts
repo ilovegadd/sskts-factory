@@ -7,6 +7,7 @@ import ActionType from '../../actionType';
 import { IOrder } from '../../order';
 import { IAttributes as IUseMvtkActionAttributes } from '../consume/use/mvtk';
 import { IAttributes as IPayActionAttributes } from '../trade/pay';
+import { IAttributes as IGivePecorinoActionAttributes } from '../transfer/give/pecorino';
 import { IAttributes as ISendOrderActionAttributes } from '../transfer/send/order';
 
 export type IAgent = ActionFactory.IParticipant;
@@ -33,6 +34,11 @@ export interface IPotentialActions {
      * ムビチケ使用アクション
      */
     useMvtk?: IUseMvtkActionAttributes;
+    /**
+     * Pecorino付与アクション
+     * 現時点で複数口座にポイントを付与することはないが、可能性もこめてリストで持っておく
+     */
+    givePecorino: IGivePecorinoActionAttributes[];
 }
 
 export interface IAttributes extends ActionFactory.IAttributes<IObject, IResult> {

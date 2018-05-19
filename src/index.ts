@@ -13,6 +13,8 @@ import * as UseMvtkActionFactory from './factory/action/consume/use/mvtk';
 import * as OrderActionFactory from './factory/action/trade/order';
 import * as PayActionFactory from './factory/action/trade/pay';
 import * as RefundActionFactory from './factory/action/trade/refund';
+import * as GiveActionFactory from './factory/action/transfer/give';
+import * as GivePecorinoActionFactory from './factory/action/transfer/give/pecorino';
 import * as PrintActionFactory from './factory/action/transfer/print';
 import * as PrintTicketActionFactory from './factory/action/transfer/print/ticket';
 import * as ReturnOrderActionFactory from './factory/action/transfer/return/order';
@@ -113,6 +115,15 @@ export namespace action {
     }
 
     export namespace transfer {
+        export namespace give {
+            // tslint:disable-next-line:no-shadowed-variable
+            export import IAction = GiveActionFactory.IAction;
+            // tslint:disable-next-line:no-shadowed-variable
+            export import IAttributes = GiveActionFactory.IAttributes;
+            // tslint:disable-next-line:no-shadowed-variable
+            export import pecorino = GivePecorinoActionFactory;
+        }
+
         export namespace print {
             // tslint:disable-next-line:no-shadowed-variable
             export import IAction = PrintActionFactory.IAction;
