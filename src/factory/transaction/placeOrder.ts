@@ -15,7 +15,6 @@ import OrganizationType from '../organizationType';
 import * as OwnershipInfoFactory from '../ownershipInfo';
 import { IContact, IPerson } from '../person';
 import PersonType from '../personType';
-import { IReservation } from '../reservation';
 import * as TransactionFactory from '../transaction';
 import TransactionStatusType from '../transactionStatusType';
 import TransactionTasksExportationStatus from '../transactionTasksExportationStatus';
@@ -50,7 +49,6 @@ export type IAgent = IPerson;
 /**
  * result interface
  * 取引結果インターフェース
- * @export
  */
 export interface IResult {
     /**
@@ -60,7 +58,7 @@ export interface IResult {
     /**
      * 購入者に与えられる所有権リスト
      */
-    ownershipInfos: OwnershipInfoFactory.IOwnershipInfo<IReservation>[];
+    ownershipInfos: OwnershipInfoFactory.IOwnershipInfo<OwnershipInfoFactory.IGoodType>[];
 }
 
 /**

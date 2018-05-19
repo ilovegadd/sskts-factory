@@ -1,19 +1,34 @@
 /**
  * 所有権ファクトリー
- * @namespace ownershipInfo
  */
-
+import { IEvent } from './event';
 import OrganizationType from './organizationType';
 import PersonType from './personType';
-import { IReservation } from './reservation';
+import { IProgramMembership, ProgramMembershipType } from './programMembership';
+import { IEventReservation } from './reservation/event';
+import ReservationType from './reservationType';
 
 /**
- * good interface (Product or Service)
+ * 所有対象物のタイプ
  */
-export type IGood = IReservation;
+export type IGoodType = ReservationType | ProgramMembershipType;
 
 /**
- * owner interface
+ * 所有対象物インタエーフェース (Product or Service)
+ */
+export type IGood<T extends IGoodType> =
+    /**
+     * 予約タイプの場合
+     */
+    T extends ReservationType ? IEventReservation<IEvent> :
+    /**
+     * 会員プログラムタイプの場合
+     */
+    T extends ProgramMembershipType ? IProgramMembership :
+    never;
+
+/**
+ * 所有者インターフェース
  */
 export interface IOwner {
     typeOf: OrganizationType | PersonType;
@@ -21,14 +36,16 @@ export interface IOwner {
     name: string;
 }
 
+export type OwnershipInfoType = 'OwnershipInfo';
+
 /**
- * ownershipInfo interface
+ * 所有権インターフェース
  */
-export interface IOwnershipInfo<T extends IGood> {
+export interface IOwnershipInfo<T extends IGoodType> {
     /**
      * object type
      */
-    typeOf: 'OwnershipInfo';
+    typeOf: OwnershipInfoType;
     /**
      * identifier
      */
@@ -48,9 +65,42 @@ export interface IOwnershipInfo<T extends IGood> {
     /**
      * The date and time of giving up ownership on the product.
      */
-    ownedThrough: Date;
+    ownedThrough?: Date;
     /**
-     * The product that this structured value is referring to.
+     * 所有対象物
      */
-    typeOfGood: T;
+    typeOfGood: IGood<T>;
+}
+
+/**
+ * 所有権検索条件インターフェース
+ */
+export interface ISearchConditions<T extends IGoodType> {
+    /**
+     * 所有対象物のタイプ
+     */
+    goodType: T;
+    /**
+     * 所有対象物
+     */
+    // typeOfGood?: {
+    //     /**
+    //      * どのイベント予約か
+    //      */
+    //     eventReservationFor?: {
+    //         /**
+    //          * イベントタイプ
+    //          */
+    //         typeOf: EventType;
+    //         identifier: string;
+    //     };
+    // };
+    /**
+     * 所有者ID
+     */
+    ownedBy?: string;
+    /**
+     * いつの時点での所有か
+     */
+    ownedAt?: Date;
 }

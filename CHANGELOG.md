@@ -11,11 +11,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Pecorinoファクトリーをエクスポート。
 - Pecorino口座関連のインターフェースを追加。
 - 脆弱性のあるパッケージをアップデート。
+- 単位符号を追加。
+- 定量値インターフェースを追加。
 
 ### Changed
 
 - update packages.
 - 組織に受け入れ可能決済方法属性を追加。
+- オファーを期間や量で制御できるようにオファーインターフェースを拡張。
+- 所有権の対象物を拡張。
+- 会員プログラムインターフェースを拡張。
 
 ### Deprecated
 

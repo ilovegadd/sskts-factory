@@ -31,6 +31,7 @@ import * as ScreeningEventFactory from './factory/event/screeningEvent';
 import EventStatusType from './factory/eventStatusType';
 import EventType from './factory/eventType';
 import IMultilingualString from './factory/multilingualString';
+import * as OfferFactory from './factory/offer';
 import * as SeatReservationOfferFactory from './factory/offer/seatReservation';
 import * as OrderFactory from './factory/order';
 import OrderStatus from './factory/orderStatus';
@@ -47,9 +48,11 @@ import PersonType from './factory/personType';
 import * as MovieTheaterPlaceFactory from './factory/place/movieTheater';
 import PlaceType from './factory/placeType';
 import PriceCurrency from './factory/priceCurrency';
+import * as QuantitativeValueFactory from './factory/quantitativeValue';
 import * as EventReservationFactory from './factory/reservation/event';
 import ReservationStatusType from './factory/reservationStatusType';
 import ReservationType from './factory/reservationType';
+import { UnitCode } from './factory/unitCode';
 
 import * as CancelCreditCardTaskFactory from './factory/task/cancelCreditCard';
 import * as CancelMvtkTaskFactory from './factory/task/cancelMvtk';
@@ -165,6 +168,8 @@ export import eventStatusType = EventStatusType;
 export import eventType = EventType;
 export type multilingualString = IMultilingualString;
 export namespace offer {
+    export import OfferType = OfferFactory.OfferType;
+    export import IOffer = OfferFactory.IOffer;
     export import seatReservation = SeatReservationOfferFactory;
 }
 export import order = OrderFactory;
@@ -188,6 +193,7 @@ export import paymentMethodType = PaymentMethodType;
 export import person = PersonFactory;
 export import personType = PersonType;
 export import placeType = PlaceType;
+export import quantitativeValue = QuantitativeValueFactory;
 export namespace reservation {
     // tslint:disable-next-line:no-shadowed-variable
     export import event = EventReservationFactory;
@@ -219,4 +225,5 @@ export namespace transaction {
 export import transactionStatusType = TransactionStatusType;
 export import transactionTasksExportationStatus = TransactionTasksExportationStatus;
 export import transactionType = TransactionType;
+export import unitCode = UnitCode;
 export import url = URLFactory;
