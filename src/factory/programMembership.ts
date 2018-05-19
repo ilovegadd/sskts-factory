@@ -1,19 +1,16 @@
-/**
- * programMembership factory
- */
 import { IOffer } from './offer';
 import { IOrganization } from './organization';
 
 export type ProgramMembershipType = 'ProgramMembership';
 
 /**
- * 会員プログラム識別子
+ * 会員プログラム特典インターフェース
  */
-export enum ProgramMembershipIdentifier {
+export enum Award {
     /**
-     * 開発用会員プログラム
+     * 口座決済
      */
-    DevPecorinoPlan = 'DevPecorinoPlan'
+    PecorinoPayment = 'PecorinoPayment'
 }
 
 /**
@@ -21,10 +18,6 @@ export enum ProgramMembershipIdentifier {
  * (e.g. "StarAliance"), traveler clubs (e.g. "AAA"), purchase clubs ("Safeway Club"), etc.
  */
 export interface IProgramMembership {
-    /**
-     * 会員プログラム識別子
-     */
-    identifier: ProgramMembershipIdentifier;
     /**
      * プログラムのホスト組織
      */
@@ -38,6 +31,10 @@ export interface IProgramMembership {
      * プログラム名
      */
     programName: string;
+    /**
+     * 特典リスト
+     */
+    award: Award[];
     /**
      * 会員プログラムに対するオファー
      * このオファーに対して注文取引を成立させると、ユーザーに会員プログラムが所有権として付与されます。
