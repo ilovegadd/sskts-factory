@@ -48,6 +48,7 @@ import PersonType from './factory/personType';
 import * as MovieTheaterPlaceFactory from './factory/place/movieTheater';
 import PlaceType from './factory/placeType';
 import PriceCurrency from './factory/priceCurrency';
+import * as ProgramMembershipFactory from './factory/programMembership';
 import * as QuantitativeValueFactory from './factory/quantitativeValue';
 import * as EventReservationFactory from './factory/reservation/event';
 import ReservationStatusType from './factory/reservationStatusType';
@@ -193,6 +194,7 @@ export import paymentMethodType = PaymentMethodType;
 export import person = PersonFactory;
 export import personType = PersonType;
 export import placeType = PlaceType;
+export import programMembership = ProgramMembershipFactory;
 export import quantitativeValue = QuantitativeValueFactory;
 export namespace reservation {
     // tslint:disable-next-line:no-shadowed-variable
