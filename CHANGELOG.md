@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - 単位符号を追加。
 - 定量値インターフェースを追加。
 - Pecorino付与アクションインターフェースを追加。
+- Pecorino入金タスクを追加。
 
 ### Changed
 

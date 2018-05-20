@@ -17,6 +17,11 @@ export type IResult = any;
 export interface IToLocation {
     typeOf: pecorinoFactory.account.AccountType.Account;
     accountNumber: string;
+    /**
+     * PecorinoAPIエンドポイント
+     * 入金処理実行時にAPIエンドポイントが必要となる
+     */
+    pecorinoEndpoint: string;
 }
 /**
  * 目的は注文

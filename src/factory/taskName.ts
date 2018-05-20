@@ -55,7 +55,11 @@ enum TaskName {
     /**
      * Pecorino返金
      */
-    RefundPecorino = 'refundPecorino'
+    RefundPecorino = 'refundPecorino',
+    /**
+     * Pecorinoインセンティブ付与
+     */
+    GivePecorino = 'givePecorino'
 }
 
 export default TaskName;
