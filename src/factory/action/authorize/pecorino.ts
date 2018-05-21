@@ -21,13 +21,14 @@ export enum ObjectType {
 export interface IObject {
     typeOf: ObjectType;
     transactionId: string;
-    price: number;
+    amount: number;
 }
 
 export type IPecorinoTransaction = pecorinoFactory.transaction.pay.ITransaction | pecorinoFactory.transaction.transfer.ITransaction;
 
 export interface IResult {
     price: number;
+    amount: number;
     pecorinoTransaction: IPecorinoTransaction;
     pecorinoEndpoint: string;
 }

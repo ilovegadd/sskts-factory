@@ -56,6 +56,10 @@ export interface ICOATicketInfo {
      * ムビチケ連携情報より（ムビチケ以外は0をセット）
      */
     mvtkSalesPrice: number;
+    /**
+     * ポイント割引の場合の消費ポイント
+     */
+    usePoint?: number;
 }
 
 /**
@@ -75,6 +79,10 @@ export type ICOATicketInfoWithDetails = COA.services.reserve.IUpdReserveTicket &
      * チケット名（英）
      */
     ticketNameEng: string;
+    /**
+     * ポイント割引の場合の消費ポイント
+     */
+    usePoint?: number;
 };
 
 /**
