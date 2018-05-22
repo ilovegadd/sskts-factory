@@ -24,6 +24,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - 所有権の対象物を拡張。
 - 会員プログラムインターフェースを拡張。
 - 注文アクションの潜在アクションにPecorino付与アクション属性を追加。
+- 決済と返金アクションを決済方法に対して動的なインターフェースに変更。
 
 ### Deprecated
 

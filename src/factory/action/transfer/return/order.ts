@@ -1,9 +1,9 @@
 /**
  * 注文返品アクションファクトリー
  */
-
 import * as ActionFactory from '../../../action';
 import { IOrder } from '../../../order';
+import PaymentMethodType from '../../../paymentMethodType';
 import { IAttributes as IRefundActionAttributes } from '../../trade/refund';
 import * as ReturnActionFactory from '../return';
 
@@ -18,10 +18,8 @@ export type IObject = IOrder;
 export type IResult = any;
 
 export interface IPotentialActions {
-    /**
-     * 返金アクション属性
-     */
-    refund: IRefundActionAttributes;
+    refundCreditCard?: IRefundActionAttributes<PaymentMethodType.CreditCard>;
+    refundPecorino: IRefundActionAttributes<PaymentMethodType.Pecorino>[];
 }
 
 export interface IAttributes extends ReturnActionFactory.IAttributes<IObject, IResult> {
@@ -30,16 +28,3 @@ export interface IAttributes extends ReturnActionFactory.IAttributes<IObject, IR
 }
 
 export type IAction = ReturnActionFactory.IAction<IAttributes>;
-
-export function createAttributes(params: {
-    result?: IResult;
-    object: IObject;
-    agent: IAgent;
-    recipient: IRecipient;
-    potentialActions?: IPotentialActions;
-}): IAttributes {
-    return {
-        ...ReturnActionFactory.createAttributes(params),
-        potentialActions: params.potentialActions
-    };
-}

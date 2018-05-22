@@ -1,10 +1,10 @@
 /**
  * 注文アクションファクトリー
  */
-
 import * as ActionFactory from '../../action';
 import ActionType from '../../actionType';
 import { IOrder } from '../../order';
+import PaymentMethodType from '../../paymentMethodType';
 import { IAttributes as IUseMvtkActionAttributes } from '../consume/use/mvtk';
 import { IAttributes as IPayActionAttributes } from '../trade/pay';
 import { IAttributes as IGivePecorinoActionAttributes } from '../transfer/give/pecorino';
@@ -25,11 +25,11 @@ export interface IPotentialActions {
     /**
      * クレジットカード決済アクション
      */
-    payCreditCard?: IPayActionAttributes;
+    payCreditCard?: IPayActionAttributes<PaymentMethodType.CreditCard>;
     /**
-     * クレジットカード決済アクション
+     * Pecorino決済実行アクションリスト
      */
-    payPecorino?: IPayActionAttributes;
+    payPecorino: IPayActionAttributes<PaymentMethodType.Pecorino>[];
     /**
      * ムビチケ使用アクション
      */
