@@ -9,6 +9,7 @@ import * as ActionFactory from '../../action';
 import ActionType from '../../actionType';
 import * as IndividualScreeningEventFactory from '../../event/individualScreeningEvent';
 import { IOfferWithDetails as ISeatReservationOffer } from '../../offer/seatReservation';
+import PriceCurrency from '../../priceCurrency';
 import { ITransaction } from '../../transaction/placeOrder';
 import * as AuthorizeActionFactory from '../authorize';
 
@@ -25,7 +26,15 @@ export enum ObjectType {
  * @export
  */
 export interface IResult {
+    /**
+     * オファー分の金額
+     */
     price: number;
+    priceCurrency: PriceCurrency;
+    /**
+     * オファーに対して必要な消費ポイント
+     */
+    pecorinoAmount: number;
     /**
      * COAの仮予約パラメーター
      */

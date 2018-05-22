@@ -82,7 +82,7 @@ export type ICOATicketInfoWithDetails = COA.services.reserve.IUpdReserveTicket &
     /**
      * ポイント割引の場合の消費ポイント
      */
-    usePoint?: number;
+    usePoint: number;
 };
 
 /**
