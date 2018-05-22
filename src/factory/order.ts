@@ -10,6 +10,7 @@
 import { IEvent as IIndividualScreeningEvent } from './event/individualScreeningEvent';
 import OrderStatus from './orderStatus';
 import OrganizationType from './organizationType';
+import PaymentMethodType from './paymentMethodType';
 import { IContact, IPerson } from './person';
 import PersonType from './personType';
 import PriceCurrency from './priceCurrency';
@@ -20,12 +21,15 @@ import * as EventReservationFactory from './reservation/event';
  * 決済方法イーターフェース
  * @export
  */
-export interface IPaymentMethod {
+export interface IPaymentMethod<T extends PaymentMethodType> {
+    /**
+     * 決済方法名
+     */
     name: string;
     /**
-     * The name of the credit card or other method of payment for the order.
+     * 決済方法タイプ
      */
-    paymentMethod: string;
+    paymentMethod: T;
     /**
      * An identifier for the method of payment used (e.g.the last 4 digits of the credit card).
      */
@@ -168,7 +172,7 @@ export interface IOrder {
     /**
      * payment methods
      */
-    paymentMethods: IPaymentMethod[];
+    paymentMethods: IPaymentMethod<PaymentMethodType>[];
     /**
      * discount infos
      */

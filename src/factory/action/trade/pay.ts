@@ -15,17 +15,16 @@ export type IRecipient = ActionFactory.IParticipant;
 export type IPurpose = IOrder;
 
 export interface ICommonObject<T extends PaymentMethodType> {
-    paymentMethodType: T;
+    /**
+     * 決済方法
+     */
+    paymentMethod: IPaymentMethod<T>;
 }
 
 /**
  * クレジットカード決済の場合のオブジェクトインターフェース
  */
 export interface IObject4creditCard extends ICommonObject<PaymentMethodType.CreditCard> {
-    /**
-     * 決済方法
-     */
-    paymentMethod: IPaymentMethod;
     /**
      * 金額
      */
