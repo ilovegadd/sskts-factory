@@ -1,6 +1,3 @@
-/**
- * 支払アクションファクトリー
- */
 import * as GMO from '@motionpicture/gmo-service';
 
 import * as ActionFactory from '../../action';
@@ -66,4 +63,7 @@ export interface IAttributes<T extends PaymentMethodType> extends ActionFactory.
     purpose: IPurpose;
 }
 
+/**
+ * 支払アクションインターフェース
+ */
 export type IAction<T extends PaymentMethodType> = ActionFactory.IAction<IAttributes<T>>;

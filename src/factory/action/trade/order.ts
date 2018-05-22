@@ -1,6 +1,3 @@
-/**
- * 注文アクションファクトリー
- */
 import * as ActionFactory from '../../action';
 import ActionType from '../../actionType';
 import { IOrder } from '../../order';
@@ -42,22 +39,11 @@ export interface IPotentialActions {
 }
 
 export interface IAttributes extends ActionFactory.IAttributes<IObject, IResult> {
+    typeOf: ActionType.OrderAction;
     potentialActions?: IPotentialActions;
 }
 
+/**
+ * 注文アクションインターフェース
+ */
 export type IAction = ActionFactory.IAction<IAttributes>;
-
-export function createAttributes(params: {
-    result?: IResult;
-    object: IObject;
-    agent: IAgent;
-    potentialActions?: IPotentialActions;
-}): IAttributes {
-    return {
-        typeOf: ActionType.OrderAction,
-        result: params.result,
-        object: params.object,
-        agent: params.agent,
-        potentialActions: params.potentialActions
-    };
-}

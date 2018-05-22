@@ -1,6 +1,3 @@
-/**
- * 返金アクションファクトリー
- */
 import * as ActionFactory from '../../action';
 import ActionType from '../../actionType';
 import { IOrder } from '../../order';
@@ -34,4 +31,7 @@ export interface IAttributes<T extends PaymentMethodType> extends ActionFactory.
     potentialActions?: IPotentialActions;
 }
 
+/**
+ * 返金アクションインターフェース
+ */
 export type IAction<T extends PaymentMethodType> = ActionFactory.IAction<IAttributes<T>>;
