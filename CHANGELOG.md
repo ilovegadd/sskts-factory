@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Pecorino付与アクションインターフェースを追加。
 - Pecorino入金タスクを追加。
 - Pecorino返金タスクを追加。
+- Pecorino取引中止タスクを追加。
 
 ### Changed
 
