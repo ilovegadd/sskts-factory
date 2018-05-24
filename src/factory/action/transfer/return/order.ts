@@ -1,6 +1,3 @@
-/**
- * 注文返品アクションファクトリー
- */
 import * as ActionFactory from '../../../action';
 import { IOrder } from '../../../order';
 import PaymentMethodType from '../../../paymentMethodType';
@@ -10,23 +7,30 @@ import * as PecorinoAwardReturnActionFactory from './pecorinoAward';
 
 export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;
-
 /**
  * 返却対象は注文
  */
 export type IObject = IOrder;
-
 export type IResult = any;
-
 export interface IPotentialActions {
+    /**
+     * クレジットカード返金アクション
+     */
     refundCreditCard?: IRefundActionAttributes<PaymentMethodType.CreditCard>;
+    /**
+     * Pecorino返金アクション
+     */
     refundPecorino: IRefundActionAttributes<PaymentMethodType.Pecorino>[];
-    returnPecorinoAward?: PecorinoAwardReturnActionFactory.IAttributes;
+    /**
+     * Pecorino賞金返却アクション
+     */
+    returnPecorinoAward: PecorinoAwardReturnActionFactory.IAttributes[];
 }
-
 export interface IAttributes extends ReturnActionFactory.IAttributes<IObject, IResult> {
     recipient: IRecipient;
     potentialActions?: IPotentialActions;
 }
-
+/**
+ * 注文返品アクションインターフェース
+ */
 export type IAction = ReturnActionFactory.IAction<IAttributes>;
