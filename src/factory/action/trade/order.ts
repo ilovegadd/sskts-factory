@@ -4,7 +4,7 @@ import { IOrder } from '../../order';
 import PaymentMethodType from '../../paymentMethodType';
 import { IAttributes as IUseMvtkActionAttributes } from '../consume/use/mvtk';
 import { IAttributes as IPayActionAttributes } from '../trade/pay';
-import { IAttributes as IGivePecorinoActionAttributes } from '../transfer/give/pecorino';
+import { IAttributes as IGivePecorinoAwardActionAttributes } from '../transfer/give/pecorinoAward';
 import { IAttributes as ISendOrderActionAttributes } from '../transfer/send/order';
 
 export type IAgent = ActionFactory.IParticipant;
@@ -35,7 +35,7 @@ export interface IPotentialActions {
      * Pecorino付与アクション
      * 現時点で複数口座にポイントを付与することはないが、可能性もこめてリストで持っておく
      */
-    givePecorino: IGivePecorinoActionAttributes[];
+    givePecorinoAward: IGivePecorinoAwardActionAttributes[];
 }
 
 export interface IAttributes extends ActionFactory.IAttributes<IObject, IResult> {

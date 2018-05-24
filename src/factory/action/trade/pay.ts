@@ -1,7 +1,7 @@
 import * as GMO from '@motionpicture/gmo-service';
 
 import * as ActionFactory from '../../action';
-import { IPecorinoTransaction } from '../../action/authorize/pecorino';
+import { IPecorinoTransaction } from '../../action/authorize/paymentMethod/pecorino';
 import ActionType from '../../actionType';
 import { IOrder, IPaymentMethod } from '../../order';
 import PaymentMethodType from '../../paymentMethodType';

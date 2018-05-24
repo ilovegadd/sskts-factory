@@ -37,6 +37,10 @@ enum TaskName {
      */
     ReturnOrder = 'returnOrder',
     /**
+     * Pecorino賞金返却
+     */
+    ReturnPecorinoAward = 'returnPecorinoAward',
+    /**
      * クレジットカード支払
      */
     PayCreditCard = 'payCreditCard',
@@ -59,7 +63,7 @@ enum TaskName {
     /**
      * Pecorinoインセンティブ付与
      */
-    GivePecorino = 'givePecorino'
+    GivePecorinoAward = 'givePecorinoAward'
 }
 
 export default TaskName;

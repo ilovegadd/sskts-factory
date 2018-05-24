@@ -5,7 +5,7 @@
 import * as ActionFactory from '../../../action';
 import ActionStatusType from '../../../actionStatusType';
 import { IOrder } from '../../../order';
-import { ISeatInfoSyncIn } from '../../authorize/mvtk';
+import { ISeatInfoSyncIn } from '../../authorize/discount/mvtk';
 import * as UseActionFactory from '../use';
 
 export type IAgent = ActionFactory.IParticipant;

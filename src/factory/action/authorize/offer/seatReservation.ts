@@ -3,13 +3,13 @@
  */
 import * as COA from '@motionpicture/coa-service';
 
-import * as ActionFactory from '../../action';
-import ActionType from '../../actionType';
-import * as IndividualScreeningEventFactory from '../../event/individualScreeningEvent';
-import { IOfferWithDetails as ISeatReservationOffer } from '../../offer/seatReservation';
-import PriceCurrency from '../../priceCurrency';
-import { ITransaction } from '../../transaction/placeOrder';
-import * as AuthorizeActionFactory from '../authorize';
+import * as ActionFactory from '../../../action';
+import ActionType from '../../../actionType';
+import * as IndividualScreeningEventFactory from '../../../event/individualScreeningEvent';
+import { IOfferWithDetails as ISeatReservationOffer } from '../../../offer/seatReservation';
+import PriceCurrency from '../../../priceCurrency';
+import { ITransaction } from '../../../transaction/placeOrder';
+import * as AuthorizeActionFactory from '../../authorize';
 
 export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;

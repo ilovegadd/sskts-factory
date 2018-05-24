@@ -5,19 +5,21 @@ import * as pecorinoFactory from '@motionpicture/pecorino-factory';
 
 import * as ActionFactory from './factory/action';
 import * as AuthorizeActionFactory from './factory/action/authorize';
-import * as CreditCardAuthorizeActionFactory from './factory/action/authorize/creditCard';
-import * as MvtkAuthorizeActionFactory from './factory/action/authorize/mvtk';
-import * as PecorinoAuthorizeActionFactory from './factory/action/authorize/pecorino';
-import * as seatReservationAuthorizeActionFactory from './factory/action/authorize/seatReservation';
+import * as PecorinoAwardAuthorizeActionFactory from './factory/action/authorize/award/pecorino';
+import * as MvtkAuthorizeActionFactory from './factory/action/authorize/discount/mvtk';
+import * as seatReservationAuthorizeActionFactory from './factory/action/authorize/offer/seatReservation';
+import * as CreditCardAuthorizeActionFactory from './factory/action/authorize/paymentMethod/creditCard';
+import * as PecorinoAuthorizeActionFactory from './factory/action/authorize/paymentMethod/pecorino';
 import * as UseMvtkActionFactory from './factory/action/consume/use/mvtk';
 import * as OrderActionFactory from './factory/action/trade/order';
 import * as PayActionFactory from './factory/action/trade/pay';
 import * as RefundActionFactory from './factory/action/trade/refund';
 import * as GiveActionFactory from './factory/action/transfer/give';
-import * as GivePecorinoActionFactory from './factory/action/transfer/give/pecorino';
+import * as GivePecorinoAwardActionFactory from './factory/action/transfer/give/pecorinoAward';
 import * as PrintActionFactory from './factory/action/transfer/print';
 import * as PrintTicketActionFactory from './factory/action/transfer/print/ticket';
 import * as ReturnOrderActionFactory from './factory/action/transfer/return/order';
+import * as ReturnPecorinoAwardActionFactory from './factory/action/transfer/return/pecorinoAward';
 import * as SendEmailMessageActionFactory from './factory/action/transfer/send/message/email';
 import * as SendOrderActionFactory from './factory/action/transfer/send/order';
 import ActionStatusType from './factory/actionStatusType';
@@ -61,13 +63,14 @@ import * as CancelCreditCardTaskFactory from './factory/task/cancelCreditCard';
 import * as CancelMvtkTaskFactory from './factory/task/cancelMvtk';
 import * as CancelPecorinoTaskFactory from './factory/task/cancelPecorino';
 import * as CancelSeatReservationTaskFactory from './factory/task/cancelSeatReservation';
-import * as GivePecorinoTaskFactory from './factory/task/givePecorino';
+import * as GivePecorinoAwardTaskFactory from './factory/task/givePecorinoAward';
 import * as PayCreditCardTaskFactory from './factory/task/payCreditCard';
 import * as PayPecorinoTaskFactory from './factory/task/payPecorino';
 import * as PlaceOrderTaskFactory from './factory/task/placeOrder';
 import * as RefundCreditCardTaskFactory from './factory/task/refundCreditCard';
 import * as RefundPecorinoTaskFactory from './factory/task/refundPecorino';
 import * as ReturnOrderTaskFactory from './factory/task/returnOrder';
+import * as ReturnPecorinoAwardTaskFactory from './factory/task/returnPecorinoAward';
 import * as SendEmailMessageTaskFactory from './factory/task/sendEmailMessage';
 import * as SendOrderTaskFactory from './factory/task/sendOrder';
 import * as UseMvtkTaskFactory from './factory/task/useMvtk';
@@ -103,11 +106,23 @@ export namespace action {
         export import IAction = AuthorizeActionFactory.IAction;
         // tslint:disable-next-line:no-shadowed-variable
         export import IAttributes = AuthorizeActionFactory.IAttributes;
-        export import creditCard = CreditCardAuthorizeActionFactory;
-        export import mvtk = MvtkAuthorizeActionFactory;
+        export namespace award {
+            // tslint:disable-next-line:no-shadowed-variable
+            export import pecorino = PecorinoAwardAuthorizeActionFactory;
+        }
         // tslint:disable-next-line:no-shadowed-variable
-        export import pecorino = PecorinoAuthorizeActionFactory;
-        export import seatReservation = seatReservationAuthorizeActionFactory;
+        export namespace paymentMethod {
+            export import creditCard = CreditCardAuthorizeActionFactory;
+            // tslint:disable-next-line:no-shadowed-variable
+            export import pecorino = PecorinoAuthorizeActionFactory;
+        }
+        export namespace discount {
+            export import mvtk = MvtkAuthorizeActionFactory;
+        }
+        // tslint:disable-next-line:no-shadowed-variable
+        export namespace offer {
+            export import seatReservation = seatReservationAuthorizeActionFactory;
+        }
     }
 
     export namespace trade {
@@ -124,7 +139,7 @@ export namespace action {
             // tslint:disable-next-line:no-shadowed-variable
             export import IAttributes = GiveActionFactory.IAttributes;
             // tslint:disable-next-line:no-shadowed-variable
-            export import pecorino = GivePecorinoActionFactory;
+            export import pecorinoAward = GivePecorinoAwardActionFactory;
         }
 
         export namespace print {
@@ -143,6 +158,7 @@ export namespace action {
         export namespace returnAction {
             // tslint:disable-next-line:no-shadowed-variable
             export import order = ReturnOrderActionFactory;
+            export import pecorinoAward = ReturnPecorinoAwardActionFactory;
         }
 
         export namespace send {
@@ -223,11 +239,12 @@ export namespace task {
     export import cancelMvtk = CancelMvtkTaskFactory;
     export import cancelPecorino = CancelPecorinoTaskFactory;
     export import cancelSeatReservation = CancelSeatReservationTaskFactory;
-    export import givePecorino = GivePecorinoTaskFactory;
+    export import givePecorinoAward = GivePecorinoAwardTaskFactory;
     export import placeOrder = PlaceOrderTaskFactory;
     export import refundCreditCard = RefundCreditCardTaskFactory;
     export import refundPecorino = RefundPecorinoTaskFactory;
     export import returnOrder = ReturnOrderTaskFactory;
+    export import returnPecorinoAward = ReturnPecorinoAwardTaskFactory;
     export import sendEmailMessage = SendEmailMessageTaskFactory;
     export import sendOrder = SendOrderTaskFactory;
     export import payCreditCard = PayCreditCardTaskFactory;

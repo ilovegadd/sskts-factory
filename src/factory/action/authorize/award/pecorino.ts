@@ -1,18 +1,15 @@
-/**
- * Pecorino口座承認アクションファクトリー
- */
 import * as pecorinoFactory from '@motionpicture/pecorino-factory';
 
-import * as ActionFactory from '../../action';
-import ActionType from '../../actionType';
-import { ITransaction } from '../../transaction/placeOrder';
-import * as AuthorizeActionFactory from '../authorize';
+import * as ActionFactory from '../../../action';
+import ActionType from '../../../actionType';
+import { ITransaction } from '../../../transaction/placeOrder';
+import * as AuthorizeActionFactory from '../../authorize';
 
 export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;
 
 export enum ObjectType {
-    Pecorino = 'Pecorino'
+    PecorinoAward = 'PecorinoAward'
 }
 
 /**
@@ -24,7 +21,7 @@ export interface IObject {
     amount: number;
 }
 
-export type IPecorinoTransaction = pecorinoFactory.transaction.pay.ITransaction | pecorinoFactory.transaction.transfer.ITransaction;
+export type IPecorinoTransaction = pecorinoFactory.transaction.deposit.ITransaction;
 
 export interface IResult {
     price: number;
@@ -38,7 +35,7 @@ export type IPurpose = ITransaction;
 export type IError = any;
 
 /**
- * Pecorino承認アクション属性インターフェース
+ * Pecorino賞金承認アクション属性インターフェース
  */
 export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
     typeOf: ActionType.AuthorizeAction;
@@ -48,4 +45,8 @@ export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject,
     purpose: IPurpose;
 }
 
+/**
+ * Pecorino賞金承認アクションインターフェース
+ * 注文取引のインセンティブとしてポイントを付与する場合に使用されます。
+ */
 export type IAction = ActionFactory.IAction<IAttributes>;

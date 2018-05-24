@@ -1,13 +1,12 @@
 /**
- * credit card authorization factory
- * クレジットカードオーソリファクトリー
+ * 決済方法としてのクレジットカードオーソリファクトリー
  */
 import * as GMO from '@motionpicture/gmo-service';
 
-import * as ActionFactory from '../../action';
-import ActionType from '../../actionType';
-import { ITransaction } from '../../transaction/placeOrder';
-import * as AuthorizeActionFactory from '../authorize';
+import * as ActionFactory from '../../../action';
+import ActionType from '../../../actionType';
+import { ITransaction } from '../../../transaction/placeOrder';
+import * as AuthorizeActionFactory from '../../authorize';
 
 export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;
