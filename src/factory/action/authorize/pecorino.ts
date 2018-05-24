@@ -41,10 +41,10 @@ export type IError = any;
  * Pecorino承認アクション属性インターフェース
  */
 export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
+    typeOf: ActionType.AuthorizeAction;
     object: IObject;
     agent: IAgent;
     recipient: IRecipient;
-    typeOf: ActionType.AuthorizeAction;
     purpose: IPurpose;
 }
 

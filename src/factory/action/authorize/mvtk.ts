@@ -1,9 +1,7 @@
 /**
  * mvtk authorization factory
  * ムビチケ着券情報ファクトリー
- * @namespace action.authorize.mvtk
  */
-
 import * as ActionFactory from '../../action';
 import ActionType from '../../actionType';
 import { ITransaction } from '../../transaction/placeOrder';
@@ -111,23 +109,11 @@ export type IPurpose = ITransaction;
  * ムビチケ着券情報
  */
 export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
-}
-
-export type IAction = ActionFactory.IAction<IAttributes>;
-
-export function createAttributes(params: {
-    result?: IResult;
+    typeOf: ActionType.AuthorizeAction;
     object: IObject;
     agent: IAgent;
     recipient: IRecipient;
     purpose: IPurpose;
-}): IAttributes {
-    return {
-        typeOf: ActionType.AuthorizeAction,
-        result: params.result,
-        object: params.object,
-        agent: params.agent,
-        recipient: params.recipient,
-        purpose: params.purpose
-    };
 }
+
+export type IAction = ActionFactory.IAction<IAttributes>;

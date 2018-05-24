@@ -1,8 +1,6 @@
 /**
  * 座席予約承認アクションファクトリー
- * @namespace action.authorize.seatReservation
  */
-
 import * as COA from '@motionpicture/coa-service';
 
 import * as ActionFactory from '../../action';
@@ -67,29 +65,11 @@ export type IError = any;
  * @export
  */
 export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
-}
-
-export type IAction = ActionFactory.IAction<IAttributes>;
-
-/**
- * create seatReservation authorize action object
- * @export
- */
-export function createAttributes(params: {
+    typeOf: ActionType.AuthorizeAction;
     agent: IAgent;
     recipient: IRecipient;
     object: IObject;
-    result?: IResult;
-    error?: IError;
     purpose: IPurpose;
-}): IAttributes {
-    return {
-        typeOf: ActionType.AuthorizeAction,
-        object: params.object,
-        result: params.result,
-        error: params.error,
-        agent: params.agent,
-        recipient: params.recipient,
-        purpose: params.purpose
-    };
 }
+
+export type IAction = ActionFactory.IAction<IAttributes>;
