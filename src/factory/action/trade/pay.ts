@@ -10,14 +10,12 @@ import PriceCurrency from '../../priceCurrency';
 export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;
 export type IPurpose = IOrder;
-
 export interface ICommonObject<T extends PaymentMethodType> {
     /**
      * 決済方法
      */
     paymentMethod: IPaymentMethod<T>;
 }
-
 /**
  * クレジットカード決済の場合のオブジェクトインターフェース
  */
@@ -42,7 +40,6 @@ export type IObject<T> =
     T extends PaymentMethodType.CreditCard ? IObject4creditCard :
     T extends PaymentMethodType.Pecorino ? IObject4pecorino :
     never;
-
 /**
  * クレジットカード決済の場合の結果インターフェース
  */
@@ -52,17 +49,13 @@ export interface IResult4creditCard {
      */
     creditCardSales?: GMO.services.credit.IAlterTranResult;
 }
-
 export type IResult<T> =
     T extends PaymentMethodType.CreditCard ? IResult4creditCard :
     T extends PaymentMethodType.Pecorino ? any :
     never;
-
-export interface IAttributes<T extends PaymentMethodType> extends ActionFactory.IAttributes<IObject<T>, IResult<T>> {
-    typeOf: ActionType.PayAction;
+export interface IAttributes<T extends PaymentMethodType> extends ActionFactory.IAttributes<ActionType.PayAction, IObject<T>, IResult<T>> {
     purpose: IPurpose;
 }
-
 /**
  * 支払アクションインターフェース
  */

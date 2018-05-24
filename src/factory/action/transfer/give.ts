@@ -7,13 +7,11 @@ export type IObject = any;
 export type IResult = any;
 export type ILocation = any;
 
-export interface IAttributes<TObject, TResult> extends ActionFactory.IAttributes<TObject, TResult> {
-    typeOf: ActionType.GiveAction;
+export interface IAttributes<TObject, TResult> extends ActionFactory.IAttributes<ActionType.GiveAction, TObject, TResult> {
     recipient: IRecipient;
     fromLocation?: ILocation;
     toLocation?: ILocation;
 }
-
 /**
  * 付与アクションインターフェース
  */

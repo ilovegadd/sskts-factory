@@ -9,11 +9,8 @@ import { IAttributes as ISendOrderActionAttributes } from '../transfer/send/orde
 
 export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;
-
 export type IObject = IOrder;
-
 export type IResult = any;
-
 export interface IPotentialActions {
     /**
      * 注文配送アクション
@@ -37,12 +34,9 @@ export interface IPotentialActions {
      */
     givePecorinoAward: IGivePecorinoAwardActionAttributes[];
 }
-
-export interface IAttributes extends ActionFactory.IAttributes<IObject, IResult> {
-    typeOf: ActionType.OrderAction;
+export interface IAttributes extends ActionFactory.IAttributes<ActionType.OrderAction, IObject, IResult> {
     potentialActions?: IPotentialActions;
 }
-
 /**
  * 注文アクションインターフェース
  */

@@ -32,11 +32,11 @@ export interface IPurpose {
  * アクション属性
  * @export
  */
-export interface IAttributes<TObject, TResult> {
+export interface IAttributes<T extends ActionType, TObject, TResult> {
     /**
      * アクションタイプ
      */
-    typeOf: ActionType;
+    typeOf: T;
     /**
      * アクション主体者
      */
@@ -89,4 +89,4 @@ export interface IDynamicAttributes {
 /**
  * 抽象アクションインターフェース
  */
-export type IAction<TAttributes extends IAttributes<any, any>> = IExtendId<TAttributes & IDynamicAttributes>;
+export type IAction<TAttributes extends IAttributes<ActionType, any, any>> = IExtendId<TAttributes & IDynamicAttributes>;

@@ -1,9 +1,4 @@
-/**
- * 注文配送アクションファクトリー
- */
-
 import * as ActionFactory from '../../../action';
-import ActionStatusType from '../../../actionStatusType';
 import { IOrder } from '../../../order';
 import * as SendActionFactory from '../send';
 import { IAttributes as ISendEmailMessageActionAttributes } from './message/email';
@@ -23,22 +18,11 @@ export interface IPotentialActions {
 }
 
 export interface IAttributes extends SendActionFactory.IAttributes<IObject, IResult> {
-    recipient: IRecipient;
-    potentialActions?: IPotentialActions;
-}
-
-export type IAction = SendActionFactory.IAction<IAttributes>;
-
-export function createAttributes(params: {
-    actionStatus: ActionStatusType;
-    result?: IResult;
-    object: IObject;
     agent: IAgent;
     recipient: IRecipient;
     potentialActions?: IPotentialActions;
-}): IAttributes {
-    return {
-        ...SendActionFactory.createAttributes(params),
-        potentialActions: params.potentialActions
-    };
 }
+/**
+ * 注文配送アクションインターフェース
+ */
+export type IAction = SendActionFactory.IAction<IAttributes>;

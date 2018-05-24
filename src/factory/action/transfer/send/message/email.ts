@@ -1,9 +1,4 @@
-/**
- * Eメール送信アクションファクトリー
- */
-
 import * as ActionFactory from '../../../../action';
-import ActionStatusType from '../../../../actionStatusType';
 import { ICreativeWork as IEmailMessage } from '../../../../creativeWork/message/email';
 import * as SendActionFactory from '../../send';
 
@@ -25,6 +20,7 @@ export interface IPotentialActions {
 }
 
 export interface IAttributes extends SendActionFactory.IAttributes<IObject, IResult> {
+    agent: IAgent;
     /**
      * 何目的のEメール送信か
      * @example 注文配送通知メールであれば、Order型オブジェクト
@@ -32,21 +28,7 @@ export interface IAttributes extends SendActionFactory.IAttributes<IObject, IRes
     purpose: IPurpose;
     potentialActions?: IPotentialActions;
 }
-
+/**
+ * Eメール送信アクションインターフェース
+ */
 export type IAction = SendActionFactory.IAction<IAttributes>;
-
-export function createAttributes(params: {
-    actionStatus: ActionStatusType;
-    result?: IResult;
-    object: IObject;
-    agent: IAgent;
-    recipient: IRecipient;
-    potentialActions?: IPotentialActions;
-    purpose: IPurpose;
-}): IAttributes {
-    return {
-        ...SendActionFactory.createAttributes(params),
-        potentialActions: params.potentialActions,
-        purpose: params.purpose
-    };
-}
