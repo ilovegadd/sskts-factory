@@ -9,8 +9,10 @@ enum ActionType {
     PayAction = 'PayAction',
     PrintAction = 'PrintAction',
     RefundAction = 'RefundAction',
+    RegisterAction = 'RegisterAction',
     ReturnAction = 'ReturnAction',
     SendAction = 'SendAction',
+    UnRegisterAction = 'UnRegisterAction',
     UpdateAction = 'UpdateAction',
     UseAction = 'UseAction'
 }

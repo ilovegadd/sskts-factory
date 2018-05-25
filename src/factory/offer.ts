@@ -15,6 +15,10 @@ export type OfferType = 'Offer';
 export interface IOffer {
     typeOf: OfferType;
     /**
+     * オファー識別子
+     */
+    identifier?: string;
+    /**
      * The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.
      */
     price: number;

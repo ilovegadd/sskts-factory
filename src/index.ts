@@ -11,6 +11,9 @@ import * as seatReservationAuthorizeActionFactory from './factory/action/authori
 import * as CreditCardAuthorizeActionFactory from './factory/action/authorize/paymentMethod/creditCard';
 import * as PecorinoAuthorizeActionFactory from './factory/action/authorize/paymentMethod/pecorino';
 import * as UseMvtkActionFactory from './factory/action/consume/use/mvtk';
+import * as RegisterActionFactory from './factory/action/interact/register';
+import * as ProgramMembershipRegisterActionFactory from './factory/action/interact/register/programMembership';
+import * as UnRegisterActionFactory from './factory/action/interact/unRegister';
 import * as OrderActionFactory from './factory/action/trade/order';
 import * as PayActionFactory from './factory/action/trade/pay';
 import * as RefundActionFactory from './factory/action/trade/refund';
@@ -69,10 +72,12 @@ import * as PayPecorinoTaskFactory from './factory/task/payPecorino';
 import * as PlaceOrderTaskFactory from './factory/task/placeOrder';
 import * as RefundCreditCardTaskFactory from './factory/task/refundCreditCard';
 import * as RefundPecorinoTaskFactory from './factory/task/refundPecorino';
+import * as RegisterProgramMembershipTaskFactory from './factory/task/registerProgramMembership';
 import * as ReturnOrderTaskFactory from './factory/task/returnOrder';
 import * as ReturnPecorinoAwardTaskFactory from './factory/task/returnPecorinoAward';
 import * as SendEmailMessageTaskFactory from './factory/task/sendEmailMessage';
 import * as SendOrderTaskFactory from './factory/task/sendOrder';
+import * as UnRegisterProgramMembershipTaskFactory from './factory/task/unRegisterProgramMembership';
 import * as UseMvtkTaskFactory from './factory/task/useMvtk';
 
 import * as TaskFactory from './factory/task';
@@ -123,6 +128,18 @@ export namespace action {
         export namespace offer {
             export import seatReservation = seatReservationAuthorizeActionFactory;
         }
+    }
+
+    export namespace interact {
+        export namespace register {
+            // tslint:disable-next-line:no-shadowed-variable
+            export import IAction = RegisterActionFactory.IAction;
+            // tslint:disable-next-line:no-shadowed-variable
+            export import IAttributes = RegisterActionFactory.IAttributes;
+            // tslint:disable-next-line:no-shadowed-variable
+            export import programMembership = ProgramMembershipRegisterActionFactory;
+        }
+        export import unRegister = UnRegisterActionFactory;
     }
 
     export namespace trade {
@@ -243,12 +260,14 @@ export namespace task {
     export import placeOrder = PlaceOrderTaskFactory;
     export import refundCreditCard = RefundCreditCardTaskFactory;
     export import refundPecorino = RefundPecorinoTaskFactory;
+    export import registerProgramMembership = RegisterProgramMembershipTaskFactory;
     export import returnOrder = ReturnOrderTaskFactory;
     export import returnPecorinoAward = ReturnPecorinoAwardTaskFactory;
     export import sendEmailMessage = SendEmailMessageTaskFactory;
     export import sendOrder = SendOrderTaskFactory;
     export import payCreditCard = PayCreditCardTaskFactory;
     export import payPecorino = PayPecorinoTaskFactory;
+    export import UnRegisterProgramMembership = UnRegisterProgramMembershipTaskFactory;
     export import useMvtk = UseMvtkTaskFactory;
 }
 export import taskExecutionResult = TaskExecutionResultFactory;

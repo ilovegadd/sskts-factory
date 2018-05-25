@@ -14,6 +14,7 @@ import PaymentMethodType from './paymentMethodType';
 import { IContact, IPerson } from './person';
 import PersonType from './personType';
 import PriceCurrency from './priceCurrency';
+import { IProgramMembership } from './programMembership';
 import * as EventReservationFactory from './reservation/event';
 
 /**
@@ -62,7 +63,7 @@ export interface IDiscount {
  * 供給アイテムインターフェース
  * @export
  */
-export type IItemOffered = EventReservationFactory.IEventReservation<IIndividualScreeningEvent>;
+export type IItemOffered = EventReservationFactory.IEventReservation<IIndividualScreeningEvent> | IProgramMembership;
 
 /**
  * key for inquiry of the order

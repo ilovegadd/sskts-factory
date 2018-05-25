@@ -63,7 +63,15 @@ enum TaskName {
     /**
      * Pecorinoインセンティブ付与
      */
-    GivePecorinoAward = 'givePecorinoAward'
+    GivePecorinoAward = 'givePecorinoAward',
+    /**
+     * 会員プログラム登録
+     */
+    RegisterProgramMembership = 'registerProgramMembership',
+    /**
+     * 会員プログラム登録解除
+     */
+    UnRegisterProgramMembership = 'unRegisterProgramMembership'
 }
 
 export default TaskName;

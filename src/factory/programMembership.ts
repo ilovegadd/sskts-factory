@@ -18,6 +18,7 @@ export enum Award {
  * (e.g. "StarAliance"), traveler clubs (e.g. "AAA"), purchase clubs ("Safeway Club"), etc.
  */
 export interface IProgramMembership {
+    id?: string;
     /**
      * プログラムのホスト組織
      */
