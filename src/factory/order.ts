@@ -8,6 +8,7 @@
  */
 
 import { IEvent as IIndividualScreeningEvent } from './event/individualScreeningEvent';
+import { IOffer } from './offer';
 import OrderStatus from './orderStatus';
 import OrganizationType from './organizationType';
 import PaymentMethodType from './paymentMethodType';
@@ -79,21 +80,12 @@ export interface IOrderInquiryKey {
 /**
  * offer interface
  * 供給インターフェース
- * @export
  */
-export interface IOffer {
+export interface IAcceptedOffer<T extends IItemOffered> extends IOffer {
     /**
-     * 受け入れられた予約情報
+     * オファー対象炊いてむ
      */
-    itemOffered: IItemOffered;
-    /**
-     * 金額
-     */
-    price: number;
-    /**
-     * 通貨
-     */
-    priceCurrency: PriceCurrency;
+    itemOffered: T;
     /**
      * 販売者
      */
@@ -169,7 +161,7 @@ export interface IOrder {
      * Offer
      * The offers included in the order.Also accepts an array of objects.
      */
-    acceptedOffers: IOffer[];
+    acceptedOffers: IAcceptedOffer<IItemOffered>[];
     /**
      * payment methods
      */

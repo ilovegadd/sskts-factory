@@ -1,25 +1,11 @@
+import { IAcceptedOffer } from '../../../order';
 import * as ProgramMembershipFactory from '../../../programMembership';
 import * as RegisterActionFactory from '../register';
 
 /**
- * 会員プログラム登録アクションの対象は、会員プログラムとオファーを識別できる情報
+ * 会員プログラム登録アクションの対象は、受け入れられた会員プログラムオファー
  */
-export interface IObject {
-    typeOf: ProgramMembershipFactory.ProgramMembershipType;
-    /**
-     * 会員プログラムID
-     */
-    programMembershipId: string;
-    /**
-     * 会員プログラムに対するオファー識別子
-     */
-    offerIdentifier: string;
-    /**
-     * 決済対象の販売者ID
-     * クレジットカード決済時にどこかの劇場ショップを指定するため、劇場(販売者)のIDが必要。
-     */
-    sellerId: string;
-}
+export type IObject = IAcceptedOffer<ProgramMembershipFactory.IProgramMembership>;
 export type IResult = any;
 // tslint:disable-next-line:no-empty-interface
 export interface IPotentialActions {
