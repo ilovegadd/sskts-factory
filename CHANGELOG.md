@@ -32,6 +32,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - 注文アクションの潜在アクションにPecorino付与アクション属性を追加。
 - 決済と返金アクションを決済方法に対して動的なインターフェースに変更。
 - アクションインターフェースの汎用性を向上。
+- 注文配送のポストアクションに会員プログラム登録タスクを追加。
 
 ### Deprecated
 
