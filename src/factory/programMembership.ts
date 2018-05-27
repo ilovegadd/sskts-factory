@@ -26,6 +26,7 @@ export interface IProgramMembership {
     typeOf: ProgramMembershipType;
     /**
      * 会員番号
+     * Cognitoのusernameに相当
      */
     membershipNumber?: string;
     /**

@@ -2,8 +2,8 @@
  * 所有権ファクトリー
  */
 import { IEvent } from './event';
-import OrganizationType from './organizationType';
-import PersonType from './personType';
+import { IOrganization } from './organization';
+import { IPerson } from './person';
 import { IProgramMembership, ProgramMembershipType } from './programMembership';
 import { IEventReservation } from './reservation/event';
 import ReservationType from './reservationType';
@@ -30,11 +30,7 @@ export type IGood<T extends IGoodType> =
 /**
  * 所有者インターフェース
  */
-export interface IOwner {
-    typeOf: OrganizationType | PersonType;
-    id: string;
-    name: string;
-}
+export type IOwner = IOrganization | IPerson;
 
 export type OwnershipInfoType = 'OwnershipInfo';
 

@@ -47,9 +47,9 @@ export type IPaymentAccepted<T extends PaymentMethodType> =
  */
 export interface IOrganization {
     id: string;
-    identifier: string;
+    identifier?: string;
     name: IMultilingualString;
-    legalName: IMultilingualString;
+    legalName?: IMultilingualString;
     typeOf: OrganizationType;
     location?: any;
     telephone?: string;

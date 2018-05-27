@@ -1,16 +1,12 @@
 /**
- * person factory
  * 人物ファクトリー
- * @namespace person
  */
-
 import PersonType from './personType';
 import * as ProgramMembershipFactory from './programMembership';
 
 /**
  * contact interface
  * 連絡先インターフェース
- * @export
  */
 export interface IContact {
     /**
@@ -38,7 +34,6 @@ export interface IContact {
 /**
  * person interface
  * 人物インターフェース
- * @export
  */
 export interface IPerson {
     /**
@@ -57,5 +52,5 @@ export interface IPerson {
     /**
      * URL of the item.
      */
-    url: string;
+    url?: string;
 }
