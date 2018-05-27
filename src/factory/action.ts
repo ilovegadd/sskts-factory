@@ -12,13 +12,20 @@ import PersonType from './personType';
 
 /**
  * アクションへの関係者インターフェース
- * 関係者を表現する最低限のインターフェース
+ * 関係者を表現するインターフェース
  * 継承先にて、インターフェースが強化される可能性あり
- * @export
  */
 export interface IParticipant {
     typeOf: OrganizationType | PersonType;
     id: string;
+    /**
+     * Cognitoユーザーネーム
+     */
+    username?: string;
+    /**
+     * CognitoユーザープールID
+     */
+    userPoolId?: string;
 }
 
 /**
