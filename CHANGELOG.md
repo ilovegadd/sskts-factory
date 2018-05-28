@@ -34,6 +34,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - アクションインターフェースの汎用性を向上。
 - 注文配送のポストアクションに会員プログラム登録タスクを追加。
 - アクション実行者や取引進行者のインターフェースを拡張。
+- 取引インターフェースを取引タイプに対して動的に変更。
 
 ### Deprecated
 

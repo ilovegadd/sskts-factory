@@ -42,4 +42,5 @@ export interface IProgramMembership {
      * このオファーに対して注文取引を成立させると、ユーザーに会員プログラムが所有権として付与されます。
      */
     offers?: IOffer[];
+    url?: string;
 }
