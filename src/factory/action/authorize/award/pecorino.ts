@@ -35,7 +35,7 @@ export type IPurpose = ITransaction;
 export type IError = any;
 
 /**
- * Pecorino賞金承認アクション属性インターフェース
+ * Pecorinoインセンティブ承認アクション属性インターフェース
  */
 export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
     typeOf: ActionType.AuthorizeAction;
@@ -46,7 +46,7 @@ export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject,
 }
 
 /**
- * Pecorino賞金承認アクションインターフェース
+ * Pecorinoインセンティブ承認アクションインターフェース
  * 注文取引のインセンティブとしてポイントを付与する場合に使用されます。
  */
 export type IAction = ActionFactory.IAction<IAttributes>;

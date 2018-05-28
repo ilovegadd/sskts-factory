@@ -5,7 +5,7 @@ import * as ReturnActionFactory from '../return';
 export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;
 /**
- * 返却対象はPecorino賞金承認アクション
+ * 返却対象はPecorinoインセンティブ承認アクション
  */
 export type IObject = PecorinoAwardAuthorizeActionFactory.IAttributes;
 export type IResult = any;
@@ -17,6 +17,6 @@ export interface IAttributes extends ReturnActionFactory.IAttributes<IObject, IR
     potentialActions?: IPotentialActions;
 }
 /**
- * Pecorino賞金返却アクションインターフェース
+ * Pecorinoインセンティブ返却アクションインターフェース
  */
 export type IAction = ReturnActionFactory.IAction<IAttributes>;

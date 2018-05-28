@@ -66,6 +66,7 @@ import { UnitCode } from './factory/unitCode';
 import * as CancelCreditCardTaskFactory from './factory/task/cancelCreditCard';
 import * as CancelMvtkTaskFactory from './factory/task/cancelMvtk';
 import * as CancelPecorinoTaskFactory from './factory/task/cancelPecorino';
+import * as CancelPecorinoAwardTaskFactory from './factory/task/cancelPecorinoAward';
 import * as CancelSeatReservationTaskFactory from './factory/task/cancelSeatReservation';
 import * as GivePecorinoAwardTaskFactory from './factory/task/givePecorinoAward';
 import * as PayCreditCardTaskFactory from './factory/task/payCreditCard';
@@ -258,6 +259,7 @@ export namespace task {
     export import cancelCreditCard = CancelCreditCardTaskFactory;
     export import cancelMvtk = CancelMvtkTaskFactory;
     export import cancelPecorino = CancelPecorinoTaskFactory;
+    export import cancelPecorinoAward = CancelPecorinoAwardTaskFactory;
     export import cancelSeatReservation = CancelSeatReservationTaskFactory;
     export import givePecorinoAward = GivePecorinoAwardTaskFactory;
     export import placeOrder = PlaceOrderTaskFactory;

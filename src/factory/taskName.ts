@@ -21,6 +21,10 @@ enum TaskName {
      */
     CancelPecorino = 'cancelPecorino',
     /**
+     * Pecorinoインセンティブ承認アクション取消
+     */
+    CancelPecorinoAward = 'cancelPecorinoAward',
+    /**
      *  Eメールメッセージ送信
      */
     SendEmailMessage = 'sendEmailMessage',
@@ -37,7 +41,7 @@ enum TaskName {
      */
     ReturnOrder = 'returnOrder',
     /**
-     * Pecorino賞金返却
+     * Pecorinoインセンティブ返却
      */
     ReturnPecorinoAward = 'returnPecorinoAward',
     /**

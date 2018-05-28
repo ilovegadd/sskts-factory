@@ -17,11 +17,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Pecorino入金タスクを追加。
 - Pecorino返金タスクを追加。
 - Pecorino取引中止タスクを追加。
-- Pecorino賞金承認アクションを追加。
-- Pecorino賞金返却アクション、Pecorino賞金返却タスクを追加。
+- Pecorinoインセンティブ承認アクションを追加。
+- Pecorinoインセンティブ返却アクション、Pecorinoインセンティブ返却タスクを追加。
 - 会員プログラム登録タスク、会員プログラム登録アクションを追加。
 - 会員プログラム登録解除タスク、会員プログラム登録解除アクションを追加。
 - 会員プログラムオファー承認アクションインターフェースを追加。
+- Pecorinoインセンティブ承認取消タスクを追加。
 
 ### Changed
 

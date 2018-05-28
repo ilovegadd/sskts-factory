@@ -22,7 +22,7 @@ export interface IPotentialActions {
      */
     refundPecorino: IRefundActionAttributes<PaymentMethodType.Pecorino>[];
     /**
-     * Pecorino賞金返却アクション
+     * Pecorinoインセンティブ返却アクション
      */
     returnPecorinoAward: PecorinoAwardReturnActionFactory.IAttributes[];
 }
