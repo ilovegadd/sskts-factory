@@ -7,7 +7,8 @@ import * as ActionFactory from './factory/action';
 import * as AuthorizeActionFactory from './factory/action/authorize';
 import * as PecorinoAwardAuthorizeActionFactory from './factory/action/authorize/award/pecorino';
 import * as MvtkAuthorizeActionFactory from './factory/action/authorize/discount/mvtk';
-import * as seatReservationAuthorizeActionFactory from './factory/action/authorize/offer/seatReservation';
+import * as ProgramMembershipOfferAuthorizeActionFactory from './factory/action/authorize/offer/programMembership';
+import * as SeatReservationOfferAuthorizeActionFactory from './factory/action/authorize/offer/seatReservation';
 import * as CreditCardAuthorizeActionFactory from './factory/action/authorize/paymentMethod/creditCard';
 import * as PecorinoAuthorizeActionFactory from './factory/action/authorize/paymentMethod/pecorino';
 import * as UseMvtkActionFactory from './factory/action/consume/use/mvtk';
@@ -126,7 +127,9 @@ export namespace action {
         }
         // tslint:disable-next-line:no-shadowed-variable
         export namespace offer {
-            export import seatReservation = seatReservationAuthorizeActionFactory;
+            // tslint:disable-next-line:no-shadowed-variable
+            export import programMembership = ProgramMembershipOfferAuthorizeActionFactory;
+            export import seatReservation = SeatReservationOfferAuthorizeActionFactory;
         }
     }
 

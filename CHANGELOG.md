@@ -21,6 +21,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Pecorino賞金返却アクション、Pecorino賞金返却タスクを追加。
 - 会員プログラム登録タスク、会員プログラム登録アクションを追加。
 - 会員プログラム登録解除タスク、会員プログラム登録解除アクションを追加。
+- 会員プログラムオファー承認アクションインターフェースを追加。
 
 ### Changed
 
