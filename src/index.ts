@@ -13,8 +13,9 @@ import * as CreditCardAuthorizeActionFactory from './factory/action/authorize/pa
 import * as PecorinoAuthorizeActionFactory from './factory/action/authorize/paymentMethod/pecorino';
 import * as UseMvtkActionFactory from './factory/action/consume/use/mvtk';
 import * as RegisterActionFactory from './factory/action/interact/register';
-import * as ProgramMembershipRegisterActionFactory from './factory/action/interact/register/programMembership';
+import * as RegisterProgramMembershipActionFactory from './factory/action/interact/register/programMembership';
 import * as UnRegisterActionFactory from './factory/action/interact/unRegister';
+import * as UnRegisterProgramMembershipActionFactory from './factory/action/interact/unRegister/programMembership';
 import * as OrderActionFactory from './factory/action/trade/order';
 import * as PayActionFactory from './factory/action/trade/pay';
 import * as RefundActionFactory from './factory/action/trade/refund';
@@ -141,9 +142,16 @@ export namespace action {
             // tslint:disable-next-line:no-shadowed-variable
             export import IAttributes = RegisterActionFactory.IAttributes;
             // tslint:disable-next-line:no-shadowed-variable
-            export import programMembership = ProgramMembershipRegisterActionFactory;
+            export import programMembership = RegisterProgramMembershipActionFactory;
         }
-        export import unRegister = UnRegisterActionFactory;
+        export namespace unRegister {
+            // tslint:disable-next-line:no-shadowed-variable
+            export import IAction = UnRegisterActionFactory.IAction;
+            // tslint:disable-next-line:no-shadowed-variable
+            export import IAttributes = UnRegisterActionFactory.IAttributes;
+            // tslint:disable-next-line:no-shadowed-variable
+            export import programMembership = UnRegisterProgramMembershipActionFactory;
+        }
     }
 
     export namespace trade {
@@ -272,7 +280,7 @@ export namespace task {
     export import sendOrder = SendOrderTaskFactory;
     export import payCreditCard = PayCreditCardTaskFactory;
     export import payPecorino = PayPecorinoTaskFactory;
-    export import UnRegisterProgramMembership = UnRegisterProgramMembershipTaskFactory;
+    export import unRegisterProgramMembership = UnRegisterProgramMembershipTaskFactory;
     export import useMvtk = UseMvtkTaskFactory;
 }
 export import taskExecutionResult = TaskExecutionResultFactory;
