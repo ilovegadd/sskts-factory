@@ -83,6 +83,10 @@ export interface IOwnershipInfo<T extends IGoodType> {
  */
 export interface ISearchConditions<T extends IGoodType> {
     /**
+     * 所有権識別子
+     */
+    identifier?: string;
+    /**
      * 所有対象物のタイプ
      */
     goodType: T;

@@ -1,11 +1,11 @@
 import { IAcceptedOffer } from '../../../order';
-import * as ProgramMembershipFactory from '../../../programMembership';
+import { IProgramMembership } from '../../../programMembership';
 import * as RegisterActionFactory from '../register';
 
 /**
  * 会員プログラム登録アクションの対象は、受け入れられた会員プログラムオファー
  */
-export type IObject = IAcceptedOffer<ProgramMembershipFactory.IProgramMembership>;
+export type IObject = IAcceptedOffer<IProgramMembership>;
 export type IResult = any;
 // tslint:disable-next-line:no-empty-interface
 export interface IPotentialActions {
