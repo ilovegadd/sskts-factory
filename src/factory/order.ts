@@ -8,6 +8,7 @@
  */
 
 import { IEvent as IIndividualScreeningEvent } from './event/individualScreeningEvent';
+import IMultilingualString from './multilingualString';
 import { IOffer } from './offer';
 import OrderStatus from './orderStatus';
 import OrganizationType from './organizationType';
@@ -101,15 +102,13 @@ export interface IAcceptedOffer<T extends IItemOffered> extends IOffer {
  * @export
  */
 export interface ISeller {
-    typeOf: OrganizationType | PersonType;
-    /**
-     * Name of the Organization.
-     */
+    id: string;
+    identifier?: string;
     name: string;
-    /**
-     * The Freebase URL for the merchant.
-     */
-    url: string;
+    legalName?: IMultilingualString;
+    typeOf: OrganizationType;
+    telephone?: string;
+    url?: string;
 }
 
 /**
@@ -192,4 +191,34 @@ export interface IOrder {
      * key for inquiry (required)
      */
     orderInquiryKey: IOrderInquiryKey;
+}
+
+/**
+ * 注文検索条件インターフェース
+ */
+export interface ISearchConditions {
+    /**
+     * 販売者ID
+     */
+    sellerId?: string;
+    /**
+     * 購入者会員番号
+     */
+    customerMembershipNumber?: string;
+    /**
+     * 注文番号
+     */
+    orderNumber?: string;
+    /**
+     * 注文ステータス
+     */
+    orderStatus?: OrderStatus;
+    /**
+     * 注文日時(から)
+     */
+    orderDateFrom: Date;
+    /**
+     * 注文日時(まで)
+     */
+    orderDateThrough: Date;
 }

@@ -23,6 +23,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - 会員プログラム登録解除タスク、会員プログラム登録解除アクションを追加。
 - 会員プログラムオファー承認アクションインターフェースを追加。
 - Pecorinoインセンティブ承認取消タスクを追加。
+- 注文検索条件インターフェースを追加。
 
 ### Changed
 
