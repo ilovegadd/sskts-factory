@@ -44,6 +44,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Removed
 
+- イベント予約データ作成アルゴリズムをdomainへ移動。
+
 ### Fixed
 
 ### Security
