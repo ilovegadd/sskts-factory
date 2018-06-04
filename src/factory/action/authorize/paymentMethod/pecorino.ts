@@ -24,7 +24,7 @@ export interface IObject {
     amount: number;
 }
 
-export type IPecorinoTransaction = pecorinoFactory.transaction.pay.ITransaction | pecorinoFactory.transaction.transfer.ITransaction;
+export type IPecorinoTransaction = pecorinoFactory.transaction.withdraw.ITransaction | pecorinoFactory.transaction.transfer.ITransaction;
 
 export interface IResult {
     price: number;
