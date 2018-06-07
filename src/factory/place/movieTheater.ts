@@ -103,6 +103,8 @@ export type IPlace = IPlaceWithoutScreeningRoom & {
  * @param theaterFromCOA COA劇場抽出結果
  * @param screensFromCOA COAスクリーン抽出結果
  */
+// tslint:disable-next-line:no-single-line-block-comment
+/* istanbul ignore next */
 export function createFromCOA(
     theaterFromCOA: COA.services.master.ITheaterResult,
     screensFromCOA: COA.services.master.IScreenResult[]
@@ -130,6 +132,8 @@ export function createFromCOA(
  * COAのスクリーン抽出結果から上映室を作成する
  * @param screenFromCOA COAスクリーン抽出結果
  */
+// tslint:disable-next-line:no-single-line-block-comment
+/* istanbul ignore next */
 export function createScreeningRoomFromCOA(screenFromCOA: COA.services.master.IScreenResult): IScreeningRoom {
     const sections: IScreeningRoomSection[] = [];
     const sectionCodes: string[] = [];

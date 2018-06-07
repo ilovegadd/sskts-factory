@@ -142,6 +142,8 @@ export interface IEvent extends EventFactory.IEvent {
  * COAの作品抽出結果からFilmオブジェクトを作成する
  * @export
  */
+// tslint:disable-next-line:no-single-line-block-comment
+/* istanbul ignore next */
 export function createFromCOA(params: {
     filmFromCOA: COA.services.master.ITitleResult;
     movieTheater: MovieTheaterPlaceFactory.IPlace;
@@ -209,6 +211,8 @@ export function createFromCOA(params: {
  * COA情報から上映イベント識別子を作成する
  * @export
  */
+// tslint:disable-next-line:no-single-line-block-comment
+/* istanbul ignore next */
 export function createIdentifier(params: {
     theaterCode: string;
     titleCode: string;

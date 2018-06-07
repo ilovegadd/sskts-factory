@@ -24,6 +24,8 @@ export interface ICreativeWork extends CreativeWorkFactory.ICreativeWork {
  * COAの作品抽出結果からFilmオブジェクトを作成する
  * @export
  */
+// tslint:disable-next-line:no-single-line-block-comment
+/* istanbul ignore next */
 export function createFromCOA(filmFromCOA: COA.services.master.ITitleResult): ICreativeWork {
     return {
         identifier: filmFromCOA.titleCode,

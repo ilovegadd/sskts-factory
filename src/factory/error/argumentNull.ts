@@ -16,7 +16,8 @@ export default class ArgumentNullError extends SSKTSError {
             actualMessage = `Missing argument: ${argumentName}.`;
         }
 
-        super(ErrorCode.ArgumentNull, actualMessage);
+        // tslint:disable-next-line:no-single-line-block-comment
+        super(ErrorCode.ArgumentNull, actualMessage)/* istanbul ignore next */;
 
         this.argumentName = argumentName;
 

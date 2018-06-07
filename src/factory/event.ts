@@ -75,6 +75,8 @@ export interface IEvent {
     workPerformed?: CreativeWorkFactory.ICreativeWork;
 }
 
+// tslint:disable-next-line:no-single-line-block-comment
+/* istanbul ignore next */
 export function create(params: {
     typeOf: EventType;
     identifier: string;

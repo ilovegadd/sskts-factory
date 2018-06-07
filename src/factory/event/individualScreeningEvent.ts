@@ -73,6 +73,8 @@ export type IItemAvailability = number;
  * @param numberOfAvailableSeats 空席数
  * @param numberOfAllSeats 全座席数
  */
+// tslint:disable-next-line:no-single-line-block-comment
+/* istanbul ignore next */
 export function createItemAvailability(numberOfAvailableSeats: number, numberOfAllSeats: number): IItemAvailability {
     if (!_.isInteger(numberOfAvailableSeats)) {
         throw new ArgumentError('numberOfAvailableSeats', 'numberOfAvailableSeats must be number.');
@@ -212,6 +214,8 @@ export interface IEvent extends EventFactory.IEvent {
  * create individualScreeningEvent from COA performance
  * @export
  */
+// tslint:disable-next-line:no-single-line-block-comment
+/* istanbul ignore next */
 export function createFromCOA(params: {
     performanceFromCOA: COA.services.master.IScheduleResult;
     screenRoom: MovieTheaterPlaceFactory.IScreeningRoom;
@@ -275,6 +279,8 @@ export function createFromCOA(params: {
  * COA情報から個々の上映イベント識別子を作成する
  * @export
  */
+// tslint:disable-next-line:no-single-line-block-comment
+/* istanbul ignore next */
 export function createIdentifierFromCOA(params: {
     theaterCode: string;
     titleCode: string;
