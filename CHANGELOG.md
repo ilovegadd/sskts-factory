@@ -8,6 +8,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## v4.0.0 - 2018-06-07
+
+### Added
+
 - Pecorinoファクトリーをエクスポート。
 - Pecorino口座関連のインターフェースを追加。
 - 脆弱性のあるパッケージをアップデート。
@@ -40,15 +54,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - 取引インターフェースを取引タイプに対して動的に変更。
 - 所有対象タイプに口座を追加。
 
-### Deprecated
-
 ### Removed
 
 - イベント予約データ作成アルゴリズムをdomainへ移動。
-
-### Fixed
-
-### Security
 
 ## v3.0.0 - 2018-02-27
 
