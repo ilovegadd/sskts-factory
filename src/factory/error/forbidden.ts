@@ -14,7 +14,8 @@ export default class ForbiddenError extends SSKTSError {
             actualMessage = 'Forbidden.';
         }
 
-        super(ErrorCode.Forbidden, actualMessage);
+        // tslint:disable-next-line:no-single-line-block-comment
+        super(ErrorCode.Forbidden, actualMessage)/* istanbul ignore next */;
 
         setPrototypeOf(this, ForbiddenError.prototype);
     }

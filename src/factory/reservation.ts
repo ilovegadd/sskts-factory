@@ -1,8 +1,3 @@
-/**
- * 予約ファクトリー
- * @namespace reservation
- */
-
 import IMultilingualString from './multilingualString';
 import { ICOATicketInfoWithDetails } from './offer/seatReservation';
 import OrganizationType from './organizationType';
@@ -15,7 +10,6 @@ import * as URLFactory from './url';
 
 /**
  * under name interface
- * @export
  */
 export interface IUnderName {
     typeOf: OrganizationType | PersonType;
@@ -24,7 +18,6 @@ export interface IUnderName {
 
 /**
  * seat interface
- * @export
  */
 export interface ISeat {
     typeOf: PlaceType;
@@ -49,7 +42,6 @@ export interface ISeat {
 
 /**
  * 予約チケット情報
- * @export
  */
 export interface ITicket {
     typeOf: string;
@@ -102,12 +94,12 @@ export interface ITicket {
 }
 
 /**
+ * 予約インターフェース
  * reservation interface
  * Describes a reservation for travel, dining or an event. Some reservations require tickets.
  * Note: This type is for information about actual reservations,
  * e.g. in confirmation emails or HTML pages with individual confirmations of reservations.
  * For offers of tickets, restaurant reservations, flights, or rental cars, use Offer.
- * @export
  */
 export interface IReservation {
     /**

@@ -8,11 +8,15 @@
  */
 
 import { IEvent as IIndividualScreeningEvent } from './event/individualScreeningEvent';
+import IMultilingualString from './multilingualString';
+import { IOffer } from './offer';
 import OrderStatus from './orderStatus';
 import OrganizationType from './organizationType';
+import PaymentMethodType from './paymentMethodType';
 import { IContact, IPerson } from './person';
 import PersonType from './personType';
 import PriceCurrency from './priceCurrency';
+import { IProgramMembership } from './programMembership';
 import * as EventReservationFactory from './reservation/event';
 
 /**
@@ -20,12 +24,15 @@ import * as EventReservationFactory from './reservation/event';
  * 決済方法イーターフェース
  * @export
  */
-export interface IPaymentMethod {
+export interface IPaymentMethod<T extends PaymentMethodType> {
+    /**
+     * 決済方法名
+     */
     name: string;
     /**
-     * The name of the credit card or other method of payment for the order.
+     * 決済方法タイプ
      */
-    paymentMethod: string;
+    paymentMethod: T;
     /**
      * An identifier for the method of payment used (e.g.the last 4 digits of the credit card).
      */
@@ -58,7 +65,7 @@ export interface IDiscount {
  * 供給アイテムインターフェース
  * @export
  */
-export type IItemOffered = EventReservationFactory.IEventReservation<IIndividualScreeningEvent>;
+export type IItemOffered = EventReservationFactory.IEventReservation<IIndividualScreeningEvent> | IProgramMembership;
 
 /**
  * key for inquiry of the order
@@ -74,21 +81,12 @@ export interface IOrderInquiryKey {
 /**
  * offer interface
  * 供給インターフェース
- * @export
  */
-export interface IOffer {
+export interface IAcceptedOffer<T extends IItemOffered> extends IOffer {
     /**
-     * 受け入れられた予約情報
+     * オファー対象炊いてむ
      */
-    itemOffered: IItemOffered;
-    /**
-     * 金額
-     */
-    price: number;
-    /**
-     * 通貨
-     */
-    priceCurrency: PriceCurrency;
+    itemOffered: T;
     /**
      * 販売者
      */
@@ -104,15 +102,13 @@ export interface IOffer {
  * @export
  */
 export interface ISeller {
-    typeOf: OrganizationType | PersonType;
-    /**
-     * Name of the Organization.
-     */
+    id: string;
+    identifier?: string;
     name: string;
-    /**
-     * The Freebase URL for the merchant.
-     */
-    url: string;
+    legalName?: IMultilingualString;
+    typeOf: OrganizationType;
+    telephone?: string;
+    url?: string;
 }
 
 /**
@@ -164,11 +160,11 @@ export interface IOrder {
      * Offer
      * The offers included in the order.Also accepts an array of objects.
      */
-    acceptedOffers: IOffer[];
+    acceptedOffers: IAcceptedOffer<IItemOffered>[];
     /**
      * payment methods
      */
-    paymentMethods: IPaymentMethod[];
+    paymentMethods: IPaymentMethod<PaymentMethodType>[];
     /**
      * discount infos
      */
@@ -195,4 +191,34 @@ export interface IOrder {
      * key for inquiry (required)
      */
     orderInquiryKey: IOrderInquiryKey;
+}
+
+/**
+ * 注文検索条件インターフェース
+ */
+export interface ISearchConditions {
+    /**
+     * 販売者ID
+     */
+    sellerId?: string;
+    /**
+     * 購入者会員番号
+     */
+    customerMembershipNumber?: string;
+    /**
+     * 注文番号
+     */
+    orderNumber?: string;
+    /**
+     * 注文ステータス
+     */
+    orderStatus?: OrderStatus;
+    /**
+     * 注文日時(から)
+     */
+    orderDateFrom: Date;
+    /**
+     * 注文日時(まで)
+     */
+    orderDateThrough: Date;
 }

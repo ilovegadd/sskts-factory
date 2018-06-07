@@ -14,7 +14,8 @@ export default class RateLimitExceededError extends SSKTSError {
             actualMessage = 'Rate limit exceeded.';
         }
 
-        super(ErrorCode.RateLimitExceeded, actualMessage);
+        // tslint:disable-next-line:no-single-line-block-comment
+        super(ErrorCode.RateLimitExceeded, actualMessage)/* istanbul ignore next */;
 
         setPrototypeOf(this, RateLimitExceededError.prototype);
     }

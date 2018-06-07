@@ -1,45 +1,36 @@
-/**
- * 注文返品アクションファクトリー
- */
-
 import * as ActionFactory from '../../../action';
 import { IOrder } from '../../../order';
+import PaymentMethodType from '../../../paymentMethodType';
 import { IAttributes as IRefundActionAttributes } from '../../trade/refund';
 import * as ReturnActionFactory from '../return';
+import * as PecorinoAwardReturnActionFactory from './pecorinoAward';
 
 export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;
-
 /**
  * 返却対象は注文
  */
 export type IObject = IOrder;
-
 export type IResult = any;
-
 export interface IPotentialActions {
     /**
-     * 返金アクション属性
+     * クレジットカード返金アクション
      */
-    refund: IRefundActionAttributes;
+    refundCreditCard?: IRefundActionAttributes<PaymentMethodType.CreditCard>;
+    /**
+     * Pecorino返金アクション
+     */
+    refundPecorino: IRefundActionAttributes<PaymentMethodType.Pecorino>[];
+    /**
+     * Pecorinoインセンティブ返却アクション
+     */
+    returnPecorinoAward: PecorinoAwardReturnActionFactory.IAttributes[];
 }
-
 export interface IAttributes extends ReturnActionFactory.IAttributes<IObject, IResult> {
     recipient: IRecipient;
     potentialActions?: IPotentialActions;
 }
-
+/**
+ * 注文返品アクションインターフェース
+ */
 export type IAction = ReturnActionFactory.IAction<IAttributes>;
-
-export function createAttributes(params: {
-    result?: IResult;
-    object: IObject;
-    agent: IAgent;
-    recipient: IRecipient;
-    potentialActions?: IPotentialActions;
-}): IAttributes {
-    return {
-        ...ReturnActionFactory.createAttributes(params),
-        potentialActions: params.potentialActions
-    };
-}

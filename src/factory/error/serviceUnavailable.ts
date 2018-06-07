@@ -14,7 +14,8 @@ export default class ServiceUnavailableError extends SSKTSError {
             actualMessage = 'Service unavailable temporarily.';
         }
 
-        super(ErrorCode.ServiceUnavailable, actualMessage);
+        // tslint:disable-next-line:no-single-line-block-comment
+        super(ErrorCode.ServiceUnavailable, actualMessage)/* istanbul ignore next */;
 
         setPrototypeOf(this, ServiceUnavailableError.prototype);
     }

@@ -1,16 +1,15 @@
 /**
  * 座席予約承認アクションファクトリー
- * @namespace action.authorize.seatReservation
  */
-
 import * as COA from '@motionpicture/coa-service';
 
-import * as ActionFactory from '../../action';
-import ActionType from '../../actionType';
-import * as IndividualScreeningEventFactory from '../../event/individualScreeningEvent';
-import { IOfferWithDetails as ISeatReservationOffer } from '../../offer/seatReservation';
-import { ITransaction } from '../../transaction/placeOrder';
-import * as AuthorizeActionFactory from '../authorize';
+import * as ActionFactory from '../../../action';
+import ActionType from '../../../actionType';
+import * as IndividualScreeningEventFactory from '../../../event/individualScreeningEvent';
+import { IOfferWithDetails as ISeatReservationOffer } from '../../../offer/seatReservation';
+import PriceCurrency from '../../../priceCurrency';
+import { ITransaction } from '../../../transaction/placeOrder';
+import * as AuthorizeActionFactory from '../../authorize';
 
 export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;
@@ -25,7 +24,15 @@ export enum ObjectType {
  * @export
  */
 export interface IResult {
+    /**
+     * オファー分の金額
+     */
     price: number;
+    priceCurrency: PriceCurrency;
+    /**
+     * オファーに対して必要な消費ポイント
+     */
+    pecorinoAmount: number;
     /**
      * COAの仮予約パラメーター
      */
@@ -58,29 +65,11 @@ export type IError = any;
  * @export
  */
 export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
-}
-
-export type IAction = ActionFactory.IAction<IAttributes>;
-
-/**
- * create seatReservation authorize action object
- * @export
- */
-export function createAttributes(params: {
+    typeOf: ActionType.AuthorizeAction;
     agent: IAgent;
     recipient: IRecipient;
     object: IObject;
-    result?: IResult;
-    error?: IError;
     purpose: IPurpose;
-}): IAttributes {
-    return {
-        typeOf: ActionType.AuthorizeAction,
-        object: params.object,
-        result: params.result,
-        error: params.error,
-        agent: params.agent,
-        recipient: params.recipient,
-        purpose: params.purpose
-    };
 }
+
+export type IAction = ActionFactory.IAction<IAttributes>;

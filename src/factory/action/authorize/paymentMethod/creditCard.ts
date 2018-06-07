@@ -1,15 +1,12 @@
 /**
- * credit card authorization factory
- * クレジットカードオーソリファクトリー
- * @namespace action.authorize.creditCard
+ * 決済方法としてのクレジットカードオーソリファクトリー
  */
-
 import * as GMO from '@motionpicture/gmo-service';
 
-import * as ActionFactory from '../../action';
-import ActionType from '../../actionType';
-import { ITransaction } from '../../transaction/placeOrder';
-import * as AuthorizeActionFactory from '../authorize';
+import * as ActionFactory from '../../../action';
+import ActionType from '../../../actionType';
+import { ITransaction } from '../../../transaction/placeOrder';
+import * as AuthorizeActionFactory from '../../authorize';
 
 export type IAgent = ActionFactory.IParticipant;
 export type IRecipient = ActionFactory.IParticipant;
@@ -42,23 +39,11 @@ export type IPurpose = ITransaction;
  * GMOオーソリインターフェース
  */
 export interface IAttributes extends AuthorizeActionFactory.IAttributes<IObject, IResult> {
-}
-
-export type IAction = ActionFactory.IAction<IAttributes>;
-
-export function createAttributes(params: {
-    result?: IResult;
+    typeOf: ActionType.AuthorizeAction;
     object: IObject;
     agent: IAgent;
     recipient: IRecipient;
     purpose: IPurpose;
-}): IAttributes {
-    return {
-        typeOf: ActionType.AuthorizeAction,
-        result: params.result,
-        object: params.object,
-        agent: params.agent,
-        recipient: params.recipient,
-        purpose: params.purpose
-    };
 }
+
+export type IAction = ActionFactory.IAction<IAttributes>;

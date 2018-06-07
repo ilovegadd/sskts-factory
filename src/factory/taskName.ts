@@ -17,6 +17,14 @@ enum TaskName {
      */
     CancelMvtk = 'cancelMvtk',
     /**
+     * Pecorino口座承認アクション取消
+     */
+    CancelPecorino = 'cancelPecorino',
+    /**
+     * Pecorinoインセンティブ承認アクション取消
+     */
+    CancelPecorinoAward = 'cancelPecorinoAward',
+    /**
      *  Eメールメッセージ送信
      */
     SendEmailMessage = 'sendEmailMessage',
@@ -33,6 +41,10 @@ enum TaskName {
      */
     ReturnOrder = 'returnOrder',
     /**
+     * Pecorinoインセンティブ返却
+     */
+    ReturnPecorinoAward = 'returnPecorinoAward',
+    /**
      * クレジットカード支払
      */
     PayCreditCard = 'payCreditCard',
@@ -47,7 +59,23 @@ enum TaskName {
     /**
      * クレジットカード返金
      */
-    RefundCreditCard = 'refundCreditCard'
+    RefundCreditCard = 'refundCreditCard',
+    /**
+     * Pecorino返金
+     */
+    RefundPecorino = 'refundPecorino',
+    /**
+     * Pecorinoインセンティブ付与
+     */
+    GivePecorinoAward = 'givePecorinoAward',
+    /**
+     * 会員プログラム登録
+     */
+    RegisterProgramMembership = 'registerProgramMembership',
+    /**
+     * 会員プログラム登録解除
+     */
+    UnRegisterProgramMembership = 'unRegisterProgramMembership'
 }
 
 export default TaskName;

@@ -1,34 +1,58 @@
 /**
  * 所有権ファクトリー
- * @namespace ownershipInfo
  */
+import * as pecorino from '@motionpicture/pecorino-factory';
+import { IEvent } from './event';
+import { IOrganization } from './organization';
+import { IPerson } from './person';
+import { IProgramMembership, ProgramMembershipType } from './programMembership';
+import { IEventReservation } from './reservation/event';
+import ReservationType from './reservationType';
 
-import OrganizationType from './organizationType';
-import PersonType from './personType';
-import { IReservation } from './reservation';
-
-/**
- * good interface (Product or Service)
- */
-export type IGood = IReservation;
-
-/**
- * owner interface
- */
-export interface IOwner {
-    typeOf: OrganizationType | PersonType;
-    id: string;
-    name: string;
+export interface IAccount {
+    /**
+     * 口座タイプ
+     */
+    typeOf: pecorino.account.AccountType;
+    /**
+     * 口座番号
+     */
+    accountNumber: string;
 }
-
 /**
- * ownershipInfo interface
+ * 所有対象物のタイプ
  */
-export interface IOwnershipInfo<T extends IGood> {
+export type IGoodType = ReservationType | ProgramMembershipType | pecorino.account.AccountType;
+/**
+ * 所有対象物インタエーフェース (Product or Service)
+ */
+export type IGood<T extends IGoodType> =
+    /**
+     * 予約タイプの場合
+     */
+    T extends ReservationType ? IEventReservation<IEvent> :
+    /**
+     * 会員プログラムタイプの場合
+     */
+    T extends ProgramMembershipType ? IProgramMembership :
+    /**
+     * 口座タイプの場合
+     */
+    T extends pecorino.account.AccountType ? IAccount :
+    never;
+/**
+ * 所有者インターフェース
+ */
+export type IOwner = IOrganization | IPerson;
+export type OwnershipInfoType = 'OwnershipInfo';
+/**
+ * 所有権インターフェース
+ */
+export interface IOwnershipInfo<T extends IGoodType> {
     /**
      * object type
      */
-    typeOf: 'OwnershipInfo';
+    typeOf: OwnershipInfoType;
     /**
      * identifier
      */
@@ -40,7 +64,7 @@ export interface IOwnershipInfo<T extends IGood> {
     /**
      * The organization or person from which the product was acquired.
      */
-    acquiredFrom: IOwner;
+    acquiredFrom?: IOwner;
     /**
      * The date and time of obtaining the product.
      */
@@ -48,9 +72,45 @@ export interface IOwnershipInfo<T extends IGood> {
     /**
      * The date and time of giving up ownership on the product.
      */
-    ownedThrough: Date;
+    ownedThrough?: Date;
     /**
-     * The product that this structured value is referring to.
+     * 所有対象物
      */
-    typeOfGood: T;
+    typeOfGood: IGood<T>;
+}
+/**
+ * 所有権検索条件インターフェース
+ */
+export interface ISearchConditions<T extends IGoodType> {
+    /**
+     * 所有権識別子
+     */
+    identifier?: string;
+    /**
+     * 所有対象物のタイプ
+     */
+    goodType: T;
+    /**
+     * 所有対象物
+     */
+    // typeOfGood?: {
+    //     /**
+    //      * どのイベント予約か
+    //      */
+    //     eventReservationFor?: {
+    //         /**
+    //          * イベントタイプ
+    //          */
+    //         typeOf: EventType;
+    //         identifier: string;
+    //     };
+    // };
+    /**
+     * 所有者ID
+     */
+    ownedBy?: string;
+    /**
+     * いつの時点での所有か
+     */
+    ownedAt?: Date;
 }

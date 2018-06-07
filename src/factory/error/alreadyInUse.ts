@@ -17,7 +17,8 @@ export default class AlreadyInUseError extends SSKTSError {
             actualMessage = `The specified '${entityName}' value is already in use for: ${fieldNames.join(', ')}.`;
         }
 
-        super(ErrorCode.AlreadyInUse, actualMessage);
+        // tslint:disable-next-line:no-single-line-block-comment
+        super(ErrorCode.AlreadyInUse, actualMessage)/* istanbul ignore next */;
 
         this.entityName = entityName;
         this.fieldNames = fieldNames;

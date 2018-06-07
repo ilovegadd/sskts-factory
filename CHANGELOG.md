@@ -1,9 +1,11 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## Unreleased
+
 ### Added
 
 ### Changed
@@ -16,9 +18,50 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Security
 
+## v4.0.0 - 2018-06-07
+
+### Added
+
+- Pecorinoファクトリーをエクスポート。
+- Pecorino口座関連のインターフェースを追加。
+- 脆弱性のあるパッケージをアップデート。
+- 単位符号を追加。
+- 定量値インターフェースを追加。
+- Pecorino付与アクションインターフェースを追加。
+- Pecorino入金タスクを追加。
+- Pecorino返金タスクを追加。
+- Pecorino取引中止タスクを追加。
+- Pecorinoインセンティブ承認アクションを追加。
+- Pecorinoインセンティブ返却アクション、Pecorinoインセンティブ返却タスクを追加。
+- 会員プログラム登録タスク、会員プログラム登録アクションを追加。
+- 会員プログラム登録解除タスク、会員プログラム登録解除アクションを追加。
+- 会員プログラムオファー承認アクションインターフェースを追加。
+- Pecorinoインセンティブ承認取消タスクを追加。
+- 注文検索条件インターフェースを追加。
+
+### Changed
+
+- update packages.
+- 組織に受け入れ可能決済方法属性を追加。
+- オファーを期間や量で制御できるようにオファーインターフェースを拡張。
+- 所有権の対象物を拡張。
+- 会員プログラムインターフェースを拡張。
+- 注文アクションの潜在アクションにPecorino付与アクション属性を追加。
+- 決済と返金アクションを決済方法に対して動的なインターフェースに変更。
+- アクションインターフェースの汎用性を向上。
+- 注文配送のポストアクションに会員プログラム登録タスクを追加。
+- アクション実行者や取引進行者のインターフェースを拡張。
+- 取引インターフェースを取引タイプに対して動的に変更。
+- 所有対象タイプに口座を追加。
+
+### Removed
+
+- イベント予約データ作成アルゴリズムをdomainへ移動。
 
 ## v3.0.0 - 2018-02-27
+
 ### Added
+
 - 注文返品取引インターフェースを追加。
 - 注文返品アクションインターフェースを追加。
 - クレジットカード売上取消タスクインターフェースを追加。
@@ -34,6 +77,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Pecorino口座承認アクションを追加。
 
 ### Changed
+
 - アクションインターフェースを拡張。
 - アクションと取引に対して潜在アクション属性を定義。
 - 承認アクションのobjectに型を定義し、purposeを取引型に変更。
@@ -41,6 +85,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - typescriptコンパイルターゲットをes5に変更。
 
 ### Removed
+
 - 取引から注文を作成するファンクションを削除。
 - 取引スコープファクトリーを削除。
 - イベント検索条件属性からdayとtheaterを削除。
