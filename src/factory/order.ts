@@ -199,20 +199,40 @@ export interface IOrder {
 export interface ISearchConditions {
     /**
      * 販売者ID
+     * @deprecated use sellerIds
      */
     sellerId?: string;
     /**
+     * 販売者IDリスト
+     */
+    sellerIds?: string[];
+    /**
      * 購入者会員番号
+     * @deprecated use customerMembershipNumbers
      */
     customerMembershipNumber?: string;
     /**
+     * 購入者会員番号リスト
+     */
+    customerMembershipNumbers?: string[];
+    /**
      * 注文番号
+     * @deprecated use orderNumbers
      */
     orderNumber?: string;
     /**
+     * 注文番号リスト
+     */
+    orderNumbers?: string[];
+    /**
      * 注文ステータス
+     * @deprecated use orderStatuses
      */
     orderStatus?: OrderStatus;
+    /**
+     * 注文ステータスリスト
+     */
+    orderStatuses?: OrderStatus[];
     /**
      * 注文日時(から)
      */
