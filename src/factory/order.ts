@@ -1,10 +1,6 @@
 /**
- * order factory
- * An order is a confirmation of a transaction (a receipt),
- * which can contain multiple line items, each represented by an Offer that has been accepted by the customer.
  * 注文ファクトリー
  * 注文は、確定した注文取引の領収証に値するものです。
- * @namespace order
  */
 
 import { IEvent as IIndividualScreeningEvent } from './event/individualScreeningEvent';
@@ -20,9 +16,7 @@ import { IProgramMembership } from './programMembership';
 import * as EventReservationFactory from './reservation/event';
 
 /**
- * payment method interface
  * 決済方法イーターフェース
- * @export
  */
 export interface IPaymentMethod<T extends PaymentMethodType> {
     /**
@@ -40,9 +34,7 @@ export interface IPaymentMethod<T extends PaymentMethodType> {
 }
 
 /**
- * discount interface
  * 割引インターフェース
- * @export
  */
 export interface IDiscount {
     name: string;
@@ -61,16 +53,12 @@ export interface IDiscount {
 }
 
 /**
- * offered item type
  * 供給アイテムインターフェース
- * @export
  */
 export type IItemOffered = EventReservationFactory.IEventReservation<IIndividualScreeningEvent> | IProgramMembership;
 
 /**
- * key for inquiry of the order
  * 注文照会キーインターフェース
- * @export
  */
 export interface IOrderInquiryKey {
     theaterCode: string;
@@ -84,7 +72,7 @@ export interface IOrderInquiryKey {
  */
 export interface IAcceptedOffer<T extends IItemOffered> extends IOffer {
     /**
-     * オファー対象炊いてむ
+     * オファー対象アイテム
      */
     itemOffered: T;
     /**
@@ -97,9 +85,7 @@ export interface IAcceptedOffer<T extends IItemOffered> extends IOffer {
 }
 
 /**
- * seller interface
  * 販売者インターフェース
- * @export
  */
 export interface ISeller {
     id: string;
@@ -112,18 +98,14 @@ export interface ISeller {
 }
 
 /**
- * customer interface
  * 購入者インターフェース
- * @export
  */
 export type ICustomer = IPerson & IContact & {
     name: string;
 };
 
 /**
- * order interface
  * 注文インターフェース
- * @export
  */
 export interface IOrder {
     /**
@@ -241,4 +223,12 @@ export interface ISearchConditions {
      * 注文日時(まで)
      */
     orderDateThrough: Date;
+    /**
+     * 確認番号リスト
+     */
+    confirmationNumbers?: string[];
+    /**
+     * どのイベントに対する予約を注文したか
+     */
+    reservedEventIdentifiers?: string[];
 }
