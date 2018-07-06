@@ -14,7 +14,8 @@ enum ActionType {
     SendAction = 'SendAction',
     UnRegisterAction = 'UnRegisterAction',
     UpdateAction = 'UpdateAction',
-    UseAction = 'UseAction'
+    UseAction = 'UseAction',
+    ValidateAction = 'ValidateAction'
 }
 
 export default ActionType;

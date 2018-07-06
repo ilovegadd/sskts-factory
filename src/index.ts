@@ -27,6 +27,8 @@ import * as ReturnOrderActionFactory from './factory/action/transfer/return/orde
 import * as ReturnPecorinoAwardActionFactory from './factory/action/transfer/return/pecorinoAward';
 import * as SendEmailMessageActionFactory from './factory/action/transfer/send/message/email';
 import * as SendOrderActionFactory from './factory/action/transfer/send/order';
+import * as CreditCardCheckActionFactory from './factory/action/validate/paymentMethod/creditCard';
+import * as ValidateActionFactory from './factory/action/validate/validate';
 import ActionStatusType from './factory/actionStatusType';
 import ActionType from './factory/actionType';
 
@@ -202,6 +204,17 @@ export namespace action {
     export namespace consume {
         export namespace use {
             export import mvtk = UseMvtkActionFactory;
+        }
+    }
+
+    export namespace validate {
+        // tslint:disable-next-line:no-shadowed-variable
+        export import IAction = ValidateActionFactory.IAction;
+        // tslint:disable-next-line:no-shadowed-variable
+        export import IAttributes = ValidateActionFactory.IAttributes;
+        // tslint:disable-next-line:no-shadowed-variable
+        export namespace paymentMethod {
+            export import creditCard = CreditCardCheckActionFactory;
         }
     }
 }
