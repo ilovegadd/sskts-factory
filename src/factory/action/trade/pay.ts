@@ -1,6 +1,7 @@
 import * as GMO from '@motionpicture/gmo-service';
 
 import * as ActionFactory from '../../action';
+import { IMocoinTransaction } from '../../action/authorize/paymentMethod/mocoin';
 import { IPecorinoTransaction } from '../../action/authorize/paymentMethod/pecorino';
 import ActionType from '../../actionType';
 import { IOrder, IPaymentMethod } from '../../order';
@@ -36,8 +37,13 @@ export interface IObject4pecorino extends ICommonObject<PaymentMethodType.Pecori
     pecorinoTransaction: IPecorinoTransaction;
     pecorinoEndpoint: string;
 }
+export interface IObject4mocoin extends ICommonObject<PaymentMethodType.Mocoin> {
+    mocoinTransaction: IMocoinTransaction;
+    mocoinEndpoint: string;
+}
 export type IObject<T> =
     T extends PaymentMethodType.CreditCard ? IObject4creditCard :
+    T extends PaymentMethodType.Mocoin ? IObject4mocoin :
     T extends PaymentMethodType.Pecorino ? IObject4pecorino :
     never;
 /**
@@ -51,6 +57,7 @@ export interface IResult4creditCard {
 }
 export type IResult<T> =
     T extends PaymentMethodType.CreditCard ? IResult4creditCard :
+    T extends PaymentMethodType.Mocoin ? any :
     T extends PaymentMethodType.Pecorino ? any :
     never;
 export interface IAttributes<T extends PaymentMethodType> extends ActionFactory.IAttributes<ActionType.PayAction, IObject<T>, IResult<T>> {

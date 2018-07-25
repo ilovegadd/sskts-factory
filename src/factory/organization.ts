@@ -23,7 +23,6 @@ export interface IGMOInfo {
      */
     shopPass: string;
 }
-
 export interface IPecorinoPaymentAccepted {
     /**
      * 決済方法タイプ
@@ -34,11 +33,21 @@ export interface IPecorinoPaymentAccepted {
      */
     accountNumber: string;
 }
-
+export interface IMocoinPaymentAccepted {
+    /**
+     * 決済方法タイプ
+     */
+    paymentMethodType: PaymentMethodType.Mocoin;
+    /**
+     * 口座番号
+     */
+    accountNumber: string;
+}
 /**
  * 利用可能決済インターフェース
  */
 export type IPaymentAccepted<T extends PaymentMethodType> =
+    T extends PaymentMethodType.Mocoin ? IMocoinPaymentAccepted :
     T extends PaymentMethodType.Pecorino ? IPecorinoPaymentAccepted :
     never;
 

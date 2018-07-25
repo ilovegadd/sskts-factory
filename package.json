@@ -65,6 +65,7 @@
     "typescript": "^2.9.1"
   },
   "dependencies": {
+    "@mocoin/factory": "0.0.0-alpha.7",
     "@motionpicture/coa-service": "^4.1.0",
     "@motionpicture/gmo-service": "^4.2.0",
     "@motionpicture/pecorino-factory": "0.0.0",

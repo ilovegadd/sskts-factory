@@ -25,6 +25,10 @@ export interface IPotentialActions {
      */
     payPecorino: IPayActionAttributes<PaymentMethodType.Pecorino>[];
     /**
+     * Mocoin決済実行アクションリスト
+     */
+    payMocoin: IPayActionAttributes<PaymentMethodType.Mocoin>[];
+    /**
      * ムビチケ使用アクション
      */
     useMvtk?: IUseMvtkActionAttributes;

@@ -4,6 +4,7 @@
 
 enum PaymentMethodType {
     CreditCard = 'CreditCard',
+    Mocoin = 'Mocoin',
     Pecorino = 'Pecorino'
 }
 

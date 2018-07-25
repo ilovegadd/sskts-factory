@@ -49,6 +49,10 @@ enum TaskName {
      */
     PayCreditCard = 'payCreditCard',
     /**
+     * Mocoin支払
+     */
+    PayMocoin = 'payMocoin',
+    /**
      * Pecorino支払
      */
     PayPecorino = 'payPecorino',

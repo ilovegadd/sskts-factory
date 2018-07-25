@@ -10,6 +10,7 @@ import * as MvtkAuthorizeActionFactory from './factory/action/authorize/discount
 import * as ProgramMembershipOfferAuthorizeActionFactory from './factory/action/authorize/offer/programMembership';
 import * as SeatReservationOfferAuthorizeActionFactory from './factory/action/authorize/offer/seatReservation';
 import * as CreditCardAuthorizeActionFactory from './factory/action/authorize/paymentMethod/creditCard';
+import * as MocoinAuthorizeActionFactory from './factory/action/authorize/paymentMethod/mocoin';
 import * as PecorinoAuthorizeActionFactory from './factory/action/authorize/paymentMethod/pecorino';
 import * as UseMvtkActionFactory from './factory/action/consume/use/mvtk';
 import * as RegisterActionFactory from './factory/action/interact/register';
@@ -71,6 +72,7 @@ import * as CancelPecorinoAwardTaskFactory from './factory/task/cancelPecorinoAw
 import * as CancelSeatReservationTaskFactory from './factory/task/cancelSeatReservation';
 import * as GivePecorinoAwardTaskFactory from './factory/task/givePecorinoAward';
 import * as PayCreditCardTaskFactory from './factory/task/payCreditCard';
+import * as PayMocoinTaskFactory from './factory/task/payMocoin';
 import * as PayPecorinoTaskFactory from './factory/task/payPecorino';
 import * as PlaceOrderTaskFactory from './factory/task/placeOrder';
 import * as RefundCreditCardTaskFactory from './factory/task/refundCreditCard';
@@ -121,6 +123,7 @@ export namespace action {
         // tslint:disable-next-line:no-shadowed-variable
         export namespace paymentMethod {
             export import creditCard = CreditCardAuthorizeActionFactory;
+            export import mocoin = MocoinAuthorizeActionFactory;
             // tslint:disable-next-line:no-shadowed-variable
             export import pecorino = PecorinoAuthorizeActionFactory;
         }
@@ -279,6 +282,7 @@ export namespace task {
     export import sendEmailMessage = SendEmailMessageTaskFactory;
     export import sendOrder = SendOrderTaskFactory;
     export import payCreditCard = PayCreditCardTaskFactory;
+    export import payMocoin = PayMocoinTaskFactory;
     export import payPecorino = PayPecorinoTaskFactory;
     export import unRegisterProgramMembership = UnRegisterProgramMembershipTaskFactory;
     export import useMvtk = UseMvtkTaskFactory;
