@@ -114,3 +114,21 @@ export interface ISearchConditions<T extends IGoodType> {
      */
     ownedAt?: Date;
 }
+
+/**
+ * 会員プログラム検索条件インターフェース
+ */
+export interface ISearchProgramMembershipConditions {
+    /**
+     * 劇場ID
+     */
+    theaterIds: string[];
+    /**
+     * 登録日MIN
+     */
+    createdAtFrom: Date;
+    /**
+     * 登録日MAX
+     */
+    createdAtTo: Date;
+}
