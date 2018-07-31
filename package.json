@@ -1,7 +1,7 @@
 {
   "name": "@motionpicture/sskts-factory",
   "version": "4.2.0",
-  "description": "SSKTS factory library.",
+  "description": "SSKTS Factory Library for Javascript",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "files": [

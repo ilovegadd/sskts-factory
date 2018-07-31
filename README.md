@@ -1,6 +1,4 @@
-<img src="https://motionpicture.jp/images/common/logo_01.svg" alt="motionpicture" title="motionpicture" align="right" height="56" width="98"/>
-
-# SSKTS factory library for javascript
+# SSKTS Factory Library for Javascript
 
 [![npm (scoped)](https://img.shields.io/npm/v/@motionpicture/sskts-factory.svg)](https://www.npmjs.com/package/@motionpicture/sskts-factory)
 [![CircleCI](https://circleci.com/gh/motionpicture/sskts-factory.svg?style=shield)](https://circleci.com/gh/motionpicture/sskts-factory)

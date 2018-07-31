@@ -1,5 +1,5 @@
 /**
- * sskts-factory
+ * factory
  */
 import * as pecorinoFactory from '@pecorino/factory';
 
