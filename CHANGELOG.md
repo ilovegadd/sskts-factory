@@ -18,6 +18,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Security
 
+## v4.4.0 - 2018-07-31
+
+### Changed
+
+- 口座タイプを追加して、Pecorinoに指定するように変更。
+
 ## v4.2.0 - 2018-06-13
 
 ### Changed
