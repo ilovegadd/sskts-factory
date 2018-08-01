@@ -1,7 +1,7 @@
 /**
- * sskts-factory
+ * factory
  */
-import * as pecorinoFactory from '@motionpicture/pecorino-factory';
+import * as pecorinoFactory from '@pecorino/factory';
 
 import * as ActionFactory from './factory/action';
 import * as AuthorizeActionFactory from './factory/action/authorize';
@@ -31,6 +31,7 @@ import * as SendOrderActionFactory from './factory/action/transfer/send/order';
 import ActionStatusType from './factory/actionStatusType';
 import ActionType from './factory/actionType';
 
+import AccountType from './factory/accountType';
 import * as ClientEventFactory from './factory/clientEvent';
 import * as ClientUserFactory from './factory/clientUser';
 import * as EmailMessageFactory from './factory/creativeWork/message/email';
@@ -209,6 +210,7 @@ export namespace action {
     }
 }
 
+export import accountType = AccountType;
 export namespace paymentMethod {
     export namespace paymentCard {
         export import creditCard = CreditCardFactory;
