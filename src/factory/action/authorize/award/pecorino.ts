@@ -1,5 +1,6 @@
-import * as pecorinoFactory from '@motionpicture/pecorino-factory';
+import * as pecorinoFactory from '@pecorino/factory';
 
+import AccountType from '../../../accountType';
 import * as ActionFactory from '../../../action';
 import ActionType from '../../../actionType';
 import { ITransaction } from '../../../transaction/placeOrder';
@@ -21,7 +22,7 @@ export interface IObject {
     amount: number;
 }
 
-export type IPecorinoTransaction = pecorinoFactory.transaction.deposit.ITransaction;
+export type IPecorinoTransaction = pecorinoFactory.transaction.deposit.ITransaction<AccountType.Point>;
 
 export interface IResult {
     price: number;

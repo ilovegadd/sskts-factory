@@ -1,7 +1,9 @@
 /**
  * 所有権ファクトリー
  */
-import * as pecorino from '@motionpicture/pecorino-factory';
+import * as pecorino from '@pecorino/factory';
+
+import AccountType from './accountType';
 import { IEvent } from './event';
 import { IOrganization } from './organization';
 import { IPerson } from './person';
@@ -10,10 +12,11 @@ import { IEventReservation } from './reservation/event';
 import ReservationType from './reservationType';
 
 export interface IAccount {
+    typeOf: pecorino.account.TypeOf;
     /**
      * 口座タイプ
      */
-    typeOf: pecorino.account.AccountType;
+    accountType: AccountType;
     /**
      * 口座番号
      */
@@ -22,7 +25,7 @@ export interface IAccount {
 /**
  * 所有対象物のタイプ
  */
-export type IGoodType = ReservationType | ProgramMembershipType | pecorino.account.AccountType;
+export type IGoodType = ReservationType | ProgramMembershipType | pecorino.account.TypeOf;
 /**
  * 所有対象物インタエーフェース (Product or Service)
  */
@@ -38,7 +41,7 @@ export type IGood<T extends IGoodType> =
     /**
      * 口座タイプの場合
      */
-    T extends pecorino.account.AccountType ? IAccount :
+    T extends pecorino.account.TypeOf ? IAccount :
     never;
 /**
  * 所有者インターフェース
