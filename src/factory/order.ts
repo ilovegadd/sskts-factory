@@ -232,21 +232,3 @@ export interface ISearchConditions {
      */
     reservedEventIdentifiers?: string[];
 }
-
-/**
- * リミテッド注文検索条件インターフェース
- */
-export interface ILimitedOrderSearchConditions {
-    /**
-     * 購入者会員番号
-     */
-    customerMembershipNumber: string;
-    /**
-     * 上映日付
-     */
-    screenDate: string;
-    /**
-     * リミテッド券種コード
-     */
-    limitedTicketCode: string[];
-}
