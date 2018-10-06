@@ -2,18 +2,18 @@
  * 注文ファクトリー
  * 注文は、確定した注文取引の領収証に値するものです。
  */
-
 import { IEvent as IIndividualScreeningEvent } from './event/individualScreeningEvent';
 import IMultilingualString from './multilingualString';
 import { IOffer } from './offer';
 import OrderStatus from './orderStatus';
 import OrganizationType from './organizationType';
 import PaymentMethodType from './paymentMethodType';
-import { IContact, IPerson } from './person';
+import { IContact, IIdentifier, IPerson } from './person';
 import PersonType from './personType';
 import PriceCurrency from './priceCurrency';
 import { IProgramMembership } from './programMembership';
 import * as EventReservationFactory from './reservation/event';
+import SortType from './sortType';
 
 /**
  * 決済方法イーターフェース
@@ -174,43 +174,47 @@ export interface IOrder {
      */
     orderInquiryKey: IOrderInquiryKey;
 }
-
+/**
+ * ソート条件インターフェース
+ */
+export interface ISortOrder {
+    orderDate?: SortType;
+    orderNumber?: SortType;
+    price?: SortType;
+}
 /**
  * 注文検索条件インターフェース
  */
 export interface ISearchConditions {
+    limit?: number;
+    page?: number;
+    sort?: ISortOrder;
     /**
-     * 販売者ID
-     * @deprecated use sellerIds
+     * 販売者条件
      */
-    sellerId?: string;
+    seller?: {
+        typeOf: OrganizationType;
+        /**
+         * 販売者IDリスト
+         */
+        ids?: string[];
+    };
     /**
-     * 販売者IDリスト
+     * 購入者条件
      */
-    sellerIds?: string[];
-    /**
-     * 購入者会員番号
-     * @deprecated use customerMembershipNumbers
-     */
-    customerMembershipNumber?: string;
-    /**
-     * 購入者会員番号リスト
-     */
-    customerMembershipNumbers?: string[];
-    /**
-     * 注文番号
-     * @deprecated use orderNumbers
-     */
-    orderNumber?: string;
+    customer?: {
+        typeOf: PersonType;
+        ids?: string[];
+        identifiers?: IIdentifier;
+        /**
+         * 購入者会員番号リスト
+         */
+        membershipNumbers?: string[];
+    };
     /**
      * 注文番号リスト
      */
     orderNumbers?: string[];
-    /**
-     * 注文ステータス
-     * @deprecated use orderStatuses
-     */
-    orderStatus?: OrderStatus;
     /**
      * 注文ステータスリスト
      */
