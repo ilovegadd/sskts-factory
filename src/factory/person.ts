@@ -3,6 +3,7 @@
  */
 import PersonType from './personType';
 import * as ProgramMembershipFactory from './programMembership';
+import { IPropertyValue } from './propertyValue';
 
 /**
  * contact interface
@@ -30,7 +31,10 @@ export interface IContact {
      */
     email: string;
 }
-
+/**
+ * 識別子インターフェース
+ */
+export type IIdentifier = IPropertyValue<string>[];
 /**
  * person interface
  * 人物インターフェース

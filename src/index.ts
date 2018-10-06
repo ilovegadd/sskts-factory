@@ -59,10 +59,12 @@ import * as MovieTheaterPlaceFactory from './factory/place/movieTheater';
 import PlaceType from './factory/placeType';
 import PriceCurrency from './factory/priceCurrency';
 import * as ProgramMembershipFactory from './factory/programMembership';
+import * as PropertyValueFactory from './factory/propertyValue';
 import * as QuantitativeValueFactory from './factory/quantitativeValue';
 import * as EventReservationFactory from './factory/reservation/event';
 import ReservationStatusType from './factory/reservationStatusType';
 import ReservationType from './factory/reservationType';
+import SortType from './factory/sortType';
 import { UnitCode } from './factory/unitCode';
 
 import * as CancelCreditCardTaskFactory from './factory/task/cancelCreditCard';
@@ -256,6 +258,7 @@ export import person = PersonFactory;
 export import personType = PersonType;
 export import placeType = PlaceType;
 export import programMembership = ProgramMembershipFactory;
+export import propertyValue = PropertyValueFactory;
 export import quantitativeValue = QuantitativeValueFactory;
 export namespace reservation {
     // tslint:disable-next-line:no-shadowed-variable
@@ -285,6 +288,7 @@ export namespace task {
     export import unRegisterProgramMembership = UnRegisterProgramMembershipTaskFactory;
     export import useMvtk = UseMvtkTaskFactory;
 }
+export import sortType = SortType;
 export import taskExecutionResult = TaskExecutionResultFactory;
 export import taskName = TaskName;
 export import taskStatus = TaskStatus;
