@@ -1,7 +1,9 @@
 /**
  * factory
  */
-import * as pecorinoFactory from '@pecorino/factory';
+import * as pecorino from '@pecorino/factory';
+
+import * as cognito from './cognito';
 
 import * as ActionFactory from './factory/action';
 import * as AuthorizeActionFactory from './factory/action/authorize';
@@ -101,7 +103,8 @@ import * as URLFactory from './factory/url';
 import ErrorCode from './factory/errorCode';
 import * as errors from './factory/errors';
 
-export import pecorino = pecorinoFactory;
+export import cognito = cognito;
+export import pecorino = pecorino;
 export import errors = errors;
 export import errorCode = ErrorCode;
 

@@ -1,6 +1,6 @@
 {
   "name": "@motionpicture/sskts-factory",
-  "version": "5.1.0",
+  "version": "5.2.0",
   "description": "SSKTS Factory Library for Javascript",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -41,10 +41,9 @@
   ],
   "license": "ISC",
   "devDependencies": {
-    "@types/debug": "0.0.30",
     "@types/lodash": "^4.14.109",
     "@types/mocha": "^5.2.1",
-    "@types/node": "^9.6.20",
+    "@types/node": "^8.10.34",
     "@types/power-assert": "^1.5.0",
     "@types/sinon": "^4.3.3",
     "coveralls": "^3.0.1",
@@ -69,7 +68,7 @@
     "@motionpicture/gmo-service": "^4.2.0",
     "@motionpicture/waiter-domain": "^2.0.2",
     "@pecorino/factory": "^1.0.0",
-    "debug": "^3.1.0",
+    "aws-sdk": "^2.329.0",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
     "setprototypeof": "^1.1.0"
