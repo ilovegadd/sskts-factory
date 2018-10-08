@@ -83,6 +83,7 @@ import * as ReturnOrderTaskFactory from './factory/task/returnOrder';
 import * as ReturnPecorinoAwardTaskFactory from './factory/task/returnPecorinoAward';
 import * as SendEmailMessageTaskFactory from './factory/task/sendEmailMessage';
 import * as SendOrderTaskFactory from './factory/task/sendOrder';
+import * as TriggerWebhookTaskFactory from './factory/task/triggerWebhook';
 import * as UnRegisterProgramMembershipTaskFactory from './factory/task/unRegisterProgramMembership';
 import * as UseMvtkTaskFactory from './factory/task/useMvtk';
 
@@ -285,6 +286,7 @@ export namespace task {
     export import sendOrder = SendOrderTaskFactory;
     export import payCreditCard = PayCreditCardTaskFactory;
     export import payPecorino = PayPecorinoTaskFactory;
+    export import triggerWebhook = TriggerWebhookTaskFactory;
     export import unRegisterProgramMembership = UnRegisterProgramMembershipTaskFactory;
     export import useMvtk = UseMvtkTaskFactory;
 }

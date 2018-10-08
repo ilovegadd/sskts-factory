@@ -18,6 +18,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Security
 
+## v5.1.0 - 2018-10-08
+
+### Added
+
+- トリガーウェブフックタスクインターフェースを追加。
+- 人物識別子インターフェースを追加。
+- 
 ## v5.0.1 - 2018-10-06
 
 ### Changed

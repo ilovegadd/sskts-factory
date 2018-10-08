@@ -1,42 +1,38 @@
-/**
- * 人物ファクトリー
- */
 import PersonType from './personType';
 import * as ProgramMembershipFactory from './programMembership';
 import { IPropertyValue } from './propertyValue';
 
 /**
- * contact interface
- * 連絡先インターフェース
+ * プロフィールインターフェース
  */
-export interface IContact {
+export interface IProfile {
     /**
      * Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property.
-     * 名
      */
     givenName: string;
     /**
      * Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property.
-     * 姓
      */
     familyName: string;
     /**
      * The telephone number.
-     * 電話番号
      */
     telephone: string;
     /**
      * Email address.
-     * メールアドレス
      */
     email: string;
 }
+/**
+ * @alias
+ * @deprecated Use IProfile instead.
+ */
+export type IContact = IProfile;
 /**
  * 識別子インターフェース
  */
 export type IIdentifier = IPropertyValue<string>[];
 /**
- * person interface
  * 人物インターフェース
  */
 export interface IPerson {
@@ -57,4 +53,9 @@ export interface IPerson {
      * URL of the item.
      */
     url?: string;
+    /**
+     * 人を識別するもの
+     * サービスを使用するアプリケーション側で都合のいいように設定する
+     */
+    identifier?: IIdentifier;
 }
