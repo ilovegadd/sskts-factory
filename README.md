@@ -21,9 +21,8 @@ npm install @motionpicture/sskts-factory
 
 ### Environment variables
 
-| Name    | Required | Value           | Purpose |
-|---------|----------|-----------------|---------|
-| `DEBUG` | false    | sskts-factory:* | Debug   |
+| Name | Required | Value | Purpose |
+| ---- | -------- | ----- | ------- |
 
 ## Code Samples
 
