@@ -26,6 +26,10 @@ export interface IPaymentMethod<T extends PaymentMethodType> {
     /**
      * 決済方法タイプ
      */
+    typeOf?: T;
+    /**
+     * 決済方法タイプ
+     */
     paymentMethod: T;
     /**
      * An identifier for the method of payment used (e.g.the last 4 digits of the credit card).
