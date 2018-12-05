@@ -1,7 +1,7 @@
 /**
  * 注文取引ファクトリー
  */
-import * as waiter from '@motionpicture/waiter-domain';
+import * as waiter from '@waiter/factory';
 
 import { IAction as IAuthorizeAction, IAttributes as IAuthorizeActionAttributes } from '../action/authorize';
 import { IAttributes as IOrderActionAttributes } from '../action/trade/order';
@@ -61,11 +61,11 @@ export interface IObject {
     /**
      * WAITER許可証トークン
      */
-    passportToken?: waiter.factory.passport.IEncodedPassport;
+    passportToken?: waiter.passport.IEncodedPassport;
     /**
      * WAITER許可証
      */
-    passport?: waiter.factory.passport.IPassport;
+    passport?: waiter.passport.IPassport;
     /**
      * user object of the client where a transaction is processing.
      */

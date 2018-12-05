@@ -271,8 +271,70 @@ export namespace reservation {
 export import reservationStatusType = ReservationStatusType;
 export import reservationType = ReservationType;
 export namespace task {
-    export import IAttributes = TaskFactory.IAttributes;
-    export import ITask = TaskFactory.ITask;
+    export type IData<T extends TaskName> =
+        T extends TaskName.CancelCreditCard ? CancelCreditCardTaskFactory.IData :
+        T extends TaskName.CancelMvtk ? CancelMvtkTaskFactory.IData :
+        T extends TaskName.CancelPecorino ? CancelPecorinoTaskFactory.IData :
+        T extends TaskName.CancelPecorinoAward ? CancelPecorinoAwardTaskFactory.IData :
+        T extends TaskName.CancelSeatReservation ? CancelSeatReservationTaskFactory.IData :
+        T extends TaskName.GivePecorinoAward ? GivePecorinoAwardTaskFactory.IData :
+        T extends TaskName.PlaceOrder ? PlaceOrderTaskFactory.IData :
+        T extends TaskName.RefundCreditCard ? RefundCreditCardTaskFactory.IData :
+        T extends TaskName.RefundPecorino ? RefundPecorinoTaskFactory.IData :
+        T extends TaskName.RegisterProgramMembership ? RegisterProgramMembershipTaskFactory.IData :
+        T extends TaskName.ReturnOrder ? ReturnOrderTaskFactory.IData :
+        T extends TaskName.ReturnPecorinoAward ? ReturnPecorinoAwardTaskFactory.IData :
+        T extends TaskName.SendEmailMessage ? SendEmailMessageTaskFactory.IData :
+        T extends TaskName.SendOrder ? SendOrderTaskFactory.IData :
+        T extends TaskName.PayCreditCard ? PayCreditCardTaskFactory.IData :
+        T extends TaskName.PayPecorino ? PayPecorinoTaskFactory.IData :
+        T extends TaskName.TriggerWebhook ? TriggerWebhookTaskFactory.IData :
+        T extends TaskName.UnRegisterProgramMembership ? UnRegisterProgramMembershipTaskFactory.IData :
+        T extends TaskName.UseMvtk ? UseMvtkTaskFactory.IData :
+        TaskFactory.IData;
+    export type IAttributes<T extends TaskName> =
+        T extends TaskName.CancelCreditCard ? CancelCreditCardTaskFactory.IAttributes :
+        T extends TaskName.CancelMvtk ? CancelMvtkTaskFactory.IAttributes :
+        T extends TaskName.CancelPecorino ? CancelPecorinoTaskFactory.IAttributes :
+        T extends TaskName.CancelPecorinoAward ? CancelPecorinoAwardTaskFactory.IAttributes :
+        T extends TaskName.CancelSeatReservation ? CancelSeatReservationTaskFactory.IAttributes :
+        T extends TaskName.GivePecorinoAward ? GivePecorinoAwardTaskFactory.IAttributes :
+        T extends TaskName.PlaceOrder ? PlaceOrderTaskFactory.IAttributes :
+        T extends TaskName.RefundCreditCard ? RefundCreditCardTaskFactory.IAttributes :
+        T extends TaskName.RefundPecorino ? RefundPecorinoTaskFactory.IAttributes :
+        T extends TaskName.RegisterProgramMembership ? RegisterProgramMembershipTaskFactory.IAttributes :
+        T extends TaskName.ReturnOrder ? ReturnOrderTaskFactory.IAttributes :
+        T extends TaskName.ReturnPecorinoAward ? ReturnPecorinoAwardTaskFactory.IAttributes :
+        T extends TaskName.SendEmailMessage ? SendEmailMessageTaskFactory.IAttributes :
+        T extends TaskName.SendOrder ? SendOrderTaskFactory.IAttributes :
+        T extends TaskName.PayCreditCard ? PayCreditCardTaskFactory.IAttributes :
+        T extends TaskName.PayPecorino ? PayPecorinoTaskFactory.IAttributes :
+        T extends TaskName.TriggerWebhook ? TriggerWebhookTaskFactory.IAttributes :
+        T extends TaskName.UnRegisterProgramMembership ? UnRegisterProgramMembershipTaskFactory.IAttributes :
+        T extends TaskName.UseMvtk ? UseMvtkTaskFactory.IAttributes :
+        TaskFactory.IAttributes;
+    export type ITask<T extends TaskName> =
+        T extends TaskName.CancelCreditCard ? CancelCreditCardTaskFactory.ITask :
+        T extends TaskName.CancelMvtk ? CancelMvtkTaskFactory.ITask :
+        T extends TaskName.CancelPecorino ? CancelPecorinoTaskFactory.ITask :
+        T extends TaskName.CancelPecorinoAward ? CancelPecorinoAwardTaskFactory.ITask :
+        T extends TaskName.CancelSeatReservation ? CancelSeatReservationTaskFactory.ITask :
+        T extends TaskName.GivePecorinoAward ? GivePecorinoAwardTaskFactory.ITask :
+        T extends TaskName.PlaceOrder ? PlaceOrderTaskFactory.ITask :
+        T extends TaskName.RefundCreditCard ? RefundCreditCardTaskFactory.ITask :
+        T extends TaskName.RefundPecorino ? RefundPecorinoTaskFactory.ITask :
+        T extends TaskName.RegisterProgramMembership ? RegisterProgramMembershipTaskFactory.ITask :
+        T extends TaskName.ReturnOrder ? ReturnOrderTaskFactory.ITask :
+        T extends TaskName.ReturnPecorinoAward ? ReturnPecorinoAwardTaskFactory.ITask :
+        T extends TaskName.SendEmailMessage ? SendEmailMessageTaskFactory.ITask :
+        T extends TaskName.SendOrder ? SendOrderTaskFactory.ITask :
+        T extends TaskName.PayCreditCard ? PayCreditCardTaskFactory.ITask :
+        T extends TaskName.PayPecorino ? PayPecorinoTaskFactory.ITask :
+        T extends TaskName.TriggerWebhook ? TriggerWebhookTaskFactory.ITask :
+        T extends TaskName.UnRegisterProgramMembership ? UnRegisterProgramMembershipTaskFactory.ITask :
+        T extends TaskName.UseMvtk ? UseMvtkTaskFactory.ITask :
+        TaskFactory.ITask;
+    export type ISearchConditions<T extends TaskName> = TaskFactory.ISearchConditions<T>;
     export import cancelCreditCard = CancelCreditCardTaskFactory;
     export import cancelMvtk = CancelMvtkTaskFactory;
     export import cancelPecorino = CancelPecorinoTaskFactory;

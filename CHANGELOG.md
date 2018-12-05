@@ -8,9 +8,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Added
 
+- タスク検索条件を追加
+
 ### Changed
 
 - 注文検索条件強化
+- install @waiter/factory@2.0.0
 
 ### Deprecated
 
