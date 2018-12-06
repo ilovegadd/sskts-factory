@@ -64,6 +64,7 @@
     "typescript": "^2.9.1"
   },
   "dependencies": {
+    "@cinerino/factory": "^1.0.0-alpha.69",
     "@motionpicture/coa-service": "^5.0.0",
     "@motionpicture/gmo-service": "^4.2.0",
     "@pecorino/factory": "^1.0.0",

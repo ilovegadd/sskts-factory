@@ -64,7 +64,7 @@ import * as ProgramMembershipFactory from './factory/programMembership';
 import * as PropertyValueFactory from './factory/propertyValue';
 import * as QuantitativeValueFactory from './factory/quantitativeValue';
 import * as EventReservationFactory from './factory/reservation/event';
-import ReservationStatusType from './factory/reservationStatusType';
+import { ReservationStatusType } from './factory/reservationStatusType';
 import ReservationType from './factory/reservationType';
 import SortType from './factory/sortType';
 import { UnitCode } from './factory/unitCode';

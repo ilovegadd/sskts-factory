@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - 注文検索条件強化
 - install @waiter/factory@2.0.0
+- イベントにID属性を追加
 
 ### Deprecated
 

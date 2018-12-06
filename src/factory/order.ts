@@ -1,6 +1,7 @@
+import * as cinerino from '@cinerino/factory';
+
 import { IEvent as IIndividualScreeningEvent } from './event/individualScreeningEvent';
 import EventType from './eventType';
-import IMultilingualString from './multilingualString';
 import { IOffer } from './offer';
 import OrderStatus from './orderStatus';
 import OrganizationType from './organizationType';
@@ -14,7 +15,8 @@ import * as EventReservationFactory from './reservation/event';
 import ReservationType from './reservationType';
 import SortType from './sortType';
 
-export type TypeOf = 'Order';
+export type TypeOf = cinerino.order.TypeOf;
+
 /**
  * 決済方法インターフェース
  */
@@ -40,28 +42,12 @@ export interface IPaymentMethod<T extends PaymentMethodType> {
      */
     additionalProperty?: IPropertyValue<any>[];
 }
+
 /**
  * 割引インターフェース
  */
-export interface IDiscount {
-    /**
-     * 割引タイプ
-     */
-    typeOf?: string;
-    name: string;
-    /**
-     * Any discount applied.
-     */
-    discount: number;
-    /**
-     * Code used to redeem a discount.
-     */
-    discountCode: string;
-    /**
-     * The currency (in 3 - letter ISO 4217 format) of the discount.
-     */
-    discountCurrency: string;
-}
+export type IDiscount = cinerino.order.IDiscount;
+
 /**
  * 供給アイテムインターフェース
  */
@@ -94,24 +80,19 @@ export interface IAcceptedOffer<T extends IItemOffered> extends IOffer {
         name: string;
     };
 }
+
 /**
  * 販売者インターフェース
  */
-export interface ISeller {
-    id: string;
-    identifier?: string;
-    name: string;
-    legalName?: IMultilingualString;
-    typeOf: OrganizationType;
-    telephone?: string;
-    url?: string;
-}
+export type ISeller = cinerino.order.ISeller;
+
 /**
  * 購入者インターフェース
  */
 export type ICustomer = IPerson & IProfile & {
     name: string;
 };
+
 /**
  * 注文インターフェース
  * @see https://schema.org/Order

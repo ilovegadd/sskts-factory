@@ -1,9 +1,6 @@
 /**
  * イベントファクトリー
- *
- * @namespace event
  */
-
 import * as CreativeWorkFactory from './creativeWork';
 import EventStatusType from './eventStatusType';
 import EventType from './eventType';
@@ -19,6 +16,10 @@ export interface IEvent {
      * スキーマタイプ
      */
     typeOf: EventType;
+    /**
+     * イベントID
+     */
+    id?: string;
     /**
      * イベント識別子
      */
@@ -79,6 +80,7 @@ export interface IEvent {
 /* istanbul ignore next */
 export function create(params: {
     typeOf: EventType;
+    id?: string;
     identifier: string;
     name: IMultilingualString;
     description?: IMultilingualString;
@@ -94,6 +96,7 @@ export function create(params: {
     workPerformed?: CreativeWorkFactory.ICreativeWork;
 }): IEvent {
     return {
+        id: params.id,
         identifier: params.identifier,
         name: (params.name === undefined) ? { ja: '', en: '' } : params.name,
         description: params.description,

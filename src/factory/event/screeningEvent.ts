@@ -158,14 +158,16 @@ export function createFromCOA(params: {
     const startDate = (moment(`${params.filmFromCOA.dateBegin} +09:00`, 'YYYYMMDD Z').isValid())
         ? moment(`${params.filmFromCOA.dateBegin} +09:00`, 'YYYYMMDD Z').toDate()
         : undefined;
+    // title_codeは劇場をまたいで共有、title_branch_numは劇場毎に管理
+    const identifier = createIdentifier({
+        theaterCode: params.movieTheater.branchCode,
+        titleCode: params.filmFromCOA.titleCode,
+        titleBranchNum: params.filmFromCOA.titleBranchNum
+    });
 
     return {
-        // title_codeは劇場をまたいで共有、title_branch_numは劇場毎に管理
-        identifier: createIdentifier({
-            theaterCode: params.movieTheater.branchCode,
-            titleCode: params.filmFromCOA.titleCode,
-            titleBranchNum: params.filmFromCOA.titleBranchNum
-        }),
+        id: identifier,
+        identifier: identifier,
         name: {
             ja: params.filmFromCOA.titleName,
             en: params.filmFromCOA.titleNameEng

@@ -242,6 +242,7 @@ export function createFromCOA(params: {
         ...EventFactory.create({
             eventStatus: EventStatusType.EventScheduled,
             typeOf: EventType.IndividualScreeningEvent,
+            id: identifier,
             identifier: identifier,
             name: params.screeningEvent.name
         }),
