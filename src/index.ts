@@ -75,6 +75,7 @@ import * as CancelPecorinoTaskFactory from './factory/task/cancelPecorino';
 import * as CancelPecorinoAwardTaskFactory from './factory/task/cancelPecorinoAward';
 import * as CancelSeatReservationTaskFactory from './factory/task/cancelSeatReservation';
 import * as GivePecorinoAwardTaskFactory from './factory/task/givePecorinoAward';
+import * as ImportScreeningEventsTaskFactory from './factory/task/importScreeningEvents';
 import * as PayCreditCardTaskFactory from './factory/task/payCreditCard';
 import * as PayPecorinoTaskFactory from './factory/task/payPecorino';
 import * as PlaceOrderTaskFactory from './factory/task/placeOrder';
@@ -278,6 +279,7 @@ export namespace task {
         T extends TaskName.CancelPecorinoAward ? CancelPecorinoAwardTaskFactory.IData :
         T extends TaskName.CancelSeatReservation ? CancelSeatReservationTaskFactory.IData :
         T extends TaskName.GivePecorinoAward ? GivePecorinoAwardTaskFactory.IData :
+        T extends TaskName.ImportScreeningEvents ? ImportScreeningEventsTaskFactory.IData :
         T extends TaskName.PlaceOrder ? PlaceOrderTaskFactory.IData :
         T extends TaskName.RefundCreditCard ? RefundCreditCardTaskFactory.IData :
         T extends TaskName.RefundPecorino ? RefundPecorinoTaskFactory.IData :
@@ -299,6 +301,7 @@ export namespace task {
         T extends TaskName.CancelPecorinoAward ? CancelPecorinoAwardTaskFactory.IAttributes :
         T extends TaskName.CancelSeatReservation ? CancelSeatReservationTaskFactory.IAttributes :
         T extends TaskName.GivePecorinoAward ? GivePecorinoAwardTaskFactory.IAttributes :
+        T extends TaskName.ImportScreeningEvents ? ImportScreeningEventsTaskFactory.IAttributes :
         T extends TaskName.PlaceOrder ? PlaceOrderTaskFactory.IAttributes :
         T extends TaskName.RefundCreditCard ? RefundCreditCardTaskFactory.IAttributes :
         T extends TaskName.RefundPecorino ? RefundPecorinoTaskFactory.IAttributes :
@@ -320,6 +323,7 @@ export namespace task {
         T extends TaskName.CancelPecorinoAward ? CancelPecorinoAwardTaskFactory.ITask :
         T extends TaskName.CancelSeatReservation ? CancelSeatReservationTaskFactory.ITask :
         T extends TaskName.GivePecorinoAward ? GivePecorinoAwardTaskFactory.ITask :
+        T extends TaskName.ImportScreeningEvents ? ImportScreeningEventsTaskFactory.ITask :
         T extends TaskName.PlaceOrder ? PlaceOrderTaskFactory.ITask :
         T extends TaskName.RefundCreditCard ? RefundCreditCardTaskFactory.ITask :
         T extends TaskName.RefundPecorino ? RefundPecorinoTaskFactory.ITask :

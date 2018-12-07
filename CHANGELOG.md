@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - タスク検索条件を追加
 - 組織の対応決済方法にクレジットカードを追加
+- 劇場にCOAのスケジュールXML情報属性を追加
+- 上映イベントインポートタスクを追加
 
 ### Changed
 
