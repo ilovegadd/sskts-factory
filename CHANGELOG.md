@@ -12,6 +12,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - 組織の対応決済方法にクレジットカードを追加
 - 劇場にCOAのスケジュールXML情報属性を追加
 - 上映イベントインポートタスクを追加
+- 取引検索条件インターフェースを追加
+- アクション検索ソート条件インターフェースを追加
 
 ### Changed
 
