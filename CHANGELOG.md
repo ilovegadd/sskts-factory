@@ -18,6 +18,23 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Security
 
+## v5.3.0 - 2018-12-10
+
+### Added
+
+- タスク検索条件を追加
+- 組織の対応決済方法にクレジットカードを追加
+- 劇場にCOAのスケジュールXML情報属性を追加
+- 上映イベントインポートタスクを追加
+- 取引検索条件インターフェースを追加
+- アクション検索ソート条件インターフェースを追加
+
+### Changed
+
+- 注文検索条件強化
+- install @waiter/factory@2.0.0
+- イベントにID属性を追加
+
 ## v5.2.0 - 2018-10-08
 
 ### Added

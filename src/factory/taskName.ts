@@ -25,6 +25,10 @@ enum TaskName {
      */
     CancelPecorinoAward = 'cancelPecorinoAward',
     /**
+     * 上映イベント在庫仕入れ
+     */
+    ImportScreeningEvents = 'importScreeningEvents',
+    /**
      *  Eメールメッセージ送信
      */
     SendEmailMessage = 'sendEmailMessage',

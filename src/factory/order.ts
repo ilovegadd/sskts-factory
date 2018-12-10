@@ -1,22 +1,24 @@
-/**
- * 注文ファクトリー
- * 注文は、確定した注文取引の領収証に値するものです。
- */
+import * as cinerino from '@cinerino/factory';
+
 import { IEvent as IIndividualScreeningEvent } from './event/individualScreeningEvent';
-import IMultilingualString from './multilingualString';
+import EventType from './eventType';
 import { IOffer } from './offer';
 import OrderStatus from './orderStatus';
 import OrganizationType from './organizationType';
 import PaymentMethodType from './paymentMethodType';
-import { IContact, IIdentifier, IPerson } from './person';
+import { IIdentifier, IPerson, IProfile } from './person';
 import PersonType from './personType';
 import PriceCurrency from './priceCurrency';
 import { IProgramMembership } from './programMembership';
+import { IPropertyValue } from './propertyValue';
 import * as EventReservationFactory from './reservation/event';
+import ReservationType from './reservationType';
 import SortType from './sortType';
 
+export type TypeOf = cinerino.order.TypeOf;
+
 /**
- * 決済方法イーターフェース
+ * 決済方法インターフェース
  */
 export interface IPaymentMethod<T extends PaymentMethodType> {
     /**
@@ -35,31 +37,22 @@ export interface IPaymentMethod<T extends PaymentMethodType> {
      * An identifier for the method of payment used (e.g.the last 4 digits of the credit card).
      */
     paymentMethodId: string;
+    /**
+     * 追加特性
+     */
+    additionalProperty?: IPropertyValue<any>[];
 }
 
 /**
  * 割引インターフェース
  */
-export interface IDiscount {
-    name: string;
-    /**
-     * Any discount applied.
-     */
-    discount: number;
-    /**
-     * Code used to redeem a discount.
-     */
-    discountCode: string;
-    /**
-     * The currency (in 3 - letter ISO 4217 format) of the discount.
-     */
-    discountCurrency: string;
-}
+export type IDiscount = cinerino.order.IDiscount;
 
 /**
  * 供給アイテムインターフェース
  */
 export type IItemOffered = EventReservationFactory.IEventReservation<IIndividualScreeningEvent> | IProgramMembership;
+export type ItemOfferedType = ReservationType;
 
 /**
  * 注文照会キーインターフェース
@@ -91,31 +84,24 @@ export interface IAcceptedOffer<T extends IItemOffered> extends IOffer {
 /**
  * 販売者インターフェース
  */
-export interface ISeller {
-    id: string;
-    identifier?: string;
-    name: string;
-    legalName?: IMultilingualString;
-    typeOf: OrganizationType;
-    telephone?: string;
-    url?: string;
-}
+export type ISeller = cinerino.order.ISeller;
 
 /**
  * 購入者インターフェース
  */
-export type ICustomer = IPerson & IContact & {
+export type ICustomer = IPerson & IProfile & {
     name: string;
 };
 
 /**
  * 注文インターフェース
+ * @see https://schema.org/Order
  */
 export interface IOrder {
     /**
      * object type
      */
-    typeOf: string;
+    typeOf: TypeOf;
     /**
      * Organization or Person
      * The party taking the order (e.g. Amazon.com is a merchant for many sellers). Also accepts a string (e.g. "Amazon.com").
@@ -174,6 +160,10 @@ export interface IOrder {
      */
     isGift: boolean;
     /**
+     * Date order was returned.
+     */
+    dateReturned?: Date;
+    /**
      * key for inquiry (required)
      */
     orderInquiryKey: IOrderInquiryKey;
@@ -187,6 +177,94 @@ export interface ISortOrder {
     price?: SortType;
 }
 /**
+ * 予約対象検索条件インターフェース
+ */
+export interface IReservationForSearchConditions {
+    typeOfs?: EventType[];
+    ids?: string[];
+    /**
+     * イベント名称
+     */
+    name?: string;
+    /**
+     * 開催中 from
+     */
+    inSessionFrom?: Date;
+    /**
+     * 開催中 through
+     */
+    inSessionThrough?: Date;
+    /**
+     * 開始日時 from
+     */
+    startFrom?: Date;
+    /**
+     * 開始日時 through
+     */
+    startThrough?: Date;
+    /**
+     * イベント開催場所
+     */
+    location?: {
+        branchCodes?: string[];
+    };
+    /**
+     * 親イベント情報
+     */
+    superEvent?: {
+        ids?: string[];
+        location?: {
+            /**
+             * 親イベントが実施される場所の枝番号
+             */
+            branchCodes?: string[];
+        };
+        workPerformed?: {
+            /**
+             * イベントで上演される作品識別子リスト
+             */
+            identifiers?: string[];
+        };
+    };
+}
+export interface ISellerSearchConditions {
+    typeOf: OrganizationType;
+    /**
+     * 販売者IDリスト
+     */
+    ids?: string[];
+}
+export interface ICustomerSearchConditions {
+    typeOf: PersonType;
+    ids?: string[];
+    identifiers?: IIdentifier;
+    /**
+     * 購入者会員番号リスト
+     */
+    membershipNumbers?: string[];
+    /**
+     * 電話番号
+     */
+    telephone?: string;
+}
+export interface IPaymentMethodsSearchConditions {
+    typeOfs?: PaymentMethodType[];
+    paymentMethodIds?: string[];
+}
+export interface IAcceptedOffersSearchConditions {
+    itemOffered?: {
+        typeOfs?: ItemOfferedType[];
+        /**
+         * 予約IDリスト
+         */
+        ids?: string[];
+        /**
+         * 予約対象
+         */
+        reservationFor?: IReservationForSearchConditions;
+    };
+}
+/**
  * 注文検索条件インターフェース
  */
 export interface ISearchConditions {
@@ -196,25 +274,11 @@ export interface ISearchConditions {
     /**
      * 販売者条件
      */
-    seller?: {
-        typeOf: OrganizationType;
-        /**
-         * 販売者IDリスト
-         */
-        ids?: string[];
-    };
+    seller?: ISellerSearchConditions;
     /**
      * 購入者条件
      */
-    customer?: {
-        typeOf: PersonType;
-        ids?: string[];
-        identifiers?: IIdentifier;
-        /**
-         * 購入者会員番号リスト
-         */
-        membershipNumbers?: string[];
-    };
+    customer?: ICustomerSearchConditions;
     /**
      * 注文番号リスト
      */
@@ -226,15 +290,23 @@ export interface ISearchConditions {
     /**
      * 注文日時(から)
      */
-    orderDateFrom: Date;
+    orderDateFrom?: Date;
     /**
      * 注文日時(まで)
      */
-    orderDateThrough: Date;
+    orderDateThrough?: Date;
     /**
      * 確認番号リスト
      */
     confirmationNumbers?: string[];
+    /**
+     * 決済方法
+     */
+    paymentMethods?: IPaymentMethodsSearchConditions;
+    /**
+     * 注文アイテム条件
+     */
+    acceptedOffers?: IAcceptedOffersSearchConditions;
     /**
      * どのイベントに対する予約を注文したか
      */

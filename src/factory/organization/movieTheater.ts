@@ -75,6 +75,10 @@ export interface IOrganizationWithoutGMOInfo extends OrganizationFactory.IOrgani
      * 劇場ポータルサイトURL
      */
     url: URLFactory.IURL;
+    /**
+     * COAのスケジュールXMK情報
+     */
+    xmlEndPoint?: { baseUrl: string; theaterCodeName: string };
 }
 
 /**
