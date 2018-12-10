@@ -8,6 +8,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## v5.3.0 - 2018-12-10
+
+### Added
+
 - タスク検索条件を追加
 - 組織の対応決済方法にクレジットカードを追加
 - 劇場にCOAのスケジュールXML情報属性を追加
@@ -20,14 +34,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - 注文検索条件強化
 - install @waiter/factory@2.0.0
 - イベントにID属性を追加
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 
 ## v5.2.0 - 2018-10-08
 
