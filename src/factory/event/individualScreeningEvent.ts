@@ -17,13 +17,25 @@ import EventType from '../eventType';
 import IMultilingualString from '../multilingualString';
 import * as MovieTheaterPlaceFactory from '../place/movieTheater';
 import PlaceType from '../placeType';
+import SortType from '../sortType';
+
+/**
+ * ソート条件インターフェース
+ */
+export interface ISortOrder {
+    doorTime?: SortType;
+    endDate?: SortType;
+    startDate?: SortType;
+}
 
 /**
  * search conditions interface
  * 個々の上映イベントの検索条件インターフェース
- * @export
  */
 export interface ISearchConditions {
+    limit?: number;
+    page?: number;
+    sort?: ISortOrder;
     /**
      * イベント名称
      */
@@ -63,13 +75,11 @@ export interface ISearchConditions {
  * item availability interface
  * 上映イベント空席状況表現インターフェース
  * 表現を変更する場合、このインターフェースを変更して対応する
- * @export
  */
 export type IItemAvailability = number;
 
 /**
  * 座席数から在庫状況表現を生成する
- * @export
  * @param numberOfAvailableSeats 空席数
  * @param numberOfAllSeats 全座席数
  */
@@ -94,7 +104,6 @@ export function createItemAvailability(numberOfAvailableSeats: number, numberOfA
 
 /**
  * event offer interface
- * @export
  */
 export interface IOffer {
     typeOf: string;
@@ -104,7 +113,6 @@ export interface IOffer {
 
 /**
  * event with offer interface
- * @export
  */
 export type IEventWithOffer = IEvent & {
     offer: IOffer;
@@ -113,7 +121,6 @@ export type IEventWithOffer = IEvent & {
 /**
  * individual screening event interface
  * 個々の上映イベントインターフェース(COAのスケジュールに相当)
- * @export
  */
 export interface IEvent extends EventFactory.IEvent {
     /**
@@ -212,7 +219,6 @@ export interface IEvent extends EventFactory.IEvent {
 
 /**
  * create individualScreeningEvent from COA performance
- * @export
  */
 // tslint:disable-next-line:no-single-line-block-comment
 /* istanbul ignore next */
@@ -278,7 +284,6 @@ export function createFromCOA(params: {
 
 /**
  * COA情報から個々の上映イベント識別子を作成する
- * @export
  */
 // tslint:disable-next-line:no-single-line-block-comment
 /* istanbul ignore next */
