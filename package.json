@@ -28,7 +28,9 @@
     "preversion": "npm run clean && npm run build && npm test && npm run doc",
     "version": "git add -A",
     "postversion": "git push origin --tags",
-    "prepublishOnly": "npm run clean && npm run build && npm test && npm run doc"
+    "prepublishOnly": "npm run clean && npm run build && npm test && npm run doc",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "author": {
     "name": "Motionpicture co.,ltd."
@@ -57,7 +59,6 @@
     "power-assert": "^1.5.0",
     "rimraf": "^2.6.2",
     "sinon": "^5.1.0",
-    "snyk": "^1.82.1",
     "ts-node": "^6.1.0",
     "tslint": "^5.10.0",
     "tslint-microsoft-contrib": "^5.0.3",
@@ -72,10 +73,12 @@
     "aws-sdk": "^2.329.0",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
-    "setprototypeof": "^1.1.0"
+    "setprototypeof": "^1.1.0",
+    "snyk": "^1.117.1"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/motionpicture/sskts-factory.git"
-  }
+  },
+  "snyk": true
 }
