@@ -175,6 +175,7 @@ export interface IEvent extends EventFactory.IEvent {
         titleCode: string;
         titleBranchNum: string;
         timeBegin: string;
+        timeEnd: string;
         screenCode: string;
         /**
          * トレーラー時間
@@ -238,11 +239,22 @@ export function createFromCOA(params: {
         timeBegin: params.performanceFromCOA.timeBegin
     });
 
-    // COA情報を整形して開始日時と終了日時を作成
-    // tslint:disable-next-line:max-line-length
-    const endDate = moment(`${params.performanceFromCOA.dateJouei} ${params.performanceFromCOA.timeEnd} +09:00`, 'YYYYMMDD HHmm Z').toDate();
-    // tslint:disable-next-line:max-line-length
-    const startDate = moment(`${params.performanceFromCOA.dateJouei} ${params.performanceFromCOA.timeBegin} +09:00`, 'YYYYMMDD HHmm Z').toDate();
+    // COA情報を整形して開始日時と終了日時を作成('2500'のような日またぎの時刻入力に対応)
+    let timeEnd = params.performanceFromCOA.timeEnd;
+    let addDay = 0;
+    try {
+        const DAY = 2400;
+        addDay += Math.floor(Number(timeEnd) / DAY);
+        // tslint:disable-next-line:no-magic-numbers
+        timeEnd = `0000${Number(timeEnd) % DAY}`.slice(-4);
+    } catch (error) {
+        // no op
+    }
+
+    const endDate = moment(`${params.performanceFromCOA.dateJouei} ${timeEnd} +09:00`, 'YYYYMMDD HHmm Z').add(addDay, 'days')
+        .toDate();
+    const startDate = moment(`${params.performanceFromCOA.dateJouei} ${params.performanceFromCOA.timeBegin} +09:00`, 'YYYYMMDD HHmm Z')
+        .toDate();
 
     return {
         ...EventFactory.create({
@@ -268,6 +280,7 @@ export function createFromCOA(params: {
                 titleCode: params.performanceFromCOA.titleCode,
                 titleBranchNum: params.performanceFromCOA.titleBranchNum,
                 timeBegin: params.performanceFromCOA.timeBegin,
+                timeEnd: params.performanceFromCOA.timeEnd,
                 screenCode: params.performanceFromCOA.screenCode,
                 trailerTime: params.performanceFromCOA.trailerTime,
                 kbnService: params.serviceKubuns.filter((kubun) => kubun.kubunCode === params.performanceFromCOA.kbnService)[0],
